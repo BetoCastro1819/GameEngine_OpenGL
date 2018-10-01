@@ -11,8 +11,8 @@ using namespace std;
 
 class Game : public GameBase {
 protected:
-	//Triangle* _triangle;
-	//ColorShape* _cube;
+	Triangle* _triangle;
+	ColorShape* _cube;
 	Circle * _circle;
 	Material* _mat;
 	int _fpsCount;
