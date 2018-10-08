@@ -1,3 +1,26 @@
-﻿     Creando biblioteca C:\Users\Administrador\Documents\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.lib y objeto C:\Users\Administrador\Documents\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.exp
+﻿  TextureShape.cpp
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(18): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(19): warning C4251: 'Renderer::_projection': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(20): warning C4251: 'Renderer::_model': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(21): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::v3Pos': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::v3Scale': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::v3Rot': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(13): warning C4251: 'Entity::_modelMatrix': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(15): warning C4251: 'Entity::_translateMatrix': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(16): warning C4251: 'Entity::_rotateMatrix': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(17): warning C4251: 'Entity::_scaleMatrix': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+     Creando biblioteca C:\Users\Administrador\Documents\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.lib y objeto C:\Users\Administrador\Documents\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.exp
 MSVCRTD.lib(initializers.obj) : warning LNK4098: la biblioteca predeterminada'msvcrt.lib' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
   EngineDLL.vcxproj -> C:\Users\Administrador\Documents\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll

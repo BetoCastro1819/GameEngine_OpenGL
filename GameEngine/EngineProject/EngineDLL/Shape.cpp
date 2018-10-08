@@ -19,9 +19,9 @@ void Shape::Draw() {
 	_renderer->UpdateMVP();
 	_renderer->SendTransformationToShader(_matrixID);
 	// Bind Vertex Buffer (Attribute index = 0)
-	_renderer->BindBuffer(_bufferData, _vrtxCount, 0, _drawMode);
+	_renderer->BindBuffer(_bufferData, _vrtxCount, 0, 3, _drawMode);
 	// Bind Color Buffer (Attribute index = 1)
-	_renderer->BindBuffer(_colorBufferData, _colorVrtxCount, 1, _drawMode);
+	//_renderer->BindBuffer(_colorBufferData, _colorVrtxCount, 1, _drawMode);
 }
 
 void Shape::SetVertices(float* vrtxs, const int& count) {

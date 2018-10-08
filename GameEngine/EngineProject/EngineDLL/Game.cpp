@@ -14,7 +14,10 @@ Game::~Game() {
 		delete _circle;
 	if (_mat != NULL)
 		delete _mat;
+	if (_tx != NULL)
+		delete _tx;
 }
+
 
 bool Game::OnStart() {
 	cout << "Game::OnStart()" << endl;	
@@ -45,6 +48,13 @@ bool Game::OnStart() {
 		_circle->SetDrawMode(2);
 	}
 
+	_tx = new TextureShape(_renderer);
+	if (_tx && _mat) {
+		_tx->SetMaterial(_mat);
+		_tx->SetDrawMode(0);
+		_tx->SetScale(0.5f, 0.5f, 0.5f);
+	}
+
 	return true;
 }
 
@@ -62,6 +72,8 @@ bool Game::OnUpdate() {
 	//_cube->Draw();
 	//_triangle->Draw();		
 	//_circle->Draw();			
+	_tx->DrawTextureShape();
+	_tx->SetRotY(1);
 
 	return true;
 }

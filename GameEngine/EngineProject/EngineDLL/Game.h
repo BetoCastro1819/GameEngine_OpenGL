@@ -6,11 +6,13 @@
 #include "ColorShape.h"
 #include "Shape.h"
 #include "Circle.h"
+#include "TextureShape.h"
 
 using namespace std;
 
 class Game : public GameBase {
 protected:
+	TextureShape * _tx;
 	Triangle* _triangle;
 	ColorShape* _cube;
 	Circle * _circle;

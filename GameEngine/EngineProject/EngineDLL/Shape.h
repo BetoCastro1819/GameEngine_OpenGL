@@ -4,7 +4,7 @@
 
 class ENGINEDLL_API Shape : public Entity {
 protected:
-	Material * _mat;
+	Material* _mat;
 	int _vrtxCount;
 	int _colorVrtxCount;
 	int _drawMode;

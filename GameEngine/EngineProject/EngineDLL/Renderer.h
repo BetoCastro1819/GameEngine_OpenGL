@@ -29,7 +29,7 @@ public:
 	
 	// Buffer
 	unsigned int GenBuffer(float* buffer, int size);
-	void BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int drawMode);
+	void BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int size, int drawMode);
 	void SetClearColor(const float& r, const float& g, const float& b, const float& a);
 	void ClearBuffer();
 	void SwapBuffers();
@@ -47,7 +47,8 @@ public:
 	void SendTransformationToShader(unsigned int matrixID);
 	unsigned int SetMatrixID(unsigned int programID);
 
-	// DRAW CIRCLE????
-	void DrawCircle(float x, float y, float z, float radius, int numberOfSides);
+	unsigned int SetTextureID(unsigned int programID);
+	void BindTexture(unsigned int texture);
+	void SetTextureSampler(unsigned int textureID);
 };
 
