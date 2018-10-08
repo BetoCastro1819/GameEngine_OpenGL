@@ -7,6 +7,7 @@ protected:
 	Material * _mat;
 	int _vrtxCount;
 	int _colorVrtxCount;
+	int _drawMode;
 	float* _vrtxs;
 	float* _colorVrtx;
 	bool _dispose;
@@ -23,5 +24,6 @@ public:
 	void SetMaterial(Material* material);
 	void Dispose();
 	void BindMaterial();
+	void SetDrawMode(int drawMode) { _drawMode = drawMode; }
 };
 

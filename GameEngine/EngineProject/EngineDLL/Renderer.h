@@ -29,7 +29,7 @@ public:
 	
 	// Buffer
 	unsigned int GenBuffer(float* buffer, int size);
-	void BindBuffer(unsigned int bufferID, int vtxCount, int attribID);
+	void BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int drawMode);
 	void SetClearColor(const float& r, const float& g, const float& b, const float& a);
 	void ClearBuffer();
 	void SwapBuffers();

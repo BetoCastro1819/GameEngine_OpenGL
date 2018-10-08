@@ -71,7 +71,7 @@ unsigned int Renderer::GenBuffer(float* buffer, int size) {
 	return vrtxBuffer;
 }
 
-void Renderer::BindBuffer(unsigned int bufferID, int vtxCount, int attribID) {
+void Renderer::BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int drawMode) {
 	glEnableVertexAttribArray(attribID);
 	glBindBuffer(GL_ARRAY_BUFFER, bufferID);
 	// Structure of shader data
@@ -86,7 +86,18 @@ void Renderer::BindBuffer(unsigned int bufferID, int vtxCount, int attribID) {
 
 	// DRAW
 	// Starts from index 0, up to "vrtxCount" (vrtxCount = 3 -> triangle)
-	glDrawArrays(GL_TRIANGLE_FAN, 0, vtxCount);
+	switch (drawMode)
+	{
+	case 0:
+		glDrawArrays(GL_TRIANGLES, 0, vtxCount);
+		break;
+	case 1:
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, vtxCount);
+		break;
+	case 2:
+		glDrawArrays(GL_TRIANGLE_FAN, 0, vtxCount);
+		break;
+	}
 	glDisableVertexAttribArray(0);
 }
 

@@ -23,17 +23,26 @@ bool Game::OnStart() {
 	_triangle = new Triangle(_renderer);
 	if (_triangle && _mat) {
 		_triangle->SetMaterial(_mat);
+		
+		// Index 0 = GL_TRIANGLES
+		_triangle->SetDrawMode(0);
 	}
 
 	_cube = new ColorShape(_renderer);
 	if (_cube && _mat) {
 		_cube->SetMaterial(_mat);
 		_cube->SetScale(.5f, .5f, .5f);
+
+		// Index 1 = GL_TRIANGLE_STRIP
+		_cube->SetDrawMode(1);
 	}
 
 	_circle = new Circle(_renderer,	0.5, 20);
 	if (_circle && _mat) {
 		_circle->SetMaterial(_mat);
+		
+		// Index 2 = GL_TRIANGLE_FAN
+		_circle->SetDrawMode(2);
 	}
 
 	return true;
@@ -50,9 +59,9 @@ bool Game::OnUpdate() {
 	if (_fpsCount > 100)
 		return false;
 	*/
-	//_cube->Draw();			// In Renderer DrawArrays(GL_TRIANGLE_STRIP...)
-	//_triangle->Draw();		// In Renderer DrawArrays(GL_TRIANGLES...)
-	_circle->Draw();			// In Renderer DrawArrays(GL_TRIANGLE_FAN...)
+	//_cube->Draw();
+	//_triangle->Draw();		
+	//_circle->Draw();			
 
 	return true;
 }
