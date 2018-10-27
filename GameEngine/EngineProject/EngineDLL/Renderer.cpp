@@ -8,12 +8,12 @@ Renderer::Renderer(Window* window) {
 	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
 	//_projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
 
-	// Uncomment to use orthographic camera
+	// Orthographic camera
 	_projection = glm::ortho(-1.0f,1.0f,-1.0f,1.0f,0.0f,100.0f); // In world coordinates
 
 	// Camera matrix
 	_view = glm::lookAt(
-		glm::vec3(5, 5, -4), // Camera is at (0,0,-4), in World Space
+		glm::vec3(0, 0, 4), // Camera is at (0,0,-4), in World Space
 		glm::vec3(0, 0, 0), // and looks at the origin
 		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 	);
@@ -101,10 +101,6 @@ void Renderer::BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int
 	glDisableVertexAttribArray(0);
 }
 
-void Renderer::DeleteBuffers(unsigned int _buffer) {
-	glDeleteBuffers(1, &_buffer);
-}
-
 void Renderer::BindMaterial(unsigned int programID) {
 	glUseProgram(programID);
 }
@@ -147,3 +143,20 @@ void Renderer::BindTexture(unsigned int texture) {
 void Renderer::SetTextureSampler(unsigned int textureID) {
 	glUniform1i(textureID, 0);
 }
+
+void Renderer::DeleteBuffers(unsigned int buffer) {
+	glDeleteBuffers(1, &buffer);
+}
+
+void Renderer::DeleteProgram(unsigned int programID) {
+	glDeleteProgram(programID);
+}
+
+void Renderer::DeleteVrtxArray() {
+	glDeleteVertexArrays(1, &_vrtxArrID);
+}
+
+void Renderer::DeleteTextures(unsigned int texture) {
+	glDeleteTextures(1, &texture);
+}
+

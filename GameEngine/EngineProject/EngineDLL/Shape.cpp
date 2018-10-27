@@ -3,6 +3,9 @@
 Shape::Shape(Renderer* renderer) : Entity(renderer) {
 	_dispose = false;
 	_drawMode = 0;
+
+	_vrtxs = NULL;
+	_colorVrtx = NULL;
 }
 
 
@@ -39,13 +42,18 @@ void Shape::SetColorBufferData(float* colorVrtxs, const int& count) {
 
 void Shape::Dispose() {
 	if (_dispose) {
-		_renderer->DeleteBuffers(_bufferData);
+		std::cout << "Shape::~Shape()" << std::endl;
 
-		if (_vrtxs) {
-			delete[] _vrtxs;
+		_renderer->DeleteBuffers(_bufferData);
+		_renderer->DeleteVrtxArray();
+		_renderer->DeleteProgram(_programID);
+
+		/* TODO: Program crashes when TextureShape calls this Destructor */
+		if (_vrtxs != nullptr) {
+			//delete[] _vrtxs;
 			_vrtxs = NULL;
 		}
-		if (_colorVrtx) {
+		if (_colorVrtx != nullptr) {
 			delete[] _colorVrtx;
 			_colorVrtx = NULL;
 		}

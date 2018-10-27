@@ -33,7 +33,6 @@ public:
 	void SetClearColor(const float& r, const float& g, const float& b, const float& a);
 	void ClearBuffer();
 	void SwapBuffers();
-	void DeleteBuffers(unsigned int _buffer);
 	void RecalculateFragmentDepth();
 	
 	// Material/Shader
@@ -47,8 +46,18 @@ public:
 	void SendTransformationToShader(unsigned int matrixID);
 	unsigned int SetMatrixID(unsigned int programID);
 
+	// Handle UV Texture
 	unsigned int SetTextureID(unsigned int programID);
 	void BindTexture(unsigned int texture);
 	void SetTextureSampler(unsigned int textureID);
+
+	// Free memory space
+	void DeleteBuffers(unsigned int buffer);
+	void DeleteVrtxArray();
+	void DeleteProgram(unsigned int programID);
+	void DeleteTextures(unsigned int texture);
+
 };
+
+
 

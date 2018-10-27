@@ -9,7 +9,7 @@ private:
 	int _uvVrtxCount;
 	int _uvBufferData;
 	unsigned int _textureID;
-	unsigned int  _image;
+	unsigned int  _texture;
 public:
 	void DrawTextureShape();
 	void SetUVBufferData(float* vrtxs, const int& count);

@@ -7,6 +7,7 @@
 #include "Shape.h"
 #include "Circle.h"
 #include "TextureShape.h"
+#include "Sprite.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ protected:
 	Triangle* _triangle;
 	ColorShape* _cube;
 	Circle * _circle;
+	Sprite* _sprite;
 	Material* _mat;
 	int _fpsCount;
 	bool OnStart() override;

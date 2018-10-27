@@ -8,14 +8,21 @@ Game::Game(const int& widht, const int& height, const char* name)
 Game::~Game() {
 	if (_triangle != NULL)
 		delete _triangle;
+	
 	if (_cube != NULL)
 		delete _cube;
+	
 	if (_circle != NULL)
 		delete _circle;
-	if (_mat != NULL)
-		delete _mat;
+
 	if (_tx != NULL)
 		delete _tx;
+
+	if (_sprite != NULL)
+		delete _sprite;
+
+	if (_mat != NULL)
+		delete _mat;
 }
 
 
@@ -51,8 +58,29 @@ bool Game::OnStart() {
 	_tx = new TextureShape(_renderer);
 	if (_tx && _mat) {
 		_tx->SetMaterial(_mat);
-		_tx->SetDrawMode(0);
+		_tx->SetDrawMode(1);
 		_tx->SetScale(0.5f, 0.5f, 0.5f);
+	}
+
+
+	// Create sprite
+	_sprite = new Sprite(
+		_renderer,				// Pointer to renderer
+		0,						// Frame ID
+		512,					// Texture width in pixels
+		512,					// Texture height in pixels
+		51,						// Width per frame in pixels
+		51,						// Height per frame in pixels
+		10,						// Number of horizontal frames
+		10,						// Number of vertical frames
+		true					// Animated?
+	);
+
+
+	if (_sprite && _mat) {
+		_sprite->SetMaterial(_mat);
+		_sprite->SetDrawMode(1);
+		_sprite->SetScale(0.5f, 0.5f, 0.5f);
 	}
 
 	return true;
@@ -72,8 +100,10 @@ bool Game::OnUpdate() {
 	//_cube->Draw();
 	//_triangle->Draw();		
 	//_circle->Draw();			
-	_tx->DrawTextureShape();
-	_tx->SetRotY(1);
+	//_tx->DrawTextureShape();
+	//_tx->SetRotY(1);
+
+	_sprite->DrawSprite();
 
 	return true;
 }
