@@ -1,0 +1,33 @@
+Paso previo a agregar animaciones al sprite
+
+Sprite (con seleccion de frame dentro de una textura)
+- SetFrame(id)
+- SetFrameInfo // guardar info de ancho/alto textura, numero de frames ancho/alto, alto/ancho de cada frame
+
+
+Notas para agregar a clase Sprite:
+- Que permita mostrar un sprite en particular dentro de una textura, tomando como refencia un iD
+- Regla de 3 simples para calcular coordenas UV en base a alto y ancho de la texture
+
+ejemplo:
+- se quiere calular las coordenadas del offset (0,0 local) de cada frame
+
+x = (id % numFramesAncho) * anchoDelFrame;
+y = (id / numFramesAncho) * altoDelFrame;
+
+offset(V0)
+U = x / anchoTextura;
+V = 1 - y / altoTextura;
+
+V1:
+U = (x + anchoFrame) / anchoTextura;
+V = 1 - y / altoTextura;
+
+V2:
+U = x / anchoTextura;
+V = 1 - (y + altoFrame) / altoTextura;
+
+V3:
+U = (x + anchoFrame) / anchoTextura;
+V = 1 - (y + altoFrame) / altoTextura;
+
