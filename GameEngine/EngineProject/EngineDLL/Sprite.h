@@ -16,8 +16,14 @@ private:
 	unsigned int	_texture;						// Actual texture file in BMP format
 
 	/* ANIMATED SPRITE */
-	unsigned int	_frameID;						// ID of the frame that will be selected from the sprite sheet to be drawn
 	FramePos		_frame;							// Struct that will store X and Y position of the frame based on it's ID 
+	unsigned int	_frameID;						// ID of the frame that will be selected from the sprite sheet to be drawn
+	unsigned int	_textureWidth;					// Width of the texture in pixels
+	unsigned int	_textureHeight;					// Height of the texture in pixels
+	unsigned int	_frameWidth;					// Width of each frame cell from the sprite sheet
+	unsigned int	_frameHeight;					// Height of each frame cell from the sprite sheet
+	unsigned int	_numColums;						// Number of horizontal frames
+	unsigned int	_numRows;
 
 public:
 	Sprite (

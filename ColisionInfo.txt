@@ -1,0 +1,72 @@
+Colisiones:
+- AABB (Axis Alingned Bounding Box) -> cajas alineadas a los ejes, siempre derechas
+
+COLISION A BASE DE CAJAS
+diff = P2 - P1
+deltaX = |diff.x|
+deltaY = |diff.y|
+
+bool Colision() 
+{
+	if (deltaX < ancho1 / 2 + ancho2 / 2 &&
+	    deltaY < alto1 / 2 + alto2 / 2)
+	{
+		// Hubo colision
+		// Calcular penetracion
+		Px = ancho1 / 2 + ancho2 / 2 - deltaX;
+		Py = alto1 / 2 + alto2 / 2 - deltaY;
+		
+		if (Px > Py)
+		{
+			// Vertical -> calcular lado
+		}
+		else
+		{
+			// Horizontal -> calcular lado
+		}
+
+		// Una vez que se sabe de donde viene la colision
+		// hacer los calculos para resolver la colision
+		
+		// Fijarse si el objeto es estatico
+		// Hacer que el objeto dinamico se mueva en totalidad de la penetracion en direccion contraria
+
+		// Si ambos son objetos dinamicos
+		// Dividir la separacion de ambos objetos en base a su masa (variable que se debe establecer)
+	}
+}
+
+
+COLISION A BASE DE CIRCULOS
+diff = P2 - P1
+deltaX = |diff.x|
+deltaY = |diff.y|
+
+if (diff.magnitude < r1 - r2)
+
+// Optimizado seria...
+if (deltaX * deltaX + deltaY * deltaY < (r1 - r2) * (r1 - r2))
+{
+	// Hubo colision
+	dist = distSqr
+
+	// Forgot what is next...
+	P = (r1)
+	dir = diff
+}
+
+
+
+Hacer un CollisionManager que permita separar los objetos colisionables entre grupos
+Se identifican a partir de Keys, y un for loop que recorra las keys chequeando por colisiones
+
+Posible arquitectura de clases
+Clase Avatar que hereda de Entity
+Avatar esta compuesto por: Sprite, Bounding Box (o circle)
+Bounding Box (o circle): tiene una referencia a CollisionMgr por agregacion
+
+Collision manager
+- hashMap<string key, vector<BoundingBox>>
+- Metodo "agregar" que crea la key si no existe, y agrega el objeto a la lista de objetos colosionables
+
+

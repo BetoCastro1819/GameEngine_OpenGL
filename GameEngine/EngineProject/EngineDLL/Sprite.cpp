@@ -16,9 +16,15 @@ Sprite::Sprite(
 	) : Shape(renderer) {				// Initialize base constructor
 
 	// Initialize variables
-	_frameID = frameID;
-	_frame.x = 0;
-	_frame.y = 0;
+	_frameID		= frameID;
+	_frame.x		= 0;
+	_frame.y		= 0;
+	_textureWidth	= 0;
+	_textureHeight	= 0;
+	_frameWidth		= 0;
+	_frameHeight	= 0;
+	_numColums		= 0;
+	_numRows		= 0;
 
 
 	GLfloat vertexBuffer[] = {
@@ -30,12 +36,14 @@ Sprite::Sprite(
 
 
 	// 2 UV coordinates for each vertex
+
 	GLfloat UV_Buffer[] = {
 		0.0f, 0.0f,
 		0.0f, 1.0f,
 		1.0f, 0.0f,
 		1.0f, 1.0f,
 	};
+
 
 	// If the sprite is animated
 	// Set new UV coordinates
@@ -67,7 +75,6 @@ Sprite::Sprite(
 		else {
 			std::cout << "Frame ID selected is out of bounds" << std::endl;
 		}
-
 	}
 
 
@@ -83,7 +90,6 @@ Sprite::~Sprite() {
 	//Dispose();
 	_renderer->DeleteBuffers(_uvBufferData);
 	_renderer->DeleteTextures(_texture);
-
 
 	/* TODO: program crashes when it has to delete THESE vertices*/
 	if (_uvVrtxs != nullptr) {
@@ -110,4 +116,30 @@ void Sprite::SetUVBufferData(float* vrtxs, const int& count) {
 
 void Sprite::SetFrame(int frameID) {
 	_frameID = frameID;
+
+	// Check that ID selected lower than the amount of frames on the spriteSheet
+	if (_frameID <= (_numRows * _numColums) - 1) {
+		// Calculate frame coordinates based on ID position on the sprite sheet
+		_frame.x = (_frameID % _numRows) * _frameWidth;
+		_frame.y = (_frameID / _numColums) * _frameHeight;
+
+		// V0 = BOTTOM LEFT
+		_uvVrtxs[0] = _frame.x / _textureWidth;							// U coord
+		_uvVrtxs[1] = 1 - (_frame.y + _frameHeight) / _textureHeight;	// V coord
+
+																		// V1 = TOP LEFT
+		_uvVrtxs[2] = _frame.x / _textureWidth;							// U coord
+		_uvVrtxs[3] = 1 - (_frame.y / _textureHeight);					// V coord
+
+																		// V2 = BOTTOM RIGHT
+		_uvVrtxs[4] = (_frame.x + _frameWidth) / _textureWidth;			// U coord
+		_uvVrtxs[5] = 1 - (_frame.y + _frameHeight) / _textureHeight;			// V coord
+
+																				// V3 = TOP RIGHT
+		_uvVrtxs[6] = (_frame.x + _frameWidth) / _textureWidth;			// U coord
+		_uvVrtxs[7] = 1 - (_frame.y / _textureHeight);					// V coord
+	}
+	else {
+		std::cout << "Frame ID selected is out of bounds" << std::endl;
+	}
 }

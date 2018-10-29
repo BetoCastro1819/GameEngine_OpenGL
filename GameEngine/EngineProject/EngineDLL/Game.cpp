@@ -62,11 +62,10 @@ bool Game::OnStart() {
 		_tx->SetScale(0.5f, 0.5f, 0.5f);
 	}
 
-
 	// Create sprite
 	_sprite = new Sprite(
 		_renderer,				// Pointer to renderer
-		0,						// Frame ID
+		45,						// Frame ID
 		512,					// Texture width in pixels
 		512,					// Texture height in pixels
 		51,						// Width per frame in pixels
@@ -76,11 +75,11 @@ bool Game::OnStart() {
 		true					// Animated?
 	);
 
-
 	if (_sprite && _mat) {
 		_sprite->SetMaterial(_mat);
 		_sprite->SetDrawMode(1);
 		_sprite->SetScale(0.5f, 0.5f, 0.5f);
+		//_sprite->SetFrame(5);
 	}
 
 	return true;
