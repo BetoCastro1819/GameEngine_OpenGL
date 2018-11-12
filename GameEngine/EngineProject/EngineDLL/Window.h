@@ -19,5 +19,7 @@ public:
 	bool ShouldClose();
 	void PollEvents();
 	const void* GetWindowPtr() { return _window; };
+	int GetHeight() { return _height; }
+	int GetWidth() { return _width; }
 };
 

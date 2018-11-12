@@ -20,6 +20,6 @@ public:
 	virtual ~GameBase();
 	bool Start();
 	bool Stop();
-	void Loop();
+	void Loop(); // Calcular delta time
 };
 

@@ -78,7 +78,13 @@ bool Game::OnStart() {
 	if (_sprite && _mat) {
 		_sprite->SetMaterial(_mat);
 		_sprite->SetDrawMode(1);
-		_sprite->SetScale(0.5f, 0.5f, 0.5f);
+		_sprite->SetScale(10.0f, 10.0f, 10.0f);
+
+		_sprite->SetPos(
+			_window->GetWidth()  / 2,		// X
+			_window->GetHeight() / 2,		// Y
+			0								// Z
+		);
 		//_sprite->SetFrame(5);
 	}
 

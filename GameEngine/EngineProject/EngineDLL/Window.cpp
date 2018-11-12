@@ -4,6 +4,7 @@
 #include <GLFW\glfw3.h>
 
 Window::Window(const int& height, const int& width, const char* name) {	
+
 	_height = height;
 	_name = name;
 	_width = width;

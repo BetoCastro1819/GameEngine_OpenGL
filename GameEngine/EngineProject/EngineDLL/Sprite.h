@@ -22,8 +22,8 @@ private:
 	unsigned int	_textureHeight;					// Height of the texture in pixels
 	unsigned int	_frameWidth;					// Width of each frame cell from the sprite sheet
 	unsigned int	_frameHeight;					// Height of each frame cell from the sprite sheet
-	unsigned int	_numColums;						// Number of horizontal frames
-	unsigned int	_numRows;
+	unsigned int	_numColums;						// Max number of frames per columns
+	unsigned int	_numRows;						// Max number of frames per rows
 
 public:
 	Sprite (

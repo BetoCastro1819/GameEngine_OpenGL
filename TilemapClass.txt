@@ -1,0 +1,10 @@
+Tilemap class:
+
+WorldCoordToColRow();
+ColRowToWorldCoord();
+
+GetTile(Col, row); // Devuelve que tipo de tile hay en esa pos
+SetTile(col, row, id);
+
+En el atlas se guarda el indice de cada tile, dependiendo el indice, el tile es colisionable o no
+

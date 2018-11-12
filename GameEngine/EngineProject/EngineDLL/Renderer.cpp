@@ -8,8 +8,15 @@ Renderer::Renderer(Window* window) {
 	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
 	//_projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
 
-	// Orthographic camera
-	_projection = glm::ortho(-1.0f,1.0f,-1.0f,1.0f,0.0f,100.0f); // In world coordinates
+	// Orthographic camera in world coordinates
+	_projection = glm::ortho(
+		0.0f,								// LEFT
+		(float)_window->GetWidth(),			// RIGHT
+		0.0f,								// BOTTOM
+		(float)_window->GetHeight(),		// TOP
+		0.0f,								// zNear
+		100.0f								// zFar
+	);
 
 	// Camera matrix
 	_view = glm::lookAt(
