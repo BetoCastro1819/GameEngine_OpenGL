@@ -19,12 +19,12 @@ Sprite::Sprite(
 	_frameID		= frameID;
 	_frame.x		= 0;
 	_frame.y		= 0;
-	_textureWidth	= 0;
-	_textureHeight	= 0;
-	_frameWidth		= 0;
-	_frameHeight	= 0;
-	_numColums		= 0;
-	_numRows		= 0;
+	_textureWidth	= textureWidth;
+	_textureHeight	= textureHeight;
+	_frameWidth		= frameWidth;
+	_frameHeight	= frameHeight;
+	_numColums		= numColums;
+	_numRows		= numRows;
 
 
 	GLfloat vertexBuffer[] = {
@@ -82,7 +82,7 @@ Sprite::Sprite(
 	_textureID = _renderer->SetTextureID(_programID);
 
 	SetVertices(vertexBuffer, 4);
-	SetUVBufferData(UV_Buffer, 4);
+	SetUVBufferData(UV_Buffer);
 }
 
 
@@ -108,9 +108,9 @@ void Sprite::DrawSprite() {
 
 }
 
-void Sprite::SetUVBufferData(float* vrtxs, const int& count) {
+void Sprite::SetUVBufferData(float* vrtxs) {
 	_uvVrtxs = vrtxs;
-	_uvVrtxCount = count;
+	_uvVrtxCount = 4;
 	_uvBufferData = _renderer->GenBuffer(_uvVrtxs, _uvVrtxCount * 2 * sizeof(float));
 }
 
@@ -123,21 +123,26 @@ void Sprite::SetFrame(int frameID) {
 		_frame.x = (_frameID % _numRows) * _frameWidth;
 		_frame.y = (_frameID / _numColums) * _frameHeight;
 
-		// V0 = BOTTOM LEFT
-		_uvVrtxs[0] = _frame.x / _textureWidth;							// U coord
-		_uvVrtxs[1] = 1 - (_frame.y + _frameHeight) / _textureHeight;	// V coord
+		float uvCoords[] = 
+		{
+			// V0 = BOTTOM LEFT
+			_frame.x / _textureWidth,
+			1 - (_frame.y + _frameHeight) / _textureHeight,
 
-																		// V1 = TOP LEFT
-		_uvVrtxs[2] = _frame.x / _textureWidth;							// U coord
-		_uvVrtxs[3] = 1 - (_frame.y / _textureHeight);					// V coord
+			// V1 = TOP LEFT
+			_frame.x / _textureWidth,		
+			1 - (_frame.y / _textureHeight),
 
-																		// V2 = BOTTOM RIGHT
-		_uvVrtxs[4] = (_frame.x + _frameWidth) / _textureWidth;			// U coord
-		_uvVrtxs[5] = 1 - (_frame.y + _frameHeight) / _textureHeight;			// V coord
+			// V2 = BOTTOM RIGHT
+			(_frame.x + _frameWidth) / _textureWidth,		
+			1 - (_frame.y + _frameHeight) / _textureHeight,
 
-																				// V3 = TOP RIGHT
-		_uvVrtxs[6] = (_frame.x + _frameWidth) / _textureWidth;			// U coord
-		_uvVrtxs[7] = 1 - (_frame.y / _textureHeight);					// V coord
+			// V3 = TOP RIGHT
+			(_frame.x + _frameWidth) / _textureWidth,		
+			1 - (_frame.y / _textureHeight)			
+		};
+		
+		SetUVBufferData(uvCoords);
 	}
 	else {
 		std::cout << "Frame ID selected is out of bounds" << std::endl;

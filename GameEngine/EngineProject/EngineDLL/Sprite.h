@@ -40,6 +40,6 @@ public:
 
 	~Sprite();
 	void DrawSprite();
-	void SetUVBufferData(float* vrtxs, const int& count);
+	void SetUVBufferData(float* vrtxs);
 	void SetFrame(int frameID);
 };

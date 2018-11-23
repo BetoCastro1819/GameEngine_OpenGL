@@ -65,7 +65,7 @@ bool Game::OnStart() {
 	// Create sprite
 	_sprite = new Sprite(
 		_renderer,				// Pointer to renderer
-		45,						// Frame ID
+		10,						// Frame ID
 		512,					// Texture width in pixels
 		512,					// Texture height in pixels
 		51,						// Width per frame in pixels
@@ -85,7 +85,8 @@ bool Game::OnStart() {
 			_window->GetHeight() / 2,		// Y
 			0								// Z
 		);
-		//_sprite->SetFrame(5);
+
+		_sprite->SetFrame(68);
 	}
 
 	return true;
