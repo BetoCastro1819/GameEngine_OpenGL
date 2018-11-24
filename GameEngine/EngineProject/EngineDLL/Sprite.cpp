@@ -2,7 +2,6 @@
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
-
 Sprite::Sprite(
 	Renderer* renderer,
 	unsigned int frameID,
@@ -175,4 +174,27 @@ void Sprite::SetAnimationSpeed(float animationSpeed) {
 	if (_animation != NULL) {
 		_animation->SetAnimationSpeed(animationSpeed);
 	}
+}
+
+void Sprite::HandleInput(Window* window, float deltaTime) {
+	float speed = 300.0f * deltaTime;
+
+	glm::vec3 position = GetPos();
+	// Move forward
+	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_UP) == GLFW_PRESS) {
+		SetPos(0, speed, 0);
+	}
+	// Move backward
+	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_DOWN) == GLFW_PRESS) {
+		SetPos(0, -speed, 0);
+	}
+	// Strafe right
+	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_RIGHT) == GLFW_PRESS) {
+		SetPos(speed, 0, 0);
+	}
+	// Strafe left
+	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_LEFT) == GLFW_PRESS) {
+		SetPos(-speed, 0, 0);
+	}
+	
 }

@@ -1,7 +1,6 @@
 #include "GameBase.h"
 #include "TypeDefs.h"
 
-
 GameBase::GameBase(const int& width, const int& height, const char* name) {
 	_screenWidth = width;
 	_screenHeight = height;

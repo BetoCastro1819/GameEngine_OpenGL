@@ -2,6 +2,7 @@
 #include "Exports.h"
 #include "Shape.h"
 #include "Animation.h"
+#include "Window.h"
 
 struct ENGINEDLL_API  FramePos {
 	float x;
@@ -51,4 +52,7 @@ public:
 	void PlayAnimation(float deltaTime);
 	void SetAnimation(const char* animationName);
 	void SetAnimationSpeed(float speed);
+
+
+	void HandleInput(Window* window, float deltaTime);
 };

@@ -23,6 +23,9 @@ protected:
 	bool OnStart() override;
 	bool OnStop() override;
 	bool OnUpdate(float deltaTime) override;
+
+	void HandleInput();
+
 public:
 	Game(const int& height, const int& widht, const char* name);
 	~Game();

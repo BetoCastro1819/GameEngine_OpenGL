@@ -113,6 +113,8 @@ bool Game::OnUpdate(float deltaTime) {
 	//_tx->DrawTextureShape();
 	//_tx->SetRotY(1);
 
+	_sprite->HandleInput(_window, deltaTime);
+
 	_sprite->PlayAnimation(deltaTime);
 
 	_sprite->DrawSprite();
