@@ -14,5 +14,5 @@ void Time::UpdateTime() {
 	deltaTime = glfwGetTime() - lastTime;
 	lastTime = glfwGetTime();
 
-	std::cout << "Delta Time: " << deltaTime << endl;
+	//std::cout << "Delta Time: " << deltaTime << endl;
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Exports.h"
 #include "Shape.h"
+#include "Animation.h"
 
 struct ENGINEDLL_API  FramePos {
 	float x;
@@ -9,6 +10,7 @@ struct ENGINEDLL_API  FramePos {
 
 class ENGINEDLL_API  Sprite : public Shape {
 private:
+
 	float*			_uvVrtxs;						// Pointer to the 1st value of the array of vertices
 	int				_uvVrtxCount;					// Number of vertices to draw
 	int				_uvBufferData;					// UV Buffer Data generated from the renderer
@@ -16,6 +18,7 @@ private:
 	unsigned int	_texture;						// Actual texture file in BMP format
 
 	/* ANIMATED SPRITE */
+	Animation*		_animation;						// Stores and plays sprite's animations
 	FramePos		_frame;							// Struct that will store X and Y position of the frame based on it's ID 
 	unsigned int	_frameID;						// ID of the frame that will be selected from the sprite sheet to be drawn
 	unsigned int	_textureWidth;					// Width of the texture in pixels
@@ -42,4 +45,9 @@ public:
 	void DrawSprite();
 	void SetUVBufferData(float* vrtxs);
 	void SetFrame(int frameID);
+
+	/* Animated Sprite */
+	void AddAnimation(const char* animationName, std::vector<int> animationFrames);
+	void PlayAnimation(float deltaTime);
+	void SetAnimation(const char* animationName);
 };

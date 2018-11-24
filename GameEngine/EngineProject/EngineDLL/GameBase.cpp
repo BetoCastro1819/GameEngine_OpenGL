@@ -57,7 +57,7 @@ void GameBase::Loop()
 		_renderer->SetClearColor(0.2f, 0.3f, 0.3f, 0.0f);
 		_renderer->RecalculateFragmentDepth();
 		_renderer->ClearBuffer();
-		OnUpdate(); // Draws triangle... for now
+		OnUpdate(_time->GetDeltaTime()); // Draws triangle... for now
 		_renderer->SwapBuffers();
 		_window->PollEvents();
 	}

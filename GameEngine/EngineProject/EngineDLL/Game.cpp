@@ -86,7 +86,10 @@ bool Game::OnStart() {
 			0								// Z
 		);
 
-		_sprite->SetFrame(68);
+		std::vector<int> walkAnimation = { 1,2,3,4,5,6 };
+		_sprite->AddAnimation("Walk", walkAnimation);
+		_sprite->SetAnimation("Walk");
+
 	}
 
 	return true;
@@ -97,7 +100,7 @@ bool Game::OnStop() {
 	return false;
 }
 
-bool Game::OnUpdate() {
+bool Game::OnUpdate(float deltaTime) {
 	/*
 	_fpsCount++;
 	if (_fpsCount > 100)
@@ -108,6 +111,8 @@ bool Game::OnUpdate() {
 	//_circle->Draw();			
 	//_tx->DrawTextureShape();
 	//_tx->SetRotY(1);
+
+	_sprite->PlayAnimation(deltaTime);
 
 	_sprite->DrawSprite();
 

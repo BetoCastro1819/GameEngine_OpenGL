@@ -83,6 +83,8 @@ Sprite::Sprite(
 
 	SetVertices(vertexBuffer, 4);
 	SetUVBufferData(UV_Buffer);
+
+	_animation = NULL;
 }
 
 
@@ -146,5 +148,25 @@ void Sprite::SetFrame(int frameID) {
 	}
 	else {
 		std::cout << "Frame ID selected is out of bounds" << std::endl;
+	}
+}
+
+void Sprite::AddAnimation(const char* animationName, std::vector<int> animationFrames) {
+
+	if (_animation == NULL) {
+		_animation = new Animation();
+	}
+	
+	_animation->AddAnimation(animationName, animationFrames);
+}
+
+void Sprite::PlayAnimation(float deltaTime) {
+	//std::cout << "Animation Frame " << _animation->GetAnimationFrame(deltaTime) << std::endl;
+	SetFrame(_animation->GetAnimationFrame(deltaTime));
+}
+
+void Sprite::SetAnimation(const char* animationName) {
+	if (_animation != NULL) {
+		_animation->SetAnimation(animationName);
 	}
 }

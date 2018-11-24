@@ -22,7 +22,7 @@ protected:
 	int _fpsCount;
 	bool OnStart() override;
 	bool OnStop() override;
-	bool OnUpdate() override;
+	bool OnUpdate(float deltaTime) override;
 public:
 	Game(const int& height, const int& widht, const char* name);
 	~Game();
