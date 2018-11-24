@@ -9,6 +9,8 @@ GameBase::GameBase(const int& width, const int& height, const char* name) {
 }
 
 GameBase::~GameBase() {
+	if (_time != NULL)
+		delete _time;
 }
 
 bool GameBase::Start()
@@ -21,6 +23,8 @@ bool GameBase::Start()
 
 	if (!_renderer->Start())
 		return false;
+
+	_time = new Time();
 
 	return OnStart();
 }
@@ -45,7 +49,11 @@ bool GameBase::Stop()
 void GameBase::Loop()
 {
 	cout << "GameBase::Loop()" << endl;
+
 	while (!_window->ShouldClose()) {
+
+		_time->UpdateTime();
+
 		_renderer->SetClearColor(0.2f, 0.3f, 0.3f, 0.0f);
 		_renderer->RecalculateFragmentDepth();
 		_renderer->ClearBuffer();

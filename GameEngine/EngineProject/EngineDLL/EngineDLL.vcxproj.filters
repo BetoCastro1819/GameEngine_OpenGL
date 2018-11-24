@@ -54,6 +54,12 @@
     <ClInclude Include="Sprite.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameBase.cpp">
@@ -87,6 +93,12 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

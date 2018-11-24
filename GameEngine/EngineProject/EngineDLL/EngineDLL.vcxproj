@@ -122,6 +122,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="ColorShape.h" />
     <ClInclude Include="Entity.h" />
@@ -132,11 +133,13 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TextureShape.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="TypeDefs.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="ColorShape.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -146,6 +149,7 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TextureShape.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
