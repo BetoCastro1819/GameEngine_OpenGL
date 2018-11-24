@@ -89,6 +89,7 @@ bool Game::OnStart() {
 		std::vector<int> walkAnimation = { 1,2,3,4,5,6 };
 		_sprite->AddAnimation("Walk", walkAnimation);
 		_sprite->SetAnimation("Walk");
+		_sprite->SetAnimationSpeed(1);
 
 	}
 

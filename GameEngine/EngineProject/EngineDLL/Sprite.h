@@ -50,4 +50,5 @@ public:
 	void AddAnimation(const char* animationName, std::vector<int> animationFrames);
 	void PlayAnimation(float deltaTime);
 	void SetAnimation(const char* animationName);
+	void SetAnimationSpeed(float speed);
 };

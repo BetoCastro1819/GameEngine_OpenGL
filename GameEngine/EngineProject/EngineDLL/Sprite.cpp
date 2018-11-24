@@ -170,3 +170,9 @@ void Sprite::SetAnimation(const char* animationName) {
 		_animation->SetAnimation(animationName);
 	}
 }
+
+void Sprite::SetAnimationSpeed(float animationSpeed) {
+	if (_animation != NULL) {
+		_animation->SetAnimationSpeed(animationSpeed);
+	}
+}

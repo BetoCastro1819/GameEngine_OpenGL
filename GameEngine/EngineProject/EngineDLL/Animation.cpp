@@ -31,11 +31,15 @@ const char* Animation::GetAnimationName() {
 int Animation::GetAnimationFrame(float deltaTime) {
 
 	if (currentAnimation != NULL) {
+
 		if (animationTimer >= 1.0f / animationSpeed) {
+
 			if (currentFrameIndex + 1 < animations.at(currentAnimation).size() - 1)
 				currentFrameIndex++;
 			else
 				currentFrameIndex = 0;
+
+			animationTimer = 0;
 		}
 		else {
 			animationTimer += deltaTime;
