@@ -115,7 +115,7 @@ bool Game::OnUpdate(float deltaTime) {
 
 	_sprite->HandleInput(_window, deltaTime);
 
-	_sprite->PlayAnimation(deltaTime);
+	//_sprite->PlayAnimation(deltaTime);
 
 	_sprite->DrawSprite();
 

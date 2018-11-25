@@ -3,6 +3,7 @@
 #include "Shape.h"
 #include "Animation.h"
 #include "Window.h"
+#include "BoxCollider.h"
 
 struct ENGINEDLL_API  FramePos {
 	float x;
@@ -17,6 +18,8 @@ private:
 	int				_uvBufferData;					// UV Buffer Data generated from the renderer
 	unsigned int	_textureID;						// Texture ID that will be passed to the "Texture Sampler" of the renderer
 	unsigned int	_texture;						// Actual texture file in BMP format
+
+	BoxCollider*	_boxCollider;					// Box collider that will be used to test collision
 
 	/* ANIMATED SPRITE */
 	Animation*		_animation;						// Stores and plays sprite's animations
@@ -53,6 +56,7 @@ public:
 	void SetAnimation(const char* animationName);
 	void SetAnimationSpeed(float speed);
 
-
 	void HandleInput(Window* window, float deltaTime);
+
+	BoxCollider* GetBoxCollider() { return _boxCollider; }
 };

@@ -123,6 +123,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="ColorShape.h" />
     <ClInclude Include="Entity.h" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="ColorShape.cpp" />
     <ClCompile Include="Entity.cpp" />

@@ -33,9 +33,7 @@ Sprite::Sprite(
 		 1.0f,  1.0f, 0.0f,				// TOP		- RIGHT
 	};
 
-
 	// 2 UV coordinates for each vertex
-
 	GLfloat UV_Buffer[] = {
 		0.0f, 0.0f,
 		0.0f, 1.0f,
@@ -43,47 +41,21 @@ Sprite::Sprite(
 		1.0f, 1.0f,
 	};
 
-
-	// If the sprite is animated
-	// Set new UV coordinates
-	if (isAnimated) {
-		//	x = (id % numFramesAncho) * anchoDelFrame;
-		//	y = (id / numFramesAlto) * altoDelFrame;
-
-		if (_frameID <= (numRows * numColums) - 1) {
-			// Calculate frame coordinates based on ID position on the sprite sheet
-			_frame.x = (_frameID % numRows) * frameWidth;
-			_frame.y = (_frameID / numColums) * frameHeight;
-
-			// V0 = BOTTOM LEFT
-			UV_Buffer[0] = _frame.x / textureWidth;							// U coord
-			UV_Buffer[1] = 1 - (_frame.y + frameHeight) / textureHeight;	// V coord
-
-			// V1 = TOP LEFT
-			UV_Buffer[2] = _frame.x / textureWidth;							// U coord
-			UV_Buffer[3] = 1 - (_frame.y / textureHeight);					// V coord
-
-			// V2 = BOTTOM RIGHT
-			UV_Buffer[4] = (_frame.x + frameWidth) / textureWidth;			// U coord
-			UV_Buffer[5] = 1 - (_frame.y + frameHeight) / textureHeight;			// V coord
-
-			// V3 = TOP RIGHT
-			UV_Buffer[6] = (_frame.x + frameWidth) / textureWidth;			// U coord
-			UV_Buffer[7] = 1 - (_frame.y / textureHeight);					// V coord
-		}
-		else {
-			std::cout << "Frame ID selected is out of bounds" << std::endl;
-		}
-	}
-
-
 	_texture = _mat->Load_BMP("uvtemplate.bmp");
 	_textureID = _renderer->SetTextureID(_programID);
 
 	SetVertices(vertexBuffer, 4);
 	SetUVBufferData(UV_Buffer);
 
+	// If the sprite is animated
+	// Set new UV coordinates
+	if (isAnimated) {
+		SetFrame(frameID);
+	}
 	_animation = NULL;
+
+
+	_boxCollider = new BoxCollider(_frameWidth, _frameHeight);
 }
 
 
