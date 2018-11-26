@@ -1,4 +1,3 @@
-﻿  Material.cpp
-     Creating library D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL(TextureShape)\GameEngine\EngineProject\Debug\EngineDLL.lib and object D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL(TextureShape)\GameEngine\EngineProject\Debug\EngineDLL.exp
+﻿     Creating library D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.lib and object D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.exp
 MSVCRTD.lib(initializers.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
-  EngineDLL.vcxproj -> D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL(TextureShape)\GameEngine\EngineProject\Debug\EngineDLL.dll
+  EngineDLL.vcxproj -> D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll

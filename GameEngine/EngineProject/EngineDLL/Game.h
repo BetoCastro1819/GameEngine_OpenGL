@@ -19,8 +19,8 @@ protected:
 	ColorShape* _cube;
 	Circle * _circle;
 	
-	Sprite* _sprite;
-	Sprite* _spriteTest;
+	Sprite* _player;
+	Sprite* _collisionTest;
 
 	Material* _mat;
 	int _fpsCount;

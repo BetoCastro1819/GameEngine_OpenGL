@@ -1,53 +1,53 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (EngineProject.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Game.cpp
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\renderer.h(18): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\renderer.h(19): warning C4251: 'Renderer::_projection': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\renderer.h(20): warning C4251: 'Renderer::_model': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\renderer.h(21): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::v3Pos': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::v3Scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::v3Rot': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\entity.h(13): warning C4251: 'Entity::_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\entity.h(15): warning C4251: 'Entity::_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\entity.h(16): warning C4251: 'Entity::_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\entity.h(17): warning C4251: 'Entity::_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\animation.h(9): warning C4251: 'Animation::animations': class 'std::map<const char *,std::vector<int,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' needs to have dll-interface to be used by clients of class 'Animation'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(18): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(19): warning C4251: 'Renderer::_projection': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(20): warning C4251: 'Renderer::_model': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(21): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::v3Pos': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::v3Scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::v3Rot': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(13): warning C4251: 'Entity::_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(15): warning C4251: 'Entity::_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(16): warning C4251: 'Entity::_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(17): warning C4251: 'Entity::_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\animation.h(9): warning C4251: 'Animation::animations': class 'std::map<const char *,std::vector<int,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' needs to have dll-interface to be used by clients of class 'Animation'
           with
           [
               _Ty=int,
               _Kty=const char *
           ]
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\animation.h(9): note: see declaration of 'std::map<const char *,std::vector<int,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\animation.h(9): note: see declaration of 'std::map<const char *,std::vector<int,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>'
           with
           [
               _Ty=int,
               _Kty=const char *
           ]
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\collisionmanager.h(17): warning C4251: 'CollisionManager::collisionGroups': class 'std::map<CollisionLayer,std::vector<Sprite *,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' needs to have dll-interface to be used by clients of class 'CollisionManager'
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\collisionmanager.h(17): warning C4251: 'CollisionManager::collisionGroups': class 'std::map<CollisionLayer,std::vector<Sprite *,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' needs to have dll-interface to be used by clients of class 'CollisionManager'
           with
           [
               _Ty=Sprite *,
               _Kty=CollisionLayer
           ]
-  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\collisionmanager.h(17): note: see declaration of 'std::map<CollisionLayer,std::vector<Sprite *,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>'
+  d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\collisionmanager.h(17): note: see declaration of 'std::map<CollisionLayer,std::vector<Sprite *,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>'
           with
           [
               _Ty=Sprite *,
               _Kty=CollisionLayer
           ]
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\game.cpp(88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\game.cpp(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\game.cpp(126): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(textureshape)\gameengine\engineproject\enginedll\game.cpp(125): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  EngineProject.vcxproj -> D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL(TextureShape)\GameEngine\EngineProject\Debug\TestEngine.exe
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(123): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(122): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  EngineProject.vcxproj -> D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL\GameEngine\EngineProject\Debug\TestEngine.exe

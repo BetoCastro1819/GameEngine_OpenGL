@@ -18,11 +18,11 @@ Game::~Game() {
 	if (_tx != NULL)
 		delete _tx;
 
-	if (_sprite != NULL)
-		delete _sprite;
+	if (_player != NULL)
+		delete _player;
 
-	if (_spriteTest != NULL)
-		delete _spriteTest;
+	if (_collisionTest != NULL)
+		delete _collisionTest;
 
 	if (_mat != NULL)
 		delete _mat;
@@ -66,7 +66,7 @@ bool Game::OnStart() {
 	}
 
 	// Create sprite
-	_sprite = new Sprite(
+	_player = new Sprite(
 		_renderer,				// Pointer to renderer
 		10,						// Frame ID
 		512,					// Texture width in pixels
@@ -78,33 +78,8 @@ bool Game::OnStart() {
 		true					// Animated?
 	);
 
-	if (_sprite && _mat) {
-		_sprite->SetMaterial(_mat);
-		_sprite->SetDrawMode(1);
-		_sprite->SetScale(10.0f, 10.0f, 10.0f);
-
-		_sprite->SetPos(
-			_window->GetWidth()  / 2,		// X
-			_window->GetHeight() / 2,		// Y
-			0								// Z
-		);
-
-		std::vector<int> walkAnimation = { 1,2,3,4,5,6 };
-		_sprite->AddAnimation("Walk", walkAnimation);
-		_sprite->SetAnimation("Walk");
-		_sprite->SetAnimationSpeed(1);
-		
-		_sprite->GetBoxCollider()->SetBoxWidth(20);
-		_sprite->GetBoxCollider()->SetBoxHeight(20);
-
-		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::PLAYER, _sprite);
-	}
-
-
-
-
 	// Create sprite
-	_spriteTest = new Sprite(
+	_collisionTest = new Sprite(
 		_renderer,				// Pointer to renderer
 		40,						// Frame ID
 		512,					// Texture width in pixels
@@ -116,21 +91,48 @@ bool Game::OnStart() {
 		true					// Animated?
 	);
 
-	if (_spriteTest && _mat) {
-		_spriteTest->SetMaterial(_mat);
-		_spriteTest->SetDrawMode(1);
-		_spriteTest->SetScale(10.0f, 10.0f, 10.0f);
+	if (_collisionTest && _mat) {
+		_collisionTest->SetMaterial(_mat);
+		_collisionTest->SetDrawMode(1);
+		_collisionTest->SetScale(10.0f, 10.0f, 10.0f);
 
-		_spriteTest->SetPos(
+		_collisionTest->SetPos(
 			_window->GetWidth() / 4,		// X
 			_window->GetHeight() / 4,		// Y
 			0								// Z
 		);
 
-		_spriteTest->GetBoxCollider()->SetBoxWidth(20);
-		_spriteTest->GetBoxCollider()->SetBoxHeight(20);
+		_collisionTest->GetBoxCollider()->SetBoxWidth(20);
+		_collisionTest->GetBoxCollider()->SetBoxHeight(20);
 
-		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _spriteTest);
+		std::vector<int> walkAnimation = { 94,95,96,97,98,99 };
+		_collisionTest->AddAnimation("Walk", walkAnimation);
+		_collisionTest->SetAnimation("Walk");
+		_collisionTest->SetAnimationSpeed(1);
+
+		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _collisionTest);
+	}
+
+	if (_player && _mat) {
+		_player->SetMaterial(_mat);
+		_player->SetDrawMode(1);
+		_player->SetScale(10.0f, 10.0f, 10.0f);
+
+		_player->SetPos(
+			_window->GetWidth() / 2,		// X
+			_window->GetHeight() / 2,		// Y
+			0								// Z
+		);
+
+		_player->GetBoxCollider()->SetBoxWidth(20);
+		_player->GetBoxCollider()->SetBoxHeight(20);
+
+		std::vector<int> attackAnimation = { 40,41,42,43,44,45 };
+		_player->AddAnimation("Attack", attackAnimation);
+		_player->SetAnimation("Attack");
+		_player->SetAnimationSpeed(10);
+
+		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::PLAYER, _player);
 	}
 
 
@@ -154,15 +156,16 @@ bool Game::OnUpdate(float deltaTime) {
 	//_tx->DrawTextureShape();
 	//_tx->SetRotY(1);
 
-	_sprite->HandleInput(_window, deltaTime);
-
+	_player->HandleInput(_window, deltaTime);
+	
 	CollisionManager::GetInstance()->CheckForCollisions();
 
-	//_sprite->PlayAnimation(deltaTime);
+	_player->DrawSprite();
+	_player->PlayAnimation(deltaTime);
 
-	_spriteTest->DrawSprite();
+	_collisionTest->PlayAnimation(deltaTime);
+	_collisionTest->DrawSprite();
 
-	_sprite->DrawSprite();
 	//std::cout << "Player Pos X: " << _sprite->GetPos().x << " Player Pos Y: " << _sprite->GetPos().y << std::endl;
 	return true;
 }
