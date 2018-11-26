@@ -22,7 +22,7 @@ void Entity::SetPos(float x, float y, float z) {
 	v3Pos[1] = y;
 	v3Pos[2] = z;
 
-	_translateMatrix = glm::translate(_translateMatrix, v3Pos);
+	_translateMatrix = glm::translate(glm::mat4(1.0f), v3Pos);
 	UpdateModelMatrix();
 }
 
@@ -31,7 +31,7 @@ void Entity::SetScale(float x, float y, float z) {
 	v3Scale[1] = y;
 	v3Scale[2] = z;
 
-	_scaleMatrix = glm::scale(_scaleMatrix, v3Scale);
+	_scaleMatrix = glm::scale(glm::mat4(1.0f), v3Scale);
 	UpdateModelMatrix();
 }
 
@@ -40,7 +40,7 @@ void Entity::SetRotX(float angle) {
 	v3Rot[1] = 0;
 	v3Rot[2] = 0;
 
-	_rotateMatrix = glm::rotate(_rotateMatrix, glm::radians(angle), v3Rot);
+	_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), v3Rot);
 	UpdateModelMatrix();
 }
 
@@ -49,7 +49,7 @@ void Entity::SetRotY(float angle) {
 	v3Rot[1] = angle;
 	v3Rot[2] = 0;
 
-	_rotateMatrix = glm::rotate(_rotateMatrix, glm::radians(angle), v3Rot);
+	_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), v3Rot);
 	UpdateModelMatrix();
 }
 
@@ -58,11 +58,10 @@ void Entity::SetRotZ(float angle) {
 	v3Rot[1] = 0;
 	v3Rot[2] = angle;
 
-	_rotateMatrix = glm::rotate(_rotateMatrix, glm::radians(angle), v3Rot);
+	_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), v3Rot);
 	UpdateModelMatrix();
 }
 
 void Entity::UpdateModelMatrix() {
-	// Matrix multiplications read from right to left, order matters
 	_modelMatrix = _translateMatrix * _rotateMatrix * _scaleMatrix;
 }

@@ -10,13 +10,12 @@ Animation::Animation() {
 	animationSpeed = 12;
 }
 
-
 Animation::~Animation() {
 }
+
 void Animation::AddAnimation(const char* animationName, std::vector<int> animatedFrames) {
 
 	animations.insert(std::pair<const char*, std::vector<int>>(animationName, animatedFrames));
-	
 }
 
 void Animation::SetAnimation(const char* animationName) {

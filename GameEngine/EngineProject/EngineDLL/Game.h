@@ -8,6 +8,7 @@
 #include "Circle.h"
 #include "TextureShape.h"
 #include "Sprite.h"
+#include "CollisionManager.h"
 
 using namespace std;
 
@@ -17,14 +18,15 @@ protected:
 	Triangle* _triangle;
 	ColorShape* _cube;
 	Circle * _circle;
+	
 	Sprite* _sprite;
+	Sprite* _spriteTest;
+
 	Material* _mat;
 	int _fpsCount;
 	bool OnStart() override;
 	bool OnStop() override;
 	bool OnUpdate(float deltaTime) override;
-
-	void HandleInput();
 
 public:
 	Game(const int& height, const int& widht, const char* name);

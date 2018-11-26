@@ -21,6 +21,9 @@ Game::~Game() {
 	if (_sprite != NULL)
 		delete _sprite;
 
+	if (_spriteTest != NULL)
+		delete _spriteTest;
+
 	if (_mat != NULL)
 		delete _mat;
 }
@@ -90,8 +93,46 @@ bool Game::OnStart() {
 		_sprite->AddAnimation("Walk", walkAnimation);
 		_sprite->SetAnimation("Walk");
 		_sprite->SetAnimationSpeed(1);
+		
+		_sprite->GetBoxCollider()->SetBoxWidth(20);
+		_sprite->GetBoxCollider()->SetBoxHeight(20);
 
+		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::PLAYER, _sprite);
 	}
+
+
+
+
+	// Create sprite
+	_spriteTest = new Sprite(
+		_renderer,				// Pointer to renderer
+		40,						// Frame ID
+		512,					// Texture width in pixels
+		512,					// Texture height in pixels
+		51,						// Width per frame in pixels
+		51,						// Height per frame in pixels
+		10,						// Number of horizontal frames
+		10,						// Number of vertical frames
+		true					// Animated?
+	);
+
+	if (_spriteTest && _mat) {
+		_spriteTest->SetMaterial(_mat);
+		_spriteTest->SetDrawMode(1);
+		_spriteTest->SetScale(10.0f, 10.0f, 10.0f);
+
+		_spriteTest->SetPos(
+			_window->GetWidth() / 4,		// X
+			_window->GetHeight() / 4,		// Y
+			0								// Z
+		);
+
+		_spriteTest->GetBoxCollider()->SetBoxWidth(20);
+		_spriteTest->GetBoxCollider()->SetBoxHeight(20);
+
+		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _spriteTest);
+	}
+
 
 	return true;
 }
@@ -115,9 +156,13 @@ bool Game::OnUpdate(float deltaTime) {
 
 	_sprite->HandleInput(_window, deltaTime);
 
+	CollisionManager::GetInstance()->CheckForCollisions();
+
 	//_sprite->PlayAnimation(deltaTime);
 
-	_sprite->DrawSprite();
+	_spriteTest->DrawSprite();
 
+	_sprite->DrawSprite();
+	//std::cout << "Player Pos X: " << _sprite->GetPos().x << " Player Pos Y: " << _sprite->GetPos().y << std::endl;
 	return true;
 }

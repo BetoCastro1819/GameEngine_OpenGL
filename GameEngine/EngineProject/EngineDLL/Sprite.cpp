@@ -70,6 +70,11 @@ Sprite::~Sprite() {
 		_uvVrtxs = NULL;
 	}
 
+	if (_boxCollider != nullptr) {
+		delete _boxCollider;
+		_boxCollider = NULL;
+	}
+
 	std::cout << "TextureShape::~TextureShape()" << std::endl;
 }
 
@@ -149,24 +154,24 @@ void Sprite::SetAnimationSpeed(float animationSpeed) {
 }
 
 void Sprite::HandleInput(Window* window, float deltaTime) {
-	float speed = 300.0f * deltaTime;
+	float speed = 250.0f * deltaTime;
 
 	glm::vec3 position = GetPos();
 	// Move forward
 	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_UP) == GLFW_PRESS) {
-		SetPos(0, speed, 0);
+		SetPos(position.x, position.y + speed, position.z);
 	}
 	// Move backward
 	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_DOWN) == GLFW_PRESS) {
-		SetPos(0, -speed, 0);
+		SetPos(position.x, position.y - speed, position.z);
 	}
 	// Strafe right
 	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_RIGHT) == GLFW_PRESS) {
-		SetPos(speed, 0, 0);
+		SetPos(position.x + speed, position.y, position.z);
 	}
 	// Strafe left
 	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_LEFT) == GLFW_PRESS) {
-		SetPos(-speed, 0, 0);
+		SetPos(position.x - speed, position.y, position.z);
 	}
 	
 }
