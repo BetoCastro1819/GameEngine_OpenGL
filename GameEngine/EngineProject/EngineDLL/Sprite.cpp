@@ -41,7 +41,7 @@ Sprite::Sprite(
 		1.0f, 1.0f,
 	};
 
-	_texture = _mat->Load_BMP("uvtemplate.bmp");
+	_texture = _mat->Load_BMP("Tilemap2.bmp");
 	_textureID = _renderer->SetTextureID(_programID);
 
 	SetVertices(vertexBuffer, 4);

@@ -48,6 +48,4 @@ d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\g
           ]
 d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(123): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(122): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   EngineProject.vcxproj -> D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL\GameEngine\EngineProject\Debug\TestEngine.exe

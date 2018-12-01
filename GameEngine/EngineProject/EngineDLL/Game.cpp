@@ -21,8 +21,8 @@ Game::~Game() {
 	if (_player != NULL)
 		delete _player;
 
-	if (_collisionTest != NULL)
-		delete _collisionTest;
+	if (_tilemapTest != NULL)
+		delete _tilemapTest;
 
 	if (_mat != NULL)
 		delete _mat;
@@ -79,40 +79,43 @@ bool Game::OnStart() {
 	);
 
 	// Create sprite
-	_collisionTest = new Sprite(
+	_tilemapTest = new Sprite(
 		_renderer,				// Pointer to renderer
-		40,						// Frame ID
-		512,					// Texture width in pixels
-		512,					// Texture height in pixels
-		51,						// Width per frame in pixels
-		51,						// Height per frame in pixels
-		10,						// Number of horizontal frames
-		10,						// Number of vertical frames
+		0,						// Frame ID
+		64,						// Texture width in pixels
+		64,						// Texture height in pixels
+		32,						// Width per frame in pixels
+		32,						// Height per frame in pixels
+		2,						// Number of horizontal frames
+		2,						// Number of vertical frames
 		true					// Animated?
 	);
 
-	if (_collisionTest && _mat) {
-		_collisionTest->SetMaterial(_mat);
-		_collisionTest->SetDrawMode(1);
-		_collisionTest->SetScale(10.0f, 10.0f, 10.0f);
+	if (_tilemapTest && _mat) {
+		_tilemapTest->SetMaterial(_mat);
+		_tilemapTest->SetDrawMode(1);
+		_tilemapTest->SetScale(50.0f, 50.0f, 50.0f);
 
-		_collisionTest->SetPos(
+		_tilemapTest->SetPos(
 			_window->GetWidth() / 4,		// X
 			_window->GetHeight() / 4,		// Y
 			0								// Z
 		);
 
-		_collisionTest->GetBoxCollider()->SetBoxWidth(20);
-		_collisionTest->GetBoxCollider()->SetBoxHeight(20);
+		_tilemapTest->GetBoxCollider()->SetBoxWidth(20);
+		_tilemapTest->GetBoxCollider()->SetBoxHeight(20);
 
+		/*
 		std::vector<int> walkAnimation = { 94,95,96,97,98,99 };
-		_collisionTest->AddAnimation("Walk", walkAnimation);
-		_collisionTest->SetAnimation("Walk");
-		_collisionTest->SetAnimationSpeed(1);
+		_tilemapTest->AddAnimation("Walk", walkAnimation);
+		_tilemapTest->SetAnimation("Walk");
+		_tilemapTest->SetAnimationSpeed(1);
+		*/
+		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _tilemapTest);
 
-		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _collisionTest);
 	}
 
+	/*
 	if (_player && _mat) {
 		_player->SetMaterial(_mat);
 		_player->SetDrawMode(1);
@@ -134,7 +137,7 @@ bool Game::OnStart() {
 
 		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::PLAYER, _player);
 	}
-
+	*/
 
 	return true;
 }
@@ -156,15 +159,18 @@ bool Game::OnUpdate(float deltaTime) {
 	//_tx->DrawTextureShape();
 	//_tx->SetRotY(1);
 
-	_player->HandleInput(_window, deltaTime);
+	//_player->HandleInput(_window, deltaTime);
+	//
+	//CollisionManager::GetInstance()->CheckForCollisions();
+	//
+	//_player->DrawSprite();
+	//_player->PlayAnimation(deltaTime);
+	//
+	//_tilemapTest->PlayAnimation(deltaTime);
 	
-	CollisionManager::GetInstance()->CheckForCollisions();
+	_tilemapTest->SetFrame(1);
 
-	_player->DrawSprite();
-	_player->PlayAnimation(deltaTime);
-
-	_collisionTest->PlayAnimation(deltaTime);
-	_collisionTest->DrawSprite();
+	_tilemapTest->DrawSprite();
 
 	//std::cout << "Player Pos X: " << _sprite->GetPos().x << " Player Pos Y: " << _sprite->GetPos().y << std::endl;
 	return true;

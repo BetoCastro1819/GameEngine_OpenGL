@@ -135,6 +135,7 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TextureShape.h" />
+    <ClInclude Include="Tilemap.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="TypeDefs.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TextureShape.cpp" />
+    <ClCompile Include="Tilemap.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Window.cpp" />

@@ -20,7 +20,7 @@ protected:
 	Circle * _circle;
 	
 	Sprite* _player;
-	Sprite* _collisionTest;
+	Sprite* _tilemapTest;
 
 	Material* _mat;
 	int _fpsCount;
