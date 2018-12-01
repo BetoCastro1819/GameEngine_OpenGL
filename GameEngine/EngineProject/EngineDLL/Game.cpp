@@ -30,39 +30,15 @@ Game::~Game() {
 
 
 bool Game::OnStart() {
-	cout << "Game::OnStart()" << endl;	
+	cout << "Game::OnStart()" << endl;
+
 	_mat = new Material();
 
-	_triangle = new Triangle(_renderer);
-	if (_triangle && _mat) {
-		_triangle->SetMaterial(_mat);
-		
-		// Index 0 = GL_TRIANGLES
-		_triangle->SetDrawMode(0);
-	}
-
-	_cube = new ColorShape(_renderer);
-	if (_cube && _mat) {
-		_cube->SetMaterial(_mat);
-		_cube->SetScale(.5f, .5f, .5f);
-
-		// Index 1 = GL_TRIANGLE_STRIP
-		_cube->SetDrawMode(1);
-	}
-
-	_circle = new Circle(_renderer,	0.5, 20);
-	if (_circle && _mat) {
-		_circle->SetMaterial(_mat);
-		
-		// Index 2 = GL_TRIANGLE_FAN
-		_circle->SetDrawMode(2);
-	}
-
-	_tx = new TextureShape(_renderer);
-	if (_tx && _mat) {
-		_tx->SetMaterial(_mat);
-		_tx->SetDrawMode(1);
-		_tx->SetScale(0.5f, 0.5f, 0.5f);
+	_tilemap = new Tilemap(_renderer, 64, 64, 32, 32, 15, 20, "Tilemap2.bmp");
+	if (_tilemap && _mat) {
+		_tilemap->SetMaterial(_mat);
+		_tilemap->SetDrawMode(3);
+		_tilemap->SetPos(0, 0, 0);
 	}
 
 	// Create sprite
@@ -75,51 +51,16 @@ bool Game::OnStart() {
 		51,						// Height per frame in pixels
 		10,						// Number of horizontal frames
 		10,						// Number of vertical frames
-		true					// Animated?
+		true,					// Animated?
+		"uvtemplate.bmp"
 	);
 
-	// Create sprite
-	_tilemapTest = new Sprite(
-		_renderer,				// Pointer to renderer
-		10,						// Frame ID
-		512,					// Texture width in pixels
-		512,					// Texture height in pixels
-		51,						// Width per frame in pixels
-		51,						// Height per frame in pixels
-		10,						// Number of horizontal frames
-		10,						// Number of vertical frames
-		true					// Animated?
-	);
-
-	if (_tilemapTest && _mat) {
-		_tilemapTest->SetMaterial(_mat);
-		_tilemapTest->SetDrawMode(1);
-		_tilemapTest->SetScale(1.0f, 1.0f, 1.0f);
-
-		_tilemapTest->SetPos(
-			0,		// X
-			0,		// Y
-			0								// Z
-		);
-
-		_tilemapTest->GetBoxCollider()->SetBoxWidth(20);
-		_tilemapTest->GetBoxCollider()->SetBoxHeight(20);
-
-		/*
-		std::vector<int> walkAnimation = { 94,95,96,97,98,99 };
-		_tilemapTest->AddAnimation("Walk", walkAnimation);
-		_tilemapTest->SetAnimation("Walk");
-		_tilemapTest->SetAnimationSpeed(1);
-		*/
-		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _tilemapTest);
-
-	}
-
-	/*
 	if (_player && _mat) {
+		_player->InitVertices();
+		_player->InitVerticesUV();
+
 		_player->SetMaterial(_mat);
 		_player->SetDrawMode(1);
-		_player->SetScale(10.0f, 10.0f, 10.0f);
 
 		_player->SetPos(
 			_window->GetWidth() / 2,		// X
@@ -130,23 +71,16 @@ bool Game::OnStart() {
 		_player->GetBoxCollider()->SetBoxWidth(20);
 		_player->GetBoxCollider()->SetBoxHeight(20);
 
+
+
+		/*
 		std::vector<int> attackAnimation = { 40,41,42,43,44,45 };
 		_player->AddAnimation("Attack", attackAnimation);
 		_player->SetAnimation("Attack");
 		_player->SetAnimationSpeed(10);
 
 		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::PLAYER, _player);
-	}
-	*/
-
-	_tilemap = new Tilemap(_renderer, 64, 64, 32, 32, 10, 10);
-	if (_tilemap && _mat) {
-		_tilemap->SetMaterial(_mat);
-		_tilemap->SetDrawMode(3);
-		_tilemap->SetPos(0, 0, 0);
-	}
-	else {
-		std::cout << "Tilemap exploded" << std::endl;
+		*/
 	}
 
 	return true;
@@ -169,19 +103,22 @@ bool Game::OnUpdate(float deltaTime) {
 	//_tx->DrawTextureShape();
 	//_tx->SetRotY(1);
 
-	//_player->HandleInput(_window, deltaTime);
 	//
 	//CollisionManager::GetInstance()->CheckForCollisions();
 	//
+
+
+	//_player->HandleInput(_window, deltaTime);
+	//
+	
 	//_player->DrawSprite();
+	_tilemap->DrawSprite();
+	
 	//_player->PlayAnimation(deltaTime);
 	//
 	//_tilemapTest->PlayAnimation(deltaTime);
 	//_tilemapTest->SetFrame(1);
 	//_tilemapTest->DrawSprite();
-
-	_tilemap->DrawSprite();
-
 	//std::cout << "Player Pos X: " << _sprite->GetPos().x << " Player Pos Y: " << _sprite->GetPos().y << std::endl;
 	return true;
 }

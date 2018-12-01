@@ -11,7 +11,8 @@ Sprite::Sprite(
 	unsigned int frameHeight,
 	unsigned int numColums,
 	unsigned int numRows,
-	bool isAnimated
+	bool isAnimated,
+	const char* spritesheetPath
 	) : Shape(renderer) {				// Initialize base constructor
 
 	// Initialize variables
@@ -25,39 +26,10 @@ Sprite::Sprite(
 	_numColums		= numColums;
 	_numRows		= numRows;
 
-
-	float halfWidth = _frameWidth / 2;
-	float halfHeight = _frameHeight / 2;
-
-
-	GLfloat vertexBuffer[] = {
-		0.0f,		 0.0f,		   0.0f,				// BOTTOM	- LEFT
-		0.0f, _frameHeight, 0.0f,						// TOP		- LEFT
-		_frameWidth, 0.0f,		   0.0f,				// BOTTOM	- RIGHT
-		_frameWidth, _frameHeight, 0.0f,				// TOP		- RIGHT
-	};
-
-	//GLfloat vertexBuffer[] = {
-	//	-halfWidth, -halfHeight, 0.0f,				// BOTTOM	- LEFT
-	//	-halfWidth,  halfHeight, 0.0f,				// TOP		- LEFT
-	//	 halfWidth, -halfHeight, 0.0f,				// BOTTOM	- RIGHT
-	//	 halfWidth,  halfHeight, 0.0f,				// TOP		- RIGHT
-	//};
-
-	// 2 UV coordinates for each vertex
-	GLfloat UV_Buffer[] = {
-		0.0f, 0.0f,
-		0.0f, 1.0f,
-		1.0f, 0.0f,
-		1.0f, 1.0f,
-	};
-
-	_texture = _mat->Load_BMP("Tilemap2.bmp");
+	_texture = _mat->Load_BMP(spritesheetPath);
 	_textureID = _renderer->SetTextureID(_programID);
 
-	SetVertices(vertexBuffer, 4);
-	SetUVBufferData(UV_Buffer, 4);
-
+	
 	// If the sprite is animated
 	// Set new UV coordinates
 	if (isAnimated) {
@@ -67,6 +39,8 @@ Sprite::Sprite(
 
 
 	_boxCollider = new BoxCollider(_frameWidth, _frameHeight);
+
+	std::cout << "Sprite::Sprite()" << std::endl;
 }
 
 
@@ -90,11 +64,22 @@ Sprite::~Sprite() {
 }
 
 void Sprite::DrawSprite() {
-	Draw();
+	//Draw();
+
+	if (_mat) {
+		BindMaterial();
+	}
+
+	// Bind Vertex Buffer (Attribute index = 0)
+	_renderer->BindBuffer(_bufferData, _vrtxCount, 0, 3, _drawMode);
+
 	_renderer->BindTexture(_texture);
 	_renderer->SetTextureSampler(_textureID);
 	_renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, _drawMode);
 
+	_renderer->UpdateModelMatrix(_modelMatrix);
+	_renderer->UpdateMVP();
+	_renderer->SendTransformationToShader(_matrixID);
 }
 
 void Sprite::SetUVBufferData(float* vrtxs, int vtxCount) {
@@ -184,5 +169,31 @@ void Sprite::HandleInput(Window* window, float deltaTime) {
 	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_LEFT) == GLFW_PRESS) {
 		SetPos(position.x - speed, position.y, position.z);
 	}
-	
+}
+
+void Sprite::InitVertices() {
+
+	float halfWidth = _frameWidth / 2;
+	float halfHeight = _frameHeight / 2;
+
+	GLfloat vertexBuffer[] = {
+		-halfWidth, -halfHeight, 0.0f,				// BOTTOM	- LEFT
+		-halfWidth,  halfHeight, 0.0f,				// TOP		- LEFT
+		 halfWidth, -halfHeight, 0.0f,				// BOTTOM	- RIGHT
+		 halfWidth,  halfHeight, 0.0f,				// TOP		- RIGHT
+	};
+
+	SetVertices(vertexBuffer, 4);
+}
+
+void Sprite::InitVerticesUV() {
+	// 2 UV coordinates for each vertex
+	GLfloat UV_Buffer[] = {
+		0.0f, 0.0f,
+		0.0f, 1.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f,
+	};
+
+	SetUVBufferData(UV_Buffer, 4);
 }

@@ -26,6 +26,7 @@ protected:
 	Tilemap* _tilemap;
 
 	Material* _mat;
+
 	int _fpsCount;
 	bool OnStart() override;
 	bool OnStop() override;

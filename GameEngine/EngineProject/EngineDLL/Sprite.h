@@ -42,13 +42,17 @@ public:
 		unsigned int	frameHeight,				// Height of each frame cell from the sprite sheet
 		unsigned int	numColums,					// Number of horizontal frames
 		unsigned int	numRows,					// Number of vertical frames
-		bool			isAnimated					// Boolean that enables animation on the sprite
+		bool			isAnimated,					// Boolean that enables animation on the sprite
+		const char*		spritesheetPath				// Local file path where the spritesheet is stored
 	);
 
 	~Sprite();
 	void DrawSprite();
 	void SetUVBufferData(float* vrtxs, int vtxCount);
 	void SetFrame(int frameID);
+
+	void InitVertices();
+	void InitVerticesUV();
 
 	/* Animated Sprite */
 	void AddAnimation(const char* animationName, std::vector<int> animationFrames);

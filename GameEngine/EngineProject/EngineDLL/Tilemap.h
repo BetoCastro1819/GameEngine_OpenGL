@@ -21,7 +21,8 @@ public:
 		unsigned int	tileWidth,
 		unsigned int	tileHeight,
 		unsigned int	numCols,
-		unsigned int	numRows
+		unsigned int	numRows,
+		const char*		tilePalletePath
 		);
 	
 	~Tilemap();

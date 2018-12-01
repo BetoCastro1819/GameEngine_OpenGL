@@ -10,7 +10,8 @@ Tilemap::Tilemap(
 	unsigned int	tileWidth,
 	unsigned int	tileHeight,
 	unsigned int	numCols,
-	unsigned int	numRows
+	unsigned int	numRows,
+	const char*		tilePalletePath
 	)
 	: Sprite(
 		renderer,
@@ -21,7 +22,9 @@ Tilemap::Tilemap(
 		tileHeight,
 		2,
 		2,
-		false) 
+		false,
+		tilePalletePath
+	)
 {
 	// Actual code after horrible constructor
 	// Initialize private variables
@@ -44,25 +47,25 @@ Tilemap::Tilemap(
 			// BOTTOM - LEFT
 			tilemapVtxBuffer.push_back(0.0f + row * tileWidth);			// X
 			tilemapVtxBuffer.push_back(0.0f + col * tileHeight);			// Y
-			tilemapVtxBuffer.push_back(0.0f);								// Z
+			tilemapVtxBuffer.push_back(-1.0f);								// Z
 			_tileVtxCount++;
 
 			// TOP - LEFT
 			tilemapVtxBuffer.push_back(0.0f + row * tileWidth);			// X
 			tilemapVtxBuffer.push_back(_tileHeight + col * tileHeight);	// Y
-			tilemapVtxBuffer.push_back(0.0f);								// Z
+			tilemapVtxBuffer.push_back(-1.0f);								// Z
 			_tileVtxCount++;
 
 			// TOP - RIGHT
 			tilemapVtxBuffer.push_back(_tileWidth + row * tileWidth);		// X
 			tilemapVtxBuffer.push_back(_tileHeight + col * tileHeight);	// Y
-			tilemapVtxBuffer.push_back(0.0f);								// Z
+			tilemapVtxBuffer.push_back(-1.0f);								// Z
 			_tileVtxCount++;
 
 			// BOTTOM - RIGHT
 			tilemapVtxBuffer.push_back(_tileWidth + row * tileWidth);		// X
 			tilemapVtxBuffer.push_back(0.0f + col * tileHeight);			// Y
-			tilemapVtxBuffer.push_back(0.0f);								// Z
+			tilemapVtxBuffer.push_back(-1.0f);								// Z
 			_tileVtxCount++;
 		}
 	}
@@ -70,16 +73,21 @@ Tilemap::Tilemap(
 
 	/* GENERATE VERTEX UV BUFFER */
 	unsigned int gridLevelIndexes[] = {
-		1,1,1,1,1,1,1,1,1,1,
-		1,0,0,0,0,0,0,0,0,1,
-		1,0,0,0,0,0,0,0,0,1,
-		1,0,0,0,0,0,0,0,0,1,
-		1,0,0,0,0,0,0,0,0,1,
-		1,0,0,0,0,0,0,0,0,1,
-		1,0,0,0,0,0,0,0,0,1,
-		1,0,0,0,0,0,0,0,0,1,
-		1,0,0,0,0,0,0,0,0,1,
-		1,1,1,1,1,1,1,1,1,1,
+		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 	};
 
 	_tileVtxCountUV = 0;
@@ -113,8 +121,9 @@ Tilemap::Tilemap(
 		tilemapVtxBufferUV.push_back(1 - (_frame.y + tileHeight) / tileSheetHeight);
 		_tileVtxCountUV++;
 	}
-	std::cout << "Number of UV vertices: " << _tileVtxCountUV << std::endl;
 	SetUVBufferData(&tilemapVtxBufferUV[0], _tileVtxCountUV);
+
+	std::cout << "Tilemap::Tilemap()" << std::endl;
 }
 
 
