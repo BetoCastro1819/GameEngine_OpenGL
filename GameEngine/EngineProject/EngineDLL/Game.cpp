@@ -81,24 +81,24 @@ bool Game::OnStart() {
 	// Create sprite
 	_tilemapTest = new Sprite(
 		_renderer,				// Pointer to renderer
-		0,						// Frame ID
-		64,						// Texture width in pixels
-		64,						// Texture height in pixels
-		32,						// Width per frame in pixels
-		32,						// Height per frame in pixels
-		2,						// Number of horizontal frames
-		2,						// Number of vertical frames
+		10,						// Frame ID
+		512,					// Texture width in pixels
+		512,					// Texture height in pixels
+		51,						// Width per frame in pixels
+		51,						// Height per frame in pixels
+		10,						// Number of horizontal frames
+		10,						// Number of vertical frames
 		true					// Animated?
 	);
 
 	if (_tilemapTest && _mat) {
 		_tilemapTest->SetMaterial(_mat);
 		_tilemapTest->SetDrawMode(1);
-		_tilemapTest->SetScale(50.0f, 50.0f, 50.0f);
+		_tilemapTest->SetScale(1.0f, 1.0f, 1.0f);
 
 		_tilemapTest->SetPos(
-			_window->GetWidth() / 4,		// X
-			_window->GetHeight() / 4,		// Y
+			0,		// X
+			0,		// Y
 			0								// Z
 		);
 
@@ -139,6 +139,16 @@ bool Game::OnStart() {
 	}
 	*/
 
+	_tilemap = new Tilemap(_renderer, 64, 64, 32, 32, 10, 10);
+	if (_tilemap && _mat) {
+		_tilemap->SetMaterial(_mat);
+		_tilemap->SetDrawMode(3);
+		_tilemap->SetPos(0, 0, 0);
+	}
+	else {
+		std::cout << "Tilemap exploded" << std::endl;
+	}
+
 	return true;
 }
 
@@ -167,10 +177,10 @@ bool Game::OnUpdate(float deltaTime) {
 	//_player->PlayAnimation(deltaTime);
 	//
 	//_tilemapTest->PlayAnimation(deltaTime);
-	
-	_tilemapTest->SetFrame(1);
+	//_tilemapTest->SetFrame(1);
+	//_tilemapTest->DrawSprite();
 
-	_tilemapTest->DrawSprite();
+	_tilemap->DrawSprite();
 
 	//std::cout << "Player Pos X: " << _sprite->GetPos().x << " Player Pos Y: " << _sprite->GetPos().y << std::endl;
 	return true;

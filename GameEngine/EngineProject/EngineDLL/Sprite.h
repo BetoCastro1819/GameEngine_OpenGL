@@ -11,7 +11,7 @@ struct ENGINEDLL_API  FramePos {
 };
 
 class ENGINEDLL_API  Sprite : public Shape {
-private:
+protected:
 
 	float*			_uvVrtxs;						// Pointer to the 1st value of the array of vertices
 	int				_uvVrtxCount;					// Number of vertices to draw
@@ -47,7 +47,7 @@ public:
 
 	~Sprite();
 	void DrawSprite();
-	void SetUVBufferData(float* vrtxs);
+	void SetUVBufferData(float* vrtxs, int vtxCount);
 	void SetFrame(int frameID);
 
 	/* Animated Sprite */

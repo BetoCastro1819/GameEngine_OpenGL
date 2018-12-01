@@ -104,6 +104,9 @@ void Renderer::BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int
 	case 2:
 		glDrawArrays(GL_TRIANGLE_FAN, 0, vtxCount);
 		break;
+	case 3:
+		glDrawArrays(GL_QUADS, 0, vtxCount);
+		break;
 	}
 	glDisableVertexAttribArray(0);
 }

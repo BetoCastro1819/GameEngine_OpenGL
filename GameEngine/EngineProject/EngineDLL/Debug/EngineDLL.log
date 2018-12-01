@@ -1,4 +1,4 @@
-﻿  Sprite.cpp
+﻿  Tilemap.cpp
 d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(18): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(19): warning C4251: 'Renderer::_projection': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
@@ -33,8 +33,13 @@ d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\g
               _Ty=int,
               _Kty=const char *
           ]
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\sprite.cpp(101): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\sprite.cpp(102): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(28): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(29): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(40): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(41): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(89): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(93): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(94): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
      Creating library D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.lib and object D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.exp
 MSVCRTD.lib(initializers.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
   EngineDLL.vcxproj -> D:\Documents\ImageCampus\2018\2C\Programacion de Graficos II\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll

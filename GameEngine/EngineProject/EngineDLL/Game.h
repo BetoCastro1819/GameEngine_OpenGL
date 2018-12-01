@@ -9,6 +9,7 @@
 #include "TextureShape.h"
 #include "Sprite.h"
 #include "CollisionManager.h"
+#include "Tilemap.h"
 
 using namespace std;
 
@@ -21,6 +22,8 @@ protected:
 	
 	Sprite* _player;
 	Sprite* _tilemapTest;
+
+	Tilemap* _tilemap;
 
 	Material* _mat;
 	int _fpsCount;

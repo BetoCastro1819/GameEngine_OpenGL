@@ -26,12 +26,23 @@ Sprite::Sprite(
 	_numRows		= numRows;
 
 
+	float halfWidth = _frameWidth / 2;
+	float halfHeight = _frameHeight / 2;
+
+
 	GLfloat vertexBuffer[] = {
-		-1.0f, -1.0f, 0.0f,				// BOTTOM	- LEFT
-		-1.0f,  1.0f, 0.0f,				// TOP		- LEFT
-		 1.0f, -1.0f, 0.0f,				// BOTTOM	- RIGHT
-		 1.0f,  1.0f, 0.0f,				// TOP		- RIGHT
+		0.0f,		 0.0f,		   0.0f,				// BOTTOM	- LEFT
+		0.0f, _frameHeight, 0.0f,						// TOP		- LEFT
+		_frameWidth, 0.0f,		   0.0f,				// BOTTOM	- RIGHT
+		_frameWidth, _frameHeight, 0.0f,				// TOP		- RIGHT
 	};
+
+	//GLfloat vertexBuffer[] = {
+	//	-halfWidth, -halfHeight, 0.0f,				// BOTTOM	- LEFT
+	//	-halfWidth,  halfHeight, 0.0f,				// TOP		- LEFT
+	//	 halfWidth, -halfHeight, 0.0f,				// BOTTOM	- RIGHT
+	//	 halfWidth,  halfHeight, 0.0f,				// TOP		- RIGHT
+	//};
 
 	// 2 UV coordinates for each vertex
 	GLfloat UV_Buffer[] = {
@@ -45,7 +56,7 @@ Sprite::Sprite(
 	_textureID = _renderer->SetTextureID(_programID);
 
 	SetVertices(vertexBuffer, 4);
-	SetUVBufferData(UV_Buffer);
+	SetUVBufferData(UV_Buffer, 4);
 
 	// If the sprite is animated
 	// Set new UV coordinates
@@ -86,9 +97,9 @@ void Sprite::DrawSprite() {
 
 }
 
-void Sprite::SetUVBufferData(float* vrtxs) {
+void Sprite::SetUVBufferData(float* vrtxs, int vtxCount) {
 	_uvVrtxs = vrtxs;
-	_uvVrtxCount = 4;
+	_uvVrtxCount = vtxCount;
 	_uvBufferData = _renderer->GenBuffer(_uvVrtxs, _uvVrtxCount * 2 * sizeof(float));
 }
 
@@ -120,7 +131,7 @@ void Sprite::SetFrame(int frameID) {
 			1 - (_frame.y / _textureHeight)			
 		};
 		
-		SetUVBufferData(uvCoords);
+		SetUVBufferData(uvCoords, 4);
 	}
 	else {
 		std::cout << "Frame ID selected is out of bounds" << std::endl;
