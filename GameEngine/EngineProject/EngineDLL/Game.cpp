@@ -58,9 +58,10 @@ bool Game::OnStart() {
 	if (_player && _mat) {
 		_player->InitVertices();
 		_player->InitVerticesUV();
-
+		 
 		_player->SetMaterial(_mat);
 		_player->SetDrawMode(1);
+		_player->SetFrame(10);
 
 		_player->SetPos(
 			_window->GetWidth() / 2,		// X
@@ -68,9 +69,48 @@ bool Game::OnStart() {
 			0								// Z
 		);
 
-		_player->GetBoxCollider()->SetBoxWidth(20);
-		_player->GetBoxCollider()->SetBoxHeight(20);
+		_player->GetBoxCollider()->SetBoxWidth(52);
+		_player->GetBoxCollider()->SetBoxHeight(52);
 
+		/*
+		std::vector<int> attackAnimation = { 40,41,42,43,44,45 };
+		_player->AddAnimation("Attack", attackAnimation);
+		_player->SetAnimation("Attack");
+		_player->SetAnimationSpeed(10);
+		*/
+
+		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::PLAYER, _player);
+	}
+
+	// Create sprite
+	_collisionTest = new Sprite(
+		_renderer,				// Pointer to renderer
+		10,						// Frame ID
+		512,					// Texture width in pixels
+		512,					// Texture height in pixels
+		51,						// Width per frame in pixels
+		51,						// Height per frame in pixels
+		10,						// Number of horizontal frames
+		10,						// Number of vertical frames
+		true,					// Animated?
+		"uvtemplate.bmp"
+	);
+
+	if (_collisionTest && _mat) {
+		_collisionTest->InitVertices();
+		_collisionTest->InitVerticesUV();
+		 
+		_collisionTest->SetMaterial(_mat);
+		_collisionTest->SetDrawMode(1);
+		 
+		_collisionTest->SetPos(
+			_window->GetWidth() / 4,		// X
+			_window->GetHeight() / 4,		// Y
+			0								// Z
+		);
+
+		_collisionTest->GetBoxCollider()->SetBoxWidth(52);
+		_collisionTest->GetBoxCollider()->SetBoxHeight(52);
 
 
 		/*
@@ -78,9 +118,9 @@ bool Game::OnStart() {
 		_player->AddAnimation("Attack", attackAnimation);
 		_player->SetAnimation("Attack");
 		_player->SetAnimationSpeed(10);
-
-		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::PLAYER, _player);
 		*/
+
+		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _collisionTest);
 	}
 
 	return true;
@@ -103,19 +143,17 @@ bool Game::OnUpdate(float deltaTime) {
 	//_tx->DrawTextureShape();
 	//_tx->SetRotY(1);
 
-	//
-	//CollisionManager::GetInstance()->CheckForCollisions();
-	//
+	_player->HandleInput(_window, deltaTime);
 
+	CollisionManager::GetInstance()->CheckForCollisions();
 
-	//_player->HandleInput(_window, deltaTime);
-	//
-	
-	//_player->DrawSprite();
-	_tilemap->DrawSprite();
+	_player->DrawSprite();
+	_collisionTest->DrawSprite();
+
+	//_tilemap->DrawSprite();
 	
 	//_player->PlayAnimation(deltaTime);
-	//
+
 	//_tilemapTest->PlayAnimation(deltaTime);
 	//_tilemapTest->SetFrame(1);
 	//_tilemapTest->DrawSprite();
