@@ -72,12 +72,10 @@ bool Game::OnStart() {
 		_player->GetBoxCollider()->SetBoxWidth(52);
 		_player->GetBoxCollider()->SetBoxHeight(52);
 
-		/*
 		std::vector<int> attackAnimation = { 40,41,42,43,44,45 };
 		_player->AddAnimation("Attack", attackAnimation);
 		_player->SetAnimation("Attack");
 		_player->SetAnimationSpeed(10);
-		*/
 
 		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::PLAYER, _player);
 	}
@@ -112,14 +110,6 @@ bool Game::OnStart() {
 		_collisionTest->GetBoxCollider()->SetBoxWidth(52);
 		_collisionTest->GetBoxCollider()->SetBoxHeight(52);
 
-
-		/*
-		std::vector<int> attackAnimation = { 40,41,42,43,44,45 };
-		_player->AddAnimation("Attack", attackAnimation);
-		_player->SetAnimation("Attack");
-		_player->SetAnimationSpeed(10);
-		*/
-
 		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _collisionTest);
 	}
 
@@ -148,11 +138,12 @@ bool Game::OnUpdate(float deltaTime) {
 	CollisionManager::GetInstance()->CheckForCollisions();
 
 	_player->DrawSprite();
+
 	_collisionTest->DrawSprite();
 
 	//_tilemap->DrawSprite();
 	
-	//_player->PlayAnimation(deltaTime);
+	_player->PlayAnimation(deltaTime);
 
 	//_tilemapTest->PlayAnimation(deltaTime);
 	//_tilemapTest->SetFrame(1);

@@ -68,6 +68,12 @@ void Sprite::DrawSprite() {
 
 	if (_mat) {
 		BindMaterial();
+
+		// Set matrix property
+		_mat->SetMatrixProperty("MVP", _renderer->GetMVP());
+
+		// Set texture property
+		_mat->SetTextureProperty("myTextureSampler", _texture);
 	}
 
 	// Bind Vertex Buffer (Attribute index = 0)
@@ -79,7 +85,7 @@ void Sprite::DrawSprite() {
 
 	_renderer->UpdateModelMatrix(_modelMatrix);
 	_renderer->UpdateMVP();
-	_renderer->SendTransformationToShader(_matrixID);
+	//_renderer->SendTransformationToShader(_matrixID);
 }
 
 void Sprite::SetUVBufferData(float* vrtxs, int vtxCount) {

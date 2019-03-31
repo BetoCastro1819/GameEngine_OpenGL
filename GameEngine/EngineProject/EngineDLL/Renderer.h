@@ -45,6 +45,7 @@ public:
 	void UpdateMVP();
 	void SendTransformationToShader(unsigned int matrixID);
 	unsigned int SetMatrixID(unsigned int programID);
+	glm::mat4 GetMVP() { return MVP; }
 
 	// Handle UV Texture
 	unsigned int SetTextureID(unsigned int programID);

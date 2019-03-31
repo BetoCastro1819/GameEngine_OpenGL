@@ -16,7 +16,6 @@ protected:
 	glm::mat4 _rotateMatrix;
 	glm::mat4 _scaleMatrix;
 
-	unsigned int _matrixID;
 
 public:
 	Entity(Renderer* renderer);

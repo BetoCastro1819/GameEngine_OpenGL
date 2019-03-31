@@ -20,7 +20,7 @@ void Shape::Draw() {
 
 	_renderer->UpdateModelMatrix(_modelMatrix);
 	_renderer->UpdateMVP();
-	_renderer->SendTransformationToShader(_matrixID);
+	//_renderer->SendTransformationToShader(_matrixID);
 	// Bind Vertex Buffer (Attribute index = 0)
 	_renderer->BindBuffer(_bufferData, _vrtxCount, 0, 3, _drawMode);
 	// Bind Color Buffer (Attribute index = 1)
@@ -64,7 +64,7 @@ void Shape::Dispose() {
 void Shape::SetMaterial(Material* material) {
 	_mat = material;
 	_programID = _mat->LoadShaders("SimpleVertexShader.txt", "SimpleFragmentShader.txt");
-	_matrixID = _renderer->SetMatrixID(_programID);
+	//_matrixID = _renderer->SetMatrixID(_programID);
 }
 
 void Shape::BindMaterial() {

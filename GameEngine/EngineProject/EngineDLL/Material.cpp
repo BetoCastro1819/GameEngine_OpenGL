@@ -79,28 +79,28 @@ unsigned int Material::LoadShaders(const char * vertex_file_path, const char * f
 
 	// Link program
 	printf("Linking program\n");
-	GLuint ProgramID = glCreateProgram();
-	glAttachShader(ProgramID, VertexShaderID);
-	glAttachShader(ProgramID, FragmentShaderID);
-	glLinkProgram(ProgramID);
+	m_ProgramID = glCreateProgram();
+	glAttachShader(m_ProgramID, VertexShaderID);
+	glAttachShader(m_ProgramID, FragmentShaderID);
+	glLinkProgram(m_ProgramID);
 
 	// Check programa
-	glGetProgramiv(ProgramID, GL_LINK_STATUS, &Result);
-	glGetProgramiv(ProgramID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	glGetProgramiv(m_ProgramID, GL_LINK_STATUS, &Result);
+	glGetProgramiv(m_ProgramID, GL_INFO_LOG_LENGTH, &InfoLogLength);
 	if (InfoLogLength > 0) {
 		std::vector<char> ProgramErrorMessage(InfoLogLength + 1);
-		glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
+		glGetProgramInfoLog(m_ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
 		printf("%s\n", &ProgramErrorMessage[0]);
 	}
 
 
-	glDetachShader(ProgramID, VertexShaderID);
-	glDetachShader(ProgramID, FragmentShaderID);
+	glDetachShader(m_ProgramID, VertexShaderID);
+	glDetachShader(m_ProgramID, FragmentShaderID);
 
 	glDeleteShader(VertexShaderID);
 	glDeleteShader(FragmentShaderID);
 
-	return ProgramID;
+	return m_ProgramID;
 }
 
 unsigned int Material::Load_BMP(const char* imagePath) {
@@ -178,6 +178,21 @@ unsigned int Material::Load_BMP(const char* imagePath) {
 	// Return the ID of the texture we just created
 	return textureID;
 }
+
+void Material::SetMatrixProperty(const char* name, const glm::mat4& mat) {
+	m_MatrixID = glGetUniformLocation(m_ProgramID, name);
+	glUniformMatrix4fv(m_MatrixID, 1, GL_FALSE, &mat[0][0]);
+}
+
+void Material::SetTextureProperty(const char* name, unsigned int textureID) {
+	m_TextureID = glGetUniformLocation(m_ProgramID, name);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+
+	// Set our "myTextureSampler" to use Texture Unit 0
+	glUniform1i(m_TextureID, 0);
+}
+
 
 
 
