@@ -10,6 +10,12 @@
 
 using namespace std;
 
+enum CameraType
+{
+	PERSPECTIVE,
+	ORTHOGRAPHIC
+};
+
 class ENGINEDLL_API Renderer {
 private:
 	Window* _window;
@@ -21,12 +27,16 @@ private:
 	glm::mat4 _view;
 
 public:
-	Renderer(Window* window);
+	Renderer(Window* window, CameraType camType);
 	~Renderer();
 
 	bool Start();
 	bool Stop();
 	
+	void SetPerpectiveCam(float fovAngle, float aspect, float near, float far);
+	void SetOrthographicCam(float left, float right, float bottom, float top, float zNear, float zFar);
+	void SetCamView(glm::vec3 camPos, glm::vec3 lookAt, glm::vec3 head);
+
 	// Buffer
 	unsigned int GenBuffer(float* buffer, int size);
 	void BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int size, int drawMode);

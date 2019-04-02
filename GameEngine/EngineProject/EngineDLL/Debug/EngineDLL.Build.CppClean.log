@@ -1,22 +1,30 @@
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\vc141.pdb
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\vc141.idb
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\triangle.obj
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\renderer.obj
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\gamebase.obj
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\entity.obj
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\window.obj
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\material.obj
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\debug\enginedll.lib
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\debug\enginedll.exp
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\debug\enginedll.dll
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\debug\enginedll.ilk
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\debug\enginedll.pdb
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\enginedll.tlog\cl.command.1.tlog
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\enginedll.tlog\cl.read.1.tlog
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\enginedll.tlog\cl.write.1.tlog
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\enginedll.tlog\enginedll.write.1u.tlog
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\enginedll.tlog\link.17244.delete.1.tlog
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\enginedll.tlog\link.command.1.tlog
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\enginedll.tlog\link.delete.1.tlog
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\enginedll.tlog\link.read.1.tlog
-d:\documents\imagecampus\2018\2c\programacion de graficos ii\gameengine_opengl(matrix)\gameengine_opengl\engineproject\engineproject\enginedll\debug\enginedll.tlog\link.write.1.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\vc141.pdb
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\vc141.idb
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\window.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\triangle.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\time.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\tilemap.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\textureshape.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\sprite.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\shape.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\renderer.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\material.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\gamebase.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\entity.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\colorshape.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\collisionmanager.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\circle.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\boxcollider.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\animation.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.lib
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.exp
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.ilk
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.dll
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.pdb
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\cl.command.1.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\cl.read.1.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\cl.write.1.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\enginedll.write.1u.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.command.1.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.read.1.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.write.1.tlog

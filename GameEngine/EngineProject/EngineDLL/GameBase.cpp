@@ -18,7 +18,17 @@ bool GameBase::Start()
 	_window = new Window(_screenHeight, _screenWidth, _windowName);
 	if (!_window->Start())
 		return false;
-	_renderer = new Renderer(_window);
+
+	_renderer = new Renderer(_window, CameraType::PERSPECTIVE);
+
+	//_renderer->SetOrthographicCam(
+	//	0.0f,				// LEFT
+	//	_screenWidth,		// RIGHT
+	//	0.0f,				// BOTTOM
+	//	_screenHeight,		// TOP
+	//	0.0f,				// zNear
+	//	100.0f				// zFar
+	//);
 
 	if (!_renderer->Start())
 		return false;
@@ -42,6 +52,8 @@ bool GameBase::Stop()
 		_window->Stop();
 		delete _window;
 	}
+
+	
 	return true;
 }
 

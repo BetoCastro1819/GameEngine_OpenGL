@@ -2,21 +2,25 @@
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
-Renderer::Renderer(Window* window) {	
+Renderer::Renderer(Window* window, CameraType camType) {	
 	_window = window;
 
-	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	//_projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-
-	// Orthographic camera in world coordinates
-	_projection = glm::ortho(
-		0.0f,								// LEFT
-		(float)_window->GetWidth(),			// RIGHT
-		0.0f,								// BOTTOM
-		(float)_window->GetHeight(),		// TOP
-		0.0f,								// zNear
-		100.0f								// zFar
-	);
+	switch (camType) {
+	case CameraType::PERSPECTIVE:
+		_projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+		break;
+	case CameraType::ORTHOGRAPHIC:
+		// Orthographic camera in world coordinates
+		_projection = glm::ortho(
+			0.0f,								// LEFT
+			(float)_window->GetWidth(),			// RIGHT
+			0.0f,								// BOTTOM
+			(float)_window->GetHeight(),		// TOP
+			0.0f,								// zNear
+			100.0f								// zFar
+		);
+		break;
+	}
 
 	// Camera matrix
 	_view = glm::lookAt(
@@ -170,3 +174,14 @@ void Renderer::DeleteTextures(unsigned int texture) {
 	glDeleteTextures(1, &texture);
 }
 
+void Renderer::SetPerpectiveCam(float fovAngle, float aspect, float near, float far) {
+	_projection = glm::perspective(glm::radians(fovAngle), aspect, near, far);
+}
+
+void Renderer::SetOrthographicCam(float left, float right, float bottom, float top, float zNear, float zFar) {
+	_projection = glm::ortho(left, right, bottom, top, zNear, zFar);
+}
+
+void Renderer::SetCamView(glm::vec3 camPos, glm::vec3 lookAt, glm::vec3 head) {
+	_view = glm::lookAt(camPos, lookAt, head);
+}

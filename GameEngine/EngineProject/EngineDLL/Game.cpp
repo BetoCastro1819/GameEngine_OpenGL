@@ -113,6 +113,23 @@ bool Game::OnStart() {
 		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _collisionTest);
 	}
 
+	//_player->SetScale(10, 10, 10);
+
+
+	// Place camera a couple of units away from the player
+	glm::vec3 camPos = glm::vec3(
+		_player->GetPos().x,
+		_player->GetPos().y,
+		_player->GetPos().z - 90
+	);
+
+
+	_renderer->SetCamView(
+			camPos, // Camera is at (0,0,-4), in World Space
+			_player->GetPos(), // and looks at the origin
+			glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
+	);
+
 	return true;
 }
 
