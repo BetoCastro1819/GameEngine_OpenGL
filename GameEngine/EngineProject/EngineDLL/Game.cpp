@@ -64,8 +64,8 @@ bool Game::OnStart() {
 		_player->SetFrame(10);
 
 		_player->SetPos(
-			_window->GetWidth() / 2,		// X
-			_window->GetHeight() / 2,		// Y
+			0,		// X
+			0,		// Y
 			0								// Z
 		);
 
@@ -113,22 +113,7 @@ bool Game::OnStart() {
 		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _collisionTest);
 	}
 
-	//_player->SetScale(10, 10, 10);
-
-
-	// Place camera a couple of units away from the player
-	glm::vec3 camPos = glm::vec3(
-		_player->GetPos().x,
-		_player->GetPos().y,
-		_player->GetPos().z - 90
-	);
-
-
-	_renderer->SetCamView(
-			camPos, // Camera is at (0,0,-4), in World Space
-			_player->GetPos(), // and looks at the origin
-			glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
-	);
+	_player->SetScale(0.01f, 0.01f, 0.01f);
 
 	return true;
 }
@@ -149,6 +134,11 @@ bool Game::OnUpdate(float deltaTime) {
 	//_circle->Draw();			
 	//_tx->DrawTextureShape();
 	//_tx->SetRotY(1);
+
+	//m_Camera->Walk(0.01f);
+	//m_Camera->Strafe(0.01f);
+	m_Camera->Pitch(1.0f);
+
 
 	_player->HandleInput(_window, deltaTime);
 

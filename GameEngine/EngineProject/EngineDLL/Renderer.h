@@ -19,6 +19,7 @@ enum CameraType
 class ENGINEDLL_API Renderer {
 private:
 	Window* _window;
+
 	unsigned int _vrtxArrID;
 
  	glm::mat4 MVP;
@@ -27,7 +28,7 @@ private:
 	glm::mat4 _view;
 
 public:
-	Renderer(Window* window, CameraType camType);
+	Renderer(Window* window);
 	~Renderer();
 
 	bool Start();
@@ -35,7 +36,9 @@ public:
 	
 	void SetPerpectiveCam(float fovAngle, float aspect, float near, float far);
 	void SetOrthographicCam(float left, float right, float bottom, float top, float zNear, float zFar);
+	glm::mat4 GetViewMat() { return _view; }
 	void SetCamView(glm::vec3 camPos, glm::vec3 lookAt, glm::vec3 head);
+	void SetCamView(glm::mat4 viewMat);
 
 	// Buffer
 	unsigned int GenBuffer(float* buffer, int size);

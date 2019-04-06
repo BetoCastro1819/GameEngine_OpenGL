@@ -1,11 +1,27 @@
 ﻿  Game.cpp
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(24): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::_projection': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(26): warning C4251: 'Renderer::_projection': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(26): warning C4251: 'Renderer::_model': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(27): warning C4251: 'Renderer::_model': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(27): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(18): warning C4251: 'Camera::m_Pos': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(19): warning C4251: 'Camera::m_Rot': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(21): warning C4251: 'Camera::m_Head': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(22): warning C4251: 'Camera::m_Side': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(23): warning C4251: 'Camera::m_Foward': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(24): warning C4251: 'Camera::m_FocusPoint': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(26): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(27): warning C4251: 'Camera::m_RotationMat': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::v3Pos': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
@@ -45,8 +61,6 @@ c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\engi
               _Ty=Sprite *,
               _Kty=CollisionLayer
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(68): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(67): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(106): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(105): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
   EngineProject.vcxproj -> C:\Users\Administrador\Documents\GameEngine_OpenGL\GameEngine\EngineProject\Debug\TestEngine.exe

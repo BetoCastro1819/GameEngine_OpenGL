@@ -2,31 +2,38 @@
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
-Renderer::Renderer(Window* window, CameraType camType) {	
+Renderer::Renderer(Window* window) {	
 	_window = window;
+	
+	_projection = glm::perspective(
+		glm::radians(45.0f),
+		(float)window->GetWidth() / (float)window->GetHeight(),
+		0.1f,
+		100.0f
+	);
 
-	switch (camType) {
-	case CameraType::PERSPECTIVE:
-		_projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-		break;
-	case CameraType::ORTHOGRAPHIC:
-		// Orthographic camera in world coordinates
-		_projection = glm::ortho(
-			0.0f,								// LEFT
-			(float)_window->GetWidth(),			// RIGHT
-			0.0f,								// BOTTOM
-			(float)_window->GetHeight(),		// TOP
-			0.0f,								// zNear
-			100.0f								// zFar
-		);
-		break;
-	}
+	//switch (camType) {
+	//case CameraType::PERSPECTIVE:
+	//	_projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+	//	break;
+	//case CameraType::ORTHOGRAPHIC:
+	//	// Orthographic camera in world coordinates
+	//	_projection = glm::ortho(
+	//		0.0f,								// LEFT
+	//		(float)_window->GetWidth(),			// RIGHT
+	//		0.0f,								// BOTTOM
+	//		(float)_window->GetHeight(),		// TOP
+	//		0.0f,								// zNear
+	//		100.0f								// zFar
+	//	);
+	//	break;
+	//}
 
 	// Camera matrix
 	_view = glm::lookAt(
-		glm::vec3(0, 0, 4), // Camera is at (0,0,-4), in World Space
-		glm::vec3(0, 0, 0), // and looks at the origin
-		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
+		glm::vec3(0, 0, -5),
+		glm::vec3(0, 0, 0),	// Look at origin by default
+		glm::vec3(0, 1, 0)
 	);
 
 	LoadIdentityMatrix();
@@ -185,3 +192,8 @@ void Renderer::SetOrthographicCam(float left, float right, float bottom, float t
 void Renderer::SetCamView(glm::vec3 camPos, glm::vec3 lookAt, glm::vec3 head) {
 	_view = glm::lookAt(camPos, lookAt, head);
 }
+
+void Renderer::SetCamView(glm::mat4 viewMat) {
+	_view = viewMat;
+}
+

@@ -4,12 +4,15 @@
 #include "Exports.h"
 #include "Renderer.h"
 #include "Window.h"
+#include "Camera.h"
 #include "Time.h"
+#include "glm/glm.hpp"
 
 class ENGINEDLL_API GameBase {
 protected:
 	Window* _window;
 	Renderer* _renderer;
+	Camera* m_Camera;
 	Time* _time;
 	const char* _windowName;
 	int _screenHeight;

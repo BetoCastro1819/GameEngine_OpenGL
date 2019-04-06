@@ -10,6 +10,9 @@ GameBase::GameBase(const int& width, const int& height, const char* name) {
 GameBase::~GameBase() {
 	if (_time != NULL)
 		delete _time;
+
+	if (m_Camera != NULL)
+		delete m_Camera;
 }
 
 bool GameBase::Start()
@@ -19,7 +22,9 @@ bool GameBase::Start()
 	if (!_window->Start())
 		return false;
 
-	_renderer = new Renderer(_window, CameraType::PERSPECTIVE);
+	_renderer = new Renderer(_window);
+	
+	m_Camera = new Camera(_renderer);
 
 	//_renderer->SetOrthographicCam(
 	//	0.0f,				// LEFT

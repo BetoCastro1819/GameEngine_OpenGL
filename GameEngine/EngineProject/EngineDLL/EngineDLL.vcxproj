@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="ColorShape.h" />
@@ -144,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="ColorShape.cpp" />
