@@ -27,7 +27,7 @@ Sprite::Sprite(
 	_numRows		= numRows;
 
 	_texture = _mat->Load_BMP(spritesheetPath);
-	_textureID = _renderer->SetTextureID(_programID);
+	_textureID = m_Renderer->SetTextureID(_programID);
 
 	
 	// If the sprite is animated
@@ -46,8 +46,8 @@ Sprite::Sprite(
 
 Sprite::~Sprite() {
 	//Dispose();
-	_renderer->DeleteBuffers(_uvBufferData);
-	_renderer->DeleteTextures(_texture);
+	m_Renderer->DeleteBuffers(_uvBufferData);
+	m_Renderer->DeleteTextures(_texture);
 
 	/* TODO: program crashes when it has to delete THESE vertices*/
 	if (_uvVrtxs != nullptr) {
@@ -70,28 +70,28 @@ void Sprite::DrawSprite() {
 		BindMaterial();
 
 		// Set matrix property
-		_mat->SetMatrixProperty("MVP", _renderer->GetMVP());
+		_mat->SetMatrixProperty("MVP", m_Renderer->GetMVP());
 
 		// Set texture property
 		_mat->SetTextureProperty("myTextureSampler", _texture);
 	}
 
 	// Bind Vertex Buffer (Attribute index = 0)
-	_renderer->BindBuffer(_bufferData, _vrtxCount, 0, 3, _drawMode);
+	m_Renderer->BindBuffer(_bufferData, _vrtxCount, 0, 3, _drawMode);
 
-	_renderer->BindTexture(_texture);
-	_renderer->SetTextureSampler(_textureID);
-	_renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, _drawMode);
+	m_Renderer->BindTexture(_texture);
+	m_Renderer->SetTextureSampler(_textureID);
+	m_Renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, _drawMode);
 
-	_renderer->UpdateModelMatrix(_modelMatrix);
-	_renderer->UpdateMVP();
+	m_Renderer->UpdateModelMatrix(m_ModelMat);
+	m_Renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 }
 
 void Sprite::SetUVBufferData(float* vrtxs, int vtxCount) {
 	_uvVrtxs = vrtxs;
 	_uvVrtxCount = vtxCount;
-	_uvBufferData = _renderer->GenBuffer(_uvVrtxs, _uvVrtxCount * 2 * sizeof(float));
+	_uvBufferData = m_Renderer->GenBuffer(_uvVrtxs, _uvVrtxCount * 2 * sizeof(float));
 }
 
 void Sprite::SetFrame(int frameID) {

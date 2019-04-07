@@ -113,6 +113,7 @@ bool Game::OnStart() {
 		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _collisionTest);
 	}
 
+
 	return true;
 }
 
@@ -136,14 +137,16 @@ bool Game::OnUpdate(float deltaTime) {
 	_player->HandleInput(_window, deltaTime);
 
 	CollisionManager::GetInstance()->CheckForCollisions();
+	
 
+	_player->SetRotY(_player->GetRotation().y + 1);
 	_player->DrawSprite();
 
-	_collisionTest->DrawSprite();
+	//_collisionTest->DrawSprite();
 
 	//_tilemap->DrawSprite();
 	
-	_player->PlayAnimation(deltaTime);
+	//_player->PlayAnimation(deltaTime);
 
 	//_tilemapTest->PlayAnimation(deltaTime);
 	//_tilemapTest->SetFrame(1);
