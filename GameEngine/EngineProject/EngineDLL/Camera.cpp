@@ -1,17 +1,24 @@
 #include "Camera.h"
+#include <GL\glew.h>
+#include <GLFW\glfw3.h>
 
+Camera::Camera(Renderer* renderer, Window* window) {
 
+	m_Renderer	= renderer;
+	m_Window	= window;
 
-Camera::Camera(Renderer* renderer) {
-
-	m_Renderer		= renderer;
-
-	m_Pos			= glm::vec3(0, 0, -4);
-	m_Rot			= glm::vec3(0);
+	m_Pos		= glm::vec3(0, 0, -4);
+	m_Rot		= glm::vec3(0);
 	
-	m_Right			= glm::vec3(1, 0, 0);
-	m_Head			= glm::vec3(0, 1, 0);
-	m_Foward		= glm::vec3(0, 0, 1);
+	m_Right		= glm::vec3(1, 0, 0);
+	m_Head		= glm::vec3(0, 1, 0);
+	m_Foward	= glm::vec3(0, 0, 1);
+
+	m_Speed		= 5.0f;
+
+	// Get cursor position
+	glfwGetCursorPos((GLFWwindow*)window->GetWindowPtr(), &m_InitialCursorPos.x, &m_InitialCursorPos.y);
+	m_CurrentCursorPos = m_InitialCursorPos;
 
 	UpdateViewMatrix();
 }
@@ -77,6 +84,29 @@ void Camera::Roll(float angle) {
 	m_Head = glm::normalize(glm::cross(m_Right, m_Foward));
 
 	UpdateViewMatrix();
+}
+
+void Camera::UpdatePosition(float deltaTime) {
+	
+	// Move forward
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindowPtr(), GLFW_KEY_W) == GLFW_PRESS) {
+		Walk(m_Speed * deltaTime);
+	}
+	// Move backward
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindowPtr(), GLFW_KEY_S) == GLFW_PRESS) {
+		Walk(-m_Speed * deltaTime);
+	}
+	// Strafe right
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindowPtr(), GLFW_KEY_D) == GLFW_PRESS) {
+		Strafe(-m_Speed * deltaTime);
+	}
+	// Strafe left
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindowPtr(), GLFW_KEY_A) == GLFW_PRESS) {
+		Strafe(m_Speed * deltaTime);
+	}
+}
+
+void Camera::UpdateRotation(float deltaTime) {
 }
 
 void Camera::UpdateViewMatrix() {

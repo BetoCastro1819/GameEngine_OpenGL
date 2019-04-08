@@ -12,9 +12,16 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+struct CursorPos {
+	double x;
+	double y;
+};
+
 class ENGINEDLL_API Camera {
 private:
 	Renderer* m_Renderer;
+	Window* m_Window;
+
 	glm::vec3 m_Pos;
 	glm::vec3 m_Rot;
 
@@ -25,16 +32,24 @@ private:
 	glm::mat4 m_ViewMat;
 	glm::mat4 m_RotationMat;
 
+	CursorPos m_InitialCursorPos;
+	CursorPos m_CurrentCursorPos;
+
+	float m_Speed;
+
 	void UpdateViewMatrix();
 
 public:
-	Camera(Renderer* renderer);
+	Camera(Renderer* renderer, Window* window);
 	~Camera();
+	
+	void UpdatePosition(float deltaTime);
+	void UpdateRotation(float deltaTime);
 
-	void SetPosition(glm::vec3 worldPos);
-	void SetRotation(glm::vec3 rotation);
-	void SetFocusPoint(glm::vec3 focusPoint);
+	//void SetRotation(glm::vec3 rotation);
+	//void SetFocusPoint(glm::vec3 focusPoint);
 
+	void SetPosition(glm::vec3 worldPos) { m_Pos = worldPos; };
 	glm::vec3 GetPosition() const { return m_Pos; }
 
 	// Movement

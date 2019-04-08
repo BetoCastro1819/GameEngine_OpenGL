@@ -31,6 +31,8 @@ bool Window::Start() {
 		glfwTerminate();
 		return false;
 	}
+	glfwSetWindowShouldClose((GLFWwindow*)_window, false);
+
 	return true;
 }
 
@@ -45,10 +47,14 @@ bool Window::Stop() {
 }
 
 bool Window::ShouldClose() {
-	if (_window)
-		return glfwWindowShouldClose((GLFWwindow*)_window);
 
-	return true;	
+	if (_window) {
+		if (glfwGetKey((GLFWwindow*)_window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+			glfwSetWindowShouldClose((GLFWwindow*)_window, true);
+		}
+		return glfwWindowShouldClose((GLFWwindow*)_window);
+	}
+	return true;
 }
 
 void Window::PollEvents() { 

@@ -14,9 +14,9 @@ c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\engi
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\colorshape.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\collisionmanager.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\circle.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\camera.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\boxcollider.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\animation.obj
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\camera.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.lib
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.exp
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.dll
@@ -26,12 +26,9 @@ c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\engi
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\cl.read.1.tlog
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\cl.write.1.tlog
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\enginedll.write.1u.tlog
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.11352.delete.1.tlog
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.11572.delete.1.tlog
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.11820.delete.1.tlog
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.3560.delete.1.tlog
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.5916.delete.1.tlog
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.9448.delete.1.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.2696.delete.1.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.2748.delete.1.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.8392.delete.1.tlog
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.command.1.tlog
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.delete.1.tlog
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.read.1.tlog

@@ -24,7 +24,7 @@ bool GameBase::Start()
 
 	_renderer = new Renderer(_window);
 	
-	m_Camera = new Camera(_renderer);
+	m_Camera = new Camera(_renderer, _window);
 
 	if (!_renderer->Start())
 		return false;

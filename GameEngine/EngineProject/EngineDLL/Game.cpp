@@ -135,12 +135,11 @@ bool Game::OnUpdate(float deltaTime) {
 	//_tx->DrawTextureShape();
 	//_tx->SetRotY(1);
 
-	m_Camera->Walk(0.01f);
-	m_Camera->Roll(0.01f);
+	m_Camera->UpdatePosition(deltaTime);
 
 	_player->HandleInput(_window, deltaTime);
 
-	CollisionManager::GetInstance()->CheckForCollisions();
+	//CollisionManager::GetInstance()->CheckForCollisions();
 
 	_player->DrawSprite();
 	_player->PlayAnimation(deltaTime);
