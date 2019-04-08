@@ -26,15 +26,6 @@ bool GameBase::Start()
 	
 	m_Camera = new Camera(_renderer);
 
-	//_renderer->SetOrthographicCam(
-	//	0.0f,				// LEFT
-	//	_screenWidth,		// RIGHT
-	//	0.0f,				// BOTTOM
-	//	_screenHeight,		// TOP
-	//	0.0f,				// zNear
-	//	100.0f				// zFar
-	//);
-
 	if (!_renderer->Start())
 		return false;
 
