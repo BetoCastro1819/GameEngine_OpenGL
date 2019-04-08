@@ -28,6 +28,7 @@ private:
 	glm::vec3 m_Head;
 	glm::vec3 m_Right;
 	glm::vec3 m_Foward;
+	glm::vec3 m_FocusPoint;
 
 	glm::mat4 m_ViewMat;
 	glm::mat4 m_RotationMat;
@@ -36,8 +37,10 @@ private:
 	CursorPos m_CurrentCursorPos;
 
 	float m_Speed;
+	float m_RotationSpeed;
 
 	void UpdateViewMatrix();
+	void UpdateCursorPos();
 
 public:
 	Camera(Renderer* renderer, Window* window);
@@ -49,8 +52,10 @@ public:
 	//void SetRotation(glm::vec3 rotation);
 	//void SetFocusPoint(glm::vec3 focusPoint);
 
-	void SetPosition(glm::vec3 worldPos) { m_Pos = worldPos; };
+	void SetPosition(glm::vec3 worldPos) { m_Pos = worldPos; }
 	glm::vec3 GetPosition() const { return m_Pos; }
+
+	void SetFocusPoint(glm::vec3 focusPoint) { m_FocusPoint = focusPoint; }
 
 	// Movement
 	void Walk(float speed);

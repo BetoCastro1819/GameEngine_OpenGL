@@ -136,6 +136,7 @@ bool Game::OnUpdate(float deltaTime) {
 	//_tx->SetRotY(1);
 
 	m_Camera->UpdatePosition(deltaTime);
+	m_Camera->UpdateRotation(deltaTime);
 
 	_player->HandleInput(_window, deltaTime);
 

@@ -4,20 +4,29 @@
 
 Camera::Camera(Renderer* renderer, Window* window) {
 
-	m_Renderer	= renderer;
-	m_Window	= window;
+	m_Renderer		= renderer;
+	m_Window		= window;
 
-	m_Pos		= glm::vec3(0, 0, -4);
-	m_Rot		= glm::vec3(0);
+	m_Pos			= glm::vec3(0, 0, -4);
+	m_Rot			= glm::vec3(0);
 	
-	m_Right		= glm::vec3(1, 0, 0);
-	m_Head		= glm::vec3(0, 1, 0);
-	m_Foward	= glm::vec3(0, 0, 1);
+	m_Right			= glm::vec3(1, 0, 0);
+	m_Head			= glm::vec3(0, 1, 0);
+	m_Foward		= glm::vec3(0, 0, 1);
 
-	m_Speed		= 5.0f;
+	m_Speed			= 5.0f;
+	m_RotationSpeed = 2.0f;
 
-	// Get cursor position
-	glfwGetCursorPos((GLFWwindow*)window->GetWindowPtr(), &m_InitialCursorPos.x, &m_InitialCursorPos.y);
+	//m_FocusPoint	= m_Foward;
+
+	// Store cursor's position by reference to local variable
+	// Position is based on screen coordinates relative 
+	// to the top-left corner of the window context
+	glfwGetCursorPos(
+		(GLFWwindow*)window->GetWindowPtr(),	// window context
+		&m_InitialCursorPos.x,					// OUT 
+		&m_InitialCursorPos.y					// OUT
+	);
 	m_CurrentCursorPos = m_InitialCursorPos;
 
 	UpdateViewMatrix();
@@ -29,6 +38,7 @@ Camera::~Camera() {
 // Movement
 void Camera::Walk(float speed) {
 	m_Pos += m_Foward * speed;
+
 	UpdateViewMatrix();
 }
 
@@ -49,7 +59,7 @@ void Camera::Pitch(float angle) {
 	m_Head = glm::normalize(newHead);
 
 	// Recalculate Foward Vector
-	m_Foward = glm::normalize(glm::cross(m_Head, m_Right));
+	m_Foward = glm::normalize(glm::cross(m_Right, m_Head));
 	
 	UpdateViewMatrix();
 }
@@ -65,7 +75,7 @@ void Camera::Yaw(float angle) {
 	m_Foward = glm::normalize(newFoward);
 
 	// Recalculate Foward Vector
-	m_Right = glm::normalize(glm::cross(m_Foward, m_Head));
+	m_Right = glm::normalize(glm::cross(m_Head, m_Foward));
 
 	UpdateViewMatrix();
 }
@@ -107,6 +117,38 @@ void Camera::UpdatePosition(float deltaTime) {
 }
 
 void Camera::UpdateRotation(float deltaTime) {
+	UpdateCursorPos();
+
+	// Look left
+	if (m_InitialCursorPos.x > m_CurrentCursorPos.x) {
+		Yaw(m_RotationSpeed * deltaTime);
+	}
+	
+	// Look right
+	if (m_InitialCursorPos.x < m_CurrentCursorPos.x) {
+		Yaw(-m_RotationSpeed * deltaTime);
+	}
+
+	// Look up
+	if (m_InitialCursorPos.y < m_CurrentCursorPos.y) {
+		Pitch(m_RotationSpeed * deltaTime);
+	}
+
+	// Look down
+	if (m_InitialCursorPos.y > m_CurrentCursorPos.y) {
+		Pitch(-m_RotationSpeed * deltaTime);
+	}
+
+	m_InitialCursorPos.x = m_CurrentCursorPos.x;
+	m_InitialCursorPos.y = m_CurrentCursorPos.y;
+}
+
+void Camera::UpdateCursorPos() {
+	glfwGetCursorPos(
+		(GLFWwindow*)m_Window->GetWindowPtr(),
+		&m_CurrentCursorPos.x, 
+		&m_CurrentCursorPos.y
+	);
 }
 
 void Camera::UpdateViewMatrix() {
