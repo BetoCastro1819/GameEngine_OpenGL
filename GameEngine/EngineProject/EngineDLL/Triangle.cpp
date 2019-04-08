@@ -16,7 +16,7 @@ Triangle::Triangle(Renderer* renderer) : Shape(renderer) {
 	SetVertices(vertices, 3);
 	SetColorBufferData(colorData, 3);
 
-	_dispose = false;
+	m_Dispose = false;
 }
 
 Triangle::~Triangle() {

@@ -22,13 +22,11 @@ protected:
 	glm::vec3 m_Right;
 	glm::vec3 m_Up;
 
-
 	// Transform matrices
 	glm::mat4 m_ModelMat;
 	glm::mat4 m_TranslateMat;
 	glm::mat4 m_RotateMat;
 	glm::mat4 m_ScaleMat;
-
 	
 public:
 	Entity(Renderer* renderer);

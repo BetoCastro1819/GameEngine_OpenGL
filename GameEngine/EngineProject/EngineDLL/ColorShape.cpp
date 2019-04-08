@@ -167,7 +167,7 @@ ColorShape::ColorShape(Renderer* renderer):Shape(renderer) {
 	SetVertices(vertices, 6 * 6); // 4 vertices per face, 6 faces in a cube
 	SetColorBufferData(colorData, 6 * 6);
 
-	_dispose = false;
+	m_Dispose = false;
 	m_Renderer->UpdateMVP();
 }
 

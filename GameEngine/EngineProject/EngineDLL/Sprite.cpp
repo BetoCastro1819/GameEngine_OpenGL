@@ -26,8 +26,8 @@ Sprite::Sprite(
 	_numColums		= numColums;
 	_numRows		= numRows;
 
-	_texture = _mat->Load_BMP(spritesheetPath);
-	_textureID = m_Renderer->SetTextureID(_programID);
+	_texture = m_Material->Load_BMP(spritesheetPath);
+	_textureID = m_Renderer->SetTextureID(m_ProgramID);
 
 	
 	// If the sprite is animated
@@ -66,22 +66,22 @@ Sprite::~Sprite() {
 void Sprite::DrawSprite() {
 	//Draw();
 
-	if (_mat) {
+	if (m_Material) {
 		BindMaterial();
 
 		// Set matrix property
-		_mat->SetMatrixProperty("MVP", m_Renderer->GetMVP());
+		m_Material->SetMatrixProperty("MVP", m_Renderer->GetMVP());
 
 		// Set texture property
-		_mat->SetTextureProperty("myTextureSampler", _texture);
+		m_Material->SetTextureProperty("myTextureSampler", _texture);
 	}
 
 	// Bind Vertex Buffer (Attribute index = 0)
-	m_Renderer->BindBuffer(_bufferData, _vrtxCount, 0, 3, _drawMode);
+	m_Renderer->BindBuffer(m_BufferData, m_VtxCount, 0, 3, m_DrawMode);
 
 	m_Renderer->BindTexture(_texture);
 	m_Renderer->SetTextureSampler(_textureID);
-	m_Renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, _drawMode);
+	m_Renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, m_DrawMode);
 
 	m_Renderer->UpdateModelMatrix(m_ModelMat);
 	m_Renderer->UpdateMVP();

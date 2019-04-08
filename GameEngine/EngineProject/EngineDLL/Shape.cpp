@@ -1,11 +1,11 @@
 #include "Shape.h"
 
 Shape::Shape(Renderer* renderer) : Entity(renderer) {
-	_dispose = false;
-	_drawMode = 0;
+	m_Dispose = false;
+	m_DrawMode = 0;
 
-	_vrtxs = NULL;
-	_colorVrtx = NULL;
+	m_VtxArr = NULL;
+	m_ColorVtxArr = NULL;
 }
 
 
@@ -14,7 +14,7 @@ Shape::~Shape() {
 }
 
 void Shape::Draw() {
-	if (_mat) {
+	if (m_Material) {
 		BindMaterial();
 	}
 
@@ -22,51 +22,51 @@ void Shape::Draw() {
 	m_Renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 	// Bind Vertex Buffer (Attribute index = 0)
-	m_Renderer->BindBuffer(_bufferData, _vrtxCount, 0, 3, _drawMode);
+	m_Renderer->BindBuffer(m_BufferData, m_VtxCount, 0, 3, m_DrawMode);
 	// Bind Color Buffer (Attribute index = 1)
 	//_renderer->BindBuffer(_colorBufferData, _colorVrtxCount, 1, _drawMode);
 }
 
 void Shape::SetVertices(float* vrtxs, const int& count) {
-	_vrtxs = vrtxs;
-	_vrtxCount = count;
-	_dispose = true;
-	_bufferData = m_Renderer->GenBuffer(_vrtxs, _vrtxCount * 3 * sizeof(float));
+	m_VtxArr = vrtxs;
+	m_VtxCount = count;
+	m_Dispose = true;
+	m_BufferData = m_Renderer->GenBuffer(m_VtxArr, m_VtxCount * 3 * sizeof(float));
 }
 
 void Shape::SetColorBufferData(float* colorVrtxs, const int& count) {
-	_colorVrtx = colorVrtxs;
-	_colorVrtxCount = count;
-	_colorBufferData = m_Renderer->GenBuffer(_colorVrtx, _colorVrtxCount * 3 * sizeof(float));
+	m_ColorVtxArr = colorVrtxs;
+	m_ColorVtxCount = count;
+	m_ColorBufferData = m_Renderer->GenBuffer(m_ColorVtxArr, m_ColorVtxCount * 3 * sizeof(float));
 }
 
 void Shape::Dispose() {
-	if (_dispose) {
+	if (m_Dispose) {
 		std::cout << "Shape::~Shape()" << std::endl;
 
-		m_Renderer->DeleteBuffers(_bufferData);
+		m_Renderer->DeleteBuffers(m_BufferData);
 		m_Renderer->DeleteVrtxArray();
-		m_Renderer->DeleteProgram(_programID);
+		m_Renderer->DeleteProgram(m_ProgramID);
 
 		/* TODO: Program crashes when TextureShape calls this Destructor */
-		if (_vrtxs != nullptr) {
+		if (m_VtxArr != nullptr) {
 			//delete[] _vrtxs;
-			_vrtxs = NULL;
+			m_VtxArr = NULL;
 		}
-		if (_colorVrtx != nullptr) {
-			delete[] _colorVrtx;
-			_colorVrtx = NULL;
+		if (m_ColorVtxArr != nullptr) {
+			delete[] m_ColorVtxArr;
+			m_ColorVtxArr = NULL;
 		}
-		_dispose = false;
+		m_Dispose = false;
 	}
 }
 
 void Shape::SetMaterial(Material* material) {
-	_mat = material;
-	_programID = _mat->LoadShaders("SimpleVertexShader.txt", "SimpleFragmentShader.txt");
+	m_Material = material;
+	m_ProgramID = m_Material->LoadShaders("SimpleVertexShader.txt", "SimpleFragmentShader.txt");
 	//_matrixID = _renderer->SetMatrixID(_programID);
 }
 
 void Shape::BindMaterial() {
-	m_Renderer->BindMaterial(_programID);
+	m_Renderer->BindMaterial(m_ProgramID);
 }

@@ -4,16 +4,23 @@
 
 class ENGINEDLL_API Shape : public Entity {
 protected:
-	Material* _mat;
-	int _vrtxCount;
-	int _colorVrtxCount;
-	int _drawMode;
-	float* _vrtxs;
-	float* _colorVrtx;
-	bool _dispose;
-	unsigned int _bufferData;
-	unsigned int _colorBufferData;
-	unsigned int _programID;
+	Material* m_Material;
+	
+	unsigned int m_ProgramID;
+
+	// Verices
+	int m_VtxCount;
+	int m_ColorVtxCount;
+	float* m_VtxArr;
+	float* m_ColorVtxArr;
+
+	// Buffers
+	unsigned int m_BufferData;
+	unsigned int m_ColorBufferData;
+
+	bool m_Dispose;
+	int m_DrawMode;
+
 public:
 	Shape(Renderer* renderer);
 	~Shape();
@@ -24,6 +31,6 @@ public:
 	void SetMaterial(Material* material);
 	void Dispose();
 	void BindMaterial();
-	void SetDrawMode(int drawMode) { _drawMode = drawMode; }
+	void SetDrawMode(int drawMode) { m_DrawMode = drawMode; }
 };
 

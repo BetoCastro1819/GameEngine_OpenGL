@@ -110,8 +110,8 @@ TextureShape::TextureShape(Renderer* renderer):Shape(renderer) {
 		0.667979f, 1.0f - 0.335851f
 		*/
 	};
-	_texture = _mat->Load_BMP("uvtemplate.bmp");
-	_textureID = m_Renderer->SetTextureID(_programID);
+	_texture = m_Material->Load_BMP("uvtemplate.bmp");
+	_textureID = m_Renderer->SetTextureID(m_ProgramID);
 
 	SetVertices(vertexBuffer, 4);
 	SetUVBufferData(UV_Buffer, 4);
@@ -137,7 +137,7 @@ void TextureShape::DrawTextureShape() {
 	Draw();
 	m_Renderer->BindTexture(_texture);
 	m_Renderer->SetTextureSampler(_textureID);
-	m_Renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, _drawMode);
+	m_Renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, m_DrawMode);
 
 }
 

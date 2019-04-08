@@ -24,7 +24,7 @@ Circle::Circle(Renderer* renderer, double radius, int sides) : Shape(renderer) {
 	SetVertices(&vertices[0], vrtxCount);
 	SetColorBufferData(&colorData[0], vrtxCount);
 
-	_dispose = false;
+	m_Dispose = false;
 }
 
 Circle::~Circle() {
