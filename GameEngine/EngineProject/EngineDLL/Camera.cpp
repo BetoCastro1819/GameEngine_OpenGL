@@ -7,7 +7,7 @@ Camera::Camera(Renderer* renderer, Window* window) {
 	m_Renderer		= renderer;
 	m_Window		= window;
 
-	m_Pos			= glm::vec3(0, 0, -4);
+	m_Pos			= glm::vec3(0, 0, 0);
 	m_Rot			= glm::vec3(0);
 	
 	m_Right			= glm::vec3(1, 0, 0);
@@ -38,12 +38,21 @@ Camera::~Camera() {
 // Movement
 void Camera::Walk(float speed) {
 	m_Pos += m_Foward * speed;
+	
+	m_Foward = glm::normalize(glm::cross(m_Right, m_Head));
+	m_Head = glm::normalize(glm::cross(m_Foward, m_Right));
+	m_Right = glm::normalize(glm::cross(m_Head, m_Foward));
 
 	UpdateViewMatrix();
 }
 
 void Camera::Strafe(float speed) {
 	m_Pos += m_Right * speed;
+
+	m_Right = glm::normalize(glm::cross(m_Head, m_Foward));
+	m_Foward = glm::normalize(glm::cross(m_Right, m_Head));
+	m_Head = glm::normalize(glm::cross(m_Foward, m_Right));
+
 	UpdateViewMatrix();
 }
 
@@ -68,8 +77,8 @@ void Camera::Yaw(float angle) {
 
 	// Generate new m_Head position based on "angle" provided
 	glm::vec3 newFoward;
-	newFoward.x = m_Foward.x * glm::cos(angle) + m_Foward.z * glm::sin(angle);
-	newFoward.y = m_Foward.y;
+	newFoward.x =  m_Foward.x * glm::cos(angle) + m_Foward.z * glm::sin(angle);
+	newFoward.y =  m_Foward.y;
 	newFoward.z = -m_Foward.x * glm::sin(angle) + m_Foward.z * glm::cos(angle);
 
 	m_Foward = glm::normalize(newFoward);
@@ -117,6 +126,7 @@ void Camera::UpdatePosition(float deltaTime) {
 }
 
 void Camera::UpdateRotation(float deltaTime) {
+
 	UpdateCursorPos();
 
 	// Look left
@@ -139,8 +149,13 @@ void Camera::UpdateRotation(float deltaTime) {
 		Pitch(-m_RotationSpeed * deltaTime);
 	}
 
-	m_InitialCursorPos.x = m_CurrentCursorPos.x;
-	m_InitialCursorPos.y = m_CurrentCursorPos.y;
+	//glfwSetCursorPos(
+	//	(GLFWwindow*)m_Window->GetWindowPtr(),
+	//	m_Window->GetWidth() / 2,
+	//	m_Window->GetHeight() / 2
+	//);
+
+	m_InitialCursorPos = m_CurrentCursorPos;
 }
 
 void Camera::UpdateCursorPos() {
