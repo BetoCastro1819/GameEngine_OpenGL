@@ -20,7 +20,7 @@ struct CursorPos {
 class ENGINEDLL_API Camera {
 private:
 	Renderer* m_Renderer;
-	Window* m_Window;
+	Window*   m_Window;
 
 	glm::vec3 m_Pos;
 	glm::vec3 m_Rot;
@@ -28,13 +28,12 @@ private:
 	glm::vec3 m_Head;
 	glm::vec3 m_Right;
 	glm::vec3 m_Foward;
-	glm::vec3 m_FocusPoint;
 
 	glm::mat4 m_ViewMat;
 	glm::mat4 m_RotationMat;
-
-	CursorPos m_InitialCursorPos;
-	CursorPos m_CurrentCursorPos;
+	
+	CursorPos m_PrevCursorPos;
+	CursorPos m_CursorPos;
 
 	float m_Speed;
 	float m_RotationSpeed;
@@ -55,7 +54,7 @@ public:
 	void SetPosition(glm::vec3 worldPos) { m_Pos = worldPos; }
 	glm::vec3 GetPosition() const { return m_Pos; }
 
-	void SetFocusPoint(glm::vec3 focusPoint) { m_FocusPoint = focusPoint; }
+	//void SetFocusPoint(glm::vec3 focusPoint) { m_FocusPoint = focusPoint; }
 
 	// Movement
 	void Walk(float speed);

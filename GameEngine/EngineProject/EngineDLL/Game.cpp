@@ -138,7 +138,7 @@ bool Game::OnUpdate(float deltaTime) {
 	m_Camera->UpdatePosition(deltaTime);
 	m_Camera->UpdateRotation(deltaTime);
 
-	_player->HandleInput(_window, deltaTime);
+	//_player->HandleInput(_window, deltaTime);
 
 	//CollisionManager::GetInstance()->CheckForCollisions();
 

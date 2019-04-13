@@ -17,10 +17,8 @@ c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\engi
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(30): warning C4251: 'Camera::m_Foward': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(31): warning C4251: 'Camera::m_FocusPoint': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(33): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(32): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(34): warning C4251: 'Camera::m_RotationMat': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(33): warning C4251: 'Camera::m_RotationMat': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
   EngineDLL.vcxproj -> C:\Users\Administrador\Documents\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll
