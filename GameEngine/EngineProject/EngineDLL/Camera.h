@@ -12,6 +12,13 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+struct World {
+	glm::vec3 up;
+	glm::vec3 right;
+	glm::vec3 foward;
+};
+
+
 struct CursorPos {
 	double x;
 	double y;
@@ -22,12 +29,15 @@ private:
 	Renderer* m_Renderer;
 	Window*   m_Window;
 
+	World	  m_World;
+
 	glm::vec3 m_Pos;
 	glm::vec3 m_Rot;
 
-	glm::vec3 m_Head;
-	glm::vec3 m_Right;
-	glm::vec3 m_Foward;
+	glm::vec3 m_CameraUp;
+	glm::vec3 m_CameraRight;
+	glm::vec3 m_CameraFoward;
+	glm::vec3 m_CameraTarget;
 
 	glm::mat4 m_ViewMat;
 	glm::mat4 m_RotationMat;
@@ -37,16 +47,23 @@ private:
 
 	float m_Speed;
 	float m_RotationSpeed;
+	float m_Timer;
 
 	void UpdateViewMatrix();
 	void UpdateCursorPos();
+
+	void UpdatePosition(float deltaTime);
+	void UpdateRotation(float deltaTime);
+	void UpdateUnitVectors();
 
 public:
 	Camera(Renderer* renderer, Window* window);
 	~Camera();
 	
-	void UpdatePosition(float deltaTime);
-	void UpdateRotation(float deltaTime);
+	void Update(float deltaTime);
+
+	// Rotate around origin at "radius" distance
+	void RotateAround(glm::vec3 target, float distFromTarget, float speed, float deltaTime);
 
 	//void SetRotation(glm::vec3 rotation);
 	//void SetFocusPoint(glm::vec3 focusPoint);

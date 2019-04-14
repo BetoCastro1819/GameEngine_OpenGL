@@ -28,7 +28,6 @@ Game::~Game() {
 		delete _mat;
 }
 
-
 bool Game::OnStart() {
 	cout << "Game::OnStart()" << endl;
 
@@ -135,8 +134,7 @@ bool Game::OnUpdate(float deltaTime) {
 	//_tx->DrawTextureShape();
 	//_tx->SetRotY(1);
 
-	m_Camera->UpdatePosition(deltaTime);
-	m_Camera->UpdateRotation(deltaTime);
+	m_Camera->Update(deltaTime);
 
 	//_player->HandleInput(_window, deltaTime);
 
