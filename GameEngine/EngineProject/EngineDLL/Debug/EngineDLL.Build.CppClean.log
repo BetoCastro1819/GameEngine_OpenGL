@@ -1,7 +1,5 @@
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\material.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\vc141.pdb
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\vc141.idb
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\animation.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\window.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\triangle.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\time.obj
@@ -10,6 +8,7 @@ c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\engi
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\sprite.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\shape.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\renderer.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\material.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\gamebase.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\entity.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\colorshape.obj
@@ -17,6 +16,9 @@ c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\engi
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\circle.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\camera.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\boxcollider.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\animation.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\model.obj
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\mesh.obj
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.lib
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.exp
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\debug\enginedll.dll
@@ -26,7 +28,7 @@ c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\engi
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\cl.read.1.tlog
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\cl.write.1.tlog
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\enginedll.write.1u.tlog
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.10036.delete.1.tlog
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.command.1.tlog
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.delete.1.tlog
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.read.1.tlog
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\debug\enginedll.tlog\link.write.1.tlog

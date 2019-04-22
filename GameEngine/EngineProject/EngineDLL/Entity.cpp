@@ -9,56 +9,56 @@ Entity::Entity(Renderer* renderer)	 {
 	_rotateMatrix = glm::mat4(1.0f);
 	_scaleMatrix = glm::mat4(1.0f);
 
-	v3Pos[0] = v3Pos[1] = v3Pos[2] = 0.0f;
-	v3Scale[0] = v3Scale[1] = v3Scale[2] = 1.0f;
-	v3Rot[0] = v3Rot[1] = v3Rot[2] = 0.0f;
+	m_Position[0] = m_Position[1] = m_Position[2] = 0.0f;
+	m_Scale[0] = m_Scale[1] = m_Scale[2] = 1.0f;
+	m_Rotation[0] = m_Rotation[1] = m_Rotation[2] = 0.0f;
 }
 
 Entity::~Entity() {
 }
 
 void Entity::SetPos(float x, float y, float z) {
-	v3Pos[0] = x;
-	v3Pos[1] = y;
-	v3Pos[2] = z;
+	m_Position[0] = x;
+	m_Position[1] = y;
+	m_Position[2] = z;
 
-	_translateMatrix = glm::translate(glm::mat4(1.0f), v3Pos);
+	_translateMatrix = glm::translate(glm::mat4(1.0f), m_Position);
 	UpdateModelMatrix();
 }
 
 void Entity::SetScale(float x, float y, float z) {
-	v3Scale[0] = x;
-	v3Scale[1] = y;
-	v3Scale[2] = z;
+	m_Scale[0] = x;
+	m_Scale[1] = y;
+	m_Scale[2] = z;
 
-	_scaleMatrix = glm::scale(glm::mat4(1.0f), v3Scale);
+	_scaleMatrix = glm::scale(glm::mat4(1.0f), m_Scale);
 	UpdateModelMatrix();
 }
 
 void Entity::SetRotX(float angle) {
-	v3Rot[0] = angle;
-	v3Rot[1] = 0;
-	v3Rot[2] = 0;
+	m_Rotation[0] = angle;
+	m_Rotation[1] = 0;
+	m_Rotation[2] = 0;
 
-	_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), v3Rot);
+	_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), m_Rotation);
 	UpdateModelMatrix();
 }
 
 void Entity::SetRotY(float angle) {
-	v3Rot[0] = 0;
-	v3Rot[1] = angle;
-	v3Rot[2] = 0;
+	m_Rotation[0] = 0;
+	m_Rotation[1] = angle;
+	m_Rotation[2] = 0;
 
-	_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), v3Rot);
+	_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), m_Rotation);
 	UpdateModelMatrix();
 }
 
 void Entity::SetRotZ(float angle) {
-	v3Rot[0] = 0;
-	v3Rot[1] = 0;
-	v3Rot[2] = angle;
+	m_Rotation[0] = 0;
+	m_Rotation[1] = 0;
+	m_Rotation[2] = angle;
 
-	_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), v3Rot);
+	_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), m_Rotation);
 	UpdateModelMatrix();
 }
 

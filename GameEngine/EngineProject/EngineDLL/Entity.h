@@ -6,9 +6,9 @@
 class ENGINEDLL_API Entity {
 protected:
 	Renderer* _renderer;
-	glm::vec3 v3Pos;
-	glm::vec3 v3Scale;
-	glm::vec3 v3Rot;
+	glm::vec3 m_Position;
+	glm::vec3 m_Scale;
+	glm::vec3 m_Rotation;
 
 	glm::mat4 _modelMatrix;
 	
@@ -26,9 +26,9 @@ public:
 	void SetRotX(float angle);
 	void SetRotY(float angle);
 	void SetRotZ(float angle);
-	glm::vec3 GetPos() { return v3Pos; }
-	glm::vec3 GetScale() { return v3Scale; }
-	glm::vec3 GetRotation() { return v3Rot; }
+	glm::vec3 GetPos() { return m_Position; }
+	glm::vec3 GetScale() { return m_Scale; }
+	glm::vec3 GetRotation() { return m_Rotation; }
 	void UpdateModelMatrix();
 };
 
