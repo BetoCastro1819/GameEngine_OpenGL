@@ -21,9 +21,6 @@ Game::~Game() {
 	if (_player != NULL)
 		delete _player;
 
-	if (_tilemapTest != NULL)
-		delete _tilemapTest;
-
 	if (_mat != NULL)
 		delete _mat;
 }
@@ -33,13 +30,6 @@ bool Game::OnStart() {
 	cout << "Game::OnStart()" << endl;
 
 	_mat = new Material();
-
-	_tilemap = new Tilemap(_renderer, 64, 64, 32, 32, 15, 20, "Tilemap2.bmp");
-	if (_tilemap && _mat) {
-		_tilemap->SetMaterial(_mat);
-		_tilemap->SetDrawMode(3);
-		_tilemap->SetPos(0, 0, 0);
-	}
 
 	// Create sprite
 	_player = new Sprite(
@@ -139,13 +129,11 @@ bool Game::OnUpdate(float deltaTime) {
 	CollisionManager::GetInstance()->CheckForCollisions();
 	
 
-	_player->SetRotY(_player->GetRotation().y + 1);
-	_player->DrawSprite();
+	//_player->SetRotY(_player->GetRotation().y + 1);
+	//_player->DrawSprite();
 
 	//_collisionTest->DrawSprite();
 
-	//_tilemap->DrawSprite();
-	
 	//_player->PlayAnimation(deltaTime);
 
 	//_tilemapTest->PlayAnimation(deltaTime);

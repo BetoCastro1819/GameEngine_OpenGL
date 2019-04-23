@@ -28,9 +28,9 @@ public:
 	void SetVertices(float* vrtxs, const int& count);
 	void SetColorBufferData(float* colorVrtxs, const int& count);
 
-	void SetMaterial(Material* material);
-	void Dispose();
+	virtual void SetMaterial(Material* material);
 	void BindMaterial();
 	void SetDrawMode(int drawMode) { m_DrawMode = drawMode; }
+	void Dispose();
 };
 
