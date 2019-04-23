@@ -8,7 +8,6 @@ Shape::Shape(Renderer* renderer) : Entity(renderer) {
 	_colorVrtx = NULL;
 }
 
-
 Shape::~Shape() {
 	Dispose();
 }
