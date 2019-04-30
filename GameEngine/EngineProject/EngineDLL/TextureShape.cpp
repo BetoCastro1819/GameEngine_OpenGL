@@ -110,8 +110,8 @@ TextureShape::TextureShape(Renderer* renderer):Shape(renderer) {
 		0.667979f, 1.0f - 0.335851f
 		*/
 	};
-	_texture = m_Material->Load_BMP("uvtemplate.bmp");
-	_textureID = m_Renderer->SetTextureID(m_ProgramID);
+	_texture = m_material->Load_BMP("uvtemplate.bmp");
+	_textureID = m_renderer->SetTextureID(m_programID);
 
 	SetVertices(vertexBuffer, 4);
 	SetUVBufferData(UV_Buffer, 4);
@@ -120,8 +120,8 @@ TextureShape::TextureShape(Renderer* renderer):Shape(renderer) {
 
 TextureShape::~TextureShape() {
 	//Dispose();
-	m_Renderer->DeleteBuffers(_uvBufferData);
-	m_Renderer->DeleteTextures(_texture);
+	m_renderer->DeleteBuffers(_uvBufferData);
+	m_renderer->DeleteTextures(_texture);
 	
 
 	/* TODO: program crashes when it has to delete THESE vertices*/
@@ -135,14 +135,14 @@ TextureShape::~TextureShape() {
 
 void TextureShape::DrawTextureShape() {
 	Draw();
-	m_Renderer->BindTexture(_texture);
-	m_Renderer->SetTextureSampler(_textureID);
-	m_Renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, m_DrawMode);
+	m_renderer->BindTexture(_texture);
+	m_renderer->SetTextureSampler(_textureID);
+	m_renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, m_DrawMode);
 
 }
 
 void TextureShape::SetUVBufferData(float* vrtxs, const int& count) {
 	_uvVrtxs = vrtxs;
 	_uvVrtxCount = count;
-	_uvBufferData = m_Renderer->GenBuffer(_uvVrtxs, _uvVrtxCount * 2 * sizeof(float));
+	_uvBufferData = m_renderer->GenBuffer(_uvVrtxs, _uvVrtxCount * 2 * sizeof(float));
 }

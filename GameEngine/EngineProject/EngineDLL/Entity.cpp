@@ -1,7 +1,7 @@
 #include "Entity.h"
 
 Entity::Entity(Renderer* renderer)	 {
-	m_Renderer = renderer;
+	m_renderer = renderer;
 
 	// Default Unit Vectors orientations
 	m_Foward		= World_Foward;

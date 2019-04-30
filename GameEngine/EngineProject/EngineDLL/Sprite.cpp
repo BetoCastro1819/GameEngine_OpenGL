@@ -2,43 +2,9 @@
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
-Sprite::Sprite(
-	Renderer* renderer,
-	unsigned int frameID,
-	unsigned int textureWidth,
-	unsigned int textureHeight,
-	unsigned int frameWidth,
-	unsigned int frameHeight,
-	unsigned int numColums,
-	unsigned int numRows,
-	bool isAnimated,
-	const char* spritesheetPath
-	) : Shape(renderer) {				// Initialize base constructor
-
-	// Initialize variables
-	_frameID		= frameID;
-	_frame.x		= 0;
-	_frame.y		= 0;
-	_textureWidth	= textureWidth;
-	_textureHeight	= textureHeight;
-	_frameWidth		= frameWidth;
-	_frameHeight	= frameHeight;
-	_numColums		= numColums;
-	_numRows		= numRows;
-
-	_texture = m_Material->Load_BMP(spritesheetPath);
-	_textureID = m_Renderer->SetTextureID(m_ProgramID);
-
-	
-	// If the sprite is animated
-	// Set new UV coordinates
-	if (isAnimated) {
-		SetFrame(frameID);
-	}
-	_animation = NULL;
-
-
-	_boxCollider = new BoxCollider(_frameWidth, _frameHeight);
+Sprite::Sprite(Renderer* renderer) : Shape(renderer) {
+	m_animation = nullptr;
+	m_boxCollider = nullptr;
 
 	std::cout << "Sprite::Sprite()" << std::endl;
 }
@@ -46,80 +12,103 @@ Sprite::Sprite(
 
 Sprite::~Sprite() {
 	//Dispose();
-	m_Renderer->DeleteBuffers(_uvBufferData);
-	m_Renderer->DeleteTextures(_texture);
+	m_renderer->DeleteBuffers(m_uvBufferData);
+	m_renderer->DeleteTextures(m_texture->GetTextureData());
 
-	/* TODO: program crashes when it has to delete THESE vertices*/
-	if (_uvVrtxs != nullptr) {
-		//delete[] _uvVrtxs;
-		_uvVrtxs = NULL;
+	if (m_uvVertices != nullptr) {
+		m_uvVertices = NULL;
 	}
 
-	if (_boxCollider != nullptr) {
-		delete _boxCollider;
-		_boxCollider = NULL;
+	if (m_boxCollider != nullptr) {
+		delete m_boxCollider;
+		m_boxCollider = NULL;
 	}
 
 	std::cout << "TextureShape::~TextureShape()" << std::endl;
 }
 
+void Sprite::SetMaterial(Material* material) {
+	m_material = material;
+	m_programID = m_material->LoadShaders("SimpleVertexShader.txt", "SimpleFragmentShader.txt");
+}
+
+void Sprite::SetTexture(Texture* texture) {
+	m_texture = texture;
+	m_textureID = m_renderer->SetTextureID(m_programID);
+
+	m_frameWidth = m_texture->GetFrameWidth();
+	m_frameHeight = m_texture->GetFrameHeight();
+}
+
+void Sprite::SetBoxCollider() {
+	m_boxCollider = new BoxCollider(
+		m_texture->GetFrameWidth(),
+		m_texture->GetFrameHeight()
+	);
+}
+
+void Sprite::SetBoxCollider(unsigned int width, unsigned int height) {
+	m_boxCollider = new BoxCollider(width, height);
+}
+
 void Sprite::DrawSprite() {
-	//Draw();
 
-	if (m_Material) {
+	if (m_material) {
 		BindMaterial();
-
-		// Set matrix property
-		m_Material->SetMatrixProperty("MVP", m_Renderer->GetMVP());
-
-		// Set texture property
-		m_Material->SetTextureProperty("myTextureSampler", _texture);
+		m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
+		m_material->SetTextureProperty("myTextureSampler", m_texture->GetTextureData());
 	}
 
-	// Bind Vertex Buffer (Attribute index = 0)
-	m_Renderer->BindBuffer(m_BufferData, m_VtxCount, 0, 3, m_DrawMode);
+	m_renderer->BindBuffer(m_BufferData, m_VtxCount, 0, 3, m_DrawMode);
 
-	m_Renderer->BindTexture(_texture);
-	m_Renderer->SetTextureSampler(_textureID);
-	m_Renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, m_DrawMode);
+	m_renderer->BindTexture(m_texture->GetTextureData());
+	m_renderer->SetTextureSampler(m_textureID);
+	m_renderer->BindBuffer(m_uvBufferData, m_uvVerticesCount, 1, 2, m_DrawMode);
 
-	m_Renderer->UpdateModelMatrix(m_ModelMat);
-	m_Renderer->UpdateMVP();
+	m_renderer->UpdateModelMatrix(m_ModelMat);
+	m_renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 }
 
 void Sprite::SetUVBufferData(float* vrtxs, int vtxCount) {
-	_uvVrtxs = vrtxs;
-	_uvVrtxCount = vtxCount;
-	_uvBufferData = m_Renderer->GenBuffer(_uvVrtxs, _uvVrtxCount * 2 * sizeof(float));
+	m_uvVertices = vrtxs;
+	m_uvVerticesCount = vtxCount;
+	m_uvBufferData = m_renderer->GenBuffer(m_uvVertices, m_uvVerticesCount * 2 * sizeof(float));
 }
 
-void Sprite::SetFrame(int frameID) {
-	_frameID = frameID;
+void Sprite::SetFrameID(int frameID) {
+	m_frameID = frameID;
+
+	int framesPerColumn = m_texture->GetFramesPerColumn();
+	int framesPerRow = m_texture->GetFramesPerRow();
+
+	int textureWidth = m_texture->GetWidth();
+	int textureHeight = m_texture->GetHeight();
+
 
 	// Check that ID selected lower than the amount of frames on the spriteSheet
-	if (_frameID <= (_numRows * _numColums) - 1) {
+	if (m_frameID <= (framesPerColumn * framesPerRow) - 1) {
 		// Calculate frame coordinates based on ID position on the sprite sheet
-		_frame.x = (_frameID % _numRows) * _frameWidth;
-		_frame.y = (_frameID / _numColums) * _frameHeight;
+		m_frame.x = (m_frameID % framesPerColumn) * m_frameWidth;
+		m_frame.y = (m_frameID / framesPerRow) * m_frameHeight;
 
 		float uvCoords[] = 
 		{
 			// V0 = BOTTOM LEFT
-			_frame.x / _textureWidth,
-			1 - (_frame.y + _frameHeight) / _textureHeight,
+			m_frame.x / textureWidth,
+			1 - (m_frame.y + m_frameHeight) / textureHeight,
 
 			// V1 = TOP LEFT
-			_frame.x / _textureWidth,		
-			1 - (_frame.y / _textureHeight),
+			m_frame.x / textureWidth,		
+			1 - (m_frame.y / textureHeight),
 
 			// V2 = BOTTOM RIGHT
-			(_frame.x + _frameWidth) / _textureWidth,		
-			1 - (_frame.y + _frameHeight) / _textureHeight,
+			(m_frame.x + m_frameWidth) / textureWidth,		
+			1 - (m_frame.y + m_frameHeight) / textureHeight,
 
 			// V3 = TOP RIGHT
-			(_frame.x + _frameWidth) / _textureWidth,		
-			1 - (_frame.y / _textureHeight)			
+			(m_frame.x + m_frameWidth) / textureWidth,		
+			1 - (m_frame.y / textureHeight)			
 		};
 		
 		SetUVBufferData(uvCoords, 4);
@@ -131,27 +120,27 @@ void Sprite::SetFrame(int frameID) {
 
 void Sprite::AddAnimation(const char* animationName, std::vector<int> animationFrames) {
 
-	if (_animation == NULL) {
-		_animation = new Animation();
+	if (m_animation == NULL) {
+		m_animation = new Animation();
 	}
 	
-	_animation->AddAnimation(animationName, animationFrames);
+	m_animation->AddAnimation(animationName, animationFrames);
 }
 
 void Sprite::PlayAnimation(float deltaTime) {
 	//std::cout << "Animation Frame " << _animation->GetAnimationFrame(deltaTime) << std::endl;
-	SetFrame(_animation->GetAnimationFrame(deltaTime));
+	SetFrameID(m_animation->GetAnimationFrame(deltaTime));
 }
 
 void Sprite::SetAnimation(const char* animationName) {
-	if (_animation != NULL) {
-		_animation->SetAnimation(animationName);
+	if (m_animation != NULL) {
+		m_animation->SetAnimation(animationName);
 	}
 }
 
 void Sprite::SetAnimationSpeed(float animationSpeed) {
-	if (_animation != NULL) {
-		_animation->SetAnimationSpeed(animationSpeed);
+	if (m_animation != NULL) {
+		m_animation->SetAnimationSpeed(animationSpeed);
 	}
 }
 
@@ -179,8 +168,8 @@ void Sprite::HandleInput(Window* window, float deltaTime) {
 
 void Sprite::InitVertices() {
 
-	float halfWidth = _frameWidth / 2;
-	float halfHeight = _frameHeight / 2;
+	float halfWidth = m_frameWidth / 2;
+	float halfHeight = m_frameHeight / 2;
 
 	GLfloat vertexBuffer[] = {
 		-halfWidth, -halfHeight, 0.0f,				// BOTTOM	- LEFT

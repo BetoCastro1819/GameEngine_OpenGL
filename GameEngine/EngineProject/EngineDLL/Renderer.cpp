@@ -3,23 +3,23 @@
 #include <GLFW\glfw3.h>
 
 Renderer::Renderer(Window* window) {	
-	_window = window;
+	m_window = window;
 
 	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
 	//_projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
 
 	// Orthographic camera in world coordinates
-	_projection = glm::ortho(
+	m_projection = glm::ortho(
 		0.0f,								// LEFT
-		(float)_window->GetWidth(),			// RIGHT
+		(float)m_window->GetWidth(),			// RIGHT
 		0.0f,								// BOTTOM
-		(float)_window->GetHeight(),		// TOP
+		(float)m_window->GetHeight(),		// TOP
 		0.0f,								// zNear
 		100.0f								// zFar
 	);
 
 	// Camera matrix
-	_view = glm::lookAt(
+	m_view = glm::lookAt(
 		glm::vec3(0, 0, 4), // Camera is at (0,0,-4), in World Space
 		glm::vec3(0, 0, 0), // and looks at the origin
 		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
@@ -33,11 +33,11 @@ Renderer::~Renderer() {
 
 bool Renderer::Start() {
 	cout << "Renderer::Start()" << endl;
-	if (_window) {
-		glfwMakeContextCurrent((GLFWwindow*)_window->GetWindowPtr());		
+	if (m_window) {
+		glfwMakeContextCurrent((GLFWwindow*)m_window->GetWindowPtr());		
 		if (glewInit() == GLEW_OK) {
-			glGenVertexArrays(1, (&_vrtxArrID));
-			glBindVertexArray(_vrtxArrID);
+			glGenVertexArrays(1, (&m_vertexArrayID));
+			glBindVertexArray(m_vertexArrayID);
 			return true;
 		}
 	}
@@ -65,7 +65,7 @@ void Renderer::RecalculateFragmentDepth() {
 }
 
 void Renderer::SwapBuffers()  {
-	glfwSwapBuffers((GLFWwindow*)_window->GetWindowPtr());
+	glfwSwapBuffers((GLFWwindow*)m_window->GetWindowPtr());
 }
 
 unsigned int Renderer::GenBuffer(float* buffer, int size) {
@@ -116,11 +116,11 @@ void Renderer::BindMaterial(unsigned int programID) {
 }
 
 void Renderer::LoadIdentityMatrix() {
-	_model = glm::mat4(1.0f);
+	m_model = glm::mat4(1.0f);
 }
 
 void Renderer::UpdateModelMatrix(glm::mat4 matrix) {
-	_model = matrix;
+	m_model = matrix;
 }
 
 void Renderer::MultiplyModelMatrix(glm::mat4 matrix) {
@@ -129,7 +129,7 @@ void Renderer::MultiplyModelMatrix(glm::mat4 matrix) {
 
 void Renderer::UpdateMVP() {
 	// Our ModelViewProjection : multiplication of our 3 matrices
-	MVP = _projection * _view * _model; // Matrix multiplication reads from right to left
+	m_MVP = m_projection * m_view * m_model; // Matrix multiplication reads from right to left
 }
 
 unsigned int Renderer::SetMatrixID(unsigned int programID) {
@@ -137,7 +137,7 @@ unsigned int Renderer::SetMatrixID(unsigned int programID) {
 }
 
 void Renderer::SendTransformationToShader(unsigned int matrixID) {
-	glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
+	glUniformMatrix4fv(matrixID, 1, GL_FALSE, &m_MVP[0][0]);
 }
 
 unsigned int Renderer::SetTextureID(unsigned int programID) {
@@ -163,7 +163,7 @@ void Renderer::DeleteProgram(unsigned int programID) {
 }
 
 void Renderer::DeleteVrtxArray() {
-	glDeleteVertexArrays(1, &_vrtxArrID);
+	glDeleteVertexArrays(1, &m_vertexArrayID);
 }
 
 void Renderer::DeleteTextures(unsigned int texture) {

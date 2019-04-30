@@ -2,108 +2,35 @@
 
 Game::Game(const int& widht, const int& height, const char* name)
 	: GameBase(widht, height, name) {	
-	_fpsCount = 0;	
 }
 
 Game::~Game() {
-	if (_triangle != NULL)
-		delete _triangle;
-	
-	if (_cube != NULL)
-		delete _cube;
-	
-	if (_circle != NULL)
-		delete _circle;
+	if (m_sprite != NULL)
+		delete m_sprite;
 
-	if (_tx != NULL)
-		delete _tx;
+	if (m_material != NULL)
+		delete m_material;
 
-	if (_player != NULL)
-		delete _player;
-
-	if (_mat != NULL)
-		delete _mat;
+	if (m_texture != NULL)
+		delete m_texture;
 }
 
 
 bool Game::OnStart() {
+	m_material = new Material();
+
+	m_texture = new Texture("uvtemplate.bmp");
+	m_texture->SetTextureDimensions(512, 512);
+	m_texture->SetFrameDimensions(51, 51);
+	m_texture->SetNumberOfFramesPerRow(10);
+	m_texture->SetNumberOfFramesPerColumn(10);
+
+	m_sprite = new Sprite(m_renderer);
+	m_sprite->SetMaterial(m_material);
+	m_sprite->SetTexture(m_texture);
+	m_sprite->SetFrameID(10);
+
 	cout << "Game::OnStart()" << endl;
-
-	_mat = new Material();
-
-	// Create sprite
-	_player = new Sprite(
-		_renderer,				// Pointer to renderer
-		10,						// Frame ID
-		512,					// Texture width in pixels
-		512,					// Texture height in pixels
-		51,						// Width per frame in pixels
-		51,						// Height per frame in pixels
-		10,						// Number of horizontal frames
-		10,						// Number of vertical frames
-		true,					// Animated?
-		"uvtemplate.bmp"
-	);
-
-	if (_player && _mat) {
-		_player->InitVertices();
-		_player->InitVerticesUV();
-		 
-		_player->SetMaterial(_mat);
-		_player->SetDrawMode(1);
-		_player->SetFrame(10);
-
-		_player->SetPos(
-			_window->GetWidth() / 2,		// X
-			_window->GetHeight() / 2,		// Y
-			0								// Z
-		);
-
-		_player->GetBoxCollider()->SetBoxWidth(52);
-		_player->GetBoxCollider()->SetBoxHeight(52);
-
-		std::vector<int> attackAnimation = { 40,41,42,43,44,45 };
-		_player->AddAnimation("Attack", attackAnimation);
-		_player->SetAnimation("Attack");
-		_player->SetAnimationSpeed(10);
-
-		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::PLAYER, _player);
-	}
-
-	// Create sprite
-	_collisionTest = new Sprite(
-		_renderer,				// Pointer to renderer
-		10,						// Frame ID
-		512,					// Texture width in pixels
-		512,					// Texture height in pixels
-		51,						// Width per frame in pixels
-		51,						// Height per frame in pixels
-		10,						// Number of horizontal frames
-		10,						// Number of vertical frames
-		true,					// Animated?
-		"uvtemplate.bmp"
-	);
-
-	if (_collisionTest && _mat) {
-		_collisionTest->InitVertices();
-		_collisionTest->InitVerticesUV();
-		 
-		_collisionTest->SetMaterial(_mat);
-		_collisionTest->SetDrawMode(1);
-		 
-		_collisionTest->SetPos(
-			_window->GetWidth() / 4,		// X
-			_window->GetHeight() / 4,		// Y
-			0								// Z
-		);
-
-		_collisionTest->GetBoxCollider()->SetBoxWidth(52);
-		_collisionTest->GetBoxCollider()->SetBoxHeight(52);
-
-		CollisionManager::GetInstance()->AddToGroup(CollisionLayer::DEFAULT, _collisionTest);
-	}
-
-
 	return true;
 }
 
@@ -113,32 +40,6 @@ bool Game::OnStop() {
 }
 
 bool Game::OnUpdate(float deltaTime) {
-	/*
-	_fpsCount++;
-	if (_fpsCount > 100)
-		return false;
-	*/
-	//_cube->Draw();
-	//_triangle->Draw();		
-	//_circle->Draw();			
-	//_tx->DrawTextureShape();
-	//_tx->SetRotY(1);
 
-	_player->HandleInput(_window, deltaTime);
-
-	CollisionManager::GetInstance()->CheckForCollisions();
-	
-
-	//_player->SetRotY(_player->GetRotation().y + 1);
-	//_player->DrawSprite();
-
-	//_collisionTest->DrawSprite();
-
-	//_player->PlayAnimation(deltaTime);
-
-	//_tilemapTest->PlayAnimation(deltaTime);
-	//_tilemapTest->SetFrame(1);
-	//_tilemapTest->DrawSprite();
-	//std::cout << "Player Pos X: " << _sprite->GetPos().x << " Player Pos Y: " << _sprite->GetPos().y << std::endl;
 	return true;
 }

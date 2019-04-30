@@ -18,9 +18,9 @@ bool GameBase::Start()
 	_window = new Window(_screenHeight, _screenWidth, _windowName);
 	if (!_window->Start())
 		return false;
-	_renderer = new Renderer(_window);
+	m_renderer = new Renderer(_window);
 
-	if (!_renderer->Start())
+	if (!m_renderer->Start())
 		return false;
 
 	_time = new Time();
@@ -32,10 +32,10 @@ bool GameBase::Stop()
 {
 	cout << "GameBase::Stop()" << endl;
 	OnStop();
-	if (_renderer != NULL)
+	if (m_renderer != NULL)
 	{
-		_renderer->Stop();
-		delete _renderer;
+		m_renderer->Stop();
+		delete m_renderer;
 	}
 	if (_window != NULL)
 	{
@@ -53,11 +53,11 @@ void GameBase::Loop()
 
 		_time->UpdateTime();
 
-		_renderer->SetClearColor(0.2f, 0.3f, 0.3f, 0.0f);
-		_renderer->RecalculateFragmentDepth();
-		_renderer->ClearBuffer();
+		m_renderer->SetClearColor(0.2f, 0.3f, 0.3f, 0.0f);
+		m_renderer->RecalculateFragmentDepth();
+		m_renderer->ClearBuffer();
 		OnUpdate(_time->GetDeltaTime()); // Draws triangle... for now
-		_renderer->SwapBuffers();
+		m_renderer->SwapBuffers();
 		_window->PollEvents();
 	}
 }

@@ -12,13 +12,13 @@ using namespace std;
 
 class ENGINEDLL_API Renderer {
 private:
-	Window* _window;
-	unsigned int _vrtxArrID;
+	Window* m_window;
+	unsigned int m_vertexArrayID;
 
- 	glm::mat4 MVP;
-	glm::mat4 _projection;
-	glm::mat4 _model;
-	glm::mat4 _view;
+ 	glm::mat4 m_MVP;
+	glm::mat4 m_projection;
+	glm::mat4 m_model;
+	glm::mat4 m_view;
 
 public:
 	Renderer(Window* window);
@@ -45,7 +45,7 @@ public:
 	void UpdateMVP();
 	void SendTransformationToShader(unsigned int matrixID);
 	unsigned int SetMatrixID(unsigned int programID);
-	glm::mat4 GetMVP() { return MVP; }
+	glm::mat4 GetMVP() { return m_MVP; }
 
 	// Handle UV Texture
 	unsigned int SetTextureID(unsigned int programID);

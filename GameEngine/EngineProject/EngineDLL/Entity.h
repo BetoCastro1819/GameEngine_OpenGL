@@ -10,7 +10,7 @@ const glm::vec3 World_Foward	= glm::vec3(0, 0, 1);
 
 class ENGINEDLL_API Entity {
 protected:
-	Renderer* m_Renderer;
+	Renderer* m_renderer;
 
 	// Transform vectors
 	glm::vec3 m_Position;

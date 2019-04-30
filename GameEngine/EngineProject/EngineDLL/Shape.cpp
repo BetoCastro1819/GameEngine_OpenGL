@@ -14,15 +14,15 @@ Shape::~Shape() {
 }
 
 void Shape::Draw() {
-	if (m_Material) {
+	if (m_material) {
 		BindMaterial();
 	}
 
-	m_Renderer->UpdateModelMatrix(m_ModelMat);
-	m_Renderer->UpdateMVP();
+	m_renderer->UpdateModelMatrix(m_ModelMat);
+	m_renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 	// Bind Vertex Buffer (Attribute index = 0)
-	m_Renderer->BindBuffer(m_BufferData, m_VtxCount, 0, 3, m_DrawMode);
+	m_renderer->BindBuffer(m_BufferData, m_VtxCount, 0, 3, m_DrawMode);
 	// Bind Color Buffer (Attribute index = 1)
 	//_renderer->BindBuffer(_colorBufferData, _colorVrtxCount, 1, _drawMode);
 }
@@ -31,22 +31,22 @@ void Shape::SetVertices(float* vrtxs, const int& count) {
 	m_VtxArr = vrtxs;
 	m_VtxCount = count;
 	m_Dispose = true;
-	m_BufferData = m_Renderer->GenBuffer(m_VtxArr, m_VtxCount * 3 * sizeof(float));
+	m_BufferData = m_renderer->GenBuffer(m_VtxArr, m_VtxCount * 3 * sizeof(float));
 }
 
 void Shape::SetColorBufferData(float* colorVrtxs, const int& count) {
 	m_ColorVtxArr = colorVrtxs;
 	m_ColorVtxCount = count;
-	m_ColorBufferData = m_Renderer->GenBuffer(m_ColorVtxArr, m_ColorVtxCount * 3 * sizeof(float));
+	m_ColorBufferData = m_renderer->GenBuffer(m_ColorVtxArr, m_ColorVtxCount * 3 * sizeof(float));
 }
 
 void Shape::Dispose() {
 	if (m_Dispose) {
 		std::cout << "Shape::~Shape()" << std::endl;
 
-		m_Renderer->DeleteBuffers(m_BufferData);
-		m_Renderer->DeleteVrtxArray();
-		m_Renderer->DeleteProgram(m_ProgramID);
+		m_renderer->DeleteBuffers(m_BufferData);
+		m_renderer->DeleteVrtxArray();
+		m_renderer->DeleteProgram(m_programID);
 
 		/* TODO: Program crashes when TextureShape calls this Destructor */
 		if (m_VtxArr != nullptr) {
@@ -62,11 +62,10 @@ void Shape::Dispose() {
 }
 
 void Shape::SetMaterial(Material* material) {
-	m_Material = material;
-	m_ProgramID = m_Material->LoadShaders("SimpleVertexShader.txt", "SimpleFragmentShader.txt");
-	//_matrixID = _renderer->SetMatrixID(_programID);
+	m_material = material;
+	m_programID = m_material->LoadShaders("SimpleVertexShader.txt", "SimpleFragmentShader.txt");
 }
 
 void Shape::BindMaterial() {
-	m_Renderer->BindMaterial(m_ProgramID);
+	m_renderer->BindMaterial(m_programID);
 }

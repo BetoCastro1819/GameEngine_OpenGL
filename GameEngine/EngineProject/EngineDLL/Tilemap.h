@@ -17,7 +17,7 @@ private:
 
 	int m_TextureHeight;
 	int m_TextureWidth;
-	int m_TextureTilesPerRow;
+	int m_TotalTilesPerRow;
 
 	vector<float> m_VertexArrayPos;
 	vector<float> m_VertexArrayUV;
@@ -39,9 +39,8 @@ public:
 	unsigned int verticesUV;
 	vector<vector<int>> indexes;
 
-
-	void Draw() override {}
-	void SetMaterial(Material* material) override {}
+	void Draw() override;
+	void SetMaterial(Material* material) override;
 
 	void SetTexture(const char* filePath);
 	void SetVerticesUV(float* vertices);

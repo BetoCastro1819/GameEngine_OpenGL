@@ -9,7 +9,7 @@
 class ENGINEDLL_API GameBase {
 protected:
 	Window* _window;
-	Renderer* _renderer;
+	Renderer* m_renderer;
 	Time* _time;
 	const char* _windowName;
 	int _screenHeight;

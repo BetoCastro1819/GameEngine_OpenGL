@@ -4,9 +4,9 @@
 
 class ENGINEDLL_API Shape : public Entity {
 protected:
-	Material* m_Material;
+	Material* m_material;
 	
-	unsigned int m_ProgramID;
+	unsigned int m_programID;
 
 	// Verices
 	int m_VtxCount;
