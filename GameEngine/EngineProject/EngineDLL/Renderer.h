@@ -27,9 +27,14 @@ public:
 	bool Start();
 	bool Stop();
 	
-	// Buffer
 	unsigned int GenBuffer(float* buffer, int size);
-	void BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int size, int drawMode);
+	void EnableVertexAttribArray(unsigned int attribID);
+	void BindBuffer(unsigned int buffer);
+	void VertexAttribPointer(unsigned int attribID, int arraySizePerVertex);
+	void DrawArrays(int drawMode, unsigned int numberOfVertices);
+	void DisableVertexArray(unsigned int attribID);
+	
+	
 	void SetClearColor(const float& r, const float& g, const float& b, const float& a);
 	void ClearBuffer();
 	void SwapBuffers();

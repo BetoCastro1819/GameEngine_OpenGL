@@ -78,38 +78,43 @@ unsigned int Renderer::GenBuffer(float* buffer, int size) {
 	return vrtxBuffer;
 }
 
-void Renderer::BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int size, int drawMode) {
+void Renderer::EnableVertexAttribArray(unsigned int attribID) {
 	glEnableVertexAttribArray(attribID);
-	glBindBuffer(GL_ARRAY_BUFFER, bufferID);
+}
+void Renderer::BindBuffer(unsigned int buffer) {
+	glBindBuffer(GL_ARRAY_BUFFER, buffer);
+}
+void Renderer::VertexAttribPointer(unsigned int attribID, int arraySizePerVertex) {
 	// Structure of shader data
 	glVertexAttribPointer(
 		attribID,           // Atributte ID. 0 = vertexAttribute | 1 = colorAttribute
-		size,               // SIZE -> 3 for triangles - 2 for UVs
+		arraySizePerVertex, // SIZE -> 3 for triangles - 2 for UVs
 		GL_FLOAT,           // TYPE
 		GL_FALSE,           // NORMALIZED
 		0,                  // STRIDE = "pass"
 		(void*)0            // ARRAY BUFFER OFFSET
 	);
-
-	// DRAW
-	// Starts from index 0, up to "vrtxCount" (vrtxCount = 3 -> triangle)
-	switch (drawMode)
-	{
+}
+void Renderer::DrawArrays(int drawMode, unsigned int numberOfVertices) {
+	switch (drawMode) {
 	case 0:
-		glDrawArrays(GL_TRIANGLES, 0, vtxCount);
+		glDrawArrays(GL_TRIANGLES, 0, numberOfVertices);
 		break;
 	case 1:
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, vtxCount);
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, numberOfVertices);
 		break;
 	case 2:
-		glDrawArrays(GL_TRIANGLE_FAN, 0, vtxCount);
+		glDrawArrays(GL_TRIANGLE_FAN, 0, numberOfVertices);
 		break;
 	case 3:
-		glDrawArrays(GL_QUADS, 0, vtxCount);
+		glDrawArrays(GL_QUADS, 0, numberOfVertices);
 		break;
 	}
+}
+void Renderer::DisableVertexArray(unsigned int attribID) {
 	glDisableVertexAttribArray(0);
 }
+
 
 void Renderer::BindMaterial(unsigned int programID) {
 	glUseProgram(programID);

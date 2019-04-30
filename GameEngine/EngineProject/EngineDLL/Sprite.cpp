@@ -12,7 +12,7 @@ Sprite::Sprite(Renderer* renderer) : Shape(renderer) {
 
 Sprite::~Sprite() {
 	//Dispose();
-	m_renderer->DeleteBuffers(m_uvBufferData);
+	m_renderer->DeleteBuffers(m_uvBuffer);
 	m_renderer->DeleteTextures(m_texture->GetTextureData());
 
 	if (m_uvVertices != nullptr) {
@@ -51,29 +51,26 @@ void Sprite::SetBoxCollider(unsigned int width, unsigned int height) {
 	m_boxCollider = new BoxCollider(width, height);
 }
 
-void Sprite::DrawSprite() {
-
-	if (m_material) {
-		BindMaterial();
-		m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
-		m_material->SetTextureProperty("myTextureSampler", m_texture->GetTextureData());
-	}
-
-	m_renderer->BindBuffer(m_BufferData, m_VtxCount, 0, 3, m_DrawMode);
+void Sprite::Draw() {
+	BindMaterial();
+	
+	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
 
 	m_renderer->BindTexture(m_texture->GetTextureData());
-	m_renderer->SetTextureSampler(m_textureID);
-	m_renderer->BindBuffer(m_uvBufferData, m_uvVerticesCount, 1, 2, m_DrawMode);
+	m_material->SetTextureProperty("myTextureSampler", m_texture->GetTextureData());
+
+	m_renderer->EnableVertexAttribArray(0);
+	m_renderer->BindBuffer(m_vertexBuffer);
+	m_renderer->VertexAttribPointer(0, 3);
+
+	m_renderer->EnableVertexAttribArray(1);
+	m_renderer->BindBuffer(m_uvBuffer);
+	m_renderer->VertexAttribPointer(1, 2);
+
+	m_renderer->DrawArrays(1, m_numberOfVertices);
 
 	m_renderer->UpdateModelMatrix(m_ModelMat);
 	m_renderer->UpdateMVP();
-	//_renderer->SendTransformationToShader(_matrixID);
-}
-
-void Sprite::SetUVBufferData(float* vrtxs, int vtxCount) {
-	m_uvVertices = vrtxs;
-	m_uvVerticesCount = vtxCount;
-	m_uvBufferData = m_renderer->GenBuffer(m_uvVertices, m_uvVerticesCount * 2 * sizeof(float));
 }
 
 void Sprite::SetFrameID(int frameID) {
@@ -179,6 +176,8 @@ void Sprite::InitVertices() {
 	};
 
 	SetVertices(vertexBuffer, 4);
+
+	InitVerticesUV();
 }
 
 void Sprite::InitVerticesUV() {
@@ -191,4 +190,10 @@ void Sprite::InitVerticesUV() {
 	};
 
 	SetUVBufferData(UV_Buffer, 4);
+}
+
+void Sprite::SetUVBufferData(float* vrtxs, int vtxCount) {
+	m_uvVertices = vrtxs;
+	m_uvVerticesCount = vtxCount;
+	m_uvBuffer = m_renderer->GenBuffer(m_uvVertices, m_uvVerticesCount * 2 * sizeof(float));
 }

@@ -22,29 +22,23 @@ void Shape::Draw() {
 	m_renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 	// Bind Vertex Buffer (Attribute index = 0)
-	m_renderer->BindBuffer(m_BufferData, m_VtxCount, 0, 3, m_DrawMode);
+	//m_renderer->BindBuffer(m_bufferData, m_VtxCount, 0, 3, m_DrawMode);
 	// Bind Color Buffer (Attribute index = 1)
 	//_renderer->BindBuffer(_colorBufferData, _colorVrtxCount, 1, _drawMode);
 }
 
 void Shape::SetVertices(float* vrtxs, const int& count) {
 	m_VtxArr = vrtxs;
-	m_VtxCount = count;
+	m_numberOfVertices = count;
 	m_Dispose = true;
-	m_BufferData = m_renderer->GenBuffer(m_VtxArr, m_VtxCount * 3 * sizeof(float));
-}
-
-void Shape::SetColorBufferData(float* colorVrtxs, const int& count) {
-	m_ColorVtxArr = colorVrtxs;
-	m_ColorVtxCount = count;
-	m_ColorBufferData = m_renderer->GenBuffer(m_ColorVtxArr, m_ColorVtxCount * 3 * sizeof(float));
+	m_vertexBuffer = m_renderer->GenBuffer(m_VtxArr, m_numberOfVertices * 3 * sizeof(float));
 }
 
 void Shape::Dispose() {
 	if (m_Dispose) {
 		std::cout << "Shape::~Shape()" << std::endl;
 
-		m_renderer->DeleteBuffers(m_BufferData);
+		m_renderer->DeleteBuffers(m_vertexBuffer);
 		m_renderer->DeleteVrtxArray();
 		m_renderer->DeleteProgram(m_programID);
 

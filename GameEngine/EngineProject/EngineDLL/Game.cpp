@@ -28,7 +28,15 @@ bool Game::OnStart() {
 	m_sprite = new Sprite(m_renderer);
 	m_sprite->SetMaterial(m_material);
 	m_sprite->SetTexture(m_texture);
+	m_sprite->InitVertices();
 	m_sprite->SetFrameID(10);
+
+	m_sprite->SetPos(
+		_window->GetWidth() / 2, 
+		_window->GetHeight() / 2,
+		0.0f
+	);
+	m_sprite->SetScale(5.0f, 5.0f, 5.0f);
 
 	cout << "Game::OnStart()" << endl;
 	return true;
@@ -40,6 +48,6 @@ bool Game::OnStop() {
 }
 
 bool Game::OnUpdate(float deltaTime) {
-
+	m_sprite->Draw();
 	return true;
 }

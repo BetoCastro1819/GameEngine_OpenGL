@@ -108,8 +108,8 @@ void Tilemap::Draw() {
 		m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
 		m_material->SetTextureProperty("myTextureSampler", m_Texture);
 	}
-	m_renderer->BindBuffer(m_BufferData, m_VtxCount, 0, 3, 3);
-	m_renderer->BindBuffer(verticesUV, m_VtxCount, 1, 2, 3);
+	//m_renderer->BindBuffer(m_vertexBuffer, m_numberOfVertices, 0, 3, 3);
+	//m_renderer->BindBuffer(verticesUV, m_numberOfVertices, 1, 2, 3);
 }
 
 void Tilemap::SetFrameType(int frameWidth, int frameHeight, int framesCountPerRow) {
@@ -127,7 +127,7 @@ float Tilemap::GetOffsetY(unsigned int id) {
 }
 
 void Tilemap::SetVerticesUV(float* vertices) {
-	verticesUV = (m_renderer->GenBuffer(vertices, m_VtxCount * 2 * sizeof(float)));
+	verticesUV = (m_renderer->GenBuffer(vertices, m_numberOfVertices * 2 * sizeof(float)));
 }
 
 bool Tilemap::NextTileIsCollider(float x, float y) {

@@ -126,7 +126,6 @@
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="CollisionManager.h" />
-    <ClInclude Include="ColorShape.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Exports.h" />
     <ClInclude Include="GameBase.h" />
@@ -136,7 +135,6 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="TextureShape.h" />
     <ClInclude Include="Tilemap.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Triangle.h" />
@@ -148,7 +146,6 @@
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
-    <ClCompile Include="ColorShape.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameBase.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -156,7 +153,6 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TextureShape.cpp" />
     <ClCompile Include="Tilemap.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Triangle.cpp" />

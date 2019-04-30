@@ -5,32 +5,24 @@
 class ENGINEDLL_API Shape : public Entity {
 protected:
 	Material* m_material;
-	
 	unsigned int m_programID;
-
-	// Verices
-	int m_VtxCount;
-	int m_ColorVtxCount;
+	unsigned int m_vertexBuffer;
 	float* m_VtxArr;
 	float* m_ColorVtxArr;
-
-	// Buffers
-	unsigned int m_BufferData;
-	unsigned int m_ColorBufferData;
-
+	int m_numberOfVertices;
+	int m_ColorVtxCount;
 	bool m_Dispose;
 	int m_DrawMode;
+	void SetDrawMode(int drawMode) { m_DrawMode = drawMode; }
 
 public:
 	Shape(Renderer* renderer);
 	~Shape();
-	void Draw() override;
-	void SetVertices(float* vrtxs, const int& count);
-	void SetColorBufferData(float* colorVrtxs, const int& count);
-
 	virtual void SetMaterial(Material* material);
+	void Draw() override;
+
+	void SetVertices(float* vertices, const int& numberOfVertices);
 	void BindMaterial();
-	void SetDrawMode(int drawMode) { m_DrawMode = drawMode; }
 	void Dispose();
 };
 
