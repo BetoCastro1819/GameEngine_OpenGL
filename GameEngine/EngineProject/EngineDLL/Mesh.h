@@ -1,55 +1,62 @@
 #pragma once
 #include "Entity.h"
-#include "Shader.h"
-
+#include "Material.h"
 #include <vector>
+#include <map>
 
-using namespace std;
-
-struct Vertex {
-	// position
-	glm::vec3 Position;
-	// normal
-	glm::vec3 Normal;
-	// texCoords
-	glm::vec2 TexCoords;
-	// tangent
-	glm::vec3 Tangent;
-	// bitangent
-	glm::vec3 Bitangent;
+struct PackedVertex {
+	glm::vec3 position;
+	glm::vec2 uv;
+	glm::vec3 normal;
+	bool operator<(const PackedVertex that) const {
+		return memcmp((void*)this, (void*)&that, sizeof(PackedVertex)) > 0;
+	};
 };
 
-struct Texture {
-	unsigned int id;
-	string type;
-};
-
-class ENGINEDLL_API Mesh : public Entity
-{
+class ENGINEDLL_API Mesh : public Entity {
 private:
-	Renderer* m_Renderer;
+	Renderer* m_renderer;
+	Material* m_material;
 
-	/*  Mesh Data  */
-	vector<Vertex> vertices;
-	vector<unsigned int> indices;
-	vector<Texture> textures;
+	unsigned int m_programID;
+	unsigned int m_lightID;
+	unsigned int m_textureID;
+	unsigned int m_texture;
+
+	vector<glm::vec3> m_vertices;
+	vector<glm::vec2> m_uvs;
+	vector<glm::vec3> m_normals;
 	
+	vector<unsigned short> m_indices;
+	vector<glm::vec3> m_indexedVertices;
+	vector<glm::vec2> m_indexedUVs;
+	vector<glm::vec3> m_indexedNormals;
 
-	/*  Render data  */
-	unsigned int VAO, VBO, EBO;
-
+	void GenerateBuffers();
 
 public:
-	Mesh(Renderer* renderer);
-
-	void SetVertices(const vector<Vertex>& vertices)		{ this->vertices = vertices; }
-	void SetIndices(const vector<unsigned int>& indices)	{ this->indices  = indices;  }
-	void SetTextures(const vector<Texture>& textures)		{ this->textures = textures; }
-
-	void SetupMesh();
-
+	Mesh(Renderer* renderer, Material* material);
 	~Mesh();
 
-	void Draw(Shader shader);
+	void Draw() override;
+
+	void SetTexture(const char* filePath);
+	bool LoadOBJFromFile(const char* filePath);
+	bool GenerateIndexedVBO(
+		vector<glm::vec3>& in_vertices,
+		vector<glm::vec2>& in_uvs,
+		vector<glm::vec3>& in_normals,
+
+		vector<unsigned short>& out_indices,
+		vector<glm::vec3>& out_vertices,
+		vector<glm::vec2>& out_uvs,
+		vector<glm::vec3>& out_normals
+	);
+
+	bool getSimilarVertexIndex_fast(
+		PackedVertex & packed,
+		std::map<PackedVertex, unsigned short> & VertexToOutIndex,
+		unsigned short & result
+	);
 };
 

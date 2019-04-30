@@ -89,6 +89,36 @@ unsigned int Renderer::GenBuffer(float* buffer, int size) {
 	return vrtxBuffer;
 }
 
+unsigned int Renderer::GenBuffer(glm::vec3* buffer, int size) {
+	unsigned int vrtxBuffer;
+
+	glGenBuffers(1, &vrtxBuffer);									// Generates buffer using vrtxBuffer
+	glBindBuffer(GL_ARRAY_BUFFER, vrtxBuffer);						// Bind openGL with vrtxBuffer
+	glBufferData(GL_ARRAY_BUFFER, size, buffer, GL_STATIC_DRAW);	// OpenGL recieves buffer data
+
+	return vrtxBuffer;
+}
+
+unsigned int Renderer::GenBuffer(glm::vec2* buffer, int size) {
+	unsigned int vrtxBuffer;
+
+	glGenBuffers(1, &vrtxBuffer);									// Generates buffer using vrtxBuffer
+	glBindBuffer(GL_ARRAY_BUFFER, vrtxBuffer);						// Bind openGL with vrtxBuffer
+	glBufferData(GL_ARRAY_BUFFER, size, buffer, GL_STATIC_DRAW);	// OpenGL recieves buffer data
+
+	return vrtxBuffer;
+}
+
+unsigned int Renderer::GenBuffer(unsigned short* buffer, int size) {
+	unsigned int vrtxBuffer;
+
+	glGenBuffers(1, &vrtxBuffer);									// Generates buffer using vrtxBuffer
+	glBindBuffer(GL_ARRAY_BUFFER, vrtxBuffer);						// Bind openGL with vrtxBuffer
+	glBufferData(GL_ARRAY_BUFFER, size, buffer, GL_STATIC_DRAW);	// OpenGL recieves buffer data
+
+	return vrtxBuffer;
+}
+
 void Renderer::BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int size, int drawMode) {
 	glEnableVertexAttribArray(attribID);
 	glBindBuffer(GL_ARRAY_BUFFER, bufferID);
@@ -196,4 +226,9 @@ void Renderer::SetCamView(glm::vec3 camPos, glm::vec3 lookAt, glm::vec3 head) {
 void Renderer::SetCamView(glm::mat4 viewMat) {
 	_view = viewMat;
 }
+
+unsigned int Renderer::GetLightHandleID(unsigned int programID) {
+	return glGetUniformLocation(programID, "LightPosition_worldspace");
+}
+
 

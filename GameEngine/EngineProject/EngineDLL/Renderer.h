@@ -42,6 +42,11 @@ public:
 
 	// Buffer
 	unsigned int GenBuffer(float* buffer, int size);
+	unsigned int GenBuffer(glm::vec3* buffer, int size);
+	unsigned int GenBuffer(glm::vec2* buffer, int size);
+	unsigned int GenBuffer(unsigned short* buffer, int size);
+
+
 	void BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int size, int drawMode);
 	void SetClearColor(const float& r, const float& g, const float& b, const float& a);
 	void ClearBuffer();
@@ -71,6 +76,7 @@ public:
 	void DeleteProgram(unsigned int programID);
 	void DeleteTextures(unsigned int texture);
 
+	unsigned int GetLightHandleID(unsigned int programID);
 };
 
 
