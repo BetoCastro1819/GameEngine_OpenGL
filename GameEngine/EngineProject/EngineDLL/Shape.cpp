@@ -17,11 +17,11 @@ void Shape::Draw() {
 		BindMaterial();
 	}
 
-	_renderer->UpdateModelMatrix(_modelMatrix);
-	_renderer->UpdateMVP();
+	m_renderer->UpdateModelMatrix(_modelMatrix);
+	m_renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 	// Bind Vertex Buffer (Attribute index = 0)
-	_renderer->BindBuffer(_bufferData, _vrtxCount, 0, 3, _drawMode);
+	m_renderer->BindBuffer(_bufferData, _vrtxCount, 0, 3, _drawMode);
 	// Bind Color Buffer (Attribute index = 1)
 	//_renderer->BindBuffer(_colorBufferData, _colorVrtxCount, 1, _drawMode);
 }
@@ -30,22 +30,22 @@ void Shape::SetVertices(float* vrtxs, const int& count) {
 	_vrtxs = vrtxs;
 	_vrtxCount = count;
 	_dispose = true;
-	_bufferData = _renderer->GenBuffer(_vrtxs, _vrtxCount * 3 * sizeof(float));
+	_bufferData = m_renderer->GenBuffer(_vrtxs, _vrtxCount * 3 * sizeof(float));
 }
 
 void Shape::SetColorBufferData(float* colorVrtxs, const int& count) {
 	_colorVrtx = colorVrtxs;
 	_colorVrtxCount = count;
-	_colorBufferData = _renderer->GenBuffer(_colorVrtx, _colorVrtxCount * 3 * sizeof(float));
+	_colorBufferData = m_renderer->GenBuffer(_colorVrtx, _colorVrtxCount * 3 * sizeof(float));
 }
 
 void Shape::Dispose() {
 	if (_dispose) {
 		std::cout << "Shape::~Shape()" << std::endl;
 
-		_renderer->DeleteBuffers(_bufferData);
-		_renderer->DeleteVrtxArray();
-		_renderer->DeleteProgram(_programID);
+		m_renderer->DeleteBuffers(_bufferData);
+		m_renderer->DeleteVrtxArray();
+		m_renderer->DeleteProgram(_programID);
 
 		/* TODO: Program crashes when TextureShape calls this Destructor */
 		if (_vrtxs != nullptr) {
@@ -67,5 +67,5 @@ void Shape::SetMaterial(Material* material) {
 }
 
 void Shape::BindMaterial() {
-	_renderer->BindMaterial(_programID);
+	m_renderer->BindMaterial(_programID);
 }

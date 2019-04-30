@@ -5,7 +5,7 @@
 
 class ENGINEDLL_API Entity {
 protected:
-	Renderer* _renderer;
+	Renderer* m_renderer;
 	glm::vec3 m_Position;
 	glm::vec3 m_Scale;
 	glm::vec3 m_Rotation;

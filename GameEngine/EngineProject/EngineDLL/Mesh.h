@@ -15,13 +15,17 @@ struct PackedVertex {
 
 class ENGINEDLL_API Mesh : public Entity {
 private:
-	Renderer* m_renderer;
 	Material* m_material;
 
 	unsigned int m_programID;
 	unsigned int m_lightID;
 	unsigned int m_textureID;
 	unsigned int m_texture;
+
+	unsigned int m_vertexBuffer;
+	unsigned int m_uvBuffer;
+	unsigned int m_normalBuffer;
+	unsigned int m_elementsBuffer;
 
 	vector<glm::vec3> m_vertices;
 	vector<glm::vec2> m_uvs;
@@ -33,15 +37,6 @@ private:
 	vector<glm::vec3> m_indexedNormals;
 
 	void GenerateBuffers();
-
-public:
-	Mesh(Renderer* renderer, Material* material);
-	~Mesh();
-
-	void Draw() override;
-
-	void SetTexture(const char* filePath);
-	bool LoadOBJFromFile(const char* filePath);
 	bool GenerateIndexedVBO(
 		vector<glm::vec3>& in_vertices,
 		vector<glm::vec2>& in_uvs,
@@ -52,11 +47,19 @@ public:
 		vector<glm::vec2>& out_uvs,
 		vector<glm::vec3>& out_normals
 	);
-
 	bool getSimilarVertexIndex_fast(
 		PackedVertex & packed,
 		std::map<PackedVertex, unsigned short> & VertexToOutIndex,
 		unsigned short & result
 	);
+
+public:
+	Mesh(Renderer* renderer, Material* material);
+	~Mesh();
+
+	void Draw() override;
+
+	void SetTexture(const char* filePath);
+	bool LoadOBJFromFile(const char* filePath);
 };
 

@@ -10,9 +10,11 @@ Game::~Game() {
 }
 
 bool Game::OnStart() {
-
 	m_material = new Material();
-	
+	m_mesh = new Mesh(_renderer, m_material);
+	m_mesh->SetTexture("uvmap.DDS");
+	m_mesh->LoadOBJFromFile("suzanne.obj");
+
 	cout << "Game has started" << endl;
 	return true;
 }
@@ -24,5 +26,7 @@ bool Game::OnStop() {
 
 bool Game::OnUpdate(float deltaTime) {
 	m_Camera->Update(deltaTime);
+	m_mesh->Draw();
+
 	return true;
 }

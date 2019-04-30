@@ -1,7 +1,7 @@
 #include "Entity.h"
 
 Entity::Entity(Renderer* renderer)	 {
-	_renderer = renderer;
+	m_renderer = renderer;
 	
 	_modelMatrix = glm::mat4(1.0f);
 

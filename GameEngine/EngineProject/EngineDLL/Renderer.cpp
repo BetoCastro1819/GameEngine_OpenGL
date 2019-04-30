@@ -109,12 +109,12 @@ unsigned int Renderer::GenBuffer(glm::vec2* buffer, int size) {
 	return vrtxBuffer;
 }
 
-unsigned int Renderer::GenBuffer(unsigned short* buffer, int size) {
+unsigned int Renderer::GenElementsBuffer(unsigned short* buffer, int size) {
 	unsigned int vrtxBuffer;
 
 	glGenBuffers(1, &vrtxBuffer);									// Generates buffer using vrtxBuffer
-	glBindBuffer(GL_ARRAY_BUFFER, vrtxBuffer);						// Bind openGL with vrtxBuffer
-	glBufferData(GL_ARRAY_BUFFER, size, buffer, GL_STATIC_DRAW);	// OpenGL recieves buffer data
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vrtxBuffer);						// Bind openGL with vrtxBuffer
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, buffer, GL_STATIC_DRAW);	// OpenGL recieves buffer data
 
 	return vrtxBuffer;
 }
@@ -151,6 +151,42 @@ void Renderer::BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int
 	}
 	glDisableVertexAttribArray(0);
 }
+
+void Renderer::EnableBuffer(int attribID) {
+	glEnableVertexAttribArray(attribID);
+}
+
+void Renderer::BindBuffer(unsigned int bufferID) {
+	glBindBuffer(GL_ARRAY_BUFFER, bufferID);
+}
+
+void Renderer::BindElementBuffer(unsigned int bufferID) {
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferID);
+}
+void Renderer::SetShaderData(int attribID, int size) {
+	glVertexAttribPointer(
+		attribID,           // Atributte ID. 0 = vertexAttribute | 1 = colorAttribute
+		size,               // SIZE -> 3 for triangles - 2 for UVs
+		GL_FLOAT,           // TYPE
+		GL_FALSE,           // NORMALIZED
+		0,                  // STRIDE = "pass"
+		(void*)0            // ARRAY BUFFER OFFSET
+	);
+}
+
+void Renderer::DrawElements(int numberOfElements) {
+	glDrawElements(
+		GL_TRIANGLES,			// mode
+		numberOfElements,		// count
+		GL_UNSIGNED_SHORT,		// type
+		(void*)0				// element array buffer offset
+	);
+}
+
+void Renderer::DisableVertexArrays(int arrayID) {
+	glDisableVertexAttribArray(arrayID);
+}
+
 
 void Renderer::BindMaterial(unsigned int programID) {
 	glUseProgram(programID);

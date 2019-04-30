@@ -44,7 +44,15 @@ public:
 	unsigned int GenBuffer(float* buffer, int size);
 	unsigned int GenBuffer(glm::vec3* buffer, int size);
 	unsigned int GenBuffer(glm::vec2* buffer, int size);
-	unsigned int GenBuffer(unsigned short* buffer, int size);
+	unsigned int GenElementsBuffer(unsigned short* buffer, int size);
+
+	// Drawing buffer
+	void EnableBuffer(int attribID);
+	void BindBuffer(unsigned int bufferID);
+	void BindElementBuffer(unsigned int bufferID);
+	void SetShaderData(int attribID, int size);
+	void DrawElements(int numberOfElements);
+	void DisableVertexArrays(int arrayID);
 
 
 	void BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int size, int drawMode);

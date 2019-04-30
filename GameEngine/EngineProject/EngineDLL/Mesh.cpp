@@ -2,6 +2,9 @@
 #include "OBJ_Loader.h"
 #include "TextureLoader.h"
 
+#include <GL\glew.h>
+#include <GLFW\glfw3.h>
+
 Mesh::Mesh(Renderer* renderer, Material* material) : Entity(renderer) {
 	m_renderer = renderer;
 	m_material = material;
@@ -9,6 +12,9 @@ Mesh::Mesh(Renderer* renderer, Material* material) : Entity(renderer) {
 	m_programID = m_material->LoadShaders("StandardVertexShader.txt", "StandardFragmentShader.txt");
 	m_textureID = m_renderer->SetTextureID(m_programID);
 	m_lightID = m_renderer->GetLightHandleID(m_programID);
+
+	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
+	m_material->SetTextureProperty("myTextureSampler", m_texture);
 }
 
 Mesh::~Mesh() {
@@ -22,7 +28,37 @@ void Mesh::SetTexture(const char* filePath) {
 }
 
 void Mesh::Draw() {
+	m_renderer->BindMaterial(m_programID);
 
+	// HARCODED LIGHT TEST
+	glm::vec3 lightPos = glm::vec3(4, 4, 4);
+	glUniform3f(m_lightID, lightPos.x, lightPos.y, lightPos.z);
+
+	m_renderer->BindTexture(m_texture);
+	m_renderer->SetTextureSampler(m_textureID);
+	
+	m_renderer->EnableBuffer(0);
+	m_renderer->BindBuffer(m_vertexBuffer);
+	m_renderer->SetShaderData(0, 3);
+
+	m_renderer->EnableBuffer(1);
+	m_renderer->BindBuffer(m_uvBuffer);
+	m_renderer->SetShaderData(1, 2);
+
+	m_renderer->EnableBuffer(2);
+	m_renderer->BindBuffer(m_normalBuffer);
+	m_renderer->SetShaderData(2, 3);
+
+	m_renderer->BindElementBuffer(m_elementsBuffer);
+
+	m_renderer->DrawElements(m_indices.size());
+
+	m_renderer->DisableVertexArrays(0);
+	m_renderer->DisableVertexArrays(1);
+	m_renderer->DisableVertexArrays(2);
+
+	m_renderer->UpdateModelMatrix(_modelMatrix);
+	m_renderer->UpdateMVP();
 }
 
 bool Mesh::LoadOBJFromFile(const char* filePath) {
@@ -101,14 +137,14 @@ bool Mesh::getSimilarVertexIndex_fast(
 void Mesh::GenerateBuffers() {
 
 	// Vertices
-	m_renderer->GenBuffer(&m_indexedVertices[0], m_indexedVertices.size() * sizeof(glm::vec3));
-		
+	m_vertexBuffer = m_renderer->GenBuffer(&m_indexedVertices[0], m_indexedVertices.size() * sizeof(glm::vec3));
+
 	// UVs
-	m_renderer->GenBuffer(&m_indexedUVs[0], m_indexedUVs.size() * sizeof(glm::vec2));
+	m_uvBuffer = m_renderer->GenBuffer(&m_indexedUVs[0], m_indexedUVs.size() * sizeof(glm::vec2));
 
 	// Normals
-	m_renderer->GenBuffer(&m_indexedNormals[0], m_indexedNormals.size() * sizeof(glm::vec3));
+	m_normalBuffer = m_renderer->GenBuffer(&m_indexedNormals[0], m_indexedNormals.size() * sizeof(glm::vec3));
 
 	// Indices
-	m_renderer->GenBuffer(&m_indices[0], m_indices.size() * sizeof(unsigned short));
+	m_elementsBuffer = m_renderer->GenElementsBuffer(&m_indices[0], m_indices.size() * sizeof(unsigned short));
 }

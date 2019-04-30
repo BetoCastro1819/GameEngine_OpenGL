@@ -37,72 +37,72 @@ c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\engi
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(17): warning C4251: 'Entity::_scaleMatrix': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): warning C4251: 'Mesh::m_vertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): warning C4251: 'Mesh::m_vertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(27): warning C4251: 'Mesh::m_uvs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): warning C4251: 'Mesh::m_uvs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec2
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(27): note: vea la declaración de 'std::vector<glm::vec2,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): note: vea la declaración de 'std::vector<glm::vec2,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec2
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(28): warning C4251: 'Mesh::m_normals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(32): warning C4251: 'Mesh::m_normals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): warning C4251: 'Mesh::m_indices': class 'std::vector<unsigned short,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(34): warning C4251: 'Mesh::m_indices': class 'std::vector<unsigned short,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=unsigned short
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: vea la declaración de 'std::vector<unsigned short,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(34): note: vea la declaración de 'std::vector<unsigned short,std::allocator<_Ty>>'
           with
           [
               _Ty=unsigned short
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): warning C4251: 'Mesh::m_indexedVertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(35): warning C4251: 'Mesh::m_indexedVertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(32): warning C4251: 'Mesh::m_indexedUVs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(36): warning C4251: 'Mesh::m_indexedUVs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec2
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(27): note: vea la declaración de 'std::vector<glm::vec2,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): note: vea la declaración de 'std::vector<glm::vec2,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec2
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(33): warning C4251: 'Mesh::m_indexedNormals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(37): warning C4251: 'Mesh::m_indexedNormals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
@@ -146,72 +146,72 @@ c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\engi
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
 c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(17): warning C4251: 'Entity::_scaleMatrix': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
   c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): warning C4251: 'Mesh::m_vertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): warning C4251: 'Mesh::m_vertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(27): warning C4251: 'Mesh::m_uvs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): warning C4251: 'Mesh::m_uvs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec2
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(27): note: vea la declaración de 'std::vector<glm::vec2,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): note: vea la declaración de 'std::vector<glm::vec2,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec2
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(28): warning C4251: 'Mesh::m_normals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(32): warning C4251: 'Mesh::m_normals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): warning C4251: 'Mesh::m_indices': class 'std::vector<unsigned short,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(34): warning C4251: 'Mesh::m_indices': class 'std::vector<unsigned short,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=unsigned short
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: vea la declaración de 'std::vector<unsigned short,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(34): note: vea la declaración de 'std::vector<unsigned short,std::allocator<_Ty>>'
           with
           [
               _Ty=unsigned short
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): warning C4251: 'Mesh::m_indexedVertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(35): warning C4251: 'Mesh::m_indexedVertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(32): warning C4251: 'Mesh::m_indexedUVs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(36): warning C4251: 'Mesh::m_indexedUVs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec2
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(27): note: vea la declaración de 'std::vector<glm::vec2,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): note: vea la declaración de 'std::vector<glm::vec2,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec2
           ]
-c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(33): warning C4251: 'Mesh::m_indexedNormals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(37): warning C4251: 'Mesh::m_indexedNormals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
