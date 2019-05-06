@@ -69,11 +69,20 @@ bool Mesh::LoadOBJFromFile(const char* filePath) {
 		m_normals
 	);
 
+	//OBJ_Loader::loadWithAssimp(
+	//	filePath,
+	//	m_indices,
+	//	m_indexedVertices,
+	//	m_indexedUVs,
+	//	m_indexedNormals
+	//);
+
+
 	GenerateIndexedVBO(
 		m_vertices,
 		m_uvs, 
 		m_normals,
-
+	
 		m_indices,
 		m_indexedVertices,
 		m_indexedUVs,

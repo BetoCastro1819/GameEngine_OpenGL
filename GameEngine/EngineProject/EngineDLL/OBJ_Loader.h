@@ -2,15 +2,22 @@
 #include "Exports.h"
 #include "glm/glm.hpp"
 #include <vector>
-using namespace std;
 
 class ENGINEDLL_API OBJ_Loader {
 public:
 	static bool fillVerticesWithOBJInfo(
 		const char* filePath,
-		vector<glm::vec3>& out_vertices,
-		vector<glm::vec2>& out_uvs,
-		vector<glm::vec3>& out_normals
+		std::vector<glm::vec3>& out_vertices,
+		std::vector<glm::vec2>& out_uvs,
+		std::vector<glm::vec3>& out_normals
+	);
+
+	static bool loadWithAssimp(
+		const char* path,
+		std::vector<unsigned short>& indices,
+		std::vector<glm::vec3>& vertices,
+		std::vector<glm::vec2>& uvs,
+		std::vector<glm::vec3>& normals
 	);
 };
 
