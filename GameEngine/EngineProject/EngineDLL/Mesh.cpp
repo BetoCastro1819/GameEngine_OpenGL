@@ -22,7 +22,7 @@ Mesh::~Mesh() {
 
 void Mesh::SetTexture(const char* filePath) {
 	if (m_material)
-		m_texture = TextureLoader::LoadFromFile_DDS(filePath);
+		m_texture = TextureLoader::LoadFromFile_BMP(filePath);
 	else
 		printf("Material is NULL in Mesh object");
 }
@@ -30,12 +30,12 @@ void Mesh::SetTexture(const char* filePath) {
 void Mesh::Draw() {
 	m_renderer->BindMaterial(m_programID);
 
-	// HARCODED LIGHT TEST
-	glm::vec3 lightPos = glm::vec3(4, 4, 4);
-	glUniform3f(m_lightID, lightPos.x, lightPos.y, lightPos.z);
+	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
 
 	m_renderer->BindTexture(m_texture);
 	m_renderer->SetTextureSampler(m_textureID);
+
+	m_material->SetTextureProperty("myTextureSampler", m_texture);
 	
 	m_renderer->EnableBuffer(0);
 	m_renderer->BindBuffer(m_vertexBuffer);
@@ -62,8 +62,8 @@ void Mesh::Draw() {
 }
 
 bool Mesh::LoadOBJFromFile(const char* filePath) {
-	return OBJ_Loader::fillVerticesWithOBJInfo(
-		filePath, 
+	OBJ_Loader::fillVerticesWithOBJInfo(
+		filePath,
 		m_vertices,
 		m_uvs,
 		m_normals
@@ -71,15 +71,17 @@ bool Mesh::LoadOBJFromFile(const char* filePath) {
 
 	GenerateIndexedVBO(
 		m_vertices,
-		m_uvs, m_normals,
+		m_uvs, 
+		m_normals,
+
 		m_indices,
-		
 		m_indexedVertices,
 		m_indexedUVs,
 		m_indexedNormals
 	);
 
 	GenerateBuffers();
+	return true;
 }
 
 bool Mesh::GenerateIndexedVBO(
