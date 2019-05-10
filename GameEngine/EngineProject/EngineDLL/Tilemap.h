@@ -2,13 +2,17 @@
 #include "Exports.h"
 #include "Shape.h"
 #include "Renderer.h"
+#include "Texture.h"
 #include <vector>
 
 using namespace std;
 
 class ENGINEDLL_API Tilemap : public Shape {
 private:
-	unsigned int m_Texture;
+	Texture* m_texture;
+	unsigned int m_textureID;
+
+	//unsigned int m_Texture;
 	int m_ScreenWidth;
 	int m_ScreenHeight;
 
@@ -36,13 +40,13 @@ public:
 	~Tilemap();
 
 	// Variables
-	unsigned int verticesUV;
+	unsigned int m_uvBufferData;
 	vector<vector<int>> indexes;
 
 	void Draw() override;
 	void SetMaterial(Material* material) override;
 
-	void SetTexture(const char* filePath);
+	void SetTexture(Texture* texture);
 	void SetVerticesUV(float* vertices);
 	void SetFrameType(int frameWidth, int frameHeight, int framesPerRow);
 	float GetOffsetX(unsigned int id);
@@ -52,5 +56,3 @@ public:
 	float GetTileX(float x);
 	float GetTileY(float y);
 };
-
-

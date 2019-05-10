@@ -4,13 +4,16 @@
 #include "Material.h"
 #include "Sprite.h"
 #include "Texture.h"
+#include "Tilemap.h"
 
 using namespace std;
 
 class Game : public GameBase {
 protected:
 	Material* m_material;
+	Texture* m_tilemapTexture;
 	Texture* m_texture;
+	Tilemap* m_tilemap;
 	Sprite* m_sprite;
 
 	bool OnStart() override;

@@ -8,7 +8,7 @@
 
 class ENGINEDLL_API GameBase {
 protected:
-	Window* _window;
+	Window* m_window;
 	Renderer* m_renderer;
 	Time* _time;
 	const char* _windowName;

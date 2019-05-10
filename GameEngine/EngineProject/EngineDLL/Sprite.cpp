@@ -36,6 +36,8 @@ void Sprite::SetTexture(Texture* texture) {
 	m_texture = texture;
 	m_textureID = m_renderer->SetTextureID(m_programID);
 
+	printf("Sprite textureID: %d\n", m_textureID);
+
 	m_frameWidth = m_texture->GetFrameWidth();
 	m_frameHeight = m_texture->GetFrameHeight();
 }
@@ -57,7 +59,7 @@ void Sprite::Draw() {
 	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
 
 	m_renderer->BindTexture(m_texture->GetTextureData());
-	m_material->SetTextureProperty("myTextureSampler", m_texture->GetTextureData());
+	m_material->SetTextureProperty("myTextureSampler", m_textureID);
 
 	m_renderer->EnableVertexAttribArray(0);
 	m_renderer->BindBuffer(m_vertexBuffer);

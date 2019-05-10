@@ -15,10 +15,10 @@ GameBase::~GameBase() {
 bool GameBase::Start()
 {
 	cout << "GameBase::Start()" << endl;	
-	_window = new Window(_screenHeight, _screenWidth, _windowName);
-	if (!_window->Start())
+	m_window = new Window(_screenHeight, _screenWidth, _windowName);
+	if (!m_window->Start())
 		return false;
-	m_renderer = new Renderer(_window);
+	m_renderer = new Renderer(m_window);
 
 	if (!m_renderer->Start())
 		return false;
@@ -37,10 +37,10 @@ bool GameBase::Stop()
 		m_renderer->Stop();
 		delete m_renderer;
 	}
-	if (_window != NULL)
+	if (m_window != NULL)
 	{
-		_window->Stop();
-		delete _window;
+		m_window->Stop();
+		delete m_window;
 	}
 	return true;
 }
@@ -49,7 +49,7 @@ void GameBase::Loop()
 {
 	cout << "GameBase::Loop()" << endl;
 
-	while (!_window->ShouldClose()) {
+	while (!m_window->ShouldClose()) {
 
 		_time->UpdateTime();
 
@@ -58,6 +58,6 @@ void GameBase::Loop()
 		m_renderer->ClearBuffer();
 		OnUpdate(_time->GetDeltaTime()); // Draws triangle... for now
 		m_renderer->SwapBuffers();
-		_window->PollEvents();
+		m_window->PollEvents();
 	}
 }

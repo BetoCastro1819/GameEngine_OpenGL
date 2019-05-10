@@ -29,19 +29,20 @@ Tilemap::~Tilemap() {
 
 void Tilemap::SetMaterial(Material* material) {
 	m_material = material;
-	m_programID = m_material->LoadShaders("TextureVertexShader.txt", "TextureFragmentShader.txt");
+	m_programID = m_material->LoadShaders("SimpleVertexShader.txt", "SimpleFragmentShader.txt");
 }
 
-void Tilemap::SetTexture(const char* imagePath) {
-	if (m_material)
-		m_Texture = m_material->Load_BMP(imagePath);
-	else
-		printf("m_Material in Tilemap is NULL");
+void Tilemap::SetTexture(Texture* texture) {
+	m_texture = texture;
+	m_textureID = m_renderer->SetTextureID(m_programID);
+	printf("Tilemap textureID: %d\n", m_textureID);
 
-	m_TileHeight = m_TilesData.tileHeight;
-	m_TileWidth = m_TilesData.tileWidth;
-	m_TextureHeight = 512;
-	m_TextureWidth = 512;
+	m_TextureWidth = m_texture->GetWidth();
+	m_TextureHeight = m_texture->GetHeight();
+	m_TileHeight = m_texture->GetFrameHeight();
+	m_TileWidth = m_texture->GetFrameWidth();
+	m_TotalTilesPerRow = m_texture->GetFramesPerRow();
+
 	indexes = vector<vector<int>>(m_TilesData.tilesPerCol, vector<int>(m_TilesData.tilesPerRow));
 
 	int numberOfIndexes = 0;
@@ -101,21 +102,36 @@ void Tilemap::SetTexture(const char* imagePath) {
 }
 
 void Tilemap::Draw() {
-	m_renderer->LoadIdentityMatrix();
-	m_renderer->MultiplyModelMatrix(m_ModelMat);
-	if (m_material) {
-		BindMaterial();
-		m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
-		m_material->SetTextureProperty("myTextureSampler", m_Texture);
-	}
-	//m_renderer->BindBuffer(m_vertexBuffer, m_numberOfVertices, 0, 3, 3);
-	//m_renderer->BindBuffer(verticesUV, m_numberOfVertices, 1, 2, 3);
+	BindMaterial();
+
+	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
+
+	m_renderer->BindTexture(m_texture->GetTextureData());
+	m_material->SetTextureProperty("myTextureSampler", m_textureID);
+
+	// Vertex buffer
+	m_renderer->EnableVertexAttribArray(0);
+	m_renderer->BindBuffer(m_vertexBuffer);
+	m_renderer->VertexAttribPointer(0, 3);
+
+	// UV Vertex buffer
+	m_renderer->EnableVertexAttribArray(1);
+	m_renderer->BindBuffer(m_uvBufferData);
+	m_renderer->VertexAttribPointer(1, 2);
+
+	m_renderer->DrawArrays(3, m_numberOfVertices);
+
+	m_renderer->DisableVertexArray(0);
+	m_renderer->DisableVertexArray(1);
+
+	m_renderer->UpdateModelMatrix(m_ModelMat);
+	m_renderer->UpdateMVP();
 }
 
 void Tilemap::SetFrameType(int frameWidth, int frameHeight, int framesCountPerRow) {
 	//m_TileWidth = frameWidth;
 	//m_TileHeight = frameHeight;
-	m_TotalTilesPerRow = framesCountPerRow;
+	//m_TotalTilesPerRow = framesCountPerRow;
 }
 
 float Tilemap::GetOffsetX(unsigned int id) {
@@ -127,7 +143,7 @@ float Tilemap::GetOffsetY(unsigned int id) {
 }
 
 void Tilemap::SetVerticesUV(float* vertices) {
-	verticesUV = (m_renderer->GenBuffer(vertices, m_numberOfVertices * 2 * sizeof(float)));
+	m_uvBufferData = (m_renderer->GenBuffer(vertices, m_numberOfVertices * 2 * sizeof(float)));
 }
 
 bool Tilemap::NextTileIsCollider(float x, float y) {

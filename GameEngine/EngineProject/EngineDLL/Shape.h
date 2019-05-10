@@ -6,11 +6,14 @@ class ENGINEDLL_API Shape : public Entity {
 protected:
 	Material* m_material;
 	unsigned int m_programID;
+
 	unsigned int m_vertexBuffer;
 	float* m_VtxArr;
-	float* m_ColorVtxArr;
 	int m_numberOfVertices;
+
+	float* m_ColorVtxArr;
 	int m_ColorVtxCount;
+
 	bool m_Dispose;
 	int m_DrawMode;
 	void SetDrawMode(int drawMode) { m_DrawMode = drawMode; }

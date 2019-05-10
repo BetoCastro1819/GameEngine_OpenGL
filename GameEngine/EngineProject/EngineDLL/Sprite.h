@@ -16,9 +16,9 @@ private:
 	BoxCollider* m_boxCollider;
 	Texture* m_texture;
 
+	unsigned int m_uvBuffer;
 	float* m_uvVertices;						
 	int m_uvVerticesCount;					
-	int m_uvBuffer;					
 	
 	unsigned int m_textureID;
 	unsigned int m_frameID;

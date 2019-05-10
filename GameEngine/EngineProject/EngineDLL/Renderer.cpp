@@ -112,7 +112,7 @@ void Renderer::DrawArrays(int drawMode, unsigned int numberOfVertices) {
 	}
 }
 void Renderer::DisableVertexArray(unsigned int attribID) {
-	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(attribID);
 }
 
 
@@ -146,7 +146,7 @@ void Renderer::SendTransformationToShader(unsigned int matrixID) {
 }
 
 unsigned int Renderer::SetTextureID(unsigned int programID) {
-	return glGetUniformLocation(programID, "myTextureSample");
+	return glGetUniformLocation(programID, "myTextureSampler");
 }
 
 void Renderer::BindTexture(unsigned int texture) {

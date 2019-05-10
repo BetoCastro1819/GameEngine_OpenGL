@@ -27,56 +27,51 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(29): warning C4251: 'Entity::m_ScaleMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(22): warning C4251: 'Tilemap::m_VertexArrayPos': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(26): warning C4251: 'Tilemap::m_VertexArrayPos': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
           with
           [
               _Ty=float
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(22): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(26): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
           with
           [
               _Ty=float
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(23): warning C4251: 'Tilemap::m_VertexArrayUV': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(27): warning C4251: 'Tilemap::m_VertexArrayUV': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
           with
           [
               _Ty=float
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(22): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(26): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
           with
           [
               _Ty=float
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(24): warning C4251: 'Tilemap::m_CollidableTiles': class 'std::vector<int,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(28): warning C4251: 'Tilemap::m_CollidableTiles': class 'std::vector<int,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
           with
           [
               _Ty=int
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(24): note: see declaration of 'std::vector<int,std::allocator<_Ty>>'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(28): note: see declaration of 'std::vector<int,std::allocator<_Ty>>'
           with
           [
               _Ty=int
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(40): warning C4251: 'Tilemap::indexes': class 'std::vector<std::vector<int,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>>' needs to have dll-interface to be used by clients of class 'Tilemap'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(44): warning C4251: 'Tilemap::indexes': class 'std::vector<std::vector<int,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>>' needs to have dll-interface to be used by clients of class 'Tilemap'
           with
           [
               _Ty=int
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(40): note: see declaration of 'std::vector<std::vector<int,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>>'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(44): note: see declaration of 'std::vector<std::vector<int,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>>'
           with
           [
               _Ty=int
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(48): warning C4018: '<': signed/unsigned mismatch
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(49): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(55): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(50): warning C4018: '<': signed/unsigned mismatch
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(56): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(61): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=float
-          ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(64): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(57): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(62): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
           [
               _Ty=float
@@ -86,50 +81,23 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=float
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(68): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(66): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
           [
               _Ty=float
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(81): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(69): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(82): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(122): warning C4244: 'return': conversion from 'unsigned int' to 'float', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(126): warning C4244: 'return': conversion from 'unsigned int' to 'float', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(140): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(141): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(144): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(160): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(165): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Triangle.cpp
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(18): warning C4251: 'Renderer::m_MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(19): warning C4251: 'Renderer::m_projection': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(20): warning C4251: 'Renderer::m_model': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(21): warning C4251: 'Renderer::m_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(16): warning C4251: 'Entity::m_Position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(17): warning C4251: 'Entity::m_Scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(18): warning C4251: 'Entity::m_Rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(21): warning C4251: 'Entity::m_Foward': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(22): warning C4251: 'Entity::m_Right': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(23): warning C4251: 'Entity::m_Up': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(26): warning C4251: 'Entity::m_ModelMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(27): warning C4251: 'Entity::m_TranslateMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(28): warning C4251: 'Entity::m_RotateMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(29): warning C4251: 'Entity::m_ScaleMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-  Generating Code...
-     Creating library D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.lib and object D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.exp
-MSVCRTD.lib(initializers.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(83): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(138): warning C4244: 'return': conversion from 'unsigned int' to 'float', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(142): warning C4244: 'return': conversion from 'unsigned int' to 'float', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(156): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(157): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(160): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(176): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(181): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   EngineDLL.vcxproj -> D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll
