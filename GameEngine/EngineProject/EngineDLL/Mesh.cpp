@@ -62,32 +62,32 @@ void Mesh::Draw() {
 }
 
 bool Mesh::LoadOBJFromFile(const char* filePath) {
-	OBJ_Loader::fillVerticesWithOBJInfo(
-		filePath,
-		m_vertices,
-		m_uvs,
-		m_normals
-	);
-
-	//OBJ_Loader::loadWithAssimp(
+	//OBJ_Loader::fillVerticesWithOBJInfo(
 	//	filePath,
-	//	m_indices,
-	//	m_indexedVertices,
-	//	m_indexedUVs,
-	//	m_indexedNormals
+	//	m_vertices,
+	//	m_uvs,
+	//	m_normals
 	//);
 
-
-	GenerateIndexedVBO(
-		m_vertices,
-		m_uvs, 
-		m_normals,
-	
+	OBJ_Loader::loadWithAssimp(
+		filePath,
 		m_indices,
 		m_indexedVertices,
 		m_indexedUVs,
 		m_indexedNormals
 	);
+
+
+	//GenerateIndexedVBO(
+	//	m_vertices,
+	//	m_uvs, 
+	//	m_normals,
+	//
+	//	m_indices,
+	//	m_indexedVertices,
+	//	m_indexedUVs,
+	//	m_indexedNormals
+	//);
 
 	GenerateBuffers();
 	return true;

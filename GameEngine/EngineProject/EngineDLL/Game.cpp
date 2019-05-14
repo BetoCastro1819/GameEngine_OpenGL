@@ -5,8 +5,11 @@ Game::Game(const int& widht, const int& height, const char* name)
 }
 
 Game::~Game() {
-	if (m_material != NULL)
+	if (m_material != nullptr)
 		delete m_material;
+
+	if (m_mesh != nullptr)
+		delete m_mesh;
 }
 
 bool Game::OnStart() {
@@ -14,6 +17,7 @@ bool Game::OnStart() {
 	m_mesh = new Mesh(_renderer, m_material);
 	m_mesh->SetTexture("uvtemplate.bmp");
 	m_mesh->LoadOBJFromFile("suzanne.obj");
+	//m_mesh->SetScale(0.01f, 0.01f, 0.01f);
 
 	cout << "Game has started" << endl;
 	return true;
