@@ -8,64 +8,58 @@ GameBase::GameBase(const int& width, const int& height, const char* name) {
 }
 
 GameBase::~GameBase() {
-	if (_time != NULL)
-		delete _time;
+	if (m_time != NULL)
+		delete m_time;
 
-	if (m_Camera != NULL)
-		delete m_Camera;
+	if (m_camera != NULL)
+		delete m_camera;
 }
 
 bool GameBase::Start()
 {
-	cout << "GameBase::Start()" << endl;	
-	_window = new Window(_screenHeight, _screenWidth, _windowName);
-	if (!_window->Start())
+	m_window = new Window(_screenHeight, _screenWidth, _windowName);
+	if (!m_window->Start()) {
 		return false;
+	}
 
-	_renderer = new Renderer(_window);
-	
-	m_Camera = new Camera(_renderer, _window);
-
-	if (!_renderer->Start())
+	m_renderer = new Renderer(m_window);
+	if (!m_renderer->Start()) {
 		return false;
+	}
 
-	_time = new Time();
+	m_camera = new Camera(m_renderer, m_window);
+	m_time = new Time();
 
 	return OnStart();
 }
 
 bool GameBase::Stop()
 {
-	cout << "GameBase::Stop()" << endl;
 	OnStop();
-	if (_renderer != NULL)
-	{
-		_renderer->Stop();
-		delete _renderer;
-	}
-	if (_window != NULL)
-	{
-		_window->Stop();
-		delete _window;
+
+	if (m_renderer != NULL) {
+		m_renderer->Stop();
+		delete m_renderer;
 	}
 
-	
+	if (m_window != NULL) {
+		m_window->Stop();
+		delete m_window;
+	}
 	return true;
 }
 
 void GameBase::Loop()
 {
-	cout << "GameBase::Loop()" << endl;
+	while (!m_window->ShouldClose()) {
 
-	while (!_window->ShouldClose()) {
+		m_time->UpdateTime();
 
-		_time->UpdateTime();
-
-		_renderer->SetClearColor(0.2f, 0.3f, 0.3f, 0.0f);
-		_renderer->RecalculateFragmentDepth();
-		_renderer->ClearBuffer();
-		OnUpdate(_time->GetDeltaTime()); // Draws triangle... for now
-		_renderer->SwapBuffers();
-		_window->PollEvents();
+		m_renderer->SetClearColor(0.2f, 0.3f, 0.3f, 0.0f);
+		m_renderer->RecalculateFragmentDepth();
+		m_renderer->ClearBuffer();
+		OnUpdate(m_time->GetDeltaTime()); // Draws triangle... for now
+		m_renderer->SwapBuffers();
+		m_window->PollEvents();
 	}
 }

@@ -5,7 +5,7 @@
 
 class ENGINEDLL_API OBJ_Loader {
 public:
-	static bool fillVerticesWithOBJInfo(
+	static bool ExtractVertexInfoFromOBJ(
 		const char* filePath,
 		std::vector<glm::vec3>& out_vertices,
 		std::vector<glm::vec2>& out_uvs,

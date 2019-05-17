@@ -11,7 +11,7 @@ Material::Material() {
 Material::~Material() {
 }
 
-unsigned int Material::LoadShaders(const char * vertex_file_path, const char * fragment_file_path) {
+bool Material::LoadShaders(const char * vertex_file_path, const char * fragment_file_path) {
 	// Create Shaders
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
@@ -26,9 +26,8 @@ unsigned int Material::LoadShaders(const char * vertex_file_path, const char * f
 		VertexShaderStream.close();
 	}
 	else {
-		printf("Impossible to open %s. Are you in the right directory ? Don't forget to read the FAQ !\n", vertex_file_path);
-		getchar();
-		return 0;
+		printf("Cannot find file at: %s\n", vertex_file_path);
+		return false;
 	}
 
 	// Read Fragment Shader code from file
@@ -46,7 +45,7 @@ unsigned int Material::LoadShaders(const char * vertex_file_path, const char * f
 
 
 	// Compile Vertex Shader
-	printf("Compiling shader : %s\n", vertex_file_path);
+	printf("Compiling %s ", vertex_file_path);
 	char const * VertexSourcePointer = VertexShaderCode.c_str();
 	glShaderSource(VertexShaderID, 1, &VertexSourcePointer, NULL);
 	glCompileShader(VertexShaderID);
@@ -57,12 +56,13 @@ unsigned int Material::LoadShaders(const char * vertex_file_path, const char * f
 	if (InfoLogLength > 0) {
 		std::vector<char> VertexShaderErrorMessage(InfoLogLength + 1);
 		glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]);
+		printf("ERROR\n");
 		printf("%s\n", &VertexShaderErrorMessage[0]);
 	}
-	
+	printf("SUCCESS\n");
 
 	// Compile Fragment Shader
-	printf("Compiling shader : %s\n", fragment_file_path);
+	printf("Compiling %s ", fragment_file_path);
 	char const * FragmentSourcePointer = FragmentShaderCode.c_str();
 	glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer, NULL);
 	glCompileShader(FragmentShaderID);
@@ -73,12 +73,13 @@ unsigned int Material::LoadShaders(const char * vertex_file_path, const char * f
 	if (InfoLogLength > 0) {
 		std::vector<char> FragmentShaderErrorMessage(InfoLogLength + 1);
 		glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
+		printf("ERROR\n");
 		printf("%s\n", &FragmentShaderErrorMessage[0]);
 	}
-
+	printf("SUCCESS\n");
 
 	// Link program
-	printf("Linking program\n");
+	printf("Linking program ");
 	m_ProgramID = glCreateProgram();
 	glAttachShader(m_ProgramID, VertexShaderID);
 	glAttachShader(m_ProgramID, FragmentShaderID);
@@ -90,9 +91,10 @@ unsigned int Material::LoadShaders(const char * vertex_file_path, const char * f
 	if (InfoLogLength > 0) {
 		std::vector<char> ProgramErrorMessage(InfoLogLength + 1);
 		glGetProgramInfoLog(m_ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
+		printf("ERROR\n");
 		printf("%s\n", &ProgramErrorMessage[0]);
 	}
-
+	printf("SUCCESS\n");
 
 	glDetachShader(m_ProgramID, VertexShaderID);
 	glDetachShader(m_ProgramID, FragmentShaderID);
@@ -100,7 +102,8 @@ unsigned int Material::LoadShaders(const char * vertex_file_path, const char * f
 	glDeleteShader(VertexShaderID);
 	glDeleteShader(FragmentShaderID);
 
-	return m_ProgramID;
+	//return m_ProgramID;
+	return true;
 }
 
 unsigned int Material::Load_BMP(const char* imagePath) {

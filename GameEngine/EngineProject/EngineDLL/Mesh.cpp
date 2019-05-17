@@ -9,10 +9,6 @@ Mesh::Mesh(Renderer* renderer, Material* material) : Entity(renderer) {
 	m_renderer = renderer;
 	m_material = material;
 
-	m_programID = m_material->LoadShaders("StandardVertexShader.txt", "StandardFragmentShader.txt");
-	m_textureID = m_renderer->SetTextureID(m_programID);
-	m_lightID = m_renderer->GetLightHandleID(m_programID);
-
 	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
 	m_material->SetTextureProperty("myTextureSampler", m_texture);
 }
@@ -20,11 +16,17 @@ Mesh::Mesh(Renderer* renderer, Material* material) : Entity(renderer) {
 Mesh::~Mesh() {
 }
 
+void Mesh::SetShader(unsigned int programId) {
+	m_programID = programId;
+	m_textureID = m_renderer->SetTextureID(m_programID);
+	m_lightID = m_renderer->GetLightHandleID(m_programID);
+}
+
 void Mesh::SetTexture(const char* filePath) {
 	if (m_material)
 		m_texture = TextureLoader::LoadFromFile_BMP(filePath);
 	else
-		printf("Material is NULL in Mesh object");
+		printf("Material is NULL in Mesh object\n");
 }
 
 void Mesh::Draw() {
@@ -62,33 +64,41 @@ void Mesh::Draw() {
 }
 
 bool Mesh::LoadOBJFromFile(const char* filePath) {
-	//OBJ_Loader::fillVerticesWithOBJInfo(
-	//	filePath,
-	//	m_vertices,
-	//	m_uvs,
-	//	m_normals
-	//);
+	if(!OBJ_Loader::ExtractVertexInfoFromOBJ(
+		filePath,
+		m_vertices,
+		m_uvs,
+		m_normals
+	)) {
+		return false;
+	}
 
-	OBJ_Loader::loadWithAssimp(
+	if (!GenerateIndexedVBO(
+		m_vertices,
+		m_uvs,
+		m_normals,
+
+		m_indices,
+		m_indexedVertices,
+		m_indexedUVs,
+		m_indexedNormals
+	)) {
+		return false;
+	}
+
+	return true;
+}
+
+bool Mesh::LoadWithAssimp(const char* filePath) {
+	if (!OBJ_Loader::loadWithAssimp(
 		filePath,
 		m_indices,
 		m_indexedVertices,
 		m_indexedUVs,
 		m_indexedNormals
-	);
-
-
-	//GenerateIndexedVBO(
-	//	m_vertices,
-	//	m_uvs, 
-	//	m_normals,
-	//
-	//	m_indices,
-	//	m_indexedVertices,
-	//	m_indexedUVs,
-	//	m_indexedNormals
-	//);
-
+	)) {
+		return false;
+	}
 	GenerateBuffers();
 	return true;
 }
@@ -103,13 +113,13 @@ bool Mesh::GenerateIndexedVBO(
 	vector<glm::vec2>& out_uvs,
 	vector<glm::vec3>& out_normals) {
 
+	printf("Generating Indexed VBO ");
 	std::map<PackedVertex, unsigned short> VertexToOutIndex;
 
 	// For each input vertex
 	for (unsigned int i = 0; i < in_vertices.size(); i++) {
 
 		PackedVertex packed = { in_vertices[i], in_uvs[i], in_normals[i] };
-
 
 		// Try to find a similar vertex in out_XXXX
 		unsigned short index;
@@ -127,6 +137,7 @@ bool Mesh::GenerateIndexedVBO(
 			VertexToOutIndex[packed] = newindex;
 		}
 	}
+	printf("SUCCESS\n");
 	return true;
 }
 

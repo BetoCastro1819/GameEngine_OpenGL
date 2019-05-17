@@ -103,7 +103,7 @@ unsigned int TextureLoader::LoadFromFile_DDS(const char* filePath) {
 
 unsigned int TextureLoader::LoadFromFile_BMP(const char* filePath) {
 
-	printf("Reading image %s\n", filePath);
+	printf("Reading file from %s ", filePath);
 
 	// Data read from the header of the BMP file
 	unsigned char header[54];
@@ -116,28 +116,41 @@ unsigned int TextureLoader::LoadFromFile_BMP(const char* filePath) {
 	// Open the file
 	FILE * file = fopen(filePath, "rb");
 	if (!file) {
-		printf("%s could not be opened. Are you in the right directory ? Don't forget to read the FAQ !\n", filePath);
-		getchar();
-		return 0;
+		printf("ERROR\n");
+		printf("Cannot open file\n");
+		return false;
 	}
 
 	// Read the header, i.e. the 54 first bytes
 
 	// If less than 54 bytes are read, problem
 	if (fread(header, 1, 54, file) != 54) {
+		printf("ERROR\n");
 		printf("Not a correct BMP file\n");
 		fclose(file);
 		return 0;
 	}
 	// A BMP files always begins with "BM"
 	if (header[0] != 'B' || header[1] != 'M') {
+		printf("ERROR\n");
 		printf("Not a correct BMP file\n");
 		fclose(file);
 		return 0;
 	}
 	// Make sure this is a 24bpp file
-	if (*(int*)&(header[0x1E]) != 0) { printf("Not a correct BMP file\n");    fclose(file); return 0; }
-	if (*(int*)&(header[0x1C]) != 24) { printf("Not a correct BMP file\n");    fclose(file); return 0; }
+	if (*(int*)&(header[0x1E]) != 0) { 
+		printf("ERROR\n");
+		printf("Not a correct BMP file\n");    
+		fclose(file); 
+		return 0;
+	}
+	
+	if (*(int*)&(header[0x1C]) != 24) { 
+		printf("ERROR\n");
+		printf("Not a correct BMP file\n");
+		fclose(file);
+		return 0;
+	}
 
 	// Read the information about the image
 	dataPos = *(int*)&(header[0x0A]);
@@ -157,7 +170,9 @@ unsigned int TextureLoader::LoadFromFile_BMP(const char* filePath) {
 
 	// Everything is in memory now, the file can be closed.
 	fclose(file);
+	printf("SUCCESS\n");
 
+	printf("Creating OpenGL texture ");
 	// Create one OpenGL texture
 	GLuint textureID;
 	glGenTextures(1, &textureID);
@@ -182,6 +197,7 @@ unsigned int TextureLoader::LoadFromFile_BMP(const char* filePath) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	// ... which requires mipmaps. Generate them automatically.
 	glGenerateMipmap(GL_TEXTURE_2D);
+	printf("SUCCESS\n");
 
 	// Return the ID of the texture we just created
 	return textureID;

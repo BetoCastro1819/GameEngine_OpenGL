@@ -10,10 +10,10 @@
 
 class ENGINEDLL_API GameBase {
 protected:
-	Window* _window;
-	Renderer* _renderer;
-	Camera* m_Camera;
-	Time* _time;
+	Window* m_window;
+	Renderer* m_renderer;
+	Camera* m_camera;
+	Time* m_time;
 	const char* _windowName;
 	int _screenHeight;
 	int _screenWidth;

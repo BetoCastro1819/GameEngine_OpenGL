@@ -3,13 +3,13 @@
 #include <assimp\scene.h>           
 #include <assimp\postprocess.h>
 
-bool OBJ_Loader::fillVerticesWithOBJInfo(
+bool OBJ_Loader::ExtractVertexInfoFromOBJ(
 	const char* filePath,
 	std::vector<glm::vec3>& out_vertices,
 	std::vector<glm::vec2>& out_uvs,
 	std::vector<glm::vec3>& out_normals) {
 
-	printf("Loading OBJ file %s...\n", filePath);
+	printf("Reading vertex info from %s ", filePath);
 
 	std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
 	std::vector<glm::vec3> temp_vertices;
@@ -19,8 +19,7 @@ bool OBJ_Loader::fillVerticesWithOBJInfo(
 
 	FILE * file = fopen(filePath, "r");
 	if (file == NULL) {
-		printf("Impossible to open the file ! Are you in the right path ? See Tutorial 1 for details\n");
-		getchar();
+		printf("Error reading file from: %s\n", filePath);
 		return false;
 	}
 
@@ -97,6 +96,7 @@ bool OBJ_Loader::fillVerticesWithOBJInfo(
 
 	}
 	fclose(file);
+	printf("SUCCESS\n");
 	return true;
 }
 

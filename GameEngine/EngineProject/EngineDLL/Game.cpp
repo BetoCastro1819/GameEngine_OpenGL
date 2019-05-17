@@ -14,22 +14,28 @@ Game::~Game() {
 
 bool Game::OnStart() {
 	m_material = new Material();
-	m_mesh = new Mesh(_renderer, m_material);
+	m_material->LoadShaders(
+		"StandardVertexShader.txt",
+		"StandardFragmentShader.txt"
+	);
+	
+	m_mesh = new Mesh(m_renderer, m_material);
+	m_mesh->SetShader(m_material->GetShader());
 	m_mesh->SetTexture("uvtemplate.bmp");
-	m_mesh->LoadOBJFromFile("suzanne.obj");
-	//m_mesh->SetScale(0.01f, 0.01f, 0.01f);
 
-	cout << "Game has started" << endl;
+	if (!m_mesh->LoadWithAssimp("suzanne.obj")) {
+		return false;
+	}
 	return true;
 }
 
 bool Game::OnStop() {
-	cout << "Game has stopped" << endl;		
+	cout << "Stoping Game" << endl;		
 	return false;
 }
 
 bool Game::OnUpdate(float deltaTime) {
-	m_Camera->Update(deltaTime);
+	m_camera->Update(deltaTime);
 	m_mesh->Draw();
 
 	return true;

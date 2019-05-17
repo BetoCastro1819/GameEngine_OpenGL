@@ -43,20 +43,22 @@ Renderer::~Renderer() {
 }
 
 bool Renderer::Start() {
-	cout << "Renderer::Start()" << endl;
+	printf("Starting Renderer ");
 	if (_window) {
 		glfwMakeContextCurrent((GLFWwindow*)_window->GetWindowPtr());		
 		if (glewInit() == GLEW_OK) {
 			glGenVertexArrays(1, (&_vrtxArrID));
 			glBindVertexArray(_vrtxArrID);
+			printf("SUCCESS\n");
 			return true;
 		}
 	}
+	printf("ERROR\n");
 	return false;
 }
 
 bool Renderer::Stop() {
-	cout << "Renderer::Stop()" << endl;
+	printf("Stoping Renderer\n");
 	return true;
 }
 

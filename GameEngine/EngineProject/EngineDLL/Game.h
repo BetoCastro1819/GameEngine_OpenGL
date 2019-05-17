@@ -11,7 +11,6 @@ protected:
 	Material* m_material;
 	Mesh* m_mesh;
 
-
 	bool OnStart() override;
 	bool OnStop() override;
 	bool OnUpdate(float deltaTime) override;

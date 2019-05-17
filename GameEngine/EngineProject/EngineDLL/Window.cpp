@@ -14,11 +14,12 @@ Window::~Window() {
 }
 
 bool Window::Start() {	
-	cout << "Window::Start()" << endl;
+	printf("Starting window ");
 
 	// Initialize GLFW
 	if (!glfwInit()) {
-		fprintf(stderr, "Fallo al inicialiar GLFW\n");
+		printf("ERROR\n");
+		fprintf(stderr, "Failed to initialize GLFW\n");
 		getchar();
 		return false;
 	}
@@ -26,18 +27,19 @@ bool Window::Start() {
 	// Create window
 	_window = glfwCreateWindow(_width, _height, _name, NULL, NULL);
 	if (!_window) {
+		printf("ERROR\n");
 		fprintf(stderr, "Fallo al crear Window\n");
 		getchar();
 		glfwTerminate();
 		return false;
 	}
 	glfwSetWindowShouldClose((GLFWwindow*)_window, false);
-
+	printf("SUCCESS\n");
 	return true;
 }
 
 bool Window::Stop() {
-	cout << "Window::Stop()" << endl;
+	cout << "Closing Window\n" << endl;
 	if (_window != NULL)	
 		glfwDestroyWindow((GLFWwindow*)_window);
 

@@ -59,7 +59,9 @@ public:
 
 	void Draw() override;
 
+	void SetShader(unsigned int programId);
 	void SetTexture(const char* filePath);
 	bool LoadOBJFromFile(const char* filePath);
+	bool LoadWithAssimp(const char* filePath);
 };
 
