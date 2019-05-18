@@ -23,7 +23,7 @@ bool Game::OnStart() {
 	m_mesh->SetShader(m_material->GetShader());
 	m_mesh->SetTexture("uvtemplate.bmp");
 
-	if (!m_mesh->LoadWithAssimp("suzanne.obj")) {
+	if (!m_mesh->LoadWithAssimp("snowman.fbx")) {
 		return false;
 	}
 	return true;
