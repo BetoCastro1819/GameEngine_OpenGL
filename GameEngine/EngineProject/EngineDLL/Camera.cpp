@@ -8,51 +8,30 @@ Camera::Camera(Renderer* renderer, Window* window) {
 	m_Window = window;
 
 	// Setup world unit vectors
-	m_World.right	= glm::vec3(1, 0, 0);
-	m_World.up		= glm::vec3(0, 1, 0);
-	m_World.foward	= glm::vec3(0, 0, 1);
+	m_World.right = glm::vec3(1, 0, 0);
+	m_World.up = glm::vec3(0, 1, 0);
+	m_World.foward = glm::vec3(0, 0, 1);
 
 	// Initial position and rotation
 	m_Pos = glm::vec3(0, 0, 4);
 	m_Rot = glm::vec3(0);
-
-	// yaw value at 0, look to the right
-	m_Rot.y = -90;
+	m_RotationMat = glm::mat4(1.0f);
+	Yaw(180);
 
 	// Camera will start by looking at world origin
 	m_CameraTarget = glm::vec3(0, 0, 0);
 
 	// Setup Unit vectors
-	m_CameraFoward		= glm::vec3(0, 0, -1);
-	m_CameraRight		= glm::normalize(glm::cross(m_World.up, m_CameraFoward));
-	m_CameraUp			= glm::normalize(glm::cross(m_CameraFoward, m_CameraRight));
+	m_CameraFoward = glm::normalize(m_CameraTarget - m_Pos);
+	m_CameraRight = glm::normalize(glm::cross(m_World.up, m_CameraFoward));
+	m_CameraUp = glm::normalize(glm::cross(m_CameraFoward, m_CameraRight));
 
 	// Init speeds
-	m_Speed			= 5.0f;
+	m_Speed	= 5.0f;
 	m_RotationSpeed = 100.0f;
 
 	// Init timer
 	m_Timer = 0.0f;
-
-	// Setup camera view matrix
-	m_ViewMat = glm::lookAt(
-		m_Pos,
-		m_CameraTarget,
-		m_CameraUp
-	);
-	m_Renderer->SetCamView(m_ViewMat);
-
-
-	// Store cursor's position by reference to local variable
-	// Position is based on screen coordinates relative 
-	// to the top-left corner of the window context
-	//glfwGetCursorPos(
-	//	(GLFWwindow*)window->GetWindowPtr(),	// window context
-	//	&m_PrevCursorPos.x,					// Get Cursor X Pos
-	//	&m_PrevCursorPos.y					// Get Cursor Y Pos
-	//);
-	//m_CursorPos = m_PrevCursorPos;
-	//
 }
 
 Camera::~Camera() {
@@ -68,15 +47,18 @@ void Camera::Strafe(float speed) {
 }
 
 void Camera::Pitch(float angle) {
-	m_Rot.x += angle;
+	m_Rot.x = angle;
+	m_RotationMat *= glm::rotate(glm::mat4(1.0f), glm::radians(m_Rot.x), m_World.right);
 }
 
 void Camera::Yaw(float angle) {
-	m_Rot.y += angle;
+	m_Rot.y = angle;
+	m_RotationMat *= glm::rotate(glm::mat4(1.0f), glm::radians(m_Rot.y), m_World.up);
 }
 
 void Camera::Roll(float angle) {
-	m_Rot.z += angle;
+	m_Rot.z = angle;
+	m_RotationMat *= glm::rotate(glm::mat4(1.0f), glm::radians(m_Rot.z), m_World.foward);
 }
 
 void Camera::Update(float deltaTime) {
@@ -112,18 +94,18 @@ void Camera::UpdateRotation(float deltaTime) {
 
 	// Yaw
 	if (glfwGetKey((GLFWwindow*)m_Window->GetWindowPtr(), GLFW_KEY_RIGHT) == GLFW_PRESS) {
-		Yaw(m_RotationSpeed * deltaTime);
+		Yaw(-m_RotationSpeed * deltaTime);
 	}
 	if (glfwGetKey((GLFWwindow*)m_Window->GetWindowPtr(), GLFW_KEY_LEFT) == GLFW_PRESS) {
-		Yaw(-m_RotationSpeed * deltaTime);
+		Yaw(m_RotationSpeed * deltaTime);
 	}
 
 	// Pitch
 	if (glfwGetKey((GLFWwindow*)m_Window->GetWindowPtr(), GLFW_KEY_UP) == GLFW_PRESS) {
-		Pitch(m_RotationSpeed * deltaTime);
+		Pitch(-m_RotationSpeed * deltaTime);
 	}
 	if (glfwGetKey((GLFWwindow*)m_Window->GetWindowPtr(), GLFW_KEY_DOWN) == GLFW_PRESS) {
-		Pitch(-m_RotationSpeed * deltaTime);
+		Pitch(m_RotationSpeed * deltaTime);
 	}
 
 	// Roll
@@ -135,33 +117,26 @@ void Camera::UpdateRotation(float deltaTime) {
 	}
 
 	UpdateUnitVectors();
-
 }
 
-void Camera::RotateAround(glm::vec3 target, float distFromTarget, float speed, float deltaTime) {
-	m_Timer += deltaTime * speed;
-
-	float camX = sin(m_Timer) * distFromTarget;
-	float camZ = cos(m_Timer) * distFromTarget;
-	m_Pos = glm::vec3(camX, 0.0f, camZ);
-
-	m_ViewMat = glm::lookAt(m_Pos, target, m_CameraUp);
-	m_Renderer->SetCamView(m_ViewMat);
-}
 
 void Camera::UpdateUnitVectors() {
 	// Foward
-	glm::vec3 newFoward;
-	newFoward.x = cos(glm::radians(m_Rot.x)) * cos(glm::radians(m_Rot.y));
-	newFoward.y = sin(glm::radians(m_Rot.x));
-	newFoward.z = cos(glm::radians(m_Rot.x)) * sin(glm::radians(m_Rot.y));
-	m_CameraFoward = glm::normalize(newFoward);
-	
-	// Right
-	m_CameraRight = glm::normalize(glm::cross(m_CameraFoward, m_World.up));
-	
+	glm::vec4 newFoward = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
+	newFoward = m_RotationMat * newFoward;
+	m_CameraFoward.x = newFoward.x;
+	m_CameraFoward.y = newFoward.y;
+	m_CameraFoward.z = newFoward.z;
+
 	// Up
-	//m_CameraUp = glm::normalize(glm::cross(m_CameraRight, m_CameraFoward));
+	glm::vec4 newUp = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+	newUp = m_RotationMat * newUp;
+	m_CameraUp.x = newUp.x;
+	m_CameraUp.y = newUp.y;
+	m_CameraUp.z = newUp.z;
+
+	// Right
+	m_CameraRight = glm::normalize(glm::cross(m_CameraFoward, m_CameraUp));
 }
 
 void Camera::UpdateCursorPos() {
@@ -178,5 +153,16 @@ void Camera::UpdateViewMatrix() {
 		m_Pos + m_CameraFoward,
 		m_CameraUp
 	);
+	m_Renderer->SetCamView(m_ViewMat);
+}
+
+void Camera::RotateAround(glm::vec3 target, float distFromTarget, float speed, float deltaTime) {
+	m_Timer += deltaTime * speed;
+
+	float camX = sin(m_Timer) * distFromTarget;
+	float camZ = cos(m_Timer) * distFromTarget;
+	m_Pos = glm::vec3(camX, 0.0f, camZ);
+
+	m_ViewMat = glm::lookAt(m_Pos, target, m_CameraUp);
 	m_Renderer->SetCamView(m_ViewMat);
 }
