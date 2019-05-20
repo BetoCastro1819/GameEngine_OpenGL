@@ -4,15 +4,6 @@
 #include <vector>
 #include <map>
 
-struct PackedVertex {
-	glm::vec3 position;
-	glm::vec2 uv;
-	glm::vec3 normal;
-	bool operator<(const PackedVertex that) const {
-		return memcmp((void*)this, (void*)&that, sizeof(PackedVertex)) > 0;
-	};
-};
-
 class ENGINEDLL_API Mesh : public Entity {
 private:
 	Material* m_material;
@@ -35,6 +26,15 @@ private:
 	vector<glm::vec3> m_indexedVertices;
 	vector<glm::vec2> m_indexedUVs;
 	vector<glm::vec3> m_indexedNormals;
+
+	struct PackedVertex {
+		glm::vec3 position;
+		glm::vec2 uv;
+		glm::vec3 normal;
+		bool operator<(const PackedVertex that) const {
+			return memcmp((void*)this, (void*)&that, sizeof(PackedVertex)) > 0;
+		};
+	};
 
 	void GenerateBuffers();
 	bool GenerateIndexedVBO(

@@ -107,13 +107,12 @@ bool OBJ_Loader::loadWithAssimp(
 	std::vector<glm::vec2> & uvs,
 	std::vector<glm::vec3> & normals
 ) {
-
+	printf("Importing file using Assimp from %s ", path);
 	Assimp::Importer importer;
 	
 	const aiScene* scene = importer.ReadFile(path, 0/*aiProcess_JoinIdenticalVertices | aiProcess_SortByPType*/);
 	if (!scene) {
-		fprintf(stderr, importer.GetErrorString());
-		getchar();
+		printf("ERROR\n");
 		return false;
 	}
 	const aiMesh* mesh = scene->mMeshes[0]; // In this simple example code we always use the 1rst mesh (in OBJ files there is often only one anyway)
@@ -147,5 +146,6 @@ bool OBJ_Loader::loadWithAssimp(
 		indices.push_back(mesh->mFaces[i].mIndices[1]);
 		indices.push_back(mesh->mFaces[i].mIndices[2]);
 	}
+	printf("SUCCESS\n");
 	return true;
 }

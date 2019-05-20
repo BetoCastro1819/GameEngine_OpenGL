@@ -1,220 +1,111 @@
 ﻿  Game.cpp
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(26): warning C4251: 'Renderer::_projection': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(27): warning C4251: 'Renderer::_model': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(34): warning C4251: 'Camera::m_Pos': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(35): warning C4251: 'Camera::m_Rot': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(37): warning C4251: 'Camera::m_CameraUp': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(38): warning C4251: 'Camera::m_CameraRight': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(39): warning C4251: 'Camera::m_CameraFoward': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(40): warning C4251: 'Camera::m_CameraTarget': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(42): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(43): warning C4251: 'Camera::m_RotationMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_Position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_Scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_Rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(13): warning C4251: 'Entity::_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(15): warning C4251: 'Entity::_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(16): warning C4251: 'Entity::_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(17): warning C4251: 'Entity::_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): warning C4251: 'Mesh::m_vertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(26): warning C4251: 'Renderer::_projection': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(27): warning C4251: 'Renderer::_model': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Renderer'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(34): warning C4251: 'Camera::m_Pos': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(35): warning C4251: 'Camera::m_Rot': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(37): warning C4251: 'Camera::m_CameraUp': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(38): warning C4251: 'Camera::m_CameraRight': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(39): warning C4251: 'Camera::m_CameraFoward': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(40): warning C4251: 'Camera::m_CameraTarget': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(42): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(43): warning C4251: 'Camera::m_RotationMat': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Camera'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_Position': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_Scale': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_Rotation': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: vea la declaración de 'glm::vec<3,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(13): warning C4251: 'Entity::_modelMatrix': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(15): warning C4251: 'Entity::_translateMatrix': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(16): warning C4251: 'Entity::_rotateMatrix': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(17): warning C4251: 'Entity::_scaleMatrix': struct 'glm::mat<4,4,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Entity'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: vea la declaración de 'glm::mat<4,4,float,0>'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(21): warning C4251: 'Mesh::m_vertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: see declaration of 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(21): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): warning C4251: 'Mesh::m_uvs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(22): warning C4251: 'Mesh::m_uvs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec2
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): note: see declaration of 'std::vector<glm::vec2,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(22): note: vea la declaración de 'std::vector<glm::vec2,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec2
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(32): warning C4251: 'Mesh::m_normals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(23): warning C4251: 'Mesh::m_normals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: see declaration of 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(21): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(34): warning C4251: 'Mesh::m_indices': class 'std::vector<unsigned short,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(25): warning C4251: 'Mesh::m_indices': class 'std::vector<unsigned short,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=unsigned short
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(34): note: see declaration of 'std::vector<unsigned short,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(25): note: vea la declaración de 'std::vector<unsigned short,std::allocator<_Ty>>'
           with
           [
               _Ty=unsigned short
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(35): warning C4251: 'Mesh::m_indexedVertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(26): warning C4251: 'Mesh::m_indexedVertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: see declaration of 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(21): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(36): warning C4251: 'Mesh::m_indexedUVs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(27): warning C4251: 'Mesh::m_indexedUVs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec2
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): note: see declaration of 'std::vector<glm::vec2,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(22): note: vea la declaración de 'std::vector<glm::vec2,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec2
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(37): warning C4251: 'Mesh::m_indexedNormals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(28): warning C4251: 'Mesh::m_indexedNormals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Mesh'
           with
           [
               _Ty=glm::vec3
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: see declaration of 'std::vector<glm::vec3,std::allocator<_Ty>>'
+  c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(21): note: vea la declaración de 'std::vector<glm::vec3,std::allocator<_Ty>>'
           with
           [
               _Ty=glm::vec3
           ]
-  main.cpp
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(26): warning C4251: 'Renderer::_projection': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(27): warning C4251: 'Renderer::_model': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(34): warning C4251: 'Camera::m_Pos': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(35): warning C4251: 'Camera::m_Rot': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(37): warning C4251: 'Camera::m_CameraUp': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(38): warning C4251: 'Camera::m_CameraRight': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(39): warning C4251: 'Camera::m_CameraFoward': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(40): warning C4251: 'Camera::m_CameraTarget': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(42): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(43): warning C4251: 'Camera::m_RotationMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_Position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_Scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_Rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(13): warning C4251: 'Entity::_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(15): warning C4251: 'Entity::_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(16): warning C4251: 'Entity::_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(17): warning C4251: 'Entity::_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): warning C4251: 'Mesh::m_vertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
-          with
-          [
-              _Ty=glm::vec3
-          ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: see declaration of 'std::vector<glm::vec3,std::allocator<_Ty>>'
-          with
-          [
-              _Ty=glm::vec3
-          ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): warning C4251: 'Mesh::m_uvs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
-          with
-          [
-              _Ty=glm::vec2
-          ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): note: see declaration of 'std::vector<glm::vec2,std::allocator<_Ty>>'
-          with
-          [
-              _Ty=glm::vec2
-          ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(32): warning C4251: 'Mesh::m_normals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
-          with
-          [
-              _Ty=glm::vec3
-          ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: see declaration of 'std::vector<glm::vec3,std::allocator<_Ty>>'
-          with
-          [
-              _Ty=glm::vec3
-          ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(34): warning C4251: 'Mesh::m_indices': class 'std::vector<unsigned short,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
-          with
-          [
-              _Ty=unsigned short
-          ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(34): note: see declaration of 'std::vector<unsigned short,std::allocator<_Ty>>'
-          with
-          [
-              _Ty=unsigned short
-          ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(35): warning C4251: 'Mesh::m_indexedVertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
-          with
-          [
-              _Ty=glm::vec3
-          ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: see declaration of 'std::vector<glm::vec3,std::allocator<_Ty>>'
-          with
-          [
-              _Ty=glm::vec3
-          ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(36): warning C4251: 'Mesh::m_indexedUVs': class 'std::vector<glm::vec2,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
-          with
-          [
-              _Ty=glm::vec2
-          ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(31): note: see declaration of 'std::vector<glm::vec2,std::allocator<_Ty>>'
-          with
-          [
-              _Ty=glm::vec2
-          ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(37): warning C4251: 'Mesh::m_indexedNormals': class 'std::vector<glm::vec3,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
-          with
-          [
-              _Ty=glm::vec3
-          ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(30): note: see declaration of 'std::vector<glm::vec3,std::allocator<_Ty>>'
-          with
-          [
-              _Ty=glm::vec3
-          ]
-  Generating Code...
-  EngineProject.vcxproj -> D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\TestEngine.exe
+c:\users\administrador\documents\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(34): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  EngineProject.vcxproj -> C:\Users\Administrador\Documents\GameEngine_OpenGL\GameEngine\EngineProject\Debug\TestEngine.exe

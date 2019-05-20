@@ -81,6 +81,9 @@
     <ClInclude Include="TextureLoader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameBase.cpp">
@@ -141,6 +144,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="TextureLoader.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

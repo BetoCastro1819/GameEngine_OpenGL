@@ -6,10 +6,11 @@
 
 using namespace std;
 
+const int ARRAY_SIZE = 4;
 class Game : public GameBase {
 protected:
 	Material* m_material;
-	Mesh* m_mesh;
+	Mesh* m_mesh[ARRAY_SIZE];
 
 	bool OnStart() override;
 	bool OnStop() override;
