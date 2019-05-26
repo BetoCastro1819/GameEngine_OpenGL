@@ -13,7 +13,7 @@ Sprite::Sprite(Renderer* renderer) : Shape(renderer) {
 Sprite::~Sprite() {
 	//Dispose();
 	m_renderer->DeleteBuffers(m_uvBuffer);
-	m_renderer->DeleteTextures(m_texture->GetTextureData());
+	m_renderer->DeleteTextures(m_texture->GetTextureID());
 
 	if (m_uvVertices != nullptr) {
 		m_uvVertices = NULL;
@@ -34,7 +34,7 @@ void Sprite::SetMaterial(Material* material) {
 
 void Sprite::SetTexture(Texture* texture) {
 	m_texture = texture;
-	m_textureID = m_renderer->SetTextureID(m_programID);
+	m_textureID = texture->GetTextureID();
 
 	printf("Sprite textureID: %d\n", m_textureID);
 
@@ -54,11 +54,14 @@ void Sprite::SetBoxCollider(unsigned int width, unsigned int height) {
 }
 
 void Sprite::Draw() {
+	m_renderer->UpdateModelMatrix(m_ModelMat);
+	m_renderer->UpdateMVP();
+
 	BindMaterial();
 	
 	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
 
-	m_renderer->BindTexture(m_texture->GetTextureData());
+	m_renderer->BindTexture(m_textureID);
 	m_material->SetTextureProperty("myTextureSampler", m_textureID);
 
 	m_renderer->EnableVertexAttribArray(0);
@@ -71,8 +74,8 @@ void Sprite::Draw() {
 
 	m_renderer->DrawArrays(1, m_numberOfVertices);
 
-	m_renderer->UpdateModelMatrix(m_ModelMat);
-	m_renderer->UpdateMVP();
+	m_renderer->DisableVertexArray(0);
+	m_renderer->DisableVertexArray(1);
 }
 
 void Sprite::SetFrameID(int frameID) {

@@ -67,37 +67,37 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=int
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(49): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(50): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(56): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(57): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(62): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(51): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(52): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(58): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(59): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(64): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
           [
               _Ty=float
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(65): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(67): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
           [
               _Ty=float
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(66): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(68): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
           [
               _Ty=float
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(69): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(71): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
           [
               _Ty=float
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(82): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(83): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(138): warning C4244: 'return': conversion from 'unsigned int' to 'float', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(142): warning C4244: 'return': conversion from 'unsigned int' to 'float', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(156): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(157): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(160): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(176): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(181): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(84): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(85): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(140): warning C4244: 'return': conversion from 'unsigned int' to 'float', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(144): warning C4244: 'return': conversion from 'unsigned int' to 'float', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(158): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(159): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(162): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(178): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.cpp(183): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   EngineDLL.vcxproj -> D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll

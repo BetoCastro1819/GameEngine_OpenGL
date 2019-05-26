@@ -5,8 +5,11 @@ Game::Game(const int& widht, const int& height, const char* name)
 }
 
 Game::~Game() {
-	//if (m_sprite != nullptr)
-	//	delete m_sprite;
+	if (m_sprite != nullptr)
+		delete m_sprite;
+
+	if (m_sprite2 != nullptr)
+		delete m_sprite2;
 
 	if (m_material != nullptr)
 		delete m_material;
@@ -41,14 +44,12 @@ bool Game::OnStart() {
 	);
 	m_tilemap->SetScale(.5f, .5f, .5f);
 
-
 	m_texture = new Texture("uvtemplate.bmp");
 	m_texture->SetTextureDimensions(512, 512);
 	m_texture->SetFrameDimensions(51, 51);
 	m_texture->SetNumberOfFramesPerRow(10);
 	m_texture->SetNumberOfFramesPerColumn(10);
-	
-	
+
 	m_sprite = new Sprite(m_renderer);
 	m_sprite->SetMaterial(m_material);
 	m_sprite->SetTexture(m_texture);
@@ -57,6 +58,18 @@ bool Game::OnStart() {
 	
 	m_sprite->SetPos(
 		m_window->GetWidth() / 2, 
+		m_window->GetHeight() / 2,
+		0.0f
+	);
+
+	m_sprite2 = new Sprite(m_renderer);
+	m_sprite2->SetMaterial(m_material);
+	m_sprite2->SetTexture(m_tilemapTexture);
+	m_sprite2->InitVertices();
+	m_sprite2->SetFrameID(1);
+
+	m_sprite2->SetPos(
+		m_window->GetWidth() / 2,
 		m_window->GetHeight() / 2,
 		0.0f
 	);
@@ -71,8 +84,8 @@ bool Game::OnStop() {
 }
 
 bool Game::OnUpdate(float deltaTime) {
-	//m_sprite->Draw();
-	//m_sprite->HandleInput(m_window, deltaTime);
+	m_sprite->Draw();
+	m_sprite->HandleInput(m_window, deltaTime);
 
 	m_tilemap->Draw();
 	return true;

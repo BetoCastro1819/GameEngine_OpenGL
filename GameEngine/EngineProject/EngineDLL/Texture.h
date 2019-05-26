@@ -3,7 +3,7 @@
 
 class ENGINEDLL_API Texture {
 private:
-	unsigned int m_textureData;
+	unsigned int m_textureID;
 	unsigned int m_textureWidth;
 	unsigned int m_textureHeight;
 	unsigned int m_frameWidth;
@@ -22,7 +22,7 @@ public:
 	void SetNumberOfFramesPerRow(unsigned int numOfFrames);
 	void SetNumberOfFramesPerColumn(unsigned int numOfFrames);
 
-	unsigned int GetTextureData() { return m_textureData; }
+	unsigned int GetTextureID() { return m_textureID; }
 	unsigned int GetWidth() { return m_textureWidth; }
 	unsigned int GetHeight() { return m_textureHeight; }
 	unsigned int GetFrameWidth() { return m_frameWidth; }

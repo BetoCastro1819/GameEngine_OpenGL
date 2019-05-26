@@ -34,7 +34,9 @@ void Tilemap::SetMaterial(Material* material) {
 
 void Tilemap::SetTexture(Texture* texture) {
 	m_texture = texture;
-	m_textureID = m_renderer->SetTextureID(m_programID);
+	m_textureID = texture->GetTextureID();
+	//m_textureID = m_renderer->SetTextureID(m_programID);
+	
 	printf("Tilemap textureID: %d\n", m_textureID);
 
 	m_TextureWidth = m_texture->GetWidth();
@@ -102,11 +104,14 @@ void Tilemap::SetTexture(Texture* texture) {
 }
 
 void Tilemap::Draw() {
+	m_renderer->UpdateModelMatrix(m_ModelMat);
+	m_renderer->UpdateMVP();
+
 	BindMaterial();
 
 	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
 
-	m_renderer->BindTexture(m_texture->GetTextureData());
+	m_renderer->BindTexture(m_texture->GetTextureID());
 	m_material->SetTextureProperty("myTextureSampler", m_textureID);
 
 	// Vertex buffer
@@ -123,9 +128,6 @@ void Tilemap::Draw() {
 
 	m_renderer->DisableVertexArray(0);
 	m_renderer->DisableVertexArray(1);
-
-	m_renderer->UpdateModelMatrix(m_ModelMat);
-	m_renderer->UpdateMVP();
 }
 
 void Tilemap::SetFrameType(int frameWidth, int frameHeight, int framesCountPerRow) {
