@@ -39,27 +39,27 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
               _Ty=int,
               _Kty=const char *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(26): warning C4251: 'Tilemap::m_VertexArrayPos': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(27): warning C4251: 'Tilemap::m_VertexArrayPos': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
           with
           [
               _Ty=float
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(26): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(27): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
           with
           [
               _Ty=float
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(27): warning C4251: 'Tilemap::m_VertexArrayUV': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(28): warning C4251: 'Tilemap::m_VertexArrayUV': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
           with
           [
               _Ty=float
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(26): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(27): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
           with
           [
               _Ty=float
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(28): warning C4251: 'Tilemap::m_CollidableTiles': class 'std::vector<int,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(29): warning C4251: 'Tilemap::m_CollidableTilesIndexes': class 'std::vector<int,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Tilemap'
           with
           [
               _Ty=int
@@ -69,19 +69,17 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=int
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(44): warning C4251: 'Tilemap::indexes': class 'std::vector<std::vector<int,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>>' needs to have dll-interface to be used by clients of class 'Tilemap'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(45): warning C4251: 'Tilemap::indexes': class 'std::vector<std::vector<int,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>>' needs to have dll-interface to be used by clients of class 'Tilemap'
           with
           [
               _Ty=int
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(44): note: see declaration of 'std::vector<std::vector<int,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>>'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\tilemap.h(45): note: see declaration of 'std::vector<std::vector<int,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>>'
           with
           [
               _Ty=int
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(73): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\game.cpp(56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   EngineProject.vcxproj -> D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\TestEngine.exe

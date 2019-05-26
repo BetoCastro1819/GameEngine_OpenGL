@@ -36,8 +36,8 @@ public:
 
 	void SetMaterial(Material* material) override;
 
-	void SetBoxCollider();
-	void SetBoxCollider(unsigned int width, unsigned int height);
+	void AddBoxCollider();
+	void AddBoxCollider(unsigned int width, unsigned int height);
 
 	void SetTexture(Texture* texture);
 	void SetFrameID(int frameID);

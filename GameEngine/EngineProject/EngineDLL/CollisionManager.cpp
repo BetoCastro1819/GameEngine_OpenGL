@@ -11,14 +11,17 @@ CollisionManager* CollisionManager::GetInstance() {
 CollisionManager::CollisionManager() {
 	std::vector<Sprite*> emptyVector = {};
 
-	collisionGroups.insert(std::pair<CollisionLayer,			std::vector<Sprite*>>
-									(CollisionLayer::DEFAULT,	emptyVector));
+	collisionGroups.insert(
+		std::pair<CollisionLayer, std::vector<Sprite*>> (CollisionLayer::DEFAULT, emptyVector)
+	);
 
-	collisionGroups.insert(std::pair<CollisionLayer,			std::vector<Sprite*>>
-									(CollisionLayer::PLAYER,	emptyVector));
+	collisionGroups.insert(
+		std::pair<CollisionLayer, std::vector<Sprite*>> (CollisionLayer::PLAYER, emptyVector)
+	);
 
-	collisionGroups.insert(std::pair<CollisionLayer,			std::vector<Sprite*>>
-									(CollisionLayer::TILEMAP,	emptyVector));
+	collisionGroups.insert(
+		std::pair<CollisionLayer, std::vector<Sprite*>> (CollisionLayer::TILEMAP, emptyVector)
+	);
 }
 
 CollisionManager::~CollisionManager() {

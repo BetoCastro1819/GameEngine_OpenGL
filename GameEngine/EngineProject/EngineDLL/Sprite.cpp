@@ -42,14 +42,14 @@ void Sprite::SetTexture(Texture* texture) {
 	m_frameHeight = m_texture->GetFrameHeight();
 }
 
-void Sprite::SetBoxCollider() {
+void Sprite::AddBoxCollider() {
 	m_boxCollider = new BoxCollider(
 		m_texture->GetFrameWidth(),
 		m_texture->GetFrameHeight()
 	);
 }
 
-void Sprite::SetBoxCollider(unsigned int width, unsigned int height) {
+void Sprite::AddBoxCollider(unsigned int width, unsigned int height) {
 	m_boxCollider = new BoxCollider(width, height);
 }
 

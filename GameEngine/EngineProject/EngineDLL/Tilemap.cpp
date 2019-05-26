@@ -1,6 +1,8 @@
 #include "Tilemap.h"
-#include <GL\glew.h>
 #include "json.hpp"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include <GL\glew.h>
 #include <fstream>
 
 Tilemap::Tilemap(Renderer* renderer, int screenWidth, int screenHeight) : Shape(renderer) {
@@ -130,12 +132,6 @@ void Tilemap::Draw() {
 	m_renderer->DisableVertexArray(1);
 }
 
-void Tilemap::SetFrameType(int frameWidth, int frameHeight, int framesCountPerRow) {
-	//m_TileWidth = frameWidth;
-	//m_TileHeight = frameHeight;
-	//m_TotalTilesPerRow = framesCountPerRow;
-}
-
 float Tilemap::GetOffsetX(unsigned int id) {
 	return (id % m_TotalTilesPerRow) * m_TileWidth;
 }
@@ -148,30 +144,76 @@ void Tilemap::SetVerticesUV(float* vertices) {
 	m_uvBufferData = (m_renderer->GenBuffer(vertices, m_numberOfVertices * 2 * sizeof(float)));
 }
 
-bool Tilemap::NextTileIsCollider(float x, float y) {
-	int tileID;
+void Tilemap::SetColliderTiles(vector<int> collidableTilesIndexes) {
+	m_CollidableTilesIndexes = collidableTilesIndexes;
+}
 
-	x = (x - GetPos().x);
-	y = -(y + GetPos().y);
+void Tilemap::CheckCollisionWith(Sprite* sprite) {
+	for (int i = 0; i < indexes.size(); i++) {
+		for (int j = 0; j < indexes[0].size(); j++) {
+			
+			// Collidable tile index
+			if (indexes[i][j] == 1) {
 
-	if (x >= 0 && y >= 0) {
-		int col = x / m_TileWidth;
-		int row = y / m_TileHeight;
+				glm::vec3 tilePos = glm::vec3(
+					GetPos().x + (m_TileWidth * j) + m_TileWidth / 2,
+					GetPos().y - (m_TileHeight * i) - m_TileHeight / 2,
+					GetPos().z
+				);
 
-		int temp = indexes.size();
-		if (col >= 0 && col < indexes[0].size() && row >= 0 && row < temp) {
-			tileID = indexes[row][col];
-			for (vector<int>::iterator it = m_CollidableTiles.begin(); it < m_CollidableTiles.end(); it++) {
-				if (*it == tileID)
-					return true;
+				glm::vec3 diff;
+				diff = tilePos - sprite->GetPos();
+
+				float modX = glm::abs(diff.x);
+				float modY = glm::abs(diff.y);
+
+				// Check for collision
+				if (modX < sprite->GetBoxCollider()->GetBoxWidth() / 2 + m_TileWidth / 2 &&
+					modY < sprite->GetBoxCollider()->GetBoxHeight() / 2 + m_TileHeight / 2) {
+				
+					// Penetration distance on X and Y axis
+					float penX = sprite->GetBoxCollider()->GetBoxWidth() / 2 + m_TileWidth / 2 - modX;
+					float penY = sprite->GetBoxCollider()->GetBoxHeight() / 2 + m_TileHeight / 2 - modY;
+
+					// Handle collision
+					if (penX > penY) {
+						// Vertical penetration
+						if (sprite->GetPos().y < tilePos.y) {
+							sprite->SetPos(
+								sprite->GetPos().x,
+								sprite->GetPos().y - penY,
+								sprite->GetPos().z
+							);
+						}
+						else {
+							sprite->SetPos(
+								sprite->GetPos().x,
+								sprite->GetPos().y + penY,
+								sprite->GetPos().z
+							);
+						}
+					}
+					else {
+						// Horizotal penetration
+						if (sprite->GetPos().x < tilePos.x) {
+							sprite->SetPos(
+								sprite->GetPos().x - penX,
+								sprite->GetPos().y,
+								sprite->GetPos().z
+							);
+						}
+						else {
+							sprite->SetPos(
+								sprite->GetPos().x + penX,
+								sprite->GetPos().y,
+								sprite->GetPos().z
+							);
+						}
+					}
+				}
 			}
 		}
 	}
-	return false;
-}
-
-void Tilemap::SetColliderTiles(vector<int> collidingTilesIndexes) {
-	m_CollidableTiles = collidingTilesIndexes;
 }
 
 float Tilemap::GetTileX(float x) {

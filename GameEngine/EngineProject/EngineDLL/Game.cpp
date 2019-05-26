@@ -8,9 +8,6 @@ Game::~Game() {
 	if (m_sprite != nullptr)
 		delete m_sprite;
 
-	if (m_sprite2 != nullptr)
-		delete m_sprite2;
-
 	if (m_material != nullptr)
 		delete m_material;
 
@@ -28,11 +25,11 @@ Game::~Game() {
 bool Game::OnStart() {
 	m_material = new Material();
 
-	m_tilemapTexture = new Texture("tilemap.bmp");
-	m_tilemapTexture->SetTextureDimensions(384, 192);
-	m_tilemapTexture->SetFrameDimensions(64, 64);
-	m_tilemapTexture->SetNumberOfFramesPerRow(6);
-	m_tilemapTexture->SetNumberOfFramesPerColumn(3);
+	m_tilemapTexture = new Texture("tilemap2.bmp");
+	m_tilemapTexture->SetTextureDimensions(64, 64);
+	m_tilemapTexture->SetFrameDimensions(32, 32);
+	m_tilemapTexture->SetNumberOfFramesPerRow(2);
+	m_tilemapTexture->SetNumberOfFramesPerColumn(2);
 
 	m_tilemap = new Tilemap(m_renderer, m_window->GetWidth(), m_window->GetHeight());
 	m_tilemap->SetMaterial(m_material);
@@ -42,7 +39,6 @@ bool Game::OnStart() {
 		m_window->GetHeight(),
 		0.0f
 	);
-	m_tilemap->SetScale(.5f, .5f, .5f);
 
 	m_texture = new Texture("uvtemplate.bmp");
 	m_texture->SetTextureDimensions(512, 512);
@@ -55,38 +51,25 @@ bool Game::OnStart() {
 	m_sprite->SetTexture(m_texture);
 	m_sprite->InitVertices();
 	m_sprite->SetFrameID(1);
-	
+	m_sprite->AddBoxCollider();
 	m_sprite->SetPos(
 		m_window->GetWidth() / 2, 
 		m_window->GetHeight() / 2,
 		0.0f
 	);
 
-	m_sprite2 = new Sprite(m_renderer);
-	m_sprite2->SetMaterial(m_material);
-	m_sprite2->SetTexture(m_tilemapTexture);
-	m_sprite2->InitVertices();
-	m_sprite2->SetFrameID(1);
-
-	m_sprite2->SetPos(
-		m_window->GetWidth() / 2,
-		m_window->GetHeight() / 2,
-		0.0f
-	);
-
-	cout << "Game::OnStart()" << endl;
 	return true;
 }
 
 bool Game::OnStop() {
-	cout << "Game::OnStop()" << endl;		
 	return false;
 }
 
 bool Game::OnUpdate(float deltaTime) {
-	m_sprite->Draw();
 	m_sprite->HandleInput(m_window, deltaTime);
+	m_tilemap->CheckCollisionWith(m_sprite);
 
+	m_sprite->Draw();
 	m_tilemap->Draw();
 	return true;
 }

@@ -3,6 +3,7 @@
 #include "Shape.h"
 #include "Renderer.h"
 #include "Texture.h"
+#include "Sprite.h"
 #include <vector>
 
 using namespace std;
@@ -25,7 +26,7 @@ private:
 
 	vector<float> m_VertexArrayPos;
 	vector<float> m_VertexArrayUV;
-	vector<int> m_CollidableTiles;
+	vector<int> m_CollidableTilesIndexes;
 
 	struct TilemapData {
 		int tilesPerRow;
@@ -48,11 +49,12 @@ public:
 
 	void SetTexture(Texture* texture);
 	void SetVerticesUV(float* vertices);
-	void SetFrameType(int frameWidth, int frameHeight, int framesPerRow);
 	float GetOffsetX(unsigned int id);
 	float GetOffsetY(unsigned int id);
+
+	void CheckCollisionWith(Sprite* sprite);
 	void SetColliderTiles(vector<int> setOfIds);
-	bool NextTileIsCollider(float x, float y);
+
 	float GetTileX(float x);
 	float GetTileY(float y);
 };

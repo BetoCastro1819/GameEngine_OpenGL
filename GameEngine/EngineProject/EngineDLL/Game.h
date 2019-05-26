@@ -15,7 +15,6 @@ protected:
 	Texture* m_texture;
 	Tilemap* m_tilemap;
 	Sprite* m_sprite;
-	Sprite* m_sprite2;
 
 	bool OnStart() override;
 	bool OnStop() override;
