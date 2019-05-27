@@ -32,6 +32,8 @@ public:
 	Entity(Renderer* renderer);
 	~Entity();		
 	virtual void Draw() = 0;
+
+	void Translate(float x, float y, float z);
 	void SetPos(float x, float y, float z);
 	void SetScale(float x, float y, float z);
 

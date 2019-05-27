@@ -23,6 +23,14 @@ Entity::Entity(Renderer* renderer)	 {
 Entity::~Entity() {
 }
 
+void Entity::Translate(float x, float y, float z) {
+	SetPos(
+		GetPos().x + x,
+		GetPos().y + y,
+		GetPos().z + z
+	);
+}
+
 void Entity::SetPos(float x, float y, float z) {
 	m_Position.x = x;
 	m_Position.y = y;

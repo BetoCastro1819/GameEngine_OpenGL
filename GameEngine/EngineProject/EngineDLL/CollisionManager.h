@@ -11,12 +11,21 @@ enum CollisionLayer {
 	NUMBER_OF_LAYERS
 };
 
+
 class ENGINEDLL_API CollisionManager {
 private:
 	static CollisionManager* instance;
 	std::map<CollisionLayer, std::vector<Sprite*>> collisionGroups;
 
+	enum SeparationType {
+		Vertical,
+		Horizontal
+	};
+
 	void Collision(Sprite* obj1, Sprite* obj2);
+	void VerticalSeparation(Sprite* obj1, Sprite* obj2, float separationValue);
+	void HorizontalSeparation(Sprite* obj1, Sprite* obj2, float separationValue);
+
 public:
 	CollisionManager();
 	~CollisionManager();

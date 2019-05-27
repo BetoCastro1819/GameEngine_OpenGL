@@ -1,10 +1,10 @@
 #include "CollisionManager.h"
 
 CollisionManager* CollisionManager::instance = 0;
+
 CollisionManager* CollisionManager::GetInstance() {
-	if (instance == NULL) {
+	if (instance == NULL)
 		instance = new CollisionManager();
-	}
 	return instance;
 }
 
@@ -70,89 +70,44 @@ void CollisionManager::CheckForCollisions() {
 
 void CollisionManager::Collision(Sprite* obj1, Sprite* obj2) {
 	
-	glm::vec3 diff;
-
-	diff = obj2->GetPos() - obj1->GetPos();
+	glm::vec3 diff = obj2->GetPos() - obj1->GetPos();
 	
 	float modX = glm::abs(diff.x);
-	//std::cout << "diff.x: " << diff.x << std::endl;
-
 	float modY = glm::abs(diff.y);
-	//std::cout << "diff.y: " << diff.y << std::endl;
 
-	// If there is a collision
-	if (modX < obj1->GetBoxCollider()->GetBoxWidth() / 2 + obj2->GetBoxCollider()->GetBoxWidth() / 2 &&
-		modY < obj1->GetBoxCollider()->GetBoxHeight() / 2 + obj2->GetBoxCollider()->GetBoxHeight() / 2) {
+	float collisionDistance_X = obj1->GetBoxCollider()->GetBoxWidth() / 2 + obj2->GetBoxCollider()->GetBoxWidth() / 2;
+	float collisionDistance_Y = obj1->GetBoxCollider()->GetBoxHeight() / 2 + obj2->GetBoxCollider()->GetBoxHeight() / 2;
 
-		std::cout << "Collision detected" << std::endl;
-		
-		//std::cout << "modX: " << modX << std::endl;
-		//std::cout << "modY: " << modY << std::endl;
+	if (modX < collisionDistance_X && modY < collisionDistance_Y) {
 
-		// Penetration distance on X and Y axis
-		float penX = obj1->GetBoxCollider()->GetBoxWidth() / 2 + obj2->GetBoxCollider()->GetBoxWidth() / 2 - modX;
-		float penY = obj1->GetBoxCollider()->GetBoxHeight() / 2 + obj2->GetBoxCollider()->GetBoxHeight() / 2 - modY;
+		float overlapAreaWidth = collisionDistance_X - modX;
+		float overlapAreaHeight = collisionDistance_Y - modY;
 
-		if (penX > penY) {
+		if (overlapAreaWidth > overlapAreaHeight)
+			VerticalSeparation(obj1, obj2, overlapAreaHeight);
+		else
+			HorizontalSeparation(obj1, obj2, overlapAreaWidth);
+	}
+}
 
-			std::cout << "Vertical Penetration" << std::endl;
+void CollisionManager::VerticalSeparation(Sprite* obj1, Sprite* obj2, float separationValue) {
+	if (obj1->GetPos().y < obj2->GetPos().y) {
+		obj1->Translate(0, -(separationValue / 2), 0);
+		obj2->Translate(0, (separationValue / 2), 0);
+	}
+	else {
+		obj1->Translate(0, (separationValue / 2), 0);
+		obj2->Translate(0, -(separationValue / 2), 0);
+	}
+}
 
-			// Vertical penetration
-			if (obj1->GetPos().y < obj2->GetPos().y) {
-				
-
-				// obj1 is BELOW obj2
-				// Reposition objs accordingly
-				obj1->SetPos(obj1->GetPos().x, 
-							 obj1->GetPos().y - penY / 2, 
-							 obj1->GetPos().z);
-
-				obj2->SetPos(obj2->GetPos().x,
-							 obj2->GetPos().y + penY / 2,
-							 obj2->GetPos().z);
-			}
-			else {
-
-				// obj1 is ABOVE obj2
-				// Reposition objs accordingly
-				obj1->SetPos(obj1->GetPos().x,
-							 obj1->GetPos().y + penY / 2,
-							 obj1->GetPos().z);
-
-				obj2->SetPos(obj2->GetPos().x,
-							 obj2->GetPos().y - penY / 2,
-							 obj2->GetPos().z);
-			}
-		}
-		else {
-		
-			std::cout << "Horizontal Penetration" << std::endl;
-
-			// Horizontal penetration
-			if (obj1->GetPos().x < obj2->GetPos().x) {
-
-				// obj1 is on the LEFT SIDE of obj2
-				// Reposition accordingly
-				obj1->SetPos(obj1->GetPos().x - penX / 2,
-							 obj1->GetPos().y,
-							 obj1->GetPos().z);
-
-				obj2->SetPos(obj2->GetPos().x + penX / 2,
-							 obj2->GetPos().y,
-							 obj2->GetPos().z);
-			}
-			else {
-
-				// obj1 is on the RIGHT SIDE of obj2
-				// Reposition accordingly
-				obj1->SetPos(obj1->GetPos().x + penX / 2,
-							 obj1->GetPos().y,
-							 obj1->GetPos().z);
-
-				obj2->SetPos(obj2->GetPos().x - penX / 2,
-							 obj2->GetPos().y,
-							 obj2->GetPos().z);
-			}
-		}
+void CollisionManager::HorizontalSeparation(Sprite* obj1, Sprite* obj2, float separationValue) {
+	if (obj1->GetPos().x < obj2->GetPos().x) {
+		obj1->Translate(-(separationValue / 2), 0, 0);
+		obj2->Translate((separationValue / 2), 0, 0);
+	}
+	else {
+		obj1->Translate((separationValue / 2), 0, 0);
+		obj2->Translate(-(separationValue / 2), 0, 0);
 	}
 }

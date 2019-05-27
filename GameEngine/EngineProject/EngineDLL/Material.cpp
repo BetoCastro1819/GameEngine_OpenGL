@@ -7,6 +7,7 @@
 #include <vector>
 
 Material::BMPData Material::dataStruct;
+bool Material::m_compiled = false;
 
 Material::Material() {
 }
@@ -15,6 +16,12 @@ Material::~Material() {
 }
 
 unsigned int Material::LoadShaders(const char * vertex_file_path, const char * fragment_file_path) {
+	if (!m_compiled)
+		m_ProgramID = CompileShaders(vertex_file_path, fragment_file_path);
+	return m_ProgramID;
+}
+
+unsigned int Material::CompileShaders(const char * vertex_file_path, const char * fragment_file_path) {
 	// Create Shaders
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
@@ -62,7 +69,7 @@ unsigned int Material::LoadShaders(const char * vertex_file_path, const char * f
 		glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]);
 		printf("%s\n", &VertexShaderErrorMessage[0]);
 	}
-	
+
 
 	// Compile Fragment Shader
 	printf("Compiling shader : %s\n", fragment_file_path);
@@ -103,6 +110,7 @@ unsigned int Material::LoadShaders(const char * vertex_file_path, const char * f
 	glDeleteShader(VertexShaderID);
 	glDeleteShader(FragmentShaderID);
 
+	m_compiled = true;
 	return m_ProgramID;
 }
 
