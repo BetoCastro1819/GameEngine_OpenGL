@@ -37,6 +37,7 @@ bool Game::OnStart() {
 
 bool Game::InitMaterials() {
 	m_material = new Material();
+	return true;
 }	 
 
 bool Game::InitTextures() {
@@ -51,23 +52,16 @@ bool Game::InitTextures() {
 	m_texture->SetFrameDimensions(51, 51);
 	m_texture->SetNumberOfFramesPerRow(10);
 	m_texture->SetNumberOfFramesPerColumn(10);
+
+	return true;
 }
 
 
 bool Game::InitEntities() {
-	m_tilemap = new Tilemap(m_renderer, m_window->GetWidth(), m_window->GetHeight());
-	m_tilemap->SetMaterial(m_material);
-	m_tilemap->SetTexture(m_tilemapTexture);
-	m_tilemap->SetPos(
-		0.0f,
-		m_window->GetHeight(),
-		0.0f
-	);
+	m_tilemap = new Tilemap(m_renderer);
+	m_tilemap->Setup(m_window, m_material, m_tilemapTexture);
 
-	m_sprite = new Sprite(m_renderer);
-	m_sprite->SetMaterial(m_material);
-	m_sprite->SetTexture(m_texture);
-	m_sprite->InitVertices();
+	m_sprite = new Sprite(m_renderer, m_material, m_texture);
 	m_sprite->SetFrameID(1);
 	m_sprite->AddBoxCollider();
 	m_sprite->SetPos(
@@ -75,11 +69,9 @@ bool Game::InitEntities() {
 		m_window->GetHeight() / 2,
 		0.0f
 	);
+	m_entities.push_back(m_sprite);
 
-	m_sprite2 = new Sprite(m_renderer);
-	m_sprite2->SetMaterial(m_material);
-	m_sprite2->SetTexture(m_texture);
-	m_sprite2->InitVertices();
+	m_sprite2 = new Sprite(m_renderer, m_material, m_texture);
 	m_sprite2->SetFrameID(1);
 	m_sprite2->AddBoxCollider();
 	m_sprite2->SetPos(
@@ -87,6 +79,9 @@ bool Game::InitEntities() {
 		m_window->GetHeight() / 2,
 		0.0f
 	);
+	m_entities.push_back(m_sprite2);
+
+	return true;
 }
 
 void Game::SetupCollisionManager() {
@@ -109,8 +104,7 @@ void Game::Input(float deltaTime) {
 
 void Game::UpdateEntities(float deltaTime) {
 	m_collisionManager->CheckForCollisions();
-	m_tilemap->CheckCollisionWith(m_sprite);
-	m_tilemap->CheckCollisionWith(m_sprite2);
+	m_tilemap->HandleCollisions(m_entities);
 }
 
 void Game::DrawEntities(float deltaTime) {

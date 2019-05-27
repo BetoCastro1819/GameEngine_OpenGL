@@ -2,13 +2,41 @@
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
-Sprite::Sprite(Renderer* renderer) : Shape(renderer) {
+Sprite::Sprite(Renderer* renderer, Material* material, Texture* texture) : Shape(renderer) {
+	SetMaterial(material);
+	SetTexture(texture);
+
 	m_animation = nullptr;
 	m_boxCollider = nullptr;
 
-	std::cout << "Sprite::Sprite()" << std::endl;
+	InitVertices();
 }
 
+void Sprite::InitVertices() {
+
+	float halfWidth = m_frameWidth / 2;
+	float halfHeight = m_frameHeight / 2;
+
+	GLfloat vertexBuffer[] = {
+		-halfWidth, -halfHeight, 0.0f,				// BOTTOM	- LEFT
+		-halfWidth,  halfHeight, 0.0f,				// TOP		- LEFT
+		 halfWidth, -halfHeight, 0.0f,				// BOTTOM	- RIGHT
+		 halfWidth,  halfHeight, 0.0f,				// TOP		- RIGHT
+	};
+	SetVertices(vertexBuffer, 4);
+	InitVerticesUV();
+}
+
+void Sprite::InitVerticesUV() {
+	// 2 UV coordinates for each vertex
+	GLfloat UV_Buffer[] = {
+		0.0f, 0.0f,
+		0.0f, 1.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f,
+	};
+	SetUVBufferData(UV_Buffer, 4);
+}
 
 Sprite::~Sprite() {
 	//Dispose();
@@ -168,34 +196,7 @@ void Sprite::HandleInput(Window* window, float deltaTime) {
 	}
 }
 
-void Sprite::InitVertices() {
 
-	float halfWidth = m_frameWidth / 2;
-	float halfHeight = m_frameHeight / 2;
-
-	GLfloat vertexBuffer[] = {
-		-halfWidth, -halfHeight, 0.0f,				// BOTTOM	- LEFT
-		-halfWidth,  halfHeight, 0.0f,				// TOP		- LEFT
-		 halfWidth, -halfHeight, 0.0f,				// BOTTOM	- RIGHT
-		 halfWidth,  halfHeight, 0.0f,				// TOP		- RIGHT
-	};
-
-	SetVertices(vertexBuffer, 4);
-
-	InitVerticesUV();
-}
-
-void Sprite::InitVerticesUV() {
-	// 2 UV coordinates for each vertex
-	GLfloat UV_Buffer[] = {
-		0.0f, 0.0f,
-		0.0f, 1.0f,
-		1.0f, 0.0f,
-		1.0f, 1.0f,
-	};
-
-	SetUVBufferData(UV_Buffer, 4);
-}
 
 void Sprite::SetUVBufferData(float* vrtxs, int vtxCount) {
 	m_uvVertices = vrtxs;

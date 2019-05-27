@@ -1,32 +1,33 @@
 #include "Tilemap.h"
 #include "json.hpp"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
+
 #include <GL\glew.h>
 #include <fstream>
 
-Tilemap::Tilemap(Renderer* renderer, int screenWidth, int screenHeight) : Shape(renderer) {
+Tilemap::Tilemap(Renderer* renderer) : Shape(renderer) {
 	m_renderer = renderer;
-	m_ScreenWidth = screenWidth;
-	m_ScreenHeight = screenHeight;
+}
 
+void Tilemap::Setup(Window* window, Material* material, Texture* texture) {
+	SetPos(0.0f, window->GetHeight(), 0.0f);
+	SetupDataFromJSON("tilemap.json");
+	SetMaterial(material);
+	SetTexture(texture);
+	SetupVertexArray();
+	SetupVertexArrayUV();
+	SetupTilesPositions();
+}
 
+void Tilemap::SetupDataFromJSON(const char* jsonFile) {
 	ifstream tilemapJSON("tilemap.json");
-	nlohmann::json jsonParsedData;
-	jsonParsedData = nlohmann::json::parse(tilemapJSON);
+	nlohmann::json jsonParsedData = nlohmann::json::parse(tilemapJSON);
+
 	m_TilesData.tileHeight = jsonParsedData["tileheight"];
 	m_TilesData.tileWidth = jsonParsedData["tilewidth"];
 	m_TilesData.tilesPerRow = jsonParsedData["width"];
 	m_TilesData.tilesPerCol = jsonParsedData["height"];
-	vector<int> v = jsonParsedData["layers"][0]["data"];
-	m_TilesData.tiles = v;
-
-	m_ModelMat = glm::mat4(1.0f);
-
-	m_TotalTilesPerRow = 0;
-}
-
-Tilemap::~Tilemap() {
+	vector<int> indexes = jsonParsedData["layers"][0]["data"];
+	m_TilesData.tilesIndexes = indexes;
 }
 
 void Tilemap::SetMaterial(Material* material) {
@@ -37,72 +38,71 @@ void Tilemap::SetMaterial(Material* material) {
 void Tilemap::SetTexture(Texture* texture) {
 	m_texture = texture;
 	m_textureID = texture->GetTextureID();
-	//m_textureID = m_renderer->SetTextureID(m_programID);
-	
-	printf("Tilemap textureID: %d\n", m_textureID);
+}
 
-	m_TextureWidth = m_texture->GetWidth();
-	m_TextureHeight = m_texture->GetHeight();
-	m_TileHeight = m_texture->GetFrameHeight();
-	m_TileWidth = m_texture->GetFrameWidth();
-	m_TotalTilesPerRow = m_texture->GetFramesPerRow();
+void Tilemap::SetupVertexArray() {
+	m_tileHeight = m_texture->GetFrameHeight();
+	m_tileWidth = m_texture->GetFrameWidth();
 
-	indexes = vector<vector<int>>(m_TilesData.tilesPerCol, vector<int>(m_TilesData.tilesPerRow));
+	for (int i = 0; i < m_TilesData.tilesPerCol; i++) {
+		for (int j = 0; j < m_TilesData.tilesPerRow; j++) {
+			int col = i * m_tileHeight;
+			int row = j * m_tileWidth;
 
-	int numberOfIndexes = 0;
-	for (int i = 0; i < indexes.size(); i++) {
-		for (int j = 0; j < indexes[0].size(); j++) {
-			indexes[i][j] = m_TilesData.tiles[numberOfIndexes] - 1;
-			numberOfIndexes++;
-		}
-	}
-
-	for (int i = 0; i < indexes.size(); i++) {
-		for (int j = 0; j < indexes[0].size(); j++) {
-			int col = j * m_TileWidth;
-			int row = i * m_TileHeight;
-
-			m_VertexArrayPos.push_back(0.0f + col);
-			m_VertexArrayPos.push_back(-m_TileHeight - row);
+			m_VertexArrayPos.push_back(0.0f + row);
+			m_VertexArrayPos.push_back(-m_tileHeight - col);
 			m_VertexArrayPos.push_back(0.0f);
 
-			m_VertexArrayPos.push_back(m_TileWidth + col);
-			m_VertexArrayPos.push_back(-m_TileHeight - row);
+			m_VertexArrayPos.push_back(m_tileWidth + row);
+			m_VertexArrayPos.push_back(-m_tileHeight - col);
 			m_VertexArrayPos.push_back(0.0f);
 
-			m_VertexArrayPos.push_back(m_TileWidth + col);
-			m_VertexArrayPos.push_back(0.0f - row);
+			m_VertexArrayPos.push_back(m_tileWidth + row);
+			m_VertexArrayPos.push_back(0.0f - col);
 			m_VertexArrayPos.push_back(0.0f);
 
-			m_VertexArrayPos.push_back(0.0f + col);
-			m_VertexArrayPos.push_back(0.0f - row);
+			m_VertexArrayPos.push_back(0.0f + row);
+			m_VertexArrayPos.push_back(0.0f - col);
 			m_VertexArrayPos.push_back(0.0f);
 		}
 	}
-	float* p = &m_VertexArrayPos[0];
-	SetVertices(p, 4 * indexes.size()*indexes[0].size());
+	SetVertices(&m_VertexArrayPos[0], 4 * m_TilesData.tilesPerCol * m_TilesData.tilesPerRow);
+}
 
+void Tilemap::SetupVertexArrayUV() {
+	float textureWidth = m_texture->GetWidth();
+	float textureHeight = m_texture->GetHeight();
 
-	for (int i = 0; i < indexes.size(); i++) {
-		for (int j = 0; j < indexes[0].size(); j++) {
-			int id = indexes[i][j];
+	for (int i = 0; i < m_TilesData.tilesPerCol * m_TilesData.tilesPerRow; i++) {
+		int id = m_TilesData.tilesIndexes[i] - 1;
 
-			// 00
-			m_VertexArrayUV.push_back(GetOffsetX(id) / m_TextureWidth);
-			m_VertexArrayUV.push_back(1 - (GetOffsetY(id) + m_TileHeight) / m_TextureHeight);
-			// 10
-			m_VertexArrayUV.push_back((GetOffsetX(id) + m_TileWidth) / m_TextureWidth);
-			m_VertexArrayUV.push_back(1 - (GetOffsetY(id) + m_TileHeight) / m_TextureHeight);
-			// 11
-			m_VertexArrayUV.push_back((GetOffsetX(id) + m_TileWidth) / m_TextureWidth);
-			m_VertexArrayUV.push_back(1 - GetOffsetY(id) / m_TextureHeight);
-			// 01
-			m_VertexArrayUV.push_back(GetOffsetX(id) / m_TextureWidth);
-			m_VertexArrayUV.push_back(1 - (GetOffsetY(id) / m_TextureHeight));
+		// 00
+		m_VertexArrayUV.push_back(GetOffsetX(id) / textureWidth);
+		m_VertexArrayUV.push_back(1 - (GetOffsetY(id) + m_tileHeight) / textureHeight);
+		// 10
+		m_VertexArrayUV.push_back((GetOffsetX(id) + m_tileWidth) / textureWidth);
+		m_VertexArrayUV.push_back(1 - (GetOffsetY(id) + m_tileHeight) / textureHeight);
+		// 11
+		m_VertexArrayUV.push_back((GetOffsetX(id) + m_tileWidth) / textureWidth);
+		m_VertexArrayUV.push_back(1 - GetOffsetY(id) / textureHeight);
+		// 01
+		m_VertexArrayUV.push_back(GetOffsetX(id) / textureWidth);
+		m_VertexArrayUV.push_back(1 - (GetOffsetY(id) / textureHeight));
+	}
+	SetVerticesUV(&m_VertexArrayUV[0]);
+}
+
+void Tilemap::SetupTilesPositions() {
+	for (int col = 0; col < m_TilesData.tilesPerCol; col++) {
+		for (int row = 0; row < m_TilesData.tilesPerRow; row++) {
+			glm::vec3 tilePosition = glm::vec3(
+				GetPos().x + (m_tileWidth * row) + m_tileWidth / 2,
+				GetPos().y - (m_tileHeight * col) - m_tileHeight / 2,
+				GetPos().z
+			);
+			m_tilesPositions.push_back(tilePosition);
 		}
 	}
-	p = &m_VertexArrayUV[0];
-	SetVerticesUV(p);
 }
 
 void Tilemap::Draw() {
@@ -116,12 +116,10 @@ void Tilemap::Draw() {
 	m_renderer->BindTexture(m_texture->GetTextureID());
 	m_material->SetTextureProperty("myTextureSampler", m_textureID);
 
-	// Vertex buffer
 	m_renderer->EnableVertexAttribArray(0);
 	m_renderer->BindBuffer(m_vertexBuffer);
 	m_renderer->VertexAttribPointer(0, 3);
 
-	// UV Vertex buffer
 	m_renderer->EnableVertexAttribArray(1);
 	m_renderer->BindBuffer(m_uvBufferData);
 	m_renderer->VertexAttribPointer(1, 2);
@@ -132,12 +130,52 @@ void Tilemap::Draw() {
 	m_renderer->DisableVertexArray(1);
 }
 
+void Tilemap::HandleCollisions(vector<Sprite*> entities) {
+	for (int i = 0; i < m_tilesPositions.size(); i++) {
+		if (m_TilesData.tilesIndexes[i] == 2) {
+			for (int entityIndex = 0; entityIndex < entities.size(); entityIndex++) {
+				CheckCollisionWith(entities[entityIndex], m_tilesPositions[i]);
+			}
+		}
+	}
+}
+
+
+
+void Tilemap::CheckCollisionWith(Sprite* sprite, glm::vec3 tilePosition) {
+	glm::vec3 diff;
+	diff = tilePosition - sprite->GetPos();
+
+	float modX = glm::abs(diff.x);
+	float modY = glm::abs(diff.y);
+
+	if (modX < sprite->GetBoxCollider()->GetBoxWidth() / 2 + m_tileWidth / 2 &&
+		modY < sprite->GetBoxCollider()->GetBoxHeight() / 2 + m_tileHeight / 2) {
+
+		float penX = sprite->GetBoxCollider()->GetBoxWidth() / 2 + m_tileWidth / 2 - modX;
+		float penY = sprite->GetBoxCollider()->GetBoxHeight() / 2 + m_tileHeight / 2 - modY;
+
+		if (penX > penY) {
+			if (sprite->GetPos().y < tilePosition.y)
+				sprite->Translate(0, -penY, 0);
+			else
+				sprite->Translate(0, penY, 0);
+		}
+		else {
+			if (sprite->GetPos().x < tilePosition.x)
+				sprite->Translate(-penX, 0, 0);
+			else
+				sprite->Translate(penX, 0, 0);
+		}
+	}
+}
+
 float Tilemap::GetOffsetX(unsigned int id) {
-	return (id % m_TotalTilesPerRow) * m_TileWidth;
+	return (id % m_texture->GetFramesPerRow()) * m_tileWidth;
 }
 
 float Tilemap::GetOffsetY(unsigned int id) {
-	return (id / m_TotalTilesPerRow) * m_TileHeight;
+	return (id / m_texture->GetFramesPerRow()) * m_tileHeight;
 }
 
 void Tilemap::SetVerticesUV(float* vertices) {
@@ -148,81 +186,13 @@ void Tilemap::SetColliderTiles(vector<int> collidableTilesIndexes) {
 	m_CollidableTilesIndexes = collidableTilesIndexes;
 }
 
-void Tilemap::CheckCollisionWith(Sprite* sprite) {
-	for (int i = 0; i < indexes.size(); i++) {
-		for (int j = 0; j < indexes[0].size(); j++) {
-			
-			// Collidable tile index
-			if (indexes[i][j] == 1) {
-
-				glm::vec3 tilePos = glm::vec3(
-					GetPos().x + (m_TileWidth * j) + m_TileWidth / 2,
-					GetPos().y - (m_TileHeight * i) - m_TileHeight / 2,
-					GetPos().z
-				);
-
-				glm::vec3 diff;
-				diff = tilePos - sprite->GetPos();
-
-				float modX = glm::abs(diff.x);
-				float modY = glm::abs(diff.y);
-
-				// Check for collision
-				if (modX < sprite->GetBoxCollider()->GetBoxWidth() / 2 + m_TileWidth / 2 &&
-					modY < sprite->GetBoxCollider()->GetBoxHeight() / 2 + m_TileHeight / 2) {
-				
-					// Penetration distance on X and Y axis
-					float penX = sprite->GetBoxCollider()->GetBoxWidth() / 2 + m_TileWidth / 2 - modX;
-					float penY = sprite->GetBoxCollider()->GetBoxHeight() / 2 + m_TileHeight / 2 - modY;
-
-					// Handle collision
-					if (penX > penY) {
-						// Vertical penetration
-						if (sprite->GetPos().y < tilePos.y) {
-							sprite->SetPos(
-								sprite->GetPos().x,
-								sprite->GetPos().y - penY,
-								sprite->GetPos().z
-							);
-						}
-						else {
-							sprite->SetPos(
-								sprite->GetPos().x,
-								sprite->GetPos().y + penY,
-								sprite->GetPos().z
-							);
-						}
-					}
-					else {
-						// Horizotal penetration
-						if (sprite->GetPos().x < tilePos.x) {
-							sprite->SetPos(
-								sprite->GetPos().x - penX,
-								sprite->GetPos().y,
-								sprite->GetPos().z
-							);
-						}
-						else {
-							sprite->SetPos(
-								sprite->GetPos().x + penX,
-								sprite->GetPos().y,
-								sprite->GetPos().z
-							);
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
 float Tilemap::GetTileX(float x) {
-	int col = (x - GetPos().x) / m_TileWidth;
-	return col * m_TileWidth + GetPos().x;
+	int col = (x - GetPos().x) / m_tileWidth;
+	return col * m_tileWidth + GetPos().x;
 }
 
 float Tilemap::GetTileY(float y) {
-	int row = (y + GetPos().y) / m_TileHeight;
-	return row * m_TileHeight - GetPos().y;
+	int row = (y + GetPos().y) / m_tileHeight;
+	return row * m_tileHeight - GetPos().y;
 }
 

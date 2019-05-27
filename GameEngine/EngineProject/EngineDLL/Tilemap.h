@@ -4,7 +4,13 @@
 #include "Renderer.h"
 #include "Texture.h"
 #include "Sprite.h"
+#include "Window.h"
+
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 #include <vector>
+
 
 using namespace std;
 
@@ -13,48 +19,46 @@ private:
 	Texture* m_texture;
 	unsigned int m_textureID;
 
-	//unsigned int m_Texture;
-	int m_ScreenWidth;
-	int m_ScreenHeight;
-
-	int m_TileWidth;
-	int m_TileHeight;
-
-	int m_TextureHeight;
-	int m_TextureWidth;
-	int m_TotalTilesPerRow;
-
 	vector<float> m_VertexArrayPos;
 	vector<float> m_VertexArrayUV;
 	vector<int> m_CollidableTilesIndexes;
+	vector<glm::vec3> m_tilesPositions;
+
+	int m_tileWidth;
+	int m_tileHeight;
+
+	unsigned int m_uvBufferData;
+	//vector<vector<int>> indexes;
 
 	struct TilemapData {
 		int tilesPerRow;
 		int tilesPerCol;
 		int tileHeight;
 		int tileWidth;
-		vector<int> tiles;
+		vector<int> tilesIndexes;
 	} m_TilesData;
 
-public:
-	Tilemap(Renderer* renderer, int screenWidth, int screenHeight);
-	~Tilemap();
-
-	// Variables
-	unsigned int m_uvBufferData;
-	vector<vector<int>> indexes;
-
-	void Draw() override;
+	void SetupDataFromJSON(const char* jsonFile);
 	void SetMaterial(Material* material) override;
-
 	void SetTexture(Texture* texture);
+	void SetupVertexArray();
+	void SetupVertexArrayUV();
 	void SetVerticesUV(float* vertices);
+	void SetupTilesPositions();
+
 	float GetOffsetX(unsigned int id);
 	float GetOffsetY(unsigned int id);
-
-	void CheckCollisionWith(Sprite* sprite);
-	void SetColliderTiles(vector<int> setOfIds);
-
 	float GetTileX(float x);
 	float GetTileY(float y);
+
+	void CheckCollisionWith(Sprite* sprite, glm::vec3 tilePosition);
+
+public:
+	Tilemap(Renderer* renderer);
+	~Tilemap() { }
+
+	void Setup(Window* window, Material* material, Texture* texture);
+	void Draw() override;
+	void HandleCollisions(vector<Sprite*> entities);
+	void SetColliderTiles(vector<int> setOfIds);
 };

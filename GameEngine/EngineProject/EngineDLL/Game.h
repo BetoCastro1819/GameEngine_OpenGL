@@ -19,6 +19,8 @@ private:
 	Sprite* m_sprite;
 	Sprite* m_sprite2;
 
+	vector<Sprite*> m_entities;
+
 	bool OnStart() override;
 	bool OnStop() override;
 	bool OnUpdate(float deltaTime) override;

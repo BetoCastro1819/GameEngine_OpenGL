@@ -26,10 +26,11 @@ private:
 	int m_frameWidth;
 	int m_frameHeight;
 
+	void InitVertices();
 	void InitVerticesUV();
 
 public:
-	Sprite (Renderer* renderer);
+	Sprite (Renderer* renderer, Material* material, Texture* texture);
 	~Sprite();
 	
 	void Draw() override;
@@ -43,7 +44,6 @@ public:
 	void SetFrameID(int frameID);
 
 
-	void InitVertices();
 	void SetUVBufferData(float* vrtxs, int vtxCount);
 
 	void AddAnimation(const char* animationName, std::vector<int> animationFrames);
