@@ -7,7 +7,6 @@
 #include "Window.h"
 #include "Renderer.h"
 
-
 // GLM -> math library
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -18,7 +17,6 @@ struct World {
 	glm::vec3 foward;
 };
 
-
 struct CursorPos {
 	double x;
 	double y;
@@ -27,9 +25,9 @@ struct CursorPos {
 class ENGINEDLL_API Camera {
 private:
 	Renderer* m_Renderer;
-	Window*   m_Window;
+	Window* m_Window;
 
-	World	  m_World;
+	World m_World;
 
 	glm::vec3 m_Pos;
 	glm::vec3 m_Rot;
@@ -49,12 +47,13 @@ private:
 	float m_RotationSpeed;
 	float m_Timer;
 
+	void UpdateUnitVectors();
+	
 	void UpdateViewMatrix();
 	void UpdateCursorPos();
 
-	void UpdatePosition(float deltaTime);
-	void UpdateRotation(float deltaTime);
-	void UpdateUnitVectors();
+	void CheckForMovementInput(float deltaTime);
+	void CheckForRotationInput(float deltaTime);
 
 public:
 	Camera(Renderer* renderer, Window* window);

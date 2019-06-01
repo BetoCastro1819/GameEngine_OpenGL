@@ -14,9 +14,11 @@ protected:
 	Renderer* m_renderer;
 	Camera* m_camera;
 	Time* m_time;
+
 	const char* _windowName;
 	int _screenHeight;
 	int _screenWidth;
+
 	virtual bool OnStart() = 0;
 	virtual bool OnStop() = 0;
 	virtual bool OnUpdate(float deltaTime) = 0;

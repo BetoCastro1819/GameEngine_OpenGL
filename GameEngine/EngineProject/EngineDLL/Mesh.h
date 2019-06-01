@@ -11,7 +11,6 @@ private:
 	unsigned int m_programID;
 	unsigned int m_lightID;
 	unsigned int m_textureID;
-	unsigned int m_texture;
 
 	unsigned int m_vertexBuffer;
 	unsigned int m_uvBuffer;
@@ -26,6 +25,11 @@ private:
 	vector<glm::vec3> m_indexedVertices;
 	vector<glm::vec2> m_indexedUVs;
 	vector<glm::vec3> m_indexedNormals;
+
+
+	void SetShader(unsigned int programId);
+	void SetTexture(const char* filePath);
+
 
 	struct PackedVertex {
 		glm::vec3 position;
@@ -53,15 +57,14 @@ private:
 		unsigned short & result
 	);
 
-public:
-	Mesh(Renderer* renderer, Material* material);
-	~Mesh();
-
 	void Draw() override;
 
-	void SetShader(unsigned int programId);
-	void SetTexture(const char* filePath);
+public:
+	Mesh(Renderer* renderer, Material* material, const char* texturePath);
+	~Mesh() {}
+	
+	void Update() override;
+
 	bool LoadOBJFromFile(const char* filePath);
 	bool LoadWithAssimp(const char* filePath);
 };
-

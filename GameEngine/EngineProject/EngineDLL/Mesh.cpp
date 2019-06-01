@@ -5,39 +5,44 @@
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
-Mesh::Mesh(Renderer* renderer, Material* material) : Entity(renderer) {
+Mesh::Mesh(Renderer* renderer, Material* material, const char* texturePath) : Entity(renderer) {
 	m_renderer = renderer;
+
 	m_material = material;
+	SetShader(m_material->GetShaderID());
 
-	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
-	m_material->SetTextureProperty("myTextureSampler", m_texture);
-}
-
-Mesh::~Mesh() {
+	SetTexture(texturePath);
 }
 
 void Mesh::SetShader(unsigned int programId) {
 	m_programID = programId;
-	m_textureID = m_renderer->SetTextureID(m_programID);
 	m_lightID = m_renderer->GetLightHandleID(m_programID);
 }
 
 void Mesh::SetTexture(const char* filePath) {
-	if (m_material)
-		m_texture = TextureLoader::LoadFromFile_BMP(filePath);
-	else
-		printf("Material is NULL in Mesh object\n");
+	m_textureID = TextureLoader::LoadFromFile_BMP(filePath);
+}
+
+void Mesh::Update() {
+	// Mesh update
+
+	Draw();
+
+	SceneNode::Update();
 }
 
 void Mesh::Draw() {
+	m_renderer->UpdateModelMatrix(m_modelMatrix);
+	m_renderer->UpdateMVP();
+
 	m_renderer->BindMaterial(m_programID);
 
 	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
 
-	m_renderer->BindTexture(m_texture);
+	m_renderer->BindTexture(m_textureID);
 	m_renderer->SetTextureSampler(m_textureID);
 
-	m_material->SetTextureProperty("myTextureSampler", m_texture);
+	m_material->SetTextureProperty("myTextureSampler", m_textureID);
 	
 	m_renderer->EnableBuffer(0);
 	m_renderer->BindBuffer(m_vertexBuffer);
@@ -58,9 +63,6 @@ void Mesh::Draw() {
 	m_renderer->DisableVertexArrays(0);
 	m_renderer->DisableVertexArrays(1);
 	m_renderer->DisableVertexArrays(2);
-
-	m_renderer->UpdateModelMatrix(_modelMatrix);
-	m_renderer->UpdateMVP();
 }
 
 bool Mesh::LoadOBJFromFile(const char* filePath) {

@@ -3,7 +3,6 @@
 #include <GLFW\glfw3.h>
 
 Camera::Camera(Renderer* renderer, Window* window) {
-
 	m_Renderer = renderer;
 	m_Window = window;
 
@@ -13,7 +12,7 @@ Camera::Camera(Renderer* renderer, Window* window) {
 	m_World.foward = glm::vec3(0, 0, 1);
 
 	// Initial position and rotation
-	m_Pos = glm::vec3(0, 0, 4);
+	m_Pos = glm::vec3(0, 0, 10);
 	m_Rot = glm::vec3(0);
 	m_RotationMat = glm::mat4(1.0f);
 	Yaw(180);
@@ -32,6 +31,8 @@ Camera::Camera(Renderer* renderer, Window* window) {
 
 	// Init timer
 	m_Timer = 0.0f;
+	
+	UpdateViewMatrix();
 }
 
 Camera::~Camera() {
@@ -49,26 +50,29 @@ void Camera::Strafe(float speed) {
 void Camera::Pitch(float angle) {
 	m_Rot.x = angle;
 	m_RotationMat *= glm::rotate(glm::mat4(1.0f), glm::radians(m_Rot.x), m_World.right);
+	UpdateUnitVectors();
 }
 
 void Camera::Yaw(float angle) {
 	m_Rot.y = angle;
 	m_RotationMat *= glm::rotate(glm::mat4(1.0f), glm::radians(m_Rot.y), m_World.up);
+	UpdateUnitVectors();
 }
 
 void Camera::Roll(float angle) {
 	m_Rot.z = angle;
 	m_RotationMat *= glm::rotate(glm::mat4(1.0f), glm::radians(m_Rot.z), m_World.foward);
+	UpdateUnitVectors();
 }
 
 void Camera::Update(float deltaTime) {
-	UpdatePosition(deltaTime);
-	UpdateRotation(deltaTime);
+	CheckForMovementInput(deltaTime);
+	CheckForRotationInput(deltaTime);
 
-	UpdateViewMatrix();
+	//UpdateViewMatrix();
 }
 
-void Camera::UpdatePosition(float deltaTime) {
+void Camera::CheckForMovementInput(float deltaTime) {
 	
 	float movementSpeed = m_Speed * deltaTime;
 
@@ -90,7 +94,7 @@ void Camera::UpdatePosition(float deltaTime) {
 	}
 }
 
-void Camera::UpdateRotation(float deltaTime) {
+void Camera::CheckForRotationInput(float deltaTime) {
 
 	// Yaw
 	if (glfwGetKey((GLFWwindow*)m_Window->GetWindowPtr(), GLFW_KEY_RIGHT) == GLFW_PRESS) {
@@ -115,8 +119,6 @@ void Camera::UpdateRotation(float deltaTime) {
 	if (glfwGetKey((GLFWwindow*)m_Window->GetWindowPtr(), GLFW_KEY_Q) == GLFW_PRESS) {
 		Roll(-m_RotationSpeed * deltaTime);
 	}
-
-	UpdateUnitVectors();
 }
 
 
@@ -134,7 +136,7 @@ void Camera::UpdateUnitVectors() {
 	m_CameraUp.x = newUp.x;
 	m_CameraUp.y = newUp.y;
 	m_CameraUp.z = newUp.z;
-
+	
 	// Right
 	m_CameraRight = glm::normalize(glm::cross(m_CameraFoward, m_CameraUp));
 }

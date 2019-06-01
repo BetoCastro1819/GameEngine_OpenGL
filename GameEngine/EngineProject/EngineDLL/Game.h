@@ -6,11 +6,13 @@
 
 using namespace std;
 
-const int ARRAY_SIZE = 4;
 class Game : public GameBase {
 protected:
 	Material* m_material;
-	Mesh* m_mesh[ARRAY_SIZE];
+	Mesh* m_meshParent;
+	Mesh* m_meshChild;
+	
+	float rotation;
 
 	bool OnStart() override;
 	bool OnStop() override;

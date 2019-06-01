@@ -8,33 +8,33 @@ Game::~Game() {
 	if (m_material != nullptr)
 		delete m_material;
 
-	for (int i = 0; i < ARRAY_SIZE; i++) {
-		if (m_mesh[i] != nullptr) {
-			delete m_mesh[i];
-		}
-	}
+	if (m_meshParent != nullptr)
+		delete m_meshParent;
+
+	if (m_meshChild != nullptr)
+		delete m_meshChild;
 }
 
 bool Game::OnStart() {
 	m_material = new Material();
 	m_material->LoadShaders("StandardVertexShader.txt", "StandardFragmentShader.txt");
 	
-	for (int i = 0; i < ARRAY_SIZE; i++) {
-		m_mesh[i] = new Mesh(m_renderer, m_material);
-		m_mesh[i]->SetShader(m_material->GetShader());
-		m_mesh[i]->SetTexture("uvtemplate.bmp");
-		if (!m_mesh[i]->LoadWithAssimp("suzanne.obj")) {
-			return false;
-		}
+	m_meshParent = new Mesh(m_renderer, m_material, "uvtemplate.bmp");
+	if (!m_meshParent->LoadWithAssimp("suzanne.obj")) {
+		return false;
 	}
+	m_meshParent->SetPos(-2, 0, 0);
+
+	m_meshChild = new Mesh(m_renderer, m_material, "uvtemplate.bmp");
+	if (!m_meshChild->LoadWithAssimp("suzanne.obj")) {
+		return false;
+	}
+	m_meshChild->SetPos(2, 0, 0);
+
+	m_meshParent->AddChild(m_meshChild);
+
+	rotation = 10.0f;
 	
-	int meshIndex = 0;
-	for (int i = 0; i < ARRAY_SIZE / 2; i++) {
-		for (int j = 0; j < ARRAY_SIZE / 2; j++) {
-			m_mesh[meshIndex]->SetPos((i + 1) * 2, (j + 1) * 2, 0);
-			meshIndex++;
-		}
-	}
 	return true;
 }
 
@@ -46,8 +46,9 @@ bool Game::OnStop() {
 bool Game::OnUpdate(float deltaTime) {
 	m_camera->Update(deltaTime);
 	
-	for (int i = 0; i < ARRAY_SIZE; i++)
-		m_mesh[i]->Draw();
+	m_meshParent->SetRotZ(rotation += deltaTime * 30);
+	m_meshParent->Update();
+	//m_meshChild->Draw();
 	
 	return true;
 }
