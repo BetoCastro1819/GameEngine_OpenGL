@@ -13,6 +13,9 @@ Game::~Game() {
 
 	if (m_meshChild != nullptr)
 		delete m_meshChild;
+
+	if (m_meshChild2 != nullptr)
+		delete m_meshChild2;
 }
 
 bool Game::OnStart() {
@@ -23,15 +26,24 @@ bool Game::OnStart() {
 	if (!m_meshParent->LoadWithAssimp("suzanne.obj")) {
 		return false;
 	}
-	m_meshParent->SetPos(-2, 0, 0);
+	m_meshParent->SetPos(-3, 0, 0);
 
 	m_meshChild = new Mesh(m_renderer, m_material, "uvtemplate.bmp");
 	if (!m_meshChild->LoadWithAssimp("suzanne.obj")) {
 		return false;
 	}
-	m_meshChild->SetPos(2, 0, 0);
+
+	m_meshChild2 = new Mesh(m_renderer, m_material, "uvtemplate.bmp");
+	if (!m_meshChild2->LoadWithAssimp("suzanne.obj")) {
+		return false;
+	}
+
 
 	m_meshParent->AddChild(m_meshChild);
+	m_meshChild->SetPos(3, 0, 0);
+
+	m_meshChild->AddChild(m_meshChild2);
+	m_meshChild2->SetPos(3, 0, 0);
 
 	rotation = 10.0f;
 	
@@ -46,9 +58,14 @@ bool Game::OnStop() {
 bool Game::OnUpdate(float deltaTime) {
 	m_camera->Update(deltaTime);
 	
+	//m_meshParent->SetPos(
+	//	(float)m_meshParent->GetPos().x,
+	//	sin(rotation += deltaTime), 
+	//	(float)m_meshParent->GetPos().z
+	//);
+
 	m_meshParent->SetRotZ(rotation += deltaTime * 30);
 	m_meshParent->Update();
-	//m_meshChild->Draw();
-	
+
 	return true;
 }

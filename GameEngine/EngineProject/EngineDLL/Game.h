@@ -11,6 +11,7 @@ protected:
 	Material* m_material;
 	Mesh* m_meshParent;
 	Mesh* m_meshChild;
+	Mesh* m_meshChild2;
 	
 	float rotation;
 

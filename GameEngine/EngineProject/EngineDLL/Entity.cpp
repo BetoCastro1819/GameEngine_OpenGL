@@ -12,6 +12,8 @@ Entity::Entity(Renderer* renderer)	 {
 	m_position[0] = m_position[1] = m_position[2] = 0.0f;
 	m_scale[0] = m_scale[1] = m_scale[2] = 1.0f;
 	m_rotation[0] = m_rotation[1] = m_rotation[2] = 0.0f;
+
+	m_modelMatrix = glm::mat4(1.0f);
 }
 
 Entity::~Entity() {
@@ -60,8 +62,4 @@ void Entity::SetRotZ(float angle) {
 
 	m_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), m_rotation);
 	UpdateModelMatrix();
-}
-
-void Entity::UpdateModelMatrix() {
-	m_modelMatrix = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
 }
