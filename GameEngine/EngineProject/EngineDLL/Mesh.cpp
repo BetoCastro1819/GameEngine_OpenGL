@@ -32,7 +32,7 @@ void Mesh::Update() {
 }
 
 void Mesh::Draw() {
-	m_renderer->UpdateModelMatrix(m_modelMatrix);
+	m_renderer->UpdateModelMatrix(m_transform.GetModelMatrix());
 	m_renderer->UpdateMVP();
 
 	m_renderer->BindMaterial(m_programID);

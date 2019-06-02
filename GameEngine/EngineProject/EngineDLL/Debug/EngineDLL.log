@@ -7,6 +7,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -17,20 +31,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\animation.h(9): warning C4251: 'Animation::animations': class 'std::map<const char *,std::vector<int,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' needs to have dll-interface to be used by clients of class 'Animation'
           with
           [
@@ -52,6 +52,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -62,20 +76,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\circle.cpp(13): warning C4244: 'argument': conversion from 'double' to '_Ty', possible loss of data
           with
           [
@@ -95,6 +95,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -105,20 +119,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\animation.h(9): warning C4251: 'Animation::animations': class 'std::map<const char *,std::vector<int,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' needs to have dll-interface to be used by clients of class 'Animation'
           with
           [
@@ -156,6 +156,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -166,20 +180,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
   Entity.cpp
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
@@ -189,6 +189,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -199,20 +213,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
   GameBase.cpp
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
@@ -238,6 +238,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(41): warning C4251: 'Camera::m_RotationMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -248,20 +262,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
   Mesh.cpp
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
@@ -271,6 +271,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -281,20 +295,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(20): warning C4251: 'Mesh::m_vertices': class 'std::vector<glm::vec3,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
           with
           [
@@ -374,6 +374,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -384,21 +398,21 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
   SceneNode.cpp
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -409,14 +423,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
   Shape.cpp
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
@@ -426,6 +432,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -436,20 +456,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
   Sprite.cpp
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
@@ -459,6 +465,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -469,20 +489,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\animation.h(9): warning C4251: 'Animation::animations': class 'std::map<const char *,std::vector<int,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' needs to have dll-interface to be used by clients of class 'Animation'
           with
           [
@@ -508,6 +514,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -518,20 +538,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
   Tilemap.cpp
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
@@ -541,6 +547,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -551,20 +571,6 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\animation.h(9): warning C4251: 'Animation::animations': class 'std::map<const char *,std::vector<int,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' needs to have dll-interface to be used by clients of class 'Animation'
           with
           [
@@ -593,6 +599,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -603,23 +623,24 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\time.cpp(6): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\time.cpp(14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\time.cpp(15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Transform.cpp
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
   Triangle.cpp
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(25): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
@@ -629,6 +650,20 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(8): warning C4251: 'Transform::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(9): warning C4251: 'Transform::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(10): warning C4251: 'Transform::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(12): warning C4251: 'Transform::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(13): warning C4251: 'Transform::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(14): warning C4251: 'Transform::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(15): warning C4251: 'Transform::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_childrenList': class 'std::list<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
           with
           [
@@ -639,19 +674,7 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=SceneNode *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(15): warning C4251: 'SceneNode::m_modelMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(16): warning C4251: 'SceneNode::m_translateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(17): warning C4251: 'SceneNode::m_rotateMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(18): warning C4251: 'SceneNode::m_scaleMatrix': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'SceneNode'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(9): warning C4251: 'Entity::m_position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(10): warning C4251: 'Entity::m_scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(11): warning C4251: 'Entity::m_rotation': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
   Generating Code...
+     Creating library D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.lib and object D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.exp
+MSVCRTD.lib(initializers.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
   EngineDLL.vcxproj -> D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll

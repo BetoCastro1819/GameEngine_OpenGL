@@ -83,7 +83,7 @@ void Sprite::DrawSprite() {
 	m_renderer->SetTextureSampler(_textureID);
 	m_renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, _drawMode);
 
-	m_renderer->UpdateModelMatrix(m_modelMatrix);
+	m_renderer->UpdateModelMatrix(m_transform.GetModelMatrix());
 	m_renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 }

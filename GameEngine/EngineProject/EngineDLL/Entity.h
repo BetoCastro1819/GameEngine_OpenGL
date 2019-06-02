@@ -6,9 +6,9 @@ class ENGINEDLL_API Entity : public SceneNode {
 protected:
 	Renderer* m_renderer;
 
-	glm::vec3 m_position;
-	glm::vec3 m_scale;
-	glm::vec3 m_rotation;
+	//glm::vec3 m_position;
+	//glm::vec3 m_scale;
+	//glm::vec3 m_rotation;
 
 
 public:
@@ -20,8 +20,8 @@ public:
 	void SetRotX(float angle);
 	void SetRotY(float angle);
 	void SetRotZ(float angle);
-	glm::vec3 GetPos() { return m_position; }
-	glm::vec3 GetScale() { return m_scale; }
-	glm::vec3 GetRotation() { return m_rotation; }
+	glm::vec3 GetPos() { return m_transform.GetPosition(); }
+	glm::vec3 GetScale() { return m_transform.GetScale(); }
+	glm::vec3 GetRotation() { return m_transform.GetRotation(); }
 };
 

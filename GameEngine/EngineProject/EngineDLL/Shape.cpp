@@ -17,7 +17,7 @@ void Shape::Draw() {
 		BindMaterial();
 	}
 
-	m_renderer->UpdateModelMatrix(m_modelMatrix);
+	m_renderer->UpdateModelMatrix(m_transform.GetModelMatrix());
 	m_renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 	// Bind Vertex Buffer (Attribute index = 0)

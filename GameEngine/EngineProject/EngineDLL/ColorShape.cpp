@@ -1,7 +1,7 @@
 #include "ColorShape.h"
 
 ColorShape::ColorShape(Renderer* renderer):Shape(renderer) {
-	m_renderer->UpdateModelMatrix(m_modelMatrix);
+	m_renderer->UpdateModelMatrix(m_transform.GetModelMatrix());
 
 	float vertices[] = {
 		// Cube using GL_TRIANGLE_STRIP

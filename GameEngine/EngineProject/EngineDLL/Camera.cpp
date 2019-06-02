@@ -69,7 +69,7 @@ void Camera::Update(float deltaTime) {
 	CheckForMovementInput(deltaTime);
 	CheckForRotationInput(deltaTime);
 
-	//UpdateViewMatrix();
+	UpdateViewMatrix();
 }
 
 void Camera::CheckForMovementInput(float deltaTime) {

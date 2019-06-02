@@ -56,7 +56,6 @@ bool Game::OnStop() {
 }
 
 bool Game::OnUpdate(float deltaTime) {
-	m_camera->Update(deltaTime);
 	
 	//m_meshParent->SetPos(
 	//	(float)m_meshParent->GetPos().x,
@@ -66,6 +65,8 @@ bool Game::OnUpdate(float deltaTime) {
 
 	m_meshParent->SetRotZ(rotation += deltaTime * 30);
 	m_meshParent->Update();
+
+	m_camera->Update(deltaTime);
 
 	return true;
 }
