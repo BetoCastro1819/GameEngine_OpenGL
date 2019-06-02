@@ -26,7 +26,7 @@ bool Game::OnStart() {
 	if (!m_meshParent->LoadWithAssimp("suzanne.obj")) {
 		return false;
 	}
-	m_meshParent->SetPos(-3, 0, 0);
+	m_meshParent->SetPos(0, 0, 0);
 
 	m_meshChild = new Mesh(m_renderer, m_material, "uvtemplate.bmp");
 	if (!m_meshChild->LoadWithAssimp("suzanne.obj")) {
@@ -40,10 +40,13 @@ bool Game::OnStart() {
 
 
 	m_meshParent->AddChild(m_meshChild);
-	m_meshChild->SetPos(3, 0, 0);
+	m_meshChild->SetPos(6, 0, 0);
 
 	m_meshChild->AddChild(m_meshChild2);
 	m_meshChild2->SetPos(3, 0, 0);
+	
+
+	m_camera->SetPosition(0, 0, 20);
 
 	rotation = 10.0f;
 	
@@ -57,13 +60,10 @@ bool Game::OnStop() {
 
 bool Game::OnUpdate(float deltaTime) {
 	
-	//m_meshParent->SetPos(
-	//	(float)m_meshParent->GetPos().x,
-	//	sin(rotation += deltaTime), 
-	//	(float)m_meshParent->GetPos().z
-	//);
-
 	m_meshParent->SetRotZ(rotation += deltaTime * 30);
+	m_meshChild->SetRotZ(rotation);
+	m_meshChild2->SetRotZ(rotation);
+
 	m_meshParent->Update();
 
 	m_camera->Update(deltaTime);

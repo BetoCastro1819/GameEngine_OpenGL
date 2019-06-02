@@ -28,7 +28,7 @@ bool Window::Start() {
 	_window = glfwCreateWindow(_width, _height, _name, NULL, NULL);
 	if (!_window) {
 		printf("ERROR\n");
-		fprintf(stderr, "Fallo al crear Window\n");
+		fprintf(stderr, "Failed to initialize window\n");
 		getchar();
 		glfwTerminate();
 		return false;

@@ -64,7 +64,8 @@ public:
 	// Rotate around origin at "radius" distance
 	void RotateAround(glm::vec3 target, float distFromTarget, float speed, float deltaTime);
 
-	void SetPosition(glm::vec3 worldPos) { m_Pos = worldPos; }
+	void SetPosition(const glm::vec3& worldPos);
+	void SetPosition(float x, float y, float z);
 	glm::vec3 GetPosition() const { return m_Pos; }
 
 	// Movement

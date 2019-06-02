@@ -12,18 +12,13 @@ Camera::Camera(Renderer* renderer, Window* window) {
 	m_World.foward = glm::vec3(0, 0, 1);
 
 	// Initial position and rotation
-	m_Pos = glm::vec3(0, 0, 10);
+	m_Pos = glm::vec3(0, 0, 0);
 	m_Rot = glm::vec3(0);
 	m_RotationMat = glm::mat4(1.0f);
 	Yaw(180);
 
 	// Camera will start by looking at world origin
 	m_CameraTarget = glm::vec3(0, 0, 0);
-
-	// Setup Unit vectors
-	m_CameraFoward = glm::normalize(m_CameraTarget - m_Pos);
-	m_CameraRight = glm::normalize(glm::cross(m_World.up, m_CameraFoward));
-	m_CameraUp = glm::normalize(glm::cross(m_CameraFoward, m_CameraRight));
 
 	// Init speeds
 	m_Speed	= 5.0f;
@@ -32,13 +27,25 @@ Camera::Camera(Renderer* renderer, Window* window) {
 	// Init timer
 	m_Timer = 0.0f;
 	
+	UpdateUnitVectors();
 	UpdateViewMatrix();
 }
 
 Camera::~Camera() {
 }
 
-// Movement
+void Camera::SetPosition(const glm::vec3& worldPos) {
+	m_Pos = worldPos;
+	UpdateViewMatrix();
+
+}
+
+void Camera::SetPosition(float x, float y, float z) { 
+	m_Pos = glm::vec3(x, y, z); 
+	UpdateViewMatrix();
+}
+
+
 void Camera::Walk(float speed) {
 	m_Pos += m_CameraFoward * speed;
 }
