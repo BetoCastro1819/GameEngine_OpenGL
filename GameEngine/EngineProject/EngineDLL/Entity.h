@@ -1,20 +1,22 @@
 #pragma once
 #include "Renderer.h"
 #include "SceneNode.h"
+#include "Component.h"
 
 class ENGINEDLL_API Entity : public SceneNode {
+private:
+	list<Component*> m_components;
+
 protected:
 	Renderer* m_renderer;
-
-	//glm::vec3 m_position;
-	//glm::vec3 m_scale;
-	//glm::vec3 m_rotation;
-
 
 public:
 	Entity(Renderer* renderer);
 	~Entity();		
-	virtual void Draw() = 0;
+	//virtual void Draw() = 0;
+
+	void AddComponent(Component* component) { m_components.push_front(component); }
+
 	void SetPos(float x, float y, float z);
 	void SetScale(float x, float y, float z);
 	void SetRotX(float angle);

@@ -1,6 +1,8 @@
 #include "Transform.h"
 
 Transform::Transform() {
+	SetName("Transform");
+
 	m_modelMatrix = glm::mat4(1.0f);
 
 	m_translateMatrix = glm::mat4(1.0f);
@@ -58,11 +60,6 @@ void Transform::SetRotZ(float angle) {
 
 void Transform::UpdateModelMatrix() {
 	m_modelMatrix = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
-
-	//if (m_parent != nullptr)
-	//	m_modelMatrix = m_parent->GetMatrix() * m_modelMatrix;
-	//
-	//UpdateChildrenTransform();
 }
 
 void Transform::SetModelMatrix(const glm::mat4& modelMatrix) {

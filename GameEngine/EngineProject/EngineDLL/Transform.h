@@ -1,9 +1,10 @@
 #pragma once
 #include "Exports.h"
+#include "Component.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-class ENGINEDLL_API Transform {
+class ENGINEDLL_API Transform  : public Component {
 private:
 	glm::vec3 m_position;
 	glm::vec3 m_scale;
@@ -17,6 +18,8 @@ private:
 public:
 	Transform();
 	~Transform() { }
+
+	void Update() override { }
 
 	glm::vec3 GetPosition() const { return m_position; }
 	glm::vec3 GetScale() const { return m_scale; }

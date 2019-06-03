@@ -11,29 +11,25 @@ void SceneNode::AddChild(SceneNode* child) {
 	}
 }
 
-void SceneNode::Update() {
+void SceneNode::Update(float deltaTime) {
 	for (std::list<SceneNode*>::iterator iter = m_childrenList.begin();
 		iter != m_childrenList.end(); iter++) {
-		(*iter)->Update();
+		(*iter)->Update(deltaTime);
 	}
 }
 
 void SceneNode::UpdateModelMatrix() {
 	m_transform.UpdateModelMatrix();
-	//m_modelMatrix = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
 
 	if (m_parent != nullptr)
 		m_transform.SetModelMatrix(m_parent->GetMatrix() * m_transform.GetModelMatrix());
-		//m_modelMatrix = m_parent->GetMatrix() * m_modelMatrix;
 
 	UpdateChildrenTransform();
 }
 
 void SceneNode::UpdateChildrenTransform() {
-	for (std::list<SceneNode*>::iterator iter = m_childrenList.begin();
-		iter != m_childrenList.end(); iter++)
-	{
-		//(*iter)->UpdateLocalTransform(m_modelMatrix);
+	std::list<SceneNode*>::iterator iter;
+	for (iter = m_childrenList.begin();	iter != m_childrenList.end(); iter++) {
 		(*iter)->UpdateLocalTransform(m_transform.GetModelMatrix());
 		(*iter)->UpdateModelMatrix();
 	}
@@ -41,7 +37,6 @@ void SceneNode::UpdateChildrenTransform() {
 
 void SceneNode::UpdateLocalTransform(const glm::mat4& parentMatrix) {
 	m_transform.SetModelMatrix(parentMatrix * m_transform.GetModelMatrix());
-	//m_modelMatrix = parentMatrix * m_modelMatrix;
 }
 
 void SceneNode::Release() {
@@ -49,10 +44,10 @@ void SceneNode::Release() {
 }
 
 SceneNode::~SceneNode() {
-	DestroyAllChildren();
+	Destroy();
 }
 
-void SceneNode::DestroyAllChildren() {
+void SceneNode::Destroy() {
 	for (std::list<SceneNode*>::iterator iter = m_childrenList.begin();
 		iter != m_childrenList.end(); iter++) {
 		(*iter)->Release();

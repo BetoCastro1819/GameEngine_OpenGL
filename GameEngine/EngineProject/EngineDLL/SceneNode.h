@@ -12,18 +12,13 @@ protected:
 	std::list<SceneNode*> m_childrenList;
 	SceneNode* m_parent;
 
-	//glm::mat4 m_modelMatrix;
-	//glm::mat4 m_translateMatrix;
-	//glm::mat4 m_rotateMatrix;
-	//glm::mat4 m_scaleMatrix;
-
 public:
 	SceneNode() : m_parent(nullptr) { }
 	virtual ~SceneNode();
 	void Release();
 
-	virtual void Update();
-	void DestroyAllChildren();
+	virtual void Update(float deltaTime);
+	void Destroy();
 	void AddChild(SceneNode* child);
 	void UpdateLocalTransform(const glm::mat4& parentMatrix);
 	glm::mat4 GetMatrix() { return m_transform.GetModelMatrix(); }

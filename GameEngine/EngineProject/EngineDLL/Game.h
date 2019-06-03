@@ -1,19 +1,13 @@
 #pragma once
 #include <iostream>
 #include "GameBase.h"
-#include "Material.h"
-#include "Mesh.h"
+#include "Scene.h"
 
 using namespace std;
 
 class Game : public GameBase {
 protected:
-	Material* m_material;
-	Mesh* m_meshParent;
-	Mesh* m_meshChild;
-	Mesh* m_meshChild2;
-	
-	float rotation;
+	Scene* m_scene;
 
 	bool OnStart() override;
 	bool OnStop() override;

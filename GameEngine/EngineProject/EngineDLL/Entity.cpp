@@ -7,6 +7,13 @@ Entity::Entity(Renderer* renderer)	 {
 Entity::~Entity() {
 }
 
+//void Entity::Update() {
+//	for (std::list<Component*>::iterator iter = m_components.begin();
+//		iter != m_components.end(); iter++) {
+//		(*iter)->Update();
+//	}
+//}
+
 void Entity::SetPos(float x, float y, float z) {
 	m_transform.SetPosition(glm::vec3(x, y, z));
 	UpdateModelMatrix();

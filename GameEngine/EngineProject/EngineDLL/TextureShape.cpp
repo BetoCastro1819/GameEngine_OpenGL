@@ -134,7 +134,8 @@ TextureShape::~TextureShape() {
 }
 
 void TextureShape::DrawTextureShape() {
-	Draw();
+	float deltaTime = 0;
+	Update(deltaTime);
 	m_renderer->BindTexture(_texture);
 	m_renderer->SetTextureSampler(_textureID);
 	m_renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, _drawMode);

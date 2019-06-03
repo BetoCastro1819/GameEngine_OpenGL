@@ -57,13 +57,13 @@ private:
 		unsigned short & result
 	);
 
-	void Draw() override;
+	void Draw();
 
 public:
 	Mesh(Renderer* renderer, Material* material, const char* texturePath);
 	~Mesh() {}
 	
-	void Update() override;
+	void Update(float deltaTime) override;
 
 	bool LoadOBJFromFile(const char* filePath);
 	bool LoadWithAssimp(const char* filePath);

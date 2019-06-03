@@ -12,7 +12,7 @@ Shape::~Shape() {
 	Dispose();
 }
 
-void Shape::Draw() {
+void Shape::Update(float deltaTime) {
 	if (_mat) {
 		BindMaterial();
 	}

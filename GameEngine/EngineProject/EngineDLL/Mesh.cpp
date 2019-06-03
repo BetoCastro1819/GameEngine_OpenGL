@@ -23,12 +23,9 @@ void Mesh::SetTexture(const char* filePath) {
 	m_textureID = TextureLoader::LoadFromFile_BMP(filePath);
 }
 
-void Mesh::Update() {
-	// Mesh update
-
+void Mesh::Update(float deltaTime) {
 	Draw();
-
-	SceneNode::Update();
+	SceneNode::Update(deltaTime);
 }
 
 void Mesh::Draw() {

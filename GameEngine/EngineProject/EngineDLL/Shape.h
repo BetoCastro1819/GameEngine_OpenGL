@@ -17,7 +17,7 @@ protected:
 public:
 	Shape(Renderer* renderer);
 	~Shape();
-	void Draw() override;
+	void Update(float deltaTime) override;
 	void SetVertices(float* vrtxs, const int& count);
 	void SetColorBufferData(float* colorVrtxs, const int& count);
 
