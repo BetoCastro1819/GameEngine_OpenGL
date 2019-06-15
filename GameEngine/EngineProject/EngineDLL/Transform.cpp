@@ -1,7 +1,8 @@
 #include "Transform.h"
+#include "Entity.h"
 
-Transform::Transform() {
-	SetName("Transform");
+Transform::Transform(Entity* entity) : Component(entity) {
+	SetType(ComponentType::TRANSFORM);
 
 	m_modelMatrix = glm::mat4(1.0f);
 
@@ -13,6 +14,22 @@ Transform::Transform() {
 	m_scale[0] = m_scale[1] = m_scale[2] = 1.0f;
 	m_rotation[0] = m_rotation[1] = m_rotation[2] = 0.0f;
 }
+
+void Transform::Update(float deltaTime) {
+	UpdateModelMatrix();
+}
+
+void Transform::UpdateModelMatrix() {
+	m_modelMatrix = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
+
+	Transform* parentTransform = m_entity->GetParent()->GetTransform();
+	if (parentTransform != nullptr)
+		m_modelMatrix = parentTransform->GetModelMatrix() * m_modelMatrix;
+}
+
+//void Transform::UpdateLocalTransform(const glm::mat4& parentMatrix) {
+//	m_transform.SetModelMatrix(parentMatrix * m_transform.GetModelMatrix());
+//}
 
 void Transform::SetPosition(const glm::vec3& position) {
 	m_position = position;
@@ -57,12 +74,3 @@ void Transform::SetRotZ(float angle) {
 
 	m_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), m_rotation);
 }
-
-void Transform::UpdateModelMatrix() {
-	m_modelMatrix = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
-}
-
-void Transform::SetModelMatrix(const glm::mat4& modelMatrix) {
-	m_modelMatrix = modelMatrix;
-}
-

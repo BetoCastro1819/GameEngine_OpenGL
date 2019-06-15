@@ -1,46 +1,31 @@
 #include "SceneNode.h"
+#include "Transform.h"
 
 void SceneNode::SetParent(SceneNode* parent) {
 	m_parent = parent;
 }
 
-void SceneNode::AddChild(SceneNode* child) {
-	if (child != nullptr) {
-		m_childrenList.push_back(child);
-		child->SetParent(this);
+void SceneNode::AddNode(SceneNode* node) {
+	if (node != nullptr) {
+		m_nodeList.push_back(node);
+		node->SetParent(this);
 	}
 }
 
 void SceneNode::Update(float deltaTime) {
-	for (std::list<SceneNode*>::iterator iter = m_childrenList.begin();
-		iter != m_childrenList.end(); iter++) {
+	for (std::list<SceneNode*>::iterator iter = m_nodeList.begin();
+		iter != m_nodeList.end(); iter++) {
 		(*iter)->Update(deltaTime);
 	}
 }
 
-void SceneNode::UpdateModelMatrix() {
-	m_transform.UpdateModelMatrix();
-
-	if (m_parent != nullptr)
-		m_transform.SetModelMatrix(m_parent->GetMatrix() * m_transform.GetModelMatrix());
-
-	UpdateChildrenTransform();
-}
-
-void SceneNode::UpdateChildrenTransform() {
-	std::list<SceneNode*>::iterator iter;
-	for (iter = m_childrenList.begin();	iter != m_childrenList.end(); iter++) {
-		(*iter)->UpdateLocalTransform(m_transform.GetModelMatrix());
-		(*iter)->UpdateModelMatrix();
+Component* SceneNode::GetComponent(ComponentType componentType) {
+	for (std::list<Component*>::iterator iter = m_componentList.begin();
+		iter != m_componentList.end(); iter++) {
+		if ((*iter)->GetType() == componentType)
+			return *iter;
 	}
-}
-
-void SceneNode::UpdateLocalTransform(const glm::mat4& parentMatrix) {
-	m_transform.SetModelMatrix(parentMatrix * m_transform.GetModelMatrix());
-}
-
-void SceneNode::Release() {
-	delete this;
+	return nullptr;
 }
 
 SceneNode::~SceneNode() {
@@ -48,9 +33,16 @@ SceneNode::~SceneNode() {
 }
 
 void SceneNode::Destroy() {
-	for (std::list<SceneNode*>::iterator iter = m_childrenList.begin();
-		iter != m_childrenList.end(); iter++) {
+	for (std::list<SceneNode*>::iterator iter = m_nodeList.begin();
+		iter != m_nodeList.end(); iter++) {
 		(*iter)->Release();
 	}
-	m_childrenList.clear();
+	m_nodeList.clear();
 }
+
+void SceneNode::Release() {
+	delete this;
+}
+
+SceneNode* SceneNode::GetParent() { return m_parent; }
+Transform* SceneNode::GetTransform() { return m_transform; }

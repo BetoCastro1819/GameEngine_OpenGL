@@ -1,7 +1,7 @@
 #include "Mesh.h"
 #include "OBJ_Loader.h"
 #include "TextureLoader.h"
-
+#include "Transform.h"
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
@@ -29,7 +29,7 @@ void Mesh::Update(float deltaTime) {
 }
 
 void Mesh::Draw() {
-	m_renderer->UpdateModelMatrix(m_transform.GetModelMatrix());
+	m_renderer->UpdateModelMatrix(GetTransform()->GetModelMatrix());
 	m_renderer->UpdateMVP();
 
 	m_renderer->BindMaterial(m_programID);

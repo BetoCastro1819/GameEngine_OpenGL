@@ -1,4 +1,6 @@
 #include "Sprite.h"
+#include "Entity.h"
+#include "Transform.h"
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
@@ -83,7 +85,7 @@ void Sprite::DrawSprite() {
 	m_renderer->SetTextureSampler(_textureID);
 	m_renderer->BindBuffer(_uvBufferData, _uvVrtxCount, 1, 2, _drawMode);
 
-	m_renderer->UpdateModelMatrix(m_transform.GetModelMatrix());
+	m_renderer->UpdateModelMatrix(GetTransform()->GetModelMatrix());
 	m_renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 }
@@ -158,22 +160,22 @@ void Sprite::SetAnimationSpeed(float animationSpeed) {
 void Sprite::HandleInput(Window* window, float deltaTime) {
 	float speed = 250.0f * deltaTime;
 
-	glm::vec3 position = GetPos();
+	glm::vec3 position = GetTransform()->GetPosition();
 	// Move forward
 	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_UP) == GLFW_PRESS) {
-		SetPos(position.x, position.y + speed, position.z);
+		GetTransform()->SetPosition(position.x, position.y + speed, position.z);
 	}
 	// Move backward
 	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_DOWN) == GLFW_PRESS) {
-		SetPos(position.x, position.y - speed, position.z);
+		GetTransform()->SetPosition(position.x, position.y - speed, position.z);
 	}
 	// Strafe right
 	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_RIGHT) == GLFW_PRESS) {
-		SetPos(position.x + speed, position.y, position.z);
+		GetTransform()->SetPosition(position.x + speed, position.y, position.z);
 	}
 	// Strafe left
 	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_LEFT) == GLFW_PRESS) {
-		SetPos(position.x - speed, position.y, position.z);
+		GetTransform()->SetPosition(position.x - speed, position.y, position.z);
 	}
 }
 

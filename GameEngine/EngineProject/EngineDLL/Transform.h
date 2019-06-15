@@ -16,10 +16,15 @@ private:
 	glm::mat4 m_scaleMatrix;
 
 public:
-	Transform();
+	Transform(Entity* entity);
 	~Transform() { }
 
-	void Update() override { }
+	void Update(float deltaTime) override;
+
+	glm::mat4 GetModelMatrix() const { return m_modelMatrix; }
+	glm::mat4 GetMatrix() { return m_modelMatrix; }
+	void UpdateModelMatrix();
+	//void UpdateLocalTransform(const glm::mat4& parentMatrix);
 
 	glm::vec3 GetPosition() const { return m_position; }
 	glm::vec3 GetScale() const { return m_scale; }
@@ -33,9 +38,5 @@ public:
 	void SetRotX(float angle);
 	void SetRotY(float angle);
 	void SetRotZ(float angle);
-	
-	void SetModelMatrix(const glm::mat4& modelMatrix);
-	glm::mat4 GetModelMatrix() const { return m_modelMatrix; }
-	void UpdateModelMatrix();
 };
 

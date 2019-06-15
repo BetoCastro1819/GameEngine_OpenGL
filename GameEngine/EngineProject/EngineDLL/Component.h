@@ -1,18 +1,27 @@
 #pragma once
 #include "Exports.h"
 
+class Entity;
+
+enum ComponentType {
+	DEFAULT,
+	TRANSFORM,
+	MESH_RENDERER
+};
+
 class ENGINEDLL_API Component {
 private:
-	const char* m_name;
+	ComponentType m_type;
 
 protected:
-	void SetName(const char* name) { m_name = name; }
+	Entity* m_entity;
+	void SetType(ComponentType type) { m_type = type; }
 
 public:
-	Component();
+	Component(Entity* entity);
 	~Component();
 
-	virtual void Update() = 0;
-	const char* GetName() { return m_name; }
+	virtual void Update(float deltaTime) = 0;
+	const ComponentType GetType() { return m_type; }
 };
 

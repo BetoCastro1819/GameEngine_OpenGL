@@ -1,6 +1,8 @@
 #include "Component.h"
 
-Component::Component() {
+Component::Component(Entity* entity) {
+	SetType(ComponentType::DEFAULT);
+	m_entity = entity;
 }
 
 Component::~Component() {

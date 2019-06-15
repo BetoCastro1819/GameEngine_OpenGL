@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include "Transform.h"
 
 Shape::Shape(Renderer* renderer) : Entity(renderer) {
 	_dispose = false;
@@ -17,7 +18,7 @@ void Shape::Update(float deltaTime) {
 		BindMaterial();
 	}
 
-	m_renderer->UpdateModelMatrix(m_transform.GetModelMatrix());
+	m_renderer->UpdateModelMatrix(GetTransform()->GetModelMatrix());
 	m_renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 	// Bind Vertex Buffer (Attribute index = 0)
