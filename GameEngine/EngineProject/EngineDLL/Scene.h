@@ -9,7 +9,9 @@
 class ENGINEDLL_API Scene : public Entity {
 private:
 	Camera* m_camera;
-	Suzzane* m_suzzane;
+	Suzzane* m_suzzane1;
+	Suzzane* m_suzzane2;
+	Suzzane* m_suzzane3;
 
 	//Material* m_material;
 	//Mesh* m_meshParent;
