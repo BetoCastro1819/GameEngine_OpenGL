@@ -6,7 +6,8 @@ class Entity;
 enum ComponentType {
 	DEFAULT,
 	TRANSFORM,
-	MESH_RENDERER
+	MESH,
+	MATERIAL
 };
 
 class ENGINEDLL_API Component {

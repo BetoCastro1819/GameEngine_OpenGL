@@ -1,11 +1,14 @@
 #include "Material.h"
+#include "Entity.h"
+
 #include <GL\glew.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
 
-Material::Material() {
+Material::Material(Entity* entity) : Component(entity) {
+	SetType(ComponentType::MATERIAL);
 }
 
 Material::~Material() {

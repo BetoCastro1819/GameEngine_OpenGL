@@ -13,6 +13,11 @@ void SceneNode::AddNode(SceneNode* node) {
 }
 
 void SceneNode::Update(float deltaTime) {
+	for (std::list<Component*>::iterator iter = m_componentList.begin();
+		iter != m_componentList.end(); iter++) {
+		(*iter)->Update(deltaTime);
+	}
+
 	for (std::list<SceneNode*>::iterator iter = m_nodeList.begin();
 		iter != m_nodeList.end(); iter++) {
 		(*iter)->Update(deltaTime);

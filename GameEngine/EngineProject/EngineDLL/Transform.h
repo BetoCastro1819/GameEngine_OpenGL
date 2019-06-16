@@ -24,7 +24,6 @@ public:
 	glm::mat4 GetModelMatrix() const { return m_modelMatrix; }
 	glm::mat4 GetMatrix() { return m_modelMatrix; }
 	void UpdateModelMatrix();
-	//void UpdateLocalTransform(const glm::mat4& parentMatrix);
 
 	glm::vec3 GetPosition() const { return m_position; }
 	glm::vec3 GetScale() const { return m_scale; }

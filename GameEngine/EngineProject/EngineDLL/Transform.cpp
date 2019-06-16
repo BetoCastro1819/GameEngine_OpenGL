@@ -22,14 +22,11 @@ void Transform::Update(float deltaTime) {
 void Transform::UpdateModelMatrix() {
 	m_modelMatrix = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
 
-	Transform* parentTransform = m_entity->GetParent()->GetTransform();
-	if (parentTransform != nullptr)
+	if (m_entity->GetParent() != nullptr) {
+		Transform* parentTransform = m_entity->GetParent()->GetTransform();
 		m_modelMatrix = parentTransform->GetModelMatrix() * m_modelMatrix;
+	}
 }
-
-//void Transform::UpdateLocalTransform(const glm::mat4& parentMatrix) {
-//	m_transform.SetModelMatrix(parentMatrix * m_transform.GetModelMatrix());
-//}
 
 void Transform::SetPosition(const glm::vec3& position) {
 	m_position = position;

@@ -12,14 +12,14 @@ private:
 
 protected:
 	Transform* m_transform;
+	SceneNode* m_parent;
 
 	std::list<SceneNode*> m_nodeList;
 	std::list<Component*> m_componentList;
 
-	SceneNode* m_parent;
-
 public:
-	SceneNode() : m_parent(nullptr), m_transform(nullptr) { }
+	SceneNode() : m_parent(nullptr), m_transform(nullptr) {	}
+
 	virtual ~SceneNode();
 	void Release();
 
