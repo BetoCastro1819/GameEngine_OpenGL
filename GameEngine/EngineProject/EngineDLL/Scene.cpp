@@ -19,17 +19,17 @@ bool Scene::Start() {
 	m_suzzane3->GetTransform()->SetPosition(3, 0, 0);
 	m_suzzane2->AddNode(m_suzzane3);
 
-	m_rotationSpeed = 10;
+	m_rotationSpeed = 1;
 
 	return true;
 }
 
 void Scene::Update(float deltaTime) {
-	m_rotationSpeed += 30 * deltaTime;
+	float speed = m_rotationSpeed * deltaTime;
 
-	m_suzzane1->GetTransform()->SetRotZ(m_rotationSpeed);
-	m_suzzane2->GetTransform()->SetRotZ(m_rotationSpeed);
-	m_suzzane3->GetTransform()->SetRotZ(m_rotationSpeed);
+	m_suzzane1->GetTransform()->Roll(m_rotationSpeed);
+	m_suzzane2->GetTransform()->Roll(m_rotationSpeed);
+	m_suzzane3->GetTransform()->Roll(m_rotationSpeed);
 
 	SceneNode::Update(deltaTime);
 }

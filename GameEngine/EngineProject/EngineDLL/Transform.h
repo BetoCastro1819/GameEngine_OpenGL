@@ -4,6 +4,12 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+struct World {
+	static glm::vec3 up;
+	static glm::vec3 right;
+	static glm::vec3 foward;
+};
+
 class ENGINEDLL_API Transform  : public Component {
 private:
 	glm::vec3 m_position;
@@ -15,7 +21,13 @@ private:
 	glm::mat4 m_rotateMatrix;
 	glm::mat4 m_scaleMatrix;
 
+	void UpdateUnitVectors();
+
 public:
+	glm::vec3 right;
+	glm::vec3 up;
+	glm::vec3 foward;
+
 	Transform(Entity* entity);
 	~Transform() { }
 
@@ -34,8 +46,15 @@ public:
 	void SetScale(const glm::vec3& scale);
 	void SetScale(float x, float y, float z);
 
-	void SetRotX(float angle);
-	void SetRotY(float angle);
-	void SetRotZ(float angle);
+	// Transforms
+	void Walk(float speed);
+	void Strafe(float speed);
+	void Pitch(float angle);
+	void Yaw(float angle);
+	void Roll(float angle);
+
+	//void SetRotX(float angle);
+	//void SetRotY(float angle);
+	//void SetRotZ(float angle);
 };
 

@@ -13,7 +13,7 @@ bool Game::OnStart() {
 	m_scene = new Scene(m_renderer, m_camera);
 	if (!m_scene->Start())
 		return false;
-	m_camera->SetPosition(0, 0, 5);
+	m_camera->GetTransform()->SetPosition(0, 0, 5);
 	return true;
 }
 
