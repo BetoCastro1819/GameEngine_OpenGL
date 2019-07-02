@@ -202,13 +202,8 @@ void Renderer::UpdateModelMatrix(glm::mat4 matrix) {
 	_model = matrix;
 }
 
-void Renderer::MultiplyModelMatrix(glm::mat4 matrix) {
-	//To multiply model's matrix, with parent's model matrix
-}
-
 void Renderer::UpdateMVP() {
-	// Our ModelViewProjection : multiplication of our 3 matrices
-	MVP = _projection * _view * _model; // Matrix multiplication reads from right to left
+	MVP = _projection * _view * _model; 
 }
 
 unsigned int Renderer::SetMatrixID(unsigned int programID) {

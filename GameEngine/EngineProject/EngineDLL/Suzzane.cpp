@@ -9,7 +9,7 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	AddComponent(m_material);
 
 	m_mesh = new Mesh(this, renderer, m_material, "uvtemplate.bmp");
-	m_mesh->LoadWithAssimp("suzanne.obj");
+	m_mesh->LoadWithAssimp("nanosuit.obj");
 	AddComponent(m_mesh);
 }
 

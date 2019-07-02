@@ -9,15 +9,8 @@
 class ENGINEDLL_API Scene : public Entity {
 private:
 	Camera* m_camera;
-	Suzzane* m_suzzane1;
-	Suzzane* m_suzzane2;
-	Suzzane* m_suzzane3;
+	Suzzane* m_cubeTest;
 
-	//Material* m_material;
-	//Mesh* m_meshParent;
-	//Mesh* m_meshChild;
-	//Mesh* m_meshChild2;
-	
 	float m_rotationSpeed;
 
 public:

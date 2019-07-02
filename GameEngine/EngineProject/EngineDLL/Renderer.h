@@ -67,7 +67,6 @@ public:
 	// Matrix operations
 	void LoadIdentityMatrix();
 	void UpdateModelMatrix(glm::mat4 matrix);
-	void MultiplyModelMatrix(glm::mat4 matrix);
 	void UpdateMVP();
 	void SendTransformationToShader(unsigned int matrixID);
 	unsigned int SetMatrixID(unsigned int programID);

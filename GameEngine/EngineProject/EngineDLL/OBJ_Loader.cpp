@@ -116,7 +116,7 @@ bool OBJ_Loader::loadWithAssimp(
 		return false;
 	}
 	const aiMesh* mesh = scene->mMeshes[0]; // In this simple example code we always use the 1rst mesh (in OBJ files there is often only one anyway)
-	
+
 	// Fill vertices positions
 	vertices.reserve(mesh->mNumVertices);
 	for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
@@ -147,5 +147,7 @@ bool OBJ_Loader::loadWithAssimp(
 		indices.push_back(mesh->mFaces[i].mIndices[2]);
 	}
 	printf("SUCCESS\n");
+	printf("Num of meshes: %d \n", scene->mNumMeshes);
+
 	return true;
 }
