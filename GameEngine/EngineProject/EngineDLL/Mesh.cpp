@@ -1,10 +1,12 @@
 #include "Mesh.h"
-#include "OBJ_Loader.h"
 #include "TextureLoader.h"
 #include "Transform.h"
 #include "Material.h"
 #include "Renderer.h"
 #include "Entity.h"
+#include <assimp\Importer.hpp> 
+#include <assimp\scene.h>           
+#include <assimp\postprocess.h>
 
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
@@ -12,12 +14,9 @@
 
 Mesh::Mesh(Entity* entity, Renderer* renderer, Material* material, const char* texturePath) : Component(entity) {
 	SetType(ComponentType::MESH);
-
 	m_renderer = renderer;
-
 	m_material = material;
 	SetShader(m_material->GetShaderID());
-
 	SetTexture(texturePath);
 }
 
@@ -68,19 +67,50 @@ void Mesh::Draw() {
 	m_renderer->DisableVertexArrays(2);
 }
 
-bool Mesh::LoadWithAssimp(const char* filePath) {
-	if (!OBJ_Loader::loadWithAssimp(
-		filePath,
-		m_indices,
-		m_indexedVertices,
-		m_indexedUVs,
-		m_indexedNormals
-	)) {
-		return false;
-	}
+bool Mesh::LoadModel(const char* filePath) {
+	if (!LoadModelWithAssimp(filePath)) return false;
 	GenerateBuffers();
 	return true;
 }
+
+bool Mesh::LoadModelWithAssimp(const char* filePath) {
+	printf("Importing file using Assimp from %s ", filePath);
+	Assimp::Importer importer;
+
+	const aiScene* scene = importer.ReadFile(filePath, aiProcess_Triangulate| aiProcess_FlipUVs);
+	if (!scene) {
+		printf("ERROR\n");
+		return false;
+	}
+	const aiMesh* mesh = scene->mMeshes[0]; // In this simple example code we always use the 1rst mesh (in OBJ files there is often only one anyway)
+
+
+	m_indexedVertices.reserve(mesh->mNumVertices);
+	m_indexedUVs.reserve(mesh->mNumVertices);
+	m_indexedNormals.reserve(mesh->mNumVertices);
+	for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+		aiVector3D pos = mesh->mVertices[i];
+		m_indexedVertices.push_back(glm::vec3(pos.x, pos.y, pos.z));
+
+		aiVector3D UVW = mesh->mTextureCoords[0][i]; // Assume only 1 set of UV coords; AssImp supports 8 UV sets.
+		m_indexedUVs.push_back(glm::vec2(UVW.x, UVW.y));
+
+		aiVector3D n = mesh->mNormals[i];
+		m_indexedNormals.push_back(glm::vec3(n.x, n.y, n.z));
+	}
+
+	// Fill face indices
+	m_indices.reserve(3 * mesh->mNumFaces);
+	for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
+		// Assume the model has only triangles.
+		m_indices.push_back(mesh->mFaces[i].mIndices[0]);
+		m_indices.push_back(mesh->mFaces[i].mIndices[1]);
+		m_indices.push_back(mesh->mFaces[i].mIndices[2]);
+	}
+	printf("SUCCESS\n");
+	printf("%d different meshes found in %s\n", scene->mNumMeshes, filePath);
+}
+
 
 void Mesh::GenerateBuffers() {
 	m_vertexBuffer = m_renderer->GenBuffer(&m_indexedVertices[0], m_indexedVertices.size() * sizeof(glm::vec3));

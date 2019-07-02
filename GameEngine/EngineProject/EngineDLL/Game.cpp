@@ -18,7 +18,7 @@ bool Game::OnStart() {
 }
 
 bool Game::OnStop() {
-	cout << "Stoping Game" << endl;		
+	cout << "\nStoping Game" << endl;		
 	return false;
 }
 

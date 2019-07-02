@@ -39,7 +39,7 @@ bool Window::Start() {
 }
 
 bool Window::Stop() {
-	cout << "Closing Window\n" << endl;
+	cout << "Closing Window\n";
 	if (_window != NULL)	
 		glfwDestroyWindow((GLFWwindow*)_window);
 

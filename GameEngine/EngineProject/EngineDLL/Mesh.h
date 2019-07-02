@@ -31,6 +31,7 @@ private:
 	vector<glm::vec2> m_indexedUVs;
 	vector<glm::vec3> m_indexedNormals;
 	
+	bool LoadModelWithAssimp(const char* filePath);
 	void SetShader(unsigned int programId);
 	void SetTexture(const char* filePath);
 
@@ -43,5 +44,5 @@ public:
 	
 	void Update(float deltaTime) override;
 
-	bool LoadWithAssimp(const char* filePath);
+	bool LoadModel(const char* filePath);
 };
