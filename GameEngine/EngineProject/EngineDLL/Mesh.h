@@ -9,6 +9,7 @@
 class Renderer;
 class Material;
 class Entity;
+class aiMesh;
 
 using namespace std;
 
@@ -16,6 +17,7 @@ class ENGINEDLL_API Mesh : public Component {
 private:
 	Material* m_material;
 	Renderer* m_renderer;
+	vector<Mesh>* m_meshes;
 
 	unsigned int m_programID;
 	unsigned int m_lightID;
@@ -26,6 +28,8 @@ private:
 	unsigned int m_normalBuffer;
 	unsigned int m_elementsBuffer;
 
+	const char* m_texturePath;
+
 	vector<unsigned short> m_indices;
 	vector<glm::vec3> m_indexedVertices;
 	vector<glm::vec2> m_indexedUVs;
@@ -35,14 +39,15 @@ private:
 	void SetShader(unsigned int programId);
 	void SetTexture(const char* filePath);
 
-	void GenerateBuffers();
-	void Draw();
 
 public:
 	Mesh(Entity* entity, Renderer* renderer, Material* material, const char* texturePath);
-	~Mesh() {}
+	~Mesh();
 	
 	void Update(float deltaTime) override;
 
 	bool LoadModel(const char* filePath);
+	void ProcessMesh(aiMesh* mesh);
+	void GenerateBuffers();
+	void Draw();
 };

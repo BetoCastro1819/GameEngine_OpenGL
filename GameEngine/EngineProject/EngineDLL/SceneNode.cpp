@@ -40,7 +40,8 @@ SceneNode::~SceneNode() {
 void SceneNode::Destroy() {
 	for (std::list<SceneNode*>::iterator iter = m_nodeList.begin();
 		iter != m_nodeList.end(); iter++) {
-		(*iter)->Release();
+		if ((*iter) != nullptr)
+			(*iter)->Release();
 	}
 	m_nodeList.clear();
 }

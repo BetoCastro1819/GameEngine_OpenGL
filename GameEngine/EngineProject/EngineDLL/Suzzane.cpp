@@ -14,6 +14,8 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 }
 
 Suzzane::~Suzzane() {
+	if (m_material != nullptr) delete m_material;
+	if (m_mesh != nullptr) delete m_mesh;
 }
 
 void Suzzane::Update(float deltaTime) {

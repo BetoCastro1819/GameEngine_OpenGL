@@ -18,6 +18,7 @@ Mesh::Mesh(Entity* entity, Renderer* renderer, Material* material, const char* t
 	m_material = material;
 	SetShader(m_material->GetShaderID());
 	SetTexture(texturePath);
+	m_texturePath = texturePath;
 }
 
 void Mesh::SetShader(unsigned int programId) {
@@ -30,7 +31,8 @@ void Mesh::SetTexture(const char* filePath) {
 }
 
 void Mesh::Update(float deltaTime) {
-	Draw();
+	for (int i = 0; i < m_meshes->size(); i++)
+		(*m_meshes)[i].Draw();
 }
 
 void Mesh::Draw() {
@@ -68,8 +70,8 @@ void Mesh::Draw() {
 }
 
 bool Mesh::LoadModel(const char* filePath) {
-	if (!LoadModelWithAssimp(filePath)) return false;
-	GenerateBuffers();
+	if (!LoadModelWithAssimp(filePath)) 
+		return false;
 	return true;
 }
 
@@ -82,8 +84,25 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 		printf("ERROR\n");
 		return false;
 	}
-	const aiMesh* mesh = scene->mMeshes[0]; // In this simple example code we always use the 1rst mesh (in OBJ files there is often only one anyway)
 
+	if (scene->mNumMeshes > 0)
+		m_meshes = new vector<Mesh>();
+
+	for (int i = 0; i < scene->mNumMeshes; i++) {
+		
+		Mesh submesh = Mesh(m_entity, m_renderer, m_material, m_texturePath);
+		submesh.ProcessMesh(scene->mMeshes[i]);
+		submesh.GenerateBuffers();
+		m_meshes->push_back(submesh);
+	}
+
+	printf("SUCCESS\n");
+	printf("%d different meshes found in %s\n", scene->mNumMeshes, filePath);
+	printf("%d meshes pushed into vector\n", m_meshes->size());
+}
+
+void Mesh::ProcessMesh(aiMesh* mesh) {
+	//mesh = scene->mMeshes[i];
 
 	m_indexedVertices.reserve(mesh->mNumVertices);
 	m_indexedUVs.reserve(mesh->mNumVertices);
@@ -107,14 +126,16 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 		m_indices.push_back(mesh->mFaces[i].mIndices[1]);
 		m_indices.push_back(mesh->mFaces[i].mIndices[2]);
 	}
-	printf("SUCCESS\n");
-	printf("%d different meshes found in %s\n", scene->mNumMeshes, filePath);
 }
-
 
 void Mesh::GenerateBuffers() {
 	m_vertexBuffer = m_renderer->GenBuffer(&m_indexedVertices[0], m_indexedVertices.size() * sizeof(glm::vec3));
 	m_uvBuffer = m_renderer->GenBuffer(&m_indexedUVs[0], m_indexedUVs.size() * sizeof(glm::vec2));
 	m_normalBuffer = m_renderer->GenBuffer(&m_indexedNormals[0], m_indexedNormals.size() * sizeof(glm::vec3));
 	m_elementsBuffer = m_renderer->GenElementsBuffer(&m_indices[0], m_indices.size() * sizeof(unsigned short));
+}
+
+Mesh::~Mesh() {
+	if (m_meshes != nullptr)
+		delete m_meshes;
 }
