@@ -1,7 +1,7 @@
 #pragma once
 #include "Exports.h"
 #include "Component.h"
-#include <list>
+#include <vector>
 
 class Transform;
 enum ComponentType;
@@ -14,8 +14,8 @@ protected:
 	Transform* m_transform;
 	SceneNode* m_parent;
 
-	std::list<SceneNode*> m_nodeList;
-	std::list<Component*> m_componentList;
+	std::vector<SceneNode*> m_children;
+	std::vector<Component*> m_componentList;
 
 public:
 	SceneNode() : m_parent(nullptr), m_transform(nullptr) {	}
@@ -27,10 +27,11 @@ public:
 	void Destroy();
 	void AddNode(SceneNode* node);
 
-	void AddComponent(Component* component) { m_componentList.push_front(component); }
+	void AddComponent(Component* component) { m_componentList.push_back(component); }
 	Component* GetComponent(ComponentType componentType);
 
 	SceneNode* GetParent();
 	Transform* GetTransform();
+	SceneNode* GetChildrenByIndex(int index); 
 };
 

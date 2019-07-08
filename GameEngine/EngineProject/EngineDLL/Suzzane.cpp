@@ -11,6 +11,8 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	m_mesh = new Mesh(this, renderer, m_material, "uvtemplate.bmp");
 	m_mesh->LoadModel("crysis.obj");
 	AddComponent(m_mesh);
+
+	printf("\nNumber of children: %d", m_children.size());
 }
 
 Suzzane::~Suzzane() {

@@ -31,8 +31,7 @@ void Mesh::SetTexture(const char* filePath) {
 }
 
 void Mesh::Update(float deltaTime) {
-	for (int i = 0; i < m_meshes->size(); i++)
-		(*m_meshes)[i].Draw();
+	Draw();
 }
 
 void Mesh::Draw() {
@@ -84,26 +83,34 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 		printf("ERROR\n");
 		return false;
 	}
+	if (scene->mNumMeshes <= 0) return false;
 
-	if (scene->mNumMeshes > 0)
-		m_meshes = new vector<Mesh>();
+	ProcessMesh(scene->mMeshes[0]);
+	GenerateBuffers();
 
-	for (int i = 0; i < scene->mNumMeshes; i++) {
-		
-		Mesh submesh = Mesh(m_entity, m_renderer, m_material, m_texturePath);
-		submesh.ProcessMesh(scene->mMeshes[i]);
-		submesh.GenerateBuffers();
-		m_meshes->push_back(submesh);
+
+
+	for (int i = 1; i < scene->mNumMeshes; i++) {
+		Entity* entity = new Entity(m_renderer);
+		Mesh* mesh = new Mesh(entity, m_renderer, m_material, m_texturePath);
+		mesh->ProcessMesh(scene->mMeshes[i]);
+		mesh->GenerateBuffers();
+		entity->AddComponent(mesh);
+
+		m_entity->AddNode(entity);
 	}
 
 	printf("SUCCESS\n");
 	printf("%d different meshes found in %s\n", scene->mNumMeshes, filePath);
-	printf("%d meshes pushed into vector\n", m_meshes->size());
+	//printf("%d meshes pushed into vector\n", m_meshes.size());
 }
 
 void Mesh::ProcessMesh(aiMesh* mesh) {
-	//mesh = scene->mMeshes[i];
+	FillVBOinfo(mesh);
+	FillFaceIndices(mesh);
+}
 
+void Mesh::FillVBOinfo(aiMesh* mesh) {
 	m_indexedVertices.reserve(mesh->mNumVertices);
 	m_indexedUVs.reserve(mesh->mNumVertices);
 	m_indexedNormals.reserve(mesh->mNumVertices);
@@ -117,11 +124,11 @@ void Mesh::ProcessMesh(aiMesh* mesh) {
 		aiVector3D n = mesh->mNormals[i];
 		m_indexedNormals.push_back(glm::vec3(n.x, n.y, n.z));
 	}
+}
 
-	// Fill face indices
+void Mesh::FillFaceIndices(aiMesh* mesh) {
 	m_indices.reserve(3 * mesh->mNumFaces);
 	for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
-		// Assume the model has only triangles.
 		m_indices.push_back(mesh->mFaces[i].mIndices[0]);
 		m_indices.push_back(mesh->mFaces[i].mIndices[1]);
 		m_indices.push_back(mesh->mFaces[i].mIndices[2]);
@@ -135,7 +142,3 @@ void Mesh::GenerateBuffers() {
 	m_elementsBuffer = m_renderer->GenElementsBuffer(&m_indices[0], m_indices.size() * sizeof(unsigned short));
 }
 
-Mesh::~Mesh() {
-	if (m_meshes != nullptr)
-		delete m_meshes;
-}
