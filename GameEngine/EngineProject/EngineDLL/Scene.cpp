@@ -10,18 +10,14 @@ bool Scene::Start() {
 	m_cubeTest->GetTransform()->SetScale(0.5f, 0.5f, 0.5f);
 	AddNode(m_cubeTest);
 
-	//m_cubeTest->GetChildrenByIndex(0)->GetTransform()->SetPosition(10, 0, 0);
-
 	m_rotationSpeed = 10;
 
 	return true;
 }
 
 void Scene::Update(float deltaTime) {
-	float speed = m_rotationSpeed * deltaTime;
+	//float speed = m_rotationSpeed * deltaTime;
 	
-	m_cubeTest->GetTransform()->Yaw(speed);
-
 	SceneNode::Update(deltaTime);
 }
 

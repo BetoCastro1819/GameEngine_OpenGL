@@ -4,6 +4,5 @@
 PhysicsComponent::PhysicsComponent(Entity* entity) : Component(entity) {
 }
 
-PhysicsComponent::~PhysicsComponent()
-{
+PhysicsComponent::~PhysicsComponent() {
 }

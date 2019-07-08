@@ -240,7 +240,7 @@ class PxScene
 
 	@see PxPhysics
 	*/
-	virtual	PxPhysics&			getPhysics() = 0;
+	//virtual	PxPhysics&			getPhysics() = 0;
 
 	/**
 	\brief Retrieves the scene's internal timestamp, increased each time a simulation step is completed.
@@ -1157,7 +1157,7 @@ class PxScene
 
 	@see PxRenderBuffer
 	*/
-	virtual const PxRenderBuffer& getRenderBuffer() = 0;
+	//virtual const PxRenderBuffer& getRenderBuffer() = 0;
 	
 	/**
 	\brief Call this method to retrieve statistics for the current simulation step.
