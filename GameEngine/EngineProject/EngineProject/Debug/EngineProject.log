@@ -185,4 +185,5 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
               _Ty=glm::vec3
           ]
   Generating Code...
+  LINK : D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\TestEngine.exe not found or not built by the last incremental link; performing full link
   EngineProject.vcxproj -> D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\TestEngine.exe

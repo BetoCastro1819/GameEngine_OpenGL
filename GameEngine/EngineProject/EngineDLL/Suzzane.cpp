@@ -2,6 +2,7 @@
 #include "Material.h"
 #include "Mesh.h"
 #include "Transform.h"
+#include "PhysicsComponent.h"
 
 Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	m_material = new Material(this);
@@ -11,6 +12,8 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	m_mesh = new Mesh(this, renderer, m_material, "uvtemplate.bmp");
 	m_mesh->LoadModel("crysis.obj");
 	AddComponent(m_mesh);
+
+	m_physicsComponent = new PhysicsComponent(this);
 
 	printf("\nNumber of children: %d", m_children.size());
 }
