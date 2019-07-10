@@ -4,12 +4,13 @@
 #include "Material.h"
 #include "Renderer.h"
 #include "Entity.h"
-#include <assimp\Importer.hpp> 
-#include <assimp\scene.h>           
-#include <assimp\postprocess.h>
 
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
+
+#include <assimp/Importer.hpp> 
+#include <assimp/scene.h>           
+#include <assimp/postprocess.h>
 
 
 Mesh::Mesh(Entity* entity, Renderer* renderer, Material* material, const char* texturePath) : Component(entity) {
@@ -85,24 +86,30 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 	}
 	if (scene->mNumMeshes <= 0) return false;
 
+	// Root node
 	ProcessMesh(scene->mMeshes[0]);
 	GenerateBuffers();
-
-
-
+	
 	for (int i = 1; i < scene->mNumMeshes; i++) {
-		Entity* entity = new Entity(m_renderer);
-		Mesh* mesh = new Mesh(entity, m_renderer, m_material, m_texturePath);
-		mesh->ProcessMesh(scene->mMeshes[i]);
-		mesh->GenerateBuffers();
-		entity->AddComponent(mesh);
-
-		m_entity->AddNode(entity);
+		ProcessNode(scene->mRootNode, scene, i);
 	}
 
 	printf("SUCCESS\n");
 	printf("%d different meshes found in %s\n", scene->mNumMeshes, filePath);
 	//printf("%d meshes pushed into vector\n", m_meshes.size());
+}
+
+void Mesh::ProcessNode(aiNode* node, const aiScene* scene, int& nodeIndex) {
+	Entity* entity = new Entity(m_renderer);
+	Mesh* mesh = new Mesh(entity, m_renderer, m_material, m_texturePath);
+	mesh->ProcessMesh(scene->mMeshes[nodeIndex]);
+	mesh->GenerateBuffers();
+	entity->AddComponent(mesh);
+	m_entity->AddNode(entity);
+
+	for (nodeIndex; nodeIndex < node->mNumChildren; nodeIndex++) {
+		ProcessNode(node->mChildren[nodeIndex], scene, nodeIndex);
+	}
 }
 
 void Mesh::ProcessMesh(aiMesh* mesh) {

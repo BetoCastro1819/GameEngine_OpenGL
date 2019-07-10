@@ -4,13 +4,14 @@
 #include "Transform.h"
 #include "PhysicsComponent.h"
 
+
 Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	m_material = new Material(this);
 	m_material->LoadShaders("StandardVertexShader.txt", "StandardFragmentShader.txt");
 	AddComponent(m_material);
 
 	m_mesh = new Mesh(this, renderer, m_material, "uvtemplate.bmp");
-	m_mesh->LoadModel("suzanne.obj");
+	m_mesh->LoadModel("crysis.obj");
 	AddComponent(m_mesh);
 
 	m_physicsComponent = new PhysicsComponent(this);

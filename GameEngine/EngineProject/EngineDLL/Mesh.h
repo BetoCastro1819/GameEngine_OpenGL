@@ -9,7 +9,9 @@
 class Renderer;
 class Material;
 class Entity;
-class aiMesh;
+struct aiMesh;
+struct aiNode;
+struct aiScene;
 
 using namespace std;
 
@@ -17,7 +19,6 @@ class ENGINEDLL_API Mesh : public Component {
 private:
 	Material* m_material;
 	Renderer* m_renderer;
-	//vector<Mesh> m_meshes;
 
 	unsigned int m_programID;
 	unsigned int m_lightID;
@@ -39,6 +40,7 @@ private:
 	void SetTexture(const char* filePath);
 	void FillVBOinfo(aiMesh* mesh);
 	void FillFaceIndices(aiMesh* mesh);
+	void ProcessNode(aiNode* node, const aiScene* scene, int& nodeIndex);
 
 public:
 	Mesh(Entity* entity, Renderer* renderer, Material* material, const char* texturePath);
