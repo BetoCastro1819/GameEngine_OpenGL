@@ -10,7 +10,6 @@ bool Scene::Start() {
 	m_cubeTest->GetTransform()->SetScale(0.5f, 0.5f, 0.5f);
 	AddNode(m_cubeTest);
 
-	//m_cubeTest->GetChildrenByIndex(2)->GetTransform()->SetPosition(5, 0, 0);
 	SceneNode* rootNode = m_cubeTest->GetChildrenByIndex(0);
 	SceneNode* arms = rootNode->GetChildrenByIndex(3);
 

@@ -33,7 +33,7 @@ void SceneNode::PrintNodeHierarchy() {
 
 void SceneNode::TraverseNodeTree(int& treeLevel) {
 	for (int i = m_children.size() - 1; i >= 0 ; i--) {
-		for (int j = 0; j < treeLevel; j++) {
+		for (int j = 0; j <= treeLevel; j++) {
 			printf(" |-");
 		}
 		printf("%s\n", m_children[i]->GetName());
