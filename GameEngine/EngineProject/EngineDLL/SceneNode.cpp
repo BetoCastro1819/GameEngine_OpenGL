@@ -24,6 +24,25 @@ void SceneNode::Update(float deltaTime) {
 	}
 }
 
+
+void SceneNode::PrintNodeHierarchy() {
+	int treeLevel = 0;
+	printf("\nRoot node\n");
+	TraverseNodeTree(treeLevel);
+}
+
+void SceneNode::TraverseNodeTree(int& treeLevel) {
+	for (int i = m_children.size() - 1; i >= 0 ; i--) {
+		for (int j = 0; j < treeLevel; j++) {
+			printf(" |-");
+		}
+		printf("%s\n", m_children[i]->GetName());
+		m_children[i]->TraverseNodeTree(++treeLevel);
+		treeLevel--;
+	}
+}
+
+
 Component* SceneNode::GetComponent(ComponentType componentType) {
 	for (std::vector<Component*>::iterator iter = m_componentList.begin();
 		iter != m_componentList.end(); iter++) {
@@ -31,12 +50,6 @@ Component* SceneNode::GetComponent(ComponentType componentType) {
 			return *iter;
 	}
 	return nullptr;
-}
-
-void SceneNode::PrintNodeHierarchy() {
-	for (int i = 0; i < m_children.size(); i++) {
-		//printf("\nsome word\n");
-	}
 }
 
 SceneNode::~SceneNode() {

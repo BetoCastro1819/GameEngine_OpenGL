@@ -3,8 +3,6 @@
 #include "SceneNode.h"
 
 class ENGINEDLL_API Entity : public SceneNode {
-private:
-
 protected:
 	Renderer* m_renderer;
 
@@ -13,4 +11,6 @@ public:
 	~Entity();
 
 	void Update(float deltaTime) override;
+
+
 };

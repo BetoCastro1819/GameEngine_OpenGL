@@ -2,6 +2,7 @@
 #include "Exports.h"
 #include "Component.h"
 #include <vector>
+#include <String>
 
 class Transform;
 enum ComponentType;
@@ -9,7 +10,9 @@ enum ComponentType;
 class ENGINEDLL_API SceneNode {
 private:
 	void SetParent(SceneNode* parent);
-	const char* m_name;
+	std::string m_name;
+
+	void TraverseNodeTree(int& treeLevel);
 
 protected:
 	Transform* m_transform;
@@ -36,7 +39,7 @@ public:
 	Transform* GetTransform();
 	SceneNode* GetChildrenByIndex(int index); 
 
-	void SetName(const char* name) { m_name = name; }
-	const char* GetName() { return m_name; }
+	void SetName(std::string name) { m_name = name; }
+	const char* GetName() { return m_name.c_str(); }
 };
 

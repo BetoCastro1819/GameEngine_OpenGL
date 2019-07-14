@@ -18,8 +18,7 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 
 	SetName("Crysis");
 
-	//printf("\nNumber of children: %d", m_children.size());
-
+	printf("\nNode hierarchy from %s:\n", GetName());
 	PrintNodeHierarchy();
 }
 

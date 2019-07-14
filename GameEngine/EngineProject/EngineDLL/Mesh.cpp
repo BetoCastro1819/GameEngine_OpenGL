@@ -95,17 +95,14 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 	}
 	if (scene->mNumMeshes <= 0) return false;
 
-	// Root node
-	//ProcessMesh(scene->mMeshes[0]);
-	//GenerateBuffers();
-	//printf("\ROOT node: %s\n", scene->mMeshes[0]->mName.data);
-	
 	for (int meshIndex = 0; meshIndex < scene->mNumMeshes; meshIndex++) {
 		if (meshIndex == 0) printf("\nROOT node: ");
 		ProcessNode(scene->mRootNode->mChildren[meshIndex], scene, meshIndex);
 	}
 
 	printf("\nNumber of meshes found in %s: %d \n", filePath, scene->mNumMeshes);
+
+	return true;
 }
 
 int Mesh::ProcessNode(aiNode* node, const aiScene* scene, int& meshIndex) {
