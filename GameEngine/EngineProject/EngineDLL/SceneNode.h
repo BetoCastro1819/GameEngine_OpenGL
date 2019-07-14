@@ -9,6 +9,7 @@ enum ComponentType;
 class ENGINEDLL_API SceneNode {
 private:
 	void SetParent(SceneNode* parent);
+	const char* m_name;
 
 protected:
 	Transform* m_transform;
@@ -18,7 +19,7 @@ protected:
 	std::vector<Component*> m_componentList;
 
 public:
-	SceneNode() : m_parent(nullptr), m_transform(nullptr) {	}
+	SceneNode() : m_parent(nullptr), m_transform(nullptr), m_name("name undefined") { }
 
 	virtual ~SceneNode();
 	void Release();
@@ -26,6 +27,7 @@ public:
 	virtual void Update(float deltaTime);
 	void Destroy();
 	void AddNode(SceneNode* node);
+	void PrintNodeHierarchy();
 
 	void AddComponent(Component* component) { m_componentList.push_back(component); }
 	Component* GetComponent(ComponentType componentType);
@@ -33,5 +35,8 @@ public:
 	SceneNode* GetParent();
 	Transform* GetTransform();
 	SceneNode* GetChildrenByIndex(int index); 
+
+	void SetName(const char* name) { m_name = name; }
+	const char* GetName() { return m_name; }
 };
 

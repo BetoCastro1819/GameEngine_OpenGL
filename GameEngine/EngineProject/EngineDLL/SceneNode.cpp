@@ -33,6 +33,12 @@ Component* SceneNode::GetComponent(ComponentType componentType) {
 	return nullptr;
 }
 
+void SceneNode::PrintNodeHierarchy() {
+	for (int i = 0; i < m_children.size(); i++) {
+		//printf("\nsome word\n");
+	}
+}
+
 SceneNode::~SceneNode() {
 	Destroy();
 }
@@ -61,5 +67,6 @@ Transform* SceneNode::GetTransform() {
 SceneNode* SceneNode::GetChildrenByIndex(int index) {
 	if (index >= 0 && index < m_children.size())
 		return m_children[index];
-	return nullptr;
+	printf("\nERROR from %s: SELECTED CHILDREN INDEX IS OUT OF RANGE!!!\n", m_name);
+	return this;
 }

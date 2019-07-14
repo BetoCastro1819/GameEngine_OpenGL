@@ -40,7 +40,6 @@ private:
 	void SetTexture(const char* filePath);
 	void FillVBOinfo(aiMesh* mesh);
 	void FillFaceIndices(aiMesh* mesh);
-	void ProcessNode(aiNode* node, const aiScene* scene, int& nodeIndex);
 
 public:
 	Mesh(Entity* entity, Renderer* renderer, Material* material, const char* texturePath);
@@ -51,6 +50,7 @@ public:
 
 	bool LoadModel(const char* filePath);
 	void ProcessMesh(aiMesh* mesh);
+	int ProcessNode(aiNode* node, const aiScene* scene, int& nodeIndex);
 	void GenerateBuffers();
 	void Draw();
 };
