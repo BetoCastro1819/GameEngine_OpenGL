@@ -80,6 +80,6 @@ Transform* SceneNode::GetTransform() {
 SceneNode* SceneNode::GetChildrenByIndex(int index) {
 	if (index >= 0 && index < m_children.size())
 		return m_children[index];
-	printf("\nERROR from %s: SELECTED CHILDREN INDEX IS OUT OF RANGE!!!\n", m_name);
+	printf("\nERROR from %s: SELECTED CHILDREN INDEX IS OUT OF RANGE!!!\n", GetName());
 	return this;
 }

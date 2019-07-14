@@ -150,6 +150,9 @@ void Renderer::BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int
 	case 3:
 		glDrawArrays(GL_QUADS, 0, vtxCount);
 		break;
+	case 4: 
+		glDrawArrays(GL_LINE, 0, vtxCount);
+		break;
 	}
 	glDisableVertexAttribArray(0);
 }
@@ -178,7 +181,7 @@ void Renderer::SetShaderData(int attribID, int size) {
 
 void Renderer::DrawElements(int numberOfElements) {
 	glDrawElements(
-		GL_TRIANGLES,			// mode
+		GL_LINE,			// mode
 		numberOfElements,		// count
 		GL_UNSIGNED_SHORT,		// type
 		(void*)0				// element array buffer offset
@@ -189,9 +192,53 @@ void Renderer::DisableVertexArrays(int arrayID) {
 	glDisableVertexAttribArray(arrayID);
 }
 
-
 void Renderer::BindMaterial(unsigned int programID) {
 	glUseProgram(programID);
+}
+
+void Renderer::DrawCube() {
+	float length = 2;
+	float height = 2;
+	float width = 2;
+	float origin = 0;
+
+	glLineWidth(2);
+
+	// FRONT
+	glBegin(GL_LINE_LOOP);
+	glColor3f(1.0, 0, 0);
+	glVertex3f(origin, origin, length);
+	glVertex3f(width, origin, length);
+	glVertex3f(width, height, length);
+	glVertex3f(origin, height, length);
+	glEnd();
+
+	// BACK
+	glBegin(GL_LINE_LOOP);
+	glColor3f(1.0, 0, 0);
+	glVertex3f(origin, origin, origin);
+	glVertex3f(width, origin, origin);
+	glVertex3f(width, height, origin);
+	glVertex3f(origin, height, origin);
+	glEnd();
+
+	// RIGHT
+	glBegin(GL_LINE_LOOP);
+	glColor3f(1.0, 0, 0);
+	glVertex3f(width, origin, origin);
+	glVertex3f(width, origin, length);
+	glVertex3f(width, height, length);
+	glVertex3f(width, height, origin);
+	glEnd();
+
+	// LEFT
+	glBegin(GL_LINE_LOOP);
+	glColor3f(1.0, 0, 0);
+	glVertex3f(origin, origin, origin);
+	glVertex3f(origin, origin, length);
+	glVertex3f(origin, height, length);
+	glVertex3f(origin, height, origin);
+	glEnd();
 }
 
 void Renderer::LoadIdentityMatrix() {

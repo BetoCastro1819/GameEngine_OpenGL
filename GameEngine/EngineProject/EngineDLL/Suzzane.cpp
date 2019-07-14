@@ -11,7 +11,7 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	AddComponent(m_material);
 
 	m_mesh = new Mesh(this, renderer, m_material, "uvtemplate.bmp");
-	m_mesh->LoadModel("crysis.fbx");
+	m_mesh->LoadModel("suzanne.obj");
 	AddComponent(m_mesh);
 
 	m_physicsComponent = new PhysicsComponent(this);
@@ -28,5 +28,6 @@ Suzzane::~Suzzane() {
 }
 
 void Suzzane::Update(float deltaTime) {
+	m_renderer->DrawCube();
 	Entity::Update(deltaTime);
 }

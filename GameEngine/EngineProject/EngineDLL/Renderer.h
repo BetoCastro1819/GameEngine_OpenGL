@@ -83,6 +83,8 @@ public:
 	void DeleteProgram(unsigned int programID);
 	void DeleteTextures(unsigned int texture);
 
+	void DrawCube();
+
 	unsigned int GetLightHandleID(unsigned int programID);
 };
 
