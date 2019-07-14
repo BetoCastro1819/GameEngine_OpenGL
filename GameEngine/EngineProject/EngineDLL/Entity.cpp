@@ -5,6 +5,7 @@ Entity::Entity(Renderer* renderer)	 {
 	m_renderer = renderer;
 	m_transform = new Transform(this);
 	AddComponent(m_transform);
+	m_name = "";
 }
 
 Entity::~Entity() {

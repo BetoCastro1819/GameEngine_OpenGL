@@ -44,6 +44,7 @@ private:
 
 public:
 	Mesh(Entity* entity, Renderer* renderer, Material* material, const char* texturePath);
+	Mesh(Entity* entity, Renderer* renderer, Material* material, unsigned int textureID);
 	~Mesh() { }
 	
 	void Update(float deltaTime) override;

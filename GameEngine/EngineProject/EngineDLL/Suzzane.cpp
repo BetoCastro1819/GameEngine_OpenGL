@@ -16,6 +16,8 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 
 	m_physicsComponent = new PhysicsComponent(this);
 
+	SetName("Crysis");
+
 	printf("\nNumber of children: %d", m_children.size());
 }
 

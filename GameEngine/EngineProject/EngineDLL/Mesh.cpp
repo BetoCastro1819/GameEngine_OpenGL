@@ -22,6 +22,15 @@ Mesh::Mesh(Entity* entity, Renderer* renderer, Material* material, const char* t
 	m_texturePath = texturePath;
 }
 
+Mesh::Mesh(Entity* entity, Renderer* renderer, Material* material, unsigned int textureID) : Component(entity) {
+	SetType(ComponentType::MESH);
+	m_renderer = renderer;
+	m_material = material;
+	SetShader(m_material->GetShaderID());
+	m_textureID = textureID;
+}
+
+
 void Mesh::SetShader(unsigned int programId) {
 	m_programID = programId;
 	m_lightID = m_renderer->GetLightHandleID(m_programID);
@@ -76,7 +85,7 @@ bool Mesh::LoadModel(const char* filePath) {
 }
 
 bool Mesh::LoadModelWithAssimp(const char* filePath) {
-	printf("Importing file using Assimp from %s ", filePath);
+	printf("\nImporting file using Assimp from %s\n\n", filePath);
 	Assimp::Importer importer;
 
 	const aiScene* scene = importer.ReadFile(filePath, aiProcess_Triangulate| aiProcess_FlipUVs);
@@ -89,26 +98,31 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 	// Root node
 	ProcessMesh(scene->mMeshes[0]);
 	GenerateBuffers();
+	printf("\ROOT node: %s\n", scene->mMeshes[0]->mName.data);
 	
-	for (int i = 1; i < scene->mNumMeshes; i++) {
-		ProcessNode(scene->mRootNode, scene, i);
+	for (int meshIndex = 1; meshIndex < scene->mNumMeshes; meshIndex++) {
+		ProcessNode(scene->mRootNode->mChildren[meshIndex], scene, meshIndex);
 	}
 
-	printf("SUCCESS\n");
-	printf("%d different meshes found in %s\n", scene->mNumMeshes, filePath);
-	//printf("%d meshes pushed into vector\n", m_meshes.size());
+	printf("\nNumber of meshes found in %s: %d \n", filePath, scene->mNumMeshes);
 }
 
-void Mesh::ProcessNode(aiNode* node, const aiScene* scene, int& nodeIndex) {
-	Entity* entity = new Entity(m_renderer);
-	Mesh* mesh = new Mesh(entity, m_renderer, m_material, m_texturePath);
-	mesh->ProcessMesh(scene->mMeshes[nodeIndex]);
-	mesh->GenerateBuffers();
-	entity->AddComponent(mesh);
-	m_entity->AddNode(entity);
+void Mesh::ProcessNode(aiNode* node, const aiScene* scene, int& meshIndex) {
+	Entity* newEntity = new Entity(m_renderer);
+	newEntity->SetName(scene->mMeshes[meshIndex]->mName.data);
+	
+	printf("Node Nro.%d: %s\n", meshIndex, newEntity->GetName());
 
-	for (nodeIndex; nodeIndex < node->mNumChildren; nodeIndex++) {
-		ProcessNode(node->mChildren[nodeIndex], scene, nodeIndex);
+	Mesh* mesh = new Mesh(newEntity, m_renderer, m_material, m_textureID);
+	mesh->ProcessMesh(scene->mMeshes[meshIndex]);
+	mesh->GenerateBuffers();
+	newEntity->AddComponent(mesh);
+
+	m_entity->AddNode(newEntity);
+
+	for (int nodeIndex = 0; nodeIndex < node->mNumChildren; nodeIndex++) {
+		meshIndex++;
+		ProcessNode(node->mChildren[nodeIndex], scene, meshIndex);
 	}
 }
 
