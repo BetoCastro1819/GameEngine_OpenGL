@@ -34,21 +34,23 @@ Transform::Transform(Entity* entity) : Component(entity) {
 
 void Transform::Update(float deltaTime) {
 	UpdateModelMatrix();
+	UpdateUnitVectors();
 }
 
 void Transform::UpdateModelMatrix() {
 	m_modelMatrix = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
+
+
+	if (m_entity->GetParent() != nullptr) {
+		Transform* parentTransform = m_entity->GetParent()->GetTransform();
+		m_modelMatrix = parentTransform->GetModelMatrix() * m_modelMatrix;
+	}
 
 	for (int i = 0; i < m_boundingBox.vertices.size(); i++) {
 		glm::vec3 vertex = m_boundingBox.vertices[i];
 		glm::vec4 tempVec = glm::vec4(vertex, 1.0f);
 		tempVec = m_modelMatrix * tempVec;
 		vertex = glm::vec3(tempVec.x, tempVec.y, tempVec.z);
-	}
-
-	if (m_entity->GetParent() != nullptr) {
-		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		m_modelMatrix = parentTransform->GetModelMatrix() * m_modelMatrix;
 	}
 }
 

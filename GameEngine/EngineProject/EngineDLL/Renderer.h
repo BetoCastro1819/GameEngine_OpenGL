@@ -85,6 +85,7 @@ public:
 	void DeleteTextures(unsigned int texture);
 
 	void DrawCube(vector<glm::vec3> vertices);
+	void DrawSquare(glm::vec3 pt1, glm::vec3 pt2, glm::vec3 pt3, glm::vec3 pt4);
 };
 
 

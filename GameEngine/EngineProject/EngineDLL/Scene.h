@@ -9,7 +9,8 @@
 class ENGINEDLL_API Scene : public Entity {
 private:
 	Camera* m_camera;
-	Suzzane* m_cubeTest;
+	Suzzane* m_suzzanne;
+	Suzzane* mesh;
 
 	float m_rotationSpeed;
 

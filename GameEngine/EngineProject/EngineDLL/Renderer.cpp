@@ -199,19 +199,15 @@ void Renderer::BindMaterial(unsigned int programID) {
 void Renderer::DrawCube(vector<glm::vec3> vertices) {
 	glLineWidth(2);
 
-	//glm::vec3 point_maxWidth = glm::vec3(width, 0, 0);
-	//glm::vec3 point_maxHeight = glm::vec3(0, height, 0);
-	//glm::vec3 point_maxLength = glm::vec3(0, 0, length);
-
-	//	0 - glm::vec3 point_frontLowerLeft = origin;
-	//	1 - glm::vec3 point_frontLowerRight = origin + width;
-	//	2 - glm::vec3 point_frontUpperRight = origin + width + height;
-	//	3 - glm::vec3 point_frontUpperLeft = origin + height;
+	//	0 - point_frontLowerLeft = origin;
+	//	1 - point_frontLowerRight = origin + width;
+	//	2 - point_frontUpperRight = origin + width + height;
+	//	3 - point_frontUpperLeft = origin + height;
 	//	
-	//	4 - glm::vec3 point_backLowerLeft = origin + length;
-	//	5 - glm::vec3 point_backLowerRight = origin + width + length;
-	//	6 - glm::vec3 point_backUpperRight = origin + width + height + length;
-	//	7 - glm::vec3 point_backUpperLeft = origin + height + length;
+	//	4 - point_backLowerLeft = origin + length;
+	//	5 - point_backLowerRight = origin + width + length;
+	//	6 - point_backUpperRight = origin + width + height + length;
+	//	7 - point_backUpperLeft = origin + height + length;
 
 
 	// FRONT FACE
@@ -246,6 +242,18 @@ void Renderer::DrawCube(vector<glm::vec3> vertices) {
 		glVertex3f(vertices[3].x, vertices[3].y, vertices[3].z);
 	glEnd();
 }
+
+void Renderer::DrawSquare(glm::vec3 pt1, glm::vec3 pt2, glm::vec3 pt3, glm::vec3 pt4) {
+	glLineWidth(2);
+
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(pt1.x, pt1.y, pt1.z);
+	glVertex3f(pt2.x, pt2.y, pt2.z);
+	glVertex3f(pt3.x, pt3.y, pt3.z);
+	glVertex3f(pt4.x, pt4.y, pt4.z);
+	glEnd();
+}
+
 
 void Renderer::LoadIdentityMatrix() {
 	_model = glm::mat4(1.0f);

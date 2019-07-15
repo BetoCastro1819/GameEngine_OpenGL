@@ -141,8 +141,8 @@ void Mesh::FillVBOinfo(aiMesh* mesh) {
 	m_indexedUVs.reserve(mesh->mNumVertices);
 	m_indexedNormals.reserve(mesh->mNumVertices);
 	
-	//glm::vec3 maxVertex = glm::fvec3(-10000.0f, -10000.0f, -10000.0f);
-	//glm::vec3 minVertex= glm::fvec3(10000.0f, 10000.0f, 10000.0f);
+	//glm::vec3 maxVertex = glm::vec3(-10000.0f, -10000.0f, -10000.0f);
+	//glm::vec3 minVertex= glm::vec3(10000.0f, 10000.0f, 10000.0f);
 	for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
 
 		aiVector3D pos = mesh->mVertices[i];

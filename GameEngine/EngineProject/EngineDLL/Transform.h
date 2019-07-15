@@ -46,7 +46,6 @@ public:
 	void Update(float deltaTime) override;
 
 	glm::mat4 GetModelMatrix() const { return m_modelMatrix; }
-	glm::mat4 GetMatrix() { return m_modelMatrix; }
 	void UpdateModelMatrix();
 
 	glm::vec3 GetPosition() const { return m_position; }
