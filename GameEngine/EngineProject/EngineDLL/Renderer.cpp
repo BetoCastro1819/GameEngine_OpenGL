@@ -196,59 +196,54 @@ void Renderer::BindMaterial(unsigned int programID) {
 	glUseProgram(programID);
 }
 
-void Renderer::DrawCube(glm::vec3 origin, float width, float height, float length) {
-	//float length = 2;
-	//float height = 2;
-	//float width = 2;
-	//float origin = 0;
-
+void Renderer::DrawCube(vector<glm::vec3> vertices) {
 	glLineWidth(2);
 
-	glm::vec3 point_maxWidth = glm::vec3(width, 0, 0);
-	glm::vec3 point_maxHeight = glm::vec3(0, height, 0);
-	glm::vec3 point_maxLength = glm::vec3(0, 0, length);
+	//glm::vec3 point_maxWidth = glm::vec3(width, 0, 0);
+	//glm::vec3 point_maxHeight = glm::vec3(0, height, 0);
+	//glm::vec3 point_maxLength = glm::vec3(0, 0, length);
 
-	glm::vec3 point_frontLowerLeft = origin;
-	glm::vec3 point_frontLowerRight = origin + point_maxWidth;
-	glm::vec3 point_frontUpperRight = origin + point_maxWidth + point_maxHeight;
-	glm::vec3 point_frontUpperLeft = origin + point_maxHeight;
-
-	glm::vec3 point_backLowerLeft = origin + point_maxLength;
-	glm::vec3 point_backLowerRight = origin + point_maxWidth + point_maxLength;
-	glm::vec3 point_backUpperRight = origin + point_maxWidth + point_maxHeight + point_maxLength;
-	glm::vec3 point_backUpperLeft = origin + point_maxHeight + point_maxLength;
+	//	0 - glm::vec3 point_frontLowerLeft = origin;
+	//	1 - glm::vec3 point_frontLowerRight = origin + width;
+	//	2 - glm::vec3 point_frontUpperRight = origin + width + height;
+	//	3 - glm::vec3 point_frontUpperLeft = origin + height;
+	//	
+	//	4 - glm::vec3 point_backLowerLeft = origin + length;
+	//	5 - glm::vec3 point_backLowerRight = origin + width + length;
+	//	6 - glm::vec3 point_backUpperRight = origin + width + height + length;
+	//	7 - glm::vec3 point_backUpperLeft = origin + height + length;
 
 
 	// FRONT FACE
 	glBegin(GL_LINE_LOOP);
-		glVertex3f(point_frontLowerLeft.x, point_frontLowerLeft.y, point_frontLowerLeft.z);
-		glVertex3f(point_frontLowerRight.x, point_frontLowerRight.y, point_frontLowerRight.z);
-		glVertex3f(point_frontUpperRight.x, point_frontUpperRight.y, point_frontUpperRight.z);
-		glVertex3f(point_frontUpperLeft.x, point_frontUpperLeft.y, point_frontUpperLeft.z);
+		glVertex3f(vertices[0].x, vertices[0].y, vertices[0].z);
+		glVertex3f(vertices[1].x, vertices[1].y, vertices[1].z);
+		glVertex3f(vertices[2].x, vertices[2].y, vertices[2].z);
+		glVertex3f(vertices[3].x, vertices[3].y, vertices[3].z);
 	glEnd();
 
 	// BACK FACE
 	glBegin(GL_LINE_LOOP);
-		glVertex3f(point_backLowerLeft.x, point_backLowerLeft.y, point_backLowerLeft.z);
-		glVertex3f(point_backLowerRight.x, point_backLowerRight.y, point_backLowerRight.z);
-		glVertex3f(point_backUpperRight.x, point_backUpperRight.y, point_backUpperRight.z);
-		glVertex3f(point_backUpperLeft.x, point_backUpperLeft.y, point_backUpperLeft.z);
+		glVertex3f(vertices[4].x, vertices[4].y, vertices[4].z);
+		glVertex3f(vertices[5].x, vertices[5].y, vertices[5].z);
+		glVertex3f(vertices[6].x, vertices[6].y, vertices[6].z);
+		glVertex3f(vertices[7].x, vertices[7].y, vertices[7].z);
 	glEnd();
 	
 	// RIGHT FACE
 	glBegin(GL_LINE_LOOP);
-		glVertex3f(point_frontLowerRight.x, point_frontLowerRight.y, point_frontLowerRight.z);
-		glVertex3f(point_backLowerRight.x, point_backLowerRight.y, point_backLowerRight.z);
-		glVertex3f(point_backUpperRight.x, point_backUpperRight.y, point_backUpperRight.z);
-		glVertex3f(point_frontUpperRight.x, point_frontUpperRight.y, point_frontUpperRight.z);
+		glVertex3f(vertices[1].x, vertices[1].y, vertices[1].z);
+		glVertex3f(vertices[5].x, vertices[5].y, vertices[5].z);
+		glVertex3f(vertices[6].x, vertices[6].y, vertices[6].z);
+		glVertex3f(vertices[2].x, vertices[2].y, vertices[2].z);
 	glEnd();
 	
 	// LEFT FACE
 	glBegin(GL_LINE_LOOP);
-		glVertex3f(point_frontLowerLeft.x, point_frontLowerLeft.y, point_frontLowerLeft.z);
-		glVertex3f(point_backLowerLeft.x, point_backLowerLeft.y, point_backLowerLeft.z);
-		glVertex3f(point_backUpperLeft.x, point_backUpperLeft.y, point_backUpperLeft.z);
-		glVertex3f(point_frontUpperLeft.x, point_frontUpperLeft.y, point_frontUpperLeft.z);
+		glVertex3f(vertices[0].x, vertices[0].y, vertices[0].z);
+		glVertex3f(vertices[4].x, vertices[4].y, vertices[4].z);
+		glVertex3f(vertices[7].x, vertices[7].y, vertices[7].z);
+		glVertex3f(vertices[3].x, vertices[3].y, vertices[3].z);
 	glEnd();
 }
 

@@ -7,8 +7,8 @@ Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 
 bool Scene::Start() {
 	m_cubeTest = new Suzzane(m_renderer);
-	//m_cubeTest->GetTransform()->SetScale(0.5f, 0.5f, 0.5f);
-	//m_cubeTest->GetTransform()->SetPosition(-2, 0, 0);
+	m_cubeTest->GetTransform()->SetScale(0.5f, 0.5f, 0.5f);
+	m_cubeTest->GetTransform()->SetPosition(-2, 0, 0);
 	AddNode(m_cubeTest);
 
 	//SceneNode* rootNode = m_cubeTest->GetChildrenByIndex(0);
@@ -23,7 +23,7 @@ bool Scene::Start() {
 
 void Scene::Update(float deltaTime) {
 	float speed = m_rotationSpeed * deltaTime;
-	//m_cubeTest->GetTransform()->Yaw(speed);
+	m_cubeTest->GetTransform()->Yaw(speed);
 
 	SceneNode::Update(deltaTime);
 }

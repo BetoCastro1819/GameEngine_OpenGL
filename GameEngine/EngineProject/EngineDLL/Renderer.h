@@ -3,6 +3,7 @@
 
 #include "Exports.h"
 #include "Window.h"
+#include <vector>
 
 // GLM -> math library
 #include "glm/glm.hpp"
@@ -83,7 +84,7 @@ public:
 	void DeleteProgram(unsigned int programID);
 	void DeleteTextures(unsigned int texture);
 
-	void DrawCube(glm::vec3 origin, float width, float height, float length);
+	void DrawCube(vector<glm::vec3> vertices);
 };
 
 

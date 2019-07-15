@@ -31,12 +31,7 @@ Suzzane::~Suzzane() {
 
 void Suzzane::Update(float deltaTime) {
 
-	m_renderer->DrawCube(
-		GetTransform()->GetboundingBox().origin,
-		GetTransform()->GetboundingBox().width,
-		GetTransform()->GetboundingBox().height,
-		GetTransform()->GetboundingBox().length
-	);
+	m_renderer->DrawCube(GetTransform()->GetboundingBox().vertices);
 
 	Entity::Update(deltaTime);
 }

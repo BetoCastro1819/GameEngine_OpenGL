@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#include <vector>
 
 struct World {
 	static glm::vec3 up;
@@ -12,9 +13,10 @@ struct World {
 
 struct BoundingBox {
 	glm::vec3 origin;
-	float width;
-	float height;
-	float length;
+	glm::vec3 width;
+	glm::vec3 height;
+	glm::vec3 length;
+	std::vector<glm::vec3> vertices;
 };
 
 class ENGINEDLL_API Transform  : public Component {
@@ -31,6 +33,7 @@ private:
 	glm::mat4 m_scaleMatrix;
 
 	void UpdateUnitVectors();
+	void UpdateBoundingBoxVertices();
 
 public:
 	glm::vec3 right;

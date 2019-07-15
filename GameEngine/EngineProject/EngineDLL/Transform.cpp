@@ -23,9 +23,13 @@ Transform::Transform(Entity* entity) : Component(entity) {
 	up = World::up;
 
 	m_boundingBox.origin = m_position;
-	m_boundingBox.width = 1;
-	m_boundingBox.height = 1;
-	m_boundingBox.length = 1;
+	m_boundingBox.width = glm::vec3(1, 0, 0);
+	m_boundingBox.height = glm::vec3(0, 1, 0);
+	m_boundingBox.length = glm::vec3(0, 0, 1);
+
+	for (int i = 0; i < 8; i++) {
+		m_boundingBox.vertices.push_back(glm::vec3(0));
+	}
 }
 
 void Transform::Update(float deltaTime) {
@@ -34,6 +38,13 @@ void Transform::Update(float deltaTime) {
 
 void Transform::UpdateModelMatrix() {
 	m_modelMatrix = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
+
+	for (int i = 0; i < m_boundingBox.vertices.size(); i++) {
+		glm::vec3 vertex = m_boundingBox.vertices[i];
+		glm::vec4 tempVec = glm::vec4(vertex, 1.0f);
+		tempVec = m_modelMatrix * tempVec;
+		vertex = glm::vec3(tempVec.x, tempVec.y, tempVec.z);
+	}
 
 	if (m_entity->GetParent() != nullptr) {
 		Transform* parentTransform = m_entity->GetParent()->GetTransform();
@@ -105,18 +116,43 @@ void Transform::UpdateUnitVectors() {
 
 void Transform::SetBoundingBoxDimensions(glm::vec3 origin, float width, float height, float length) {
 	m_boundingBox.origin = origin;
-	m_boundingBox.width = width;
-	m_boundingBox.height = height;
-	m_boundingBox.length = length;
+	m_boundingBox.width = glm::vec3(width, 0, 0);
+	m_boundingBox.height = glm::vec3(0, height, 0);
+	m_boundingBox.length = glm::vec3(0, 0, length);
+
+	UpdateBoundingBoxVertices();
 }
 
 
 void Transform::SetBoundingBoxDimensions(glm::vec3 minVertex, glm::vec3 maxVertex) {
 	m_boundingBox.origin = minVertex;
-	m_boundingBox.width = maxVertex.x;
-	m_boundingBox.height = maxVertex.y;
-	m_boundingBox.length = maxVertex.z;
+	m_boundingBox.width = glm::vec3(maxVertex.x, 0, 0);
+	m_boundingBox.height = glm::vec3(0, maxVertex.y, 0);
+	m_boundingBox.length = glm::vec3(0, 0, maxVertex.z);
 	
-	//printf("MinVertex: %d, %d, %d\n", minVertex.x, minVertex.y, minVertex.z);
-	//printf("MaxVertex: %d, %d, %d\n\n", maxVertex.x, maxVertex.y, maxVertex.z);
+	UpdateBoundingBoxVertices();
+}
+
+void Transform::UpdateBoundingBoxVertices() {
+	//glm::vec3 point_frontLowerLeft = origin;
+	//glm::vec3 point_frontLowerRight = origin + width;
+	//glm::vec3 point_frontUpperRight = origin + width + height;
+	//glm::vec3 point_frontUpperLeft = origin + height;
+	//
+	//glm::vec3 point_backLowerLeft = origin + length;
+	//glm::vec3 point_backLowerRight = origin + width + length;
+	//glm::vec3 point_backUpperRight = origin + width + height + length;
+	//glm::vec3 point_backUpperLeft = origin + height + length;
+
+	// FRONT face vertices
+	m_boundingBox.vertices[0] = m_boundingBox.origin;
+	m_boundingBox.vertices[1] = m_boundingBox.origin + m_boundingBox.width;
+	m_boundingBox.vertices[2] = m_boundingBox.origin + m_boundingBox.width + m_boundingBox.height;
+	m_boundingBox.vertices[3] = m_boundingBox.origin + m_boundingBox.height;
+
+	// BACK face vertices
+	m_boundingBox.vertices[4] = m_boundingBox.origin + m_boundingBox.length;
+	m_boundingBox.vertices[5] = m_boundingBox.origin + m_boundingBox.width + m_boundingBox.length;
+	m_boundingBox.vertices[6] = m_boundingBox.origin + m_boundingBox.width + m_boundingBox.length + m_boundingBox.height;
+	m_boundingBox.vertices[7] = m_boundingBox.origin + m_boundingBox.height + m_boundingBox.length;
 }

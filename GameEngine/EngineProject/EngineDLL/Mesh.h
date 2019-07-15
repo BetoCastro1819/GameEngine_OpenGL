@@ -39,7 +39,7 @@ private:
 	void SetTexture(const char* filePath);
 	void FillVBOinfo(aiMesh* mesh);
 	void FillFaceIndices(aiMesh* mesh);
-	void GenerateBoundingBoxDimensions(glm::fvec3& maxVertex, glm::fvec3& minVertex, glm::fvec3 vertexToCompare);
+	void GenerateBoundingBoxDimensions(glm::vec3& maxVertex, glm::vec3& minVertex, glm::vec3 vertexToCompare);
 
 public:
 	Mesh(Entity* entity, Renderer* renderer, Material* material, const char* texturePath);
