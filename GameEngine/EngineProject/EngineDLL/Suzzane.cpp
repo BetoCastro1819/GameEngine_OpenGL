@@ -16,12 +16,12 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 
 	m_physicsComponent = new PhysicsComponent(this);
 
-	SetName("Crysis");
+	SetName("suzanne");
 
 	printf("\nNode hierarchy from %s:\n", GetName());
 	PrintNodeHierarchy();
 
-	GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1.2, -1, -1), glm::vec3(2.4, 2, 2));
+	GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1, -1, -1), glm::vec3(2, 2, 2));
 }
 
 Suzzane::~Suzzane() {
@@ -30,7 +30,6 @@ Suzzane::~Suzzane() {
 }
 
 void Suzzane::Update(float deltaTime) {
-
-
-	Entity::Update(deltaTime);
+	if (m_isInsideFrustrum)
+		Entity::Update(deltaTime);
 }

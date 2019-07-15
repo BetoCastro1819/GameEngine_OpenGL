@@ -23,9 +23,9 @@ Transform::Transform(Entity* entity) : Component(entity) {
 	up = World::up;
 
 	m_boundingBox.origin = m_position;
-	m_boundingBox.width = glm::vec3(1, 0, 0);
-	m_boundingBox.height = glm::vec3(0, 1, 0);
-	m_boundingBox.length = glm::vec3(0, 0, 1);
+	m_boundingBox.width = glm::vec3(0, 0, 0);
+	m_boundingBox.height = glm::vec3(0, 0, 0);
+	m_boundingBox.length = glm::vec3(0, 0, 0);
 
 	for (int i = 0; i < 8; i++) {
 		m_boundingBox.vertices.push_back(glm::vec3(0));
@@ -40,17 +40,15 @@ void Transform::Update(float deltaTime) {
 void Transform::UpdateModelMatrix() {
 	m_modelMatrix = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
 
-
 	if (m_entity->GetParent() != nullptr) {
 		Transform* parentTransform = m_entity->GetParent()->GetTransform();
 		m_modelMatrix = parentTransform->GetModelMatrix() * m_modelMatrix;
 	}
 
 	for (int i = 0; i < m_boundingBox.vertices.size(); i++) {
-		glm::vec3 vertex = m_boundingBox.vertices[i];
-		glm::vec4 tempVec = glm::vec4(vertex, 1.0f);
+		glm::vec4 tempVec = glm::vec4(m_boundingBox.vertices[i], 1.0f);
 		tempVec = m_modelMatrix * tempVec;
-		vertex = glm::vec3(tempVec.x, tempVec.y, tempVec.z);
+		m_boundingBox.vertices[i] = glm::vec3(tempVec.x, tempVec.y, tempVec.z);
 	}
 }
 

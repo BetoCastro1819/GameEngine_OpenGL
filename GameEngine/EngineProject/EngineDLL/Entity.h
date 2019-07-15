@@ -3,11 +3,9 @@
 #include "SceneNode.h"
 
 class ENGINEDLL_API Entity : public SceneNode {
-private:
-	bool m_isInsideFrustrum;
-
 protected:
 	Renderer* m_renderer;
+	bool m_isInsideFrustrum;
 
 public:
 	Entity(Renderer* renderer);

@@ -15,7 +15,7 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 	UpdateViewMatrix();
 
 	zNear = 0.1f;
-	zFar = 10.0f;
+	zFar = 20.0f;
 	fov = 45;
 	aspectRatio = (float)m_Window->GetWidth() / (float)m_Window->GetHeight();
 
@@ -85,40 +85,44 @@ void Camera::UpdateClippingPlanes() {
 
 	//printf("\nProjected foward vector: %f, %f, %f \n", projectedFoward.x, projectedFoward.y, projectedFoward.z);
 	glm::vec3 projectedFoward = GetTransform()->foward * zFar;
-	projectedFoward.x -= glm::cos(glm::radians(fov)) * zFar;
-	projectedFoward.y += glm::cos(glm::radians(fov)) * zFar;
+	projectedFoward.x -= glm::cos(glm::radians(fov * 1.5f)) * zFar;
+	projectedFoward.y -= glm::cos(glm::radians(fov * 1.5f)) * zFar;
 	plane_far.bottomLeft = GetTransform()->GetPosition() + projectedFoward + GetTransform()->right * -nearWidth + GetTransform()->up * -nearHeight;
 
 	projectedFoward = GetTransform()->foward * zFar;
-	projectedFoward.x += glm::cos(glm::radians(fov)) * zFar;
-	projectedFoward.y -= glm::cos(glm::radians(fov)) * zFar;
-	plane_far.bottomRight = GetTransform()->GetPosition() + GetTransform()->foward * zFar + GetTransform()->right * nearWidth + GetTransform()->up * -nearHeight;
+	projectedFoward.x += glm::cos(glm::radians(fov * 1.5f)) * zFar;
+	projectedFoward.y -= glm::cos(glm::radians(fov * 1.5f)) * zFar;
+	plane_far.bottomRight = GetTransform()->GetPosition() + projectedFoward + GetTransform()->right * nearWidth + GetTransform()->up * -nearHeight;
 
 	projectedFoward = GetTransform()->foward * zFar;
-	projectedFoward.x += glm::cos(glm::radians(fov)) * zFar;
-	projectedFoward.y += glm::cos(glm::radians(fov)) * zFar;
-	plane_far.topRight = GetTransform()->GetPosition() + GetTransform()->foward * zFar + GetTransform()->right * nearWidth + GetTransform()->up * nearHeight;
+	projectedFoward.x += glm::cos(glm::radians(fov * 1.5f)) * zFar;
+	projectedFoward.y += glm::cos(glm::radians(fov * 1.5f)) * zFar;
+	plane_far.topRight = GetTransform()->GetPosition() + projectedFoward + GetTransform()->right * nearWidth + GetTransform()->up * nearHeight;
 
 	projectedFoward = GetTransform()->foward * zFar;
-	projectedFoward.x -= glm::cos(glm::radians(fov)) * zFar;
-	projectedFoward.y += glm::cos(glm::radians(fov)) * zFar;
-	plane_far.topLeft = GetTransform()->GetPosition() + GetTransform()->foward * zFar + GetTransform()->right * -nearWidth + GetTransform()->up * nearHeight;
+	projectedFoward.x -= glm::cos(glm::radians(fov * 1.5f)) * zFar;
+	projectedFoward.y += glm::cos(glm::radians(fov * 1.5f)) * zFar;
+	plane_far.topLeft = GetTransform()->GetPosition() + projectedFoward + GetTransform()->right * -nearWidth + GetTransform()->up * nearHeight;
 	plane_far.normal = -GetTransform()->foward;
 
 	plane_left.bottomLeft = plane_far.bottomLeft;
 	plane_left.normal = glm::normalize(glm::cross(plane_far.bottomLeft - plane_near.bottomLeft, World::up));
 
-	plane_right.bottomLeft = plane_near.bottomRight;
+	plane_right.bottomLeft = plane_far.bottomRight;
 	plane_right.normal = glm::normalize(glm::cross(plane_near.bottomRight - plane_far.bottomRight, World::up));
 
-	plane_top.bottomLeft = plane_near.topLeft;
+	plane_top.bottomLeft = plane_far.topLeft;
 	plane_top.normal = glm::normalize(glm::cross(plane_far.topRight - plane_near.topRight, World::right));
 
-	plane_bottom.bottomLeft = plane_near.bottomLeft;
-	plane_bottom.normal = glm::normalize(glm::cross(plane_near.bottomRight - plane_far.bottomRight, World::right));
+	plane_bottom.bottomLeft = plane_far.bottomRight;
+	plane_bottom.normal = glm::normalize(glm::cross(plane_near.bottomLeft - plane_far.bottomLeft, World::right));
 }
 
 void Camera::TestForFrustrumCulling(Entity* entity) {
+	//for (int i = 0; i < entity->GetChildren().size(); i++) {
+	//	TestForFrustrumCulling((Entity*)entity->GetChildren()[i]);
+	//}
+
 	entity->SetIsInsideFrustrum(false);
 	if (isBehindPlane(plane_far, entity)) {
 		printf("\nEntity %s is behind plane_far\n", entity->GetName());

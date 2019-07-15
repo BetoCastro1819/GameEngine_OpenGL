@@ -41,6 +41,7 @@ void Mesh::SetTexture(const char* filePath) {
 
 void Mesh::Update(float deltaTime) {
 	Draw();
+	//printf("Drawing");
 }
 
 void Mesh::Draw() {
@@ -94,7 +95,10 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 	}
 	if (scene->mNumMeshes <= 0) return false;
 
-	for (int meshIndex = 0; meshIndex < scene->mNumMeshes; meshIndex++) {
+	int meshIndex = 0;
+	ProcessNode(scene->mRootNode->mChildren[meshIndex], scene, meshIndex);
+
+	for (meshIndex; meshIndex < scene->mNumMeshes; meshIndex++) {
 		if (meshIndex == 0) printf("\nROOT node: ");
 		ProcessNode(scene->mRootNode->mChildren[meshIndex], scene, meshIndex);
 	}

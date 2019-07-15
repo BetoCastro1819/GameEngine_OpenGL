@@ -26,7 +26,6 @@ bool GameBase::Start()
 	if (!m_renderer->Start()) {
 		return false;
 	}
-
 	m_camera = new Camera(m_renderer, m_window);
 	m_time = new Time();
 

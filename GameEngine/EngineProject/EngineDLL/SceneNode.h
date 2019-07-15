@@ -41,5 +41,7 @@ public:
 
 	void SetName(std::string name) { m_name = name; }
 	const char* GetName() { return m_name.c_str(); }
+
+	std::vector<SceneNode*> GetChildren() const { return m_children; }
 };
 

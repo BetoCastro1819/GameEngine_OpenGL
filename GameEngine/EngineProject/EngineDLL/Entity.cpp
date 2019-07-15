@@ -5,6 +5,7 @@ Entity::Entity(Renderer* renderer)	 {
 	m_renderer = renderer;
 	m_transform = new Transform(this);
 	AddComponent(m_transform);
+	m_isInsideFrustrum = true;
 }
 
 Entity::~Entity() {
@@ -12,6 +13,6 @@ Entity::~Entity() {
 }
 
 void Entity::Update(float deltaTime) {
-	m_renderer->DrawCube(GetTransform()->GetboundingBox().vertices);
+	//m_renderer->DrawCube(GetTransform()->GetboundingBox().vertices);
 	SceneNode::Update(deltaTime);
 }
