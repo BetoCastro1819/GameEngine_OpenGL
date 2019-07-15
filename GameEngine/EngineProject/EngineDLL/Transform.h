@@ -10,8 +10,17 @@ struct World {
 	static glm::vec3 foward;
 };
 
+struct BoundingBox {
+	glm::vec3 origin;
+	float width;
+	float height;
+	float length;
+};
+
 class ENGINEDLL_API Transform  : public Component {
 private:
+	BoundingBox m_boundingBox;
+
 	glm::vec3 m_position;
 	glm::vec3 m_scale;
 	glm::vec3 m_rotation;
@@ -46,15 +55,14 @@ public:
 	void SetScale(const glm::vec3& scale);
 	void SetScale(float x, float y, float z);
 
-	// Transforms
 	void Walk(float speed);
 	void Strafe(float speed);
 	void Pitch(float angle);
 	void Yaw(float angle);
 	void Roll(float angle);
 
-	//void SetRotX(float angle);
-	//void SetRotY(float angle);
-	//void SetRotZ(float angle);
+	void SetBoundingBoxDimensions(glm::vec3 origin, float width, float height, float length);
+	void SetBoundingBoxDimensions(glm::vec3 minVertex, glm::vec3 maxVertex);
+	BoundingBox GetboundingBox() { return m_boundingBox; }
 };
 

@@ -20,6 +20,8 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 
 	printf("\nNode hierarchy from %s:\n", GetName());
 	PrintNodeHierarchy();
+
+	GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1.2, -1, -1), glm::vec3(2.4, 2, 2));
 }
 
 Suzzane::~Suzzane() {
@@ -28,6 +30,13 @@ Suzzane::~Suzzane() {
 }
 
 void Suzzane::Update(float deltaTime) {
-	m_renderer->DrawCube();
+
+	m_renderer->DrawCube(
+		GetTransform()->GetboundingBox().origin,
+		GetTransform()->GetboundingBox().width,
+		GetTransform()->GetboundingBox().height,
+		GetTransform()->GetboundingBox().length
+	);
+
 	Entity::Update(deltaTime);
 }

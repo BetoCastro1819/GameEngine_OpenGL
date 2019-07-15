@@ -33,7 +33,6 @@ Mesh::Mesh(Entity* entity, Renderer* renderer, Material* material, unsigned int 
 
 void Mesh::SetShader(unsigned int programId) {
 	m_programID = programId;
-	m_lightID = m_renderer->GetLightHandleID(m_programID);
 }
 
 void Mesh::SetTexture(const char* filePath) {
@@ -141,8 +140,15 @@ void Mesh::FillVBOinfo(aiMesh* mesh) {
 	m_indexedVertices.reserve(mesh->mNumVertices);
 	m_indexedUVs.reserve(mesh->mNumVertices);
 	m_indexedNormals.reserve(mesh->mNumVertices);
+	
+	//glm::vec3 maxVertex = glm::fvec3(-10000.0f, -10000.0f, -10000.0f);
+	//glm::vec3 minVertex= glm::fvec3(10000.0f, 10000.0f, 10000.0f);
 	for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+
 		aiVector3D pos = mesh->mVertices[i];
+		glm::vec3 vertexToProcess = glm::vec3(pos.x, pos.y, pos.z);
+		//GenerateBoundingBoxDimensions(maxVertex, minVertex, vertexToProcess);
+
 		m_indexedVertices.push_back(glm::vec3(pos.x, pos.y, pos.z));
 
 		aiVector3D UVW = mesh->mTextureCoords[0][i]; // Assume only 1 set of UV coords; AssImp supports 8 UV sets.
@@ -151,6 +157,7 @@ void Mesh::FillVBOinfo(aiMesh* mesh) {
 		aiVector3D n = mesh->mNormals[i];
 		m_indexedNormals.push_back(glm::vec3(n.x, n.y, n.z));
 	}
+	//m_entity->GetTransform()->SetBoundingBoxDimensions(minVertex, maxVertex);
 }
 
 void Mesh::FillFaceIndices(aiMesh* mesh) {
@@ -169,3 +176,24 @@ void Mesh::GenerateBuffers() {
 	m_elementsBuffer = m_renderer->GenElementsBuffer(&m_indices[0], m_indices.size() * sizeof(unsigned short));
 }
 
+void Mesh::GenerateBoundingBoxDimensions(glm::vec3& maxVertex, glm::vec3& minVertex, glm::vec3 vertexToCompare) {
+	if (vertexToCompare.x > maxVertex.x) {
+		maxVertex.x = vertexToCompare.x;
+	}
+	if (vertexToCompare.y > maxVertex.y) {
+		maxVertex.y = vertexToCompare.y;
+	}
+	if (vertexToCompare.z > maxVertex.z) {
+		maxVertex.z = vertexToCompare.z;
+	}
+
+	if (vertexToCompare.x < minVertex.x) {
+		minVertex.x = vertexToCompare.x;
+	}
+	if (vertexToCompare.y < minVertex.y) {
+		minVertex.y = vertexToCompare.y;
+	} 
+	if (vertexToCompare.z < minVertex.z) {
+		minVertex.z = vertexToCompare.z;
+	}
+}

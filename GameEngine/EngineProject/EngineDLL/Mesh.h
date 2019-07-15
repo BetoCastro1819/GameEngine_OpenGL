@@ -21,7 +21,6 @@ private:
 	Renderer* m_renderer;
 
 	unsigned int m_programID;
-	unsigned int m_lightID;
 	unsigned int m_textureID;
 	const char* m_texturePath;
 
@@ -40,6 +39,7 @@ private:
 	void SetTexture(const char* filePath);
 	void FillVBOinfo(aiMesh* mesh);
 	void FillFaceIndices(aiMesh* mesh);
+	void GenerateBoundingBoxDimensions(glm::fvec3& maxVertex, glm::fvec3& minVertex, glm::fvec3 vertexToCompare);
 
 public:
 	Mesh(Entity* entity, Renderer* renderer, Material* material, const char* texturePath);

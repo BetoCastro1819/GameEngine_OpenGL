@@ -181,7 +181,7 @@ void Renderer::SetShaderData(int attribID, int size) {
 
 void Renderer::DrawElements(int numberOfElements) {
 	glDrawElements(
-		GL_LINE,			// mode
+		GL_TRIANGLES,			// mode
 		numberOfElements,		// count
 		GL_UNSIGNED_SHORT,		// type
 		(void*)0				// element array buffer offset
@@ -196,48 +196,59 @@ void Renderer::BindMaterial(unsigned int programID) {
 	glUseProgram(programID);
 }
 
-void Renderer::DrawCube() {
-	float length = 2;
-	float height = 2;
-	float width = 2;
-	float origin = 0;
+void Renderer::DrawCube(glm::vec3 origin, float width, float height, float length) {
+	//float length = 2;
+	//float height = 2;
+	//float width = 2;
+	//float origin = 0;
 
 	glLineWidth(2);
 
-	// FRONT
+	glm::vec3 point_maxWidth = glm::vec3(width, 0, 0);
+	glm::vec3 point_maxHeight = glm::vec3(0, height, 0);
+	glm::vec3 point_maxLength = glm::vec3(0, 0, length);
+
+	glm::vec3 point_frontLowerLeft = origin;
+	glm::vec3 point_frontLowerRight = origin + point_maxWidth;
+	glm::vec3 point_frontUpperRight = origin + point_maxWidth + point_maxHeight;
+	glm::vec3 point_frontUpperLeft = origin + point_maxHeight;
+
+	glm::vec3 point_backLowerLeft = origin + point_maxLength;
+	glm::vec3 point_backLowerRight = origin + point_maxWidth + point_maxLength;
+	glm::vec3 point_backUpperRight = origin + point_maxWidth + point_maxHeight + point_maxLength;
+	glm::vec3 point_backUpperLeft = origin + point_maxHeight + point_maxLength;
+
+
+	// FRONT FACE
 	glBegin(GL_LINE_LOOP);
-	glColor3f(1.0, 0, 0);
-	glVertex3f(origin, origin, length);
-	glVertex3f(width, origin, length);
-	glVertex3f(width, height, length);
-	glVertex3f(origin, height, length);
+		glVertex3f(point_frontLowerLeft.x, point_frontLowerLeft.y, point_frontLowerLeft.z);
+		glVertex3f(point_frontLowerRight.x, point_frontLowerRight.y, point_frontLowerRight.z);
+		glVertex3f(point_frontUpperRight.x, point_frontUpperRight.y, point_frontUpperRight.z);
+		glVertex3f(point_frontUpperLeft.x, point_frontUpperLeft.y, point_frontUpperLeft.z);
 	glEnd();
 
-	// BACK
+	// BACK FACE
 	glBegin(GL_LINE_LOOP);
-	glColor3f(1.0, 0, 0);
-	glVertex3f(origin, origin, origin);
-	glVertex3f(width, origin, origin);
-	glVertex3f(width, height, origin);
-	glVertex3f(origin, height, origin);
+		glVertex3f(point_backLowerLeft.x, point_backLowerLeft.y, point_backLowerLeft.z);
+		glVertex3f(point_backLowerRight.x, point_backLowerRight.y, point_backLowerRight.z);
+		glVertex3f(point_backUpperRight.x, point_backUpperRight.y, point_backUpperRight.z);
+		glVertex3f(point_backUpperLeft.x, point_backUpperLeft.y, point_backUpperLeft.z);
 	glEnd();
-
-	// RIGHT
+	
+	// RIGHT FACE
 	glBegin(GL_LINE_LOOP);
-	glColor3f(1.0, 0, 0);
-	glVertex3f(width, origin, origin);
-	glVertex3f(width, origin, length);
-	glVertex3f(width, height, length);
-	glVertex3f(width, height, origin);
+		glVertex3f(point_frontLowerRight.x, point_frontLowerRight.y, point_frontLowerRight.z);
+		glVertex3f(point_backLowerRight.x, point_backLowerRight.y, point_backLowerRight.z);
+		glVertex3f(point_backUpperRight.x, point_backUpperRight.y, point_backUpperRight.z);
+		glVertex3f(point_frontUpperRight.x, point_frontUpperRight.y, point_frontUpperRight.z);
 	glEnd();
-
-	// LEFT
+	
+	// LEFT FACE
 	glBegin(GL_LINE_LOOP);
-	glColor3f(1.0, 0, 0);
-	glVertex3f(origin, origin, origin);
-	glVertex3f(origin, origin, length);
-	glVertex3f(origin, height, length);
-	glVertex3f(origin, height, origin);
+		glVertex3f(point_frontLowerLeft.x, point_frontLowerLeft.y, point_frontLowerLeft.z);
+		glVertex3f(point_backLowerLeft.x, point_backLowerLeft.y, point_backLowerLeft.z);
+		glVertex3f(point_backUpperLeft.x, point_backUpperLeft.y, point_backUpperLeft.z);
+		glVertex3f(point_frontUpperLeft.x, point_frontUpperLeft.y, point_frontUpperLeft.z);
 	glEnd();
 }
 
@@ -306,9 +317,4 @@ void Renderer::SetCamView(glm::vec3 camPos, glm::vec3 lookAt, glm::vec3 head) {
 void Renderer::SetCamView(glm::mat4 viewMat) {
 	_view = viewMat;
 }
-
-unsigned int Renderer::GetLightHandleID(unsigned int programID) {
-	return glGetUniformLocation(programID, "LightPosition_worldspace");
-}
-
 

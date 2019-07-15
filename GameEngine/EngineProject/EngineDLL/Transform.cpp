@@ -21,6 +21,11 @@ Transform::Transform(Entity* entity) : Component(entity) {
 	right = World::right;
 	foward = World::foward;
 	up = World::up;
+
+	m_boundingBox.origin = m_position;
+	m_boundingBox.width = 1;
+	m_boundingBox.height = 1;
+	m_boundingBox.length = 1;
 }
 
 void Transform::Update(float deltaTime) {
@@ -98,26 +103,20 @@ void Transform::UpdateUnitVectors() {
 	right = glm::normalize(glm::cross(foward, up));
 }
 
-//void Transform::SetRotX(float angle) {
-//	m_rotation[0] = angle;
-//	m_rotation[1] = 0;
-//	m_rotation[2] = 0;
-//	
-//	m_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), m_rotation);
-//}
-//
-//void Transform::SetRotY(float angle) {
-//	m_rotation[0] = 0;
-//	m_rotation[1] = angle;
-//	m_rotation[2] = 0;
-//
-//	m_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), m_rotation);
-//}
-//
-//void Transform::SetRotZ(float angle) {
-//	m_rotation[0] = 0;
-//	m_rotation[1] = 0;
-//	m_rotation[2] = angle;
-//
-//	m_rotateMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), m_rotation);
-//}
+void Transform::SetBoundingBoxDimensions(glm::vec3 origin, float width, float height, float length) {
+	m_boundingBox.origin = origin;
+	m_boundingBox.width = width;
+	m_boundingBox.height = height;
+	m_boundingBox.length = length;
+}
+
+
+void Transform::SetBoundingBoxDimensions(glm::vec3 minVertex, glm::vec3 maxVertex) {
+	m_boundingBox.origin = minVertex;
+	m_boundingBox.width = maxVertex.x;
+	m_boundingBox.height = maxVertex.y;
+	m_boundingBox.length = maxVertex.z;
+	
+	//printf("MinVertex: %d, %d, %d\n", minVertex.x, minVertex.y, minVertex.z);
+	//printf("MaxVertex: %d, %d, %d\n\n", maxVertex.x, maxVertex.y, maxVertex.z);
+}
