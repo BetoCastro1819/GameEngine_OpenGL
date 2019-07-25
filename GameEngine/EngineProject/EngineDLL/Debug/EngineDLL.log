@@ -27,6 +27,9 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\entity.h(32): warning C4251: 'Entity::m_ScaleMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-     Creating library D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.lib and object D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.exp
-MSVCRTD.lib(initializers.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\charactercontroller.h(24): warning C4251: 'CharacterController::m_velocity': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'CharacterController'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\charactercontroller.h(25): warning C4251: 'CharacterController::m_acceleration': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'CharacterController'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\charactercontroller.cpp(12): warning C4305: '=': truncation from 'double' to 'float'
   EngineDLL.vcxproj -> D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll

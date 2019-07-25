@@ -8,9 +8,26 @@ private:
 	Window* m_window;
 	Entity* m_entity;
 
+	float m_accelerationValue;
+	float m_maxSpeed;
+	float m_dragCoefficient;
+	float m_gravityStrength;
+
+	bool m_canJump;
+	float m_holdJumpTime;
+	float m_jumpCountdown;
+	float m_jumpStrength;
+
+	int m_previousY;
+
+
+	glm::vec3 m_velocity;
+	glm::vec3 m_acceleration;
+
+	void UpdateVelocity(float deltaTime);
+
 public:
-	CharacterController(Window* window, Entity* entity) 
-		: m_window(window), m_entity(entity) { };
+	CharacterController(Window* window, Entity* entity);
 
 	~CharacterController() { }
 
