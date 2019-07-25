@@ -9,25 +9,25 @@ CollisionManager* CollisionManager::GetInstance() {
 }
 
 CollisionManager::CollisionManager() {
-	std::vector<Sprite*> emptyVector = {};
+	std::vector<Entity*> emptyVector = {};
 
 	collisionGroups.insert(
-		std::pair<CollisionLayer, std::vector<Sprite*>> (CollisionLayer::DEFAULT, emptyVector)
+		std::pair<CollisionLayer, std::vector<Entity*>> (CollisionLayer::DEFAULT, emptyVector)
 	);
 
 	collisionGroups.insert(
-		std::pair<CollisionLayer, std::vector<Sprite*>> (CollisionLayer::PLAYER, emptyVector)
+		std::pair<CollisionLayer, std::vector<Entity*>> (CollisionLayer::PLAYER, emptyVector)
 	);
 
 	collisionGroups.insert(
-		std::pair<CollisionLayer, std::vector<Sprite*>> (CollisionLayer::TILEMAP, emptyVector)
+		std::pair<CollisionLayer, std::vector<Entity*>> (CollisionLayer::TILEMAP, emptyVector)
 	);
 }
 
 CollisionManager::~CollisionManager() {
 }
 
-void CollisionManager::AddToGroup(CollisionLayer layer, Sprite* sprite) {
+void CollisionManager::AddToGroup(CollisionLayer layer, Entity* sprite) {
 	collisionGroups.at(layer).push_back(sprite);
 
 	std::cout << "Number of collision layers: " << sizeof(CollisionLayer) << std::endl;
@@ -55,8 +55,8 @@ void CollisionManager::CheckForCollisions() {
 					// Loop between current object and the object from the other layers
 					for (int currentOpposingObjIndex = 0; currentOpposingObjIndex < collisionGroups.at((CollisionLayer)currentOpposingLayer).size(); currentOpposingObjIndex++) {
 
-						Sprite* obj1 = collisionGroups.at((CollisionLayer)currentLayer)[objectIndex];
-						Sprite* obj2 = collisionGroups.at((CollisionLayer)currentOpposingLayer)[currentOpposingObjIndex];
+						Entity* obj1 = collisionGroups.at((CollisionLayer)currentLayer)[objectIndex];
+						Entity* obj2 = collisionGroups.at((CollisionLayer)currentOpposingLayer)[currentOpposingObjIndex];
 						Collision(obj1, obj2);
 					} // Next opposing object
 				}
@@ -68,7 +68,7 @@ void CollisionManager::CheckForCollisions() {
 	} // Next collision layer
 }
 
-void CollisionManager::Collision(Sprite* obj1, Sprite* obj2) {
+void CollisionManager::Collision(Entity* obj1, Entity* obj2) {
 	
 	glm::vec3 diff = obj2->GetPos() - obj1->GetPos();
 	
@@ -90,7 +90,7 @@ void CollisionManager::Collision(Sprite* obj1, Sprite* obj2) {
 	}
 }
 
-void CollisionManager::VerticalSeparation(Sprite* obj1, Sprite* obj2, float separationValue) {
+void CollisionManager::VerticalSeparation(Entity* obj1, Entity* obj2, float separationValue) {
 	if (obj1->GetPos().y < obj2->GetPos().y) {
 		obj1->Translate(0, -(separationValue / 2), 0);
 		obj2->Translate(0, (separationValue / 2), 0);
@@ -101,7 +101,7 @@ void CollisionManager::VerticalSeparation(Sprite* obj1, Sprite* obj2, float sepa
 	}
 }
 
-void CollisionManager::HorizontalSeparation(Sprite* obj1, Sprite* obj2, float separationValue) {
+void CollisionManager::HorizontalSeparation(Entity* obj1, Entity* obj2, float separationValue) {
 	if (obj1->GetPos().x < obj2->GetPos().x) {
 		obj1->Translate(-(separationValue / 2), 0, 0);
 		obj2->Translate((separationValue / 2), 0, 0);

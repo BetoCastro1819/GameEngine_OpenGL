@@ -51,7 +51,7 @@ private:
 	float GetTileX(float x);
 	float GetTileY(float y);
 
-	void CheckCollisionWith(Sprite* sprite, glm::vec3 tilePosition);
+	void CheckCollisionWith(Entity* sprite, glm::vec3 tilePosition);
 
 public:
 	Tilemap(Renderer* renderer);
@@ -59,6 +59,6 @@ public:
 
 	void Setup(Window* window, Material* material, Texture* texture);
 	void Draw() override;
-	void HandleCollisions(vector<Sprite*> entities);
+	void HandleCollisions(vector<Entity*> entities);
 	void SetColliderTiles(vector<int> setOfIds);
 };

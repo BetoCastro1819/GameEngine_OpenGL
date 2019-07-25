@@ -2,6 +2,7 @@
 
 Entity::Entity(Renderer* renderer)	 {
 	m_renderer = renderer;
+	m_collider = nullptr;
 
 	// Default Unit Vectors orientations
 	m_Foward		= World_Foward;

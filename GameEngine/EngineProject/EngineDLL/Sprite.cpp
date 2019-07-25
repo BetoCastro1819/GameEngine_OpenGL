@@ -7,7 +7,7 @@ Sprite::Sprite(Renderer* renderer, Material* material, Texture* texture) : Shape
 	SetTexture(texture);
 
 	m_animation = nullptr;
-	m_boxCollider = nullptr;
+	//m_boxCollider = nullptr;
 
 	InitVertices();
 }
@@ -47,10 +47,10 @@ Sprite::~Sprite() {
 		m_uvVertices = NULL;
 	}
 
-	if (m_boxCollider != nullptr) {
-		delete m_boxCollider;
-		m_boxCollider = NULL;
-	}
+	//if (m_boxCollider != nullptr) {
+	//	delete m_boxCollider;
+	//	m_boxCollider = NULL;
+	//}
 
 	std::cout << "TextureShape::~TextureShape()" << std::endl;
 }
@@ -70,16 +70,16 @@ void Sprite::SetTexture(Texture* texture) {
 	m_frameHeight = m_texture->GetFrameHeight();
 }
 
-void Sprite::AddBoxCollider() {
-	m_boxCollider = new BoxCollider(
-		m_texture->GetFrameWidth(),
-		m_texture->GetFrameHeight()
-	);
-}
+//void Sprite::AddBoxCollider() {
+//	m_boxCollider = new BoxCollider(
+//		m_texture->GetFrameWidth(),
+//		m_texture->GetFrameHeight()
+//	);
+//}
 
-void Sprite::AddBoxCollider(unsigned int width, unsigned int height) {
-	m_boxCollider = new BoxCollider(width, height);
-}
+//void Sprite::AddBoxCollider(unsigned int width, unsigned int height) {
+//	m_boxCollider = new BoxCollider(width, height);
+//}
 
 void Sprite::Draw() {
 	m_renderer->UpdateModelMatrix(m_ModelMat);

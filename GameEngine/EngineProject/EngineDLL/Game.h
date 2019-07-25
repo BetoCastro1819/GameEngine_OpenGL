@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include "Tilemap.h"
 #include "CollisionManager.h"
+#include "..\EngineProject\Player.h"
 
 using namespace std;
 
@@ -14,12 +15,14 @@ private:
 	CollisionManager* m_collisionManager;
 	Material* m_material;
 	Texture* m_tilemapTexture;
-	Texture* m_texture;
+	//Texture* m_texture;
 	Tilemap* m_tilemap;
-	Sprite* m_sprite;
-	Sprite* m_sprite2;
+	Player* m_player;
 
-	vector<Sprite*> m_entities;
+	//Sprite* m_sprite;
+	//Sprite* m_sprite2;
+
+	vector<Entity*> m_entities;
 
 	bool OnStart() override;
 	bool OnStop() override;

@@ -1,5 +1,6 @@
 #pragma once
 #include "Renderer.h"
+#include "BoxCollider.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
@@ -11,6 +12,8 @@ const glm::vec3 World_Foward	= glm::vec3(0, 0, 1);
 class ENGINEDLL_API Entity {
 protected:
 	Renderer* m_renderer;
+	BoxCollider* m_collider;
+
 
 	// Transform vectors
 	glm::vec3 m_Position;
@@ -50,5 +53,7 @@ public:
 	
 	void RecalculateUnitVectors();
 	void UpdateModelMatrix();
+
+	BoxCollider* GetBoxCollider() { return m_collider; }
 };
 

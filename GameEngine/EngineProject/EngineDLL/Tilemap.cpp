@@ -130,7 +130,7 @@ void Tilemap::Draw() {
 	m_renderer->DisableVertexArray(1);
 }
 
-void Tilemap::HandleCollisions(vector<Sprite*> entities) {
+void Tilemap::HandleCollisions(vector<Entity*> entities) {
 	for (int i = 0; i < m_tilesPositions.size(); i++) {
 		if (m_TilesData.tilesIndexes[i] == 2) {
 			for (int entityIndex = 0; entityIndex < entities.size(); entityIndex++) {
@@ -142,7 +142,7 @@ void Tilemap::HandleCollisions(vector<Sprite*> entities) {
 
 
 
-void Tilemap::CheckCollisionWith(Sprite* sprite, glm::vec3 tilePosition) {
+void Tilemap::CheckCollisionWith(Entity* sprite, glm::vec3 tilePosition) {
 	glm::vec3 diff;
 	diff = tilePosition - sprite->GetPos();
 
