@@ -58,7 +58,7 @@ public:
 	~Tilemap() { }
 
 	void Setup(Window* window, Material* material, Texture* texture);
-	void Draw() override;
+	void Update(float) override;
 	void HandleCollisions(vector<Entity*> entities);
 	void SetColliderTiles(vector<int> setOfIds);
 };

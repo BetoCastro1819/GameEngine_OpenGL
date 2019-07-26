@@ -13,18 +13,13 @@ Shape::~Shape() {
 	Dispose();
 }
 
-void Shape::Draw() {
+void Shape::Update(float deltaTime) {
 	if (m_material) {
 		BindMaterial();
 	}
 
 	m_renderer->UpdateModelMatrix(m_ModelMat);
 	m_renderer->UpdateMVP();
-	//_renderer->SendTransformationToShader(_matrixID);
-	// Bind Vertex Buffer (Attribute index = 0)
-	//m_renderer->BindBuffer(m_bufferData, m_VtxCount, 0, 3, m_DrawMode);
-	// Bind Color Buffer (Attribute index = 1)
-	//_renderer->BindBuffer(_colorBufferData, _colorVrtxCount, 1, _drawMode);
 }
 
 void Shape::SetVertices(float* vrtxs, const int& count) {

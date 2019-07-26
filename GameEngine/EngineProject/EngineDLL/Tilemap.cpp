@@ -105,7 +105,7 @@ void Tilemap::SetupTilesPositions() {
 	}
 }
 
-void Tilemap::Draw() {
+void Tilemap::Update(float deltaTime) {
 	m_renderer->UpdateModelMatrix(m_ModelMat);
 	m_renderer->UpdateMVP();
 

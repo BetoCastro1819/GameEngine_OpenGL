@@ -13,7 +13,6 @@ private:
 	};
 	FramePos m_frame;
 	Animation* m_animation;
-	//BoxCollider* m_boxCollider;
 	Texture* m_texture;
 
 	unsigned int m_uvBuffer;
@@ -33,16 +32,12 @@ public:
 	Sprite (Renderer* renderer, Material* material, Texture* texture);
 	~Sprite();
 	
-	void Draw() override;
+	void Update(float deltaTime) override;
 
 	void SetMaterial(Material* material) override;
 
-	//void AddBoxCollider();
-	//void AddBoxCollider(unsigned int width, unsigned int height);
-
 	void SetTexture(Texture* texture);
 	void SetFrameID(int frameID);
-
 
 	void SetUVBufferData(float* vrtxs, int vtxCount);
 
@@ -51,9 +46,5 @@ public:
 	void SetAnimation(const char* animationName);
 	void SetAnimationSpeed(float speed);
 
-	void HandleInput(Window* window, float deltaTime);
-
 	void SetModelMatrix(glm::mat4 modelMat) { m_ModelMat = modelMat; }
-
-	//BoxCollider* GetBoxCollider() { return m_boxCollider; }
 };

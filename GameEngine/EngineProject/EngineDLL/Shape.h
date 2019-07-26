@@ -22,7 +22,7 @@ public:
 	Shape(Renderer* renderer);
 	~Shape();
 	virtual void SetMaterial(Material* material);
-	void Draw() override;
+	void Update(float deltaTime) override;
 
 	void SetVertices(float* vertices, const int& numberOfVertices);
 	void BindMaterial();

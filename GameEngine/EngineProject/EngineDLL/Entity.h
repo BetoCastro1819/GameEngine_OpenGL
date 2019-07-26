@@ -35,7 +35,7 @@ protected:
 public:
 	Entity(Renderer* renderer);
 	~Entity();		
-	virtual void Draw() = 0;
+	virtual void Update(float deltaTime) = 0;
 
 	void Translate(float x, float y, float z);
 	void Translate(const glm::vec3& translate);

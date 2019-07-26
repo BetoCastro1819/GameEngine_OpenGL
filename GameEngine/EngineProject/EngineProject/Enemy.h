@@ -3,11 +3,18 @@
 #include "Material.h"
 #include "Texture.h"
 #include "Entity.h"
-#include "CharacterController.h"
+#include "MovementComponent.h"
 
 class Enemy : public Entity {
+private:
+	Sprite* m_sprite;
+	Texture* m_texture;
+	MovementComponent* m_movementComp;
+
 public:
-	Enemy(Renderer* renderer);
+	Enemy(Renderer* renderer, Material* material);
 	~Enemy();
+
+	void Update(float deltaTime) override;
 };
 

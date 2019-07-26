@@ -13,12 +13,10 @@ private:
 	Window* m_window;
 	CharacterController* m_controller;
 
-	void Draw() override;
-
 public:
 	Player(Window* window, Renderer* renderer, Material* material);
 	~Player();
 
-	void Update(float deltaTime);
+	void Update(float deltaTime) override;
 };
 

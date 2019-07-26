@@ -7,7 +7,6 @@ Sprite::Sprite(Renderer* renderer, Material* material, Texture* texture) : Shape
 	SetTexture(texture);
 
 	m_animation = nullptr;
-	//m_boxCollider = nullptr;
 
 	InitVertices();
 }
@@ -39,18 +38,12 @@ void Sprite::InitVerticesUV() {
 }
 
 Sprite::~Sprite() {
-	//Dispose();
 	m_renderer->DeleteBuffers(m_uvBuffer);
 	m_renderer->DeleteTextures(m_texture->GetTextureID());
 
 	if (m_uvVertices != nullptr) {
 		m_uvVertices = NULL;
 	}
-
-	//if (m_boxCollider != nullptr) {
-	//	delete m_boxCollider;
-	//	m_boxCollider = NULL;
-	//}
 
 	std::cout << "TextureShape::~TextureShape()" << std::endl;
 }
@@ -70,18 +63,7 @@ void Sprite::SetTexture(Texture* texture) {
 	m_frameHeight = m_texture->GetFrameHeight();
 }
 
-//void Sprite::AddBoxCollider() {
-//	m_boxCollider = new BoxCollider(
-//		m_texture->GetFrameWidth(),
-//		m_texture->GetFrameHeight()
-//	);
-//}
-
-//void Sprite::AddBoxCollider(unsigned int width, unsigned int height) {
-//	m_boxCollider = new BoxCollider(width, height);
-//}
-
-void Sprite::Draw() {
+void Sprite::Update(float deltaTime) {
 	m_renderer->UpdateModelMatrix(m_ModelMat);
 	m_renderer->UpdateMVP();
 
@@ -150,7 +132,7 @@ void Sprite::SetFrameID(int frameID) {
 
 void Sprite::AddAnimation(const char* animationName, std::vector<int> animationFrames) {
 
-	if (m_animation == NULL) {
+	if (m_animation == nullptr) {
 		m_animation = new Animation();
 	}
 	
@@ -163,40 +145,16 @@ void Sprite::PlayAnimation(float deltaTime) {
 }
 
 void Sprite::SetAnimation(const char* animationName) {
-	if (m_animation != NULL) {
+	if (m_animation != nullptr) {
 		m_animation->SetAnimation(animationName);
 	}
 }
 
 void Sprite::SetAnimationSpeed(float animationSpeed) {
-	if (m_animation != NULL) {
+	if (m_animation != nullptr) {
 		m_animation->SetAnimationSpeed(animationSpeed);
 	}
 }
-
-void Sprite::HandleInput(Window* window, float deltaTime) {
-	float speed = 250.0f * deltaTime;
-
-	glm::vec3 position = GetPos();
-	// Move forward
-	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_UP) == GLFW_PRESS) {
-		SetPos(position.x, position.y + speed, position.z);
-	}
-	// Move backward
-	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_DOWN) == GLFW_PRESS) {
-		SetPos(position.x, position.y - speed, position.z);
-	}
-	// Strafe right
-	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_RIGHT) == GLFW_PRESS) {
-		SetPos(position.x + speed, position.y, position.z);
-	}
-	// Strafe left
-	if (glfwGetKey((GLFWwindow*)window->GetWindowPtr(), GLFW_KEY_LEFT) == GLFW_PRESS) {
-		SetPos(position.x - speed, position.y, position.z);
-	}
-}
-
-
 
 void Sprite::SetUVBufferData(float* vrtxs, int vtxCount) {
 	m_uvVertices = vrtxs;

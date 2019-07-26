@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "CharacterController.h"
-
+#include <vector>
 
 Player::Player(Window* window, Renderer* renderer, Material* material) : Entity(renderer) {
 	m_window = window;
@@ -13,6 +13,10 @@ Player::Player(Window* window, Renderer* renderer, Material* material) : Entity(
 
 	m_sprite = new Sprite(renderer, material, m_texture);
 	m_sprite->SetFrameID(25);
+
+	std::vector<int> walkAnimFrames = { 38, 39, 40, 41, 42 };
+	m_sprite->AddAnimation("walk", walkAnimFrames);
+	m_sprite->SetAnimation("walk");
 
 	m_collider = new BoxCollider(m_texture->GetFrameWidth(), m_texture->GetFrameHeight());
 
@@ -29,10 +33,7 @@ Player::~Player() {
 void Player::Update(float deltaTime) {
 	m_sprite->SetModelMatrix(m_ModelMat);
 	m_controller->Update(deltaTime);
+	m_sprite->Update(deltaTime);
 
-	Draw();
-}
-
-void Player::Draw() {
-	m_sprite->Draw();
+	m_sprite->PlayAnimation(deltaTime);
 }
