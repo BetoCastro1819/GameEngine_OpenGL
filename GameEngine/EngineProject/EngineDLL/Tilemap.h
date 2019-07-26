@@ -51,7 +51,7 @@ private:
 	float GetTileX(float x);
 	float GetTileY(float y);
 
-	void CheckCollisionWith(Entity* sprite, glm::vec3 tilePosition);
+	bool OnCollisionWith(Entity* sprite, glm::vec3 tilePosition) const;
 
 public:
 	Tilemap(Renderer* renderer);

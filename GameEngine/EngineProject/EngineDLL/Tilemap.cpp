@@ -131,10 +131,13 @@ void Tilemap::Draw() {
 }
 
 void Tilemap::HandleCollisions(vector<Entity*> entities) {
-	for (int i = 0; i < m_tilesPositions.size(); i++) {
-		if (m_TilesData.tilesIndexes[i] == 2) {
-			for (int entityIndex = 0; entityIndex < entities.size(); entityIndex++) {
-				CheckCollisionWith(entities[entityIndex], m_tilesPositions[i]);
+
+	for (int entityIndex = 0; entityIndex < entities.size(); entityIndex++) {
+		entities[entityIndex]->GetBoxCollider()->SetOnGroundCollision(false);
+		
+		for (int i = 0; i < m_tilesPositions.size(); i++) {
+			if (m_TilesData.tilesIndexes[i] == 2) {
+				OnCollisionWith(entities[entityIndex], m_tilesPositions[i]);
 			}
 		}
 	}
@@ -142,32 +145,38 @@ void Tilemap::HandleCollisions(vector<Entity*> entities) {
 
 
 
-void Tilemap::CheckCollisionWith(Entity* sprite, glm::vec3 tilePosition) {
+bool Tilemap::OnCollisionWith(Entity* entity, glm::vec3 tilePosition) const {
 	glm::vec3 diff;
-	diff = tilePosition - sprite->GetPos();
+	diff = tilePosition - entity->GetPos();
 
 	float modX = glm::abs(diff.x);
 	float modY = glm::abs(diff.y);
 
-	if (modX < sprite->GetBoxCollider()->GetBoxWidth() / 2 + m_tileWidth / 2 &&
-		modY < sprite->GetBoxCollider()->GetBoxHeight() / 2 + m_tileHeight / 2) {
+	if (modX < entity->GetBoxCollider()->GetBoxWidth() / 2 + m_tileWidth / 2 &&
+		modY < entity->GetBoxCollider()->GetBoxHeight() / 2 + m_tileHeight / 2) {
 
-		float penX = sprite->GetBoxCollider()->GetBoxWidth() / 2 + m_tileWidth / 2 - modX;
-		float penY = sprite->GetBoxCollider()->GetBoxHeight() / 2 + m_tileHeight / 2 - modY;
+		float penX = entity->GetBoxCollider()->GetBoxWidth() / 2 + m_tileWidth / 2 - modX;
+		float penY = entity->GetBoxCollider()->GetBoxHeight() / 2 + m_tileHeight / 2 - modY;
 
 		if (penX > penY) {
-			if (sprite->GetPos().y < tilePosition.y)
-				sprite->Translate(0, -penY, 0);
-			else
-				sprite->Translate(0, penY, 0);
+			if (entity->GetPos().y < tilePosition.y)
+				entity->Translate(0, -penY, 0);
+			else {
+				entity->Translate(0, penY, 0);
+				entity->GetBoxCollider()->SetOnGroundCollision(true);
+				//printf("\nColliding with floor\n");
+			}
+			return true;
 		}
 		else {
-			if (sprite->GetPos().x < tilePosition.x)
-				sprite->Translate(-penX, 0, 0);
+			if (entity->GetPos().x < tilePosition.x)
+				entity->Translate(-penX, 0, 0);
 			else
-				sprite->Translate(penX, 0, 0);
+				entity->Translate(penX, 0, 0);
+			return true;
 		}
 	}
+	return false;
 }
 
 float Tilemap::GetOffsetX(unsigned int id) {

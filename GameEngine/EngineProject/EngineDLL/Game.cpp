@@ -105,10 +105,10 @@ void Game::Input(float deltaTime) {
 }
 
 void Game::UpdateEntities(float deltaTime) {
-	m_player->Update(deltaTime);
-
 	m_collisionManager->CheckForCollisions();
 	m_tilemap->HandleCollisions(m_entities);
+
+	m_player->Update(deltaTime);
 }
 
 void Game::DrawEntities(float deltaTime) {

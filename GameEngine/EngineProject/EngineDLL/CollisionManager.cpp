@@ -69,7 +69,6 @@ void CollisionManager::CheckForCollisions() {
 }
 
 void CollisionManager::Collision(Entity* obj1, Entity* obj2) {
-	
 	glm::vec3 diff = obj2->GetPos() - obj1->GetPos();
 	
 	float modX = glm::abs(diff.x);

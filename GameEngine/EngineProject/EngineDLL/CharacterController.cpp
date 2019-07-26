@@ -38,6 +38,7 @@ void CharacterController::UpdateVelocity(float deltaTime) {
 		m_acceleration += -World_Right * m_accelerationValue;
 	}
 
+
 	if (glfwGetKey((GLFWwindow*)m_window->GetWindowPtr(), GLFW_KEY_SPACE) == GLFW_PRESS && m_canJump) {
 		if (m_jumpCountdown > m_holdJumpTime) 
 			m_canJump = false;
@@ -45,17 +46,20 @@ void CharacterController::UpdateVelocity(float deltaTime) {
 		m_acceleration += World_Up * m_jumpStrength;
 		m_jumpCountdown += deltaTime;
 	}
-	if (glfwGetKey((GLFWwindow*)m_window->GetWindowPtr(), GLFW_KEY_SPACE) == GLFW_RELEASE) {
-		m_canJump = true;
-		m_jumpCountdown = 0.0f;
+
+	if (m_entity->GetBoxCollider()->OnGroundCollision()) {
+			m_canJump = true;
+			m_jumpCountdown = 0.0f;
 	}
 
 	float currentSpeed = (m_velocity.x * m_velocity.x) + (m_velocity.y * m_velocity.y);
 	glm::vec3 drag = m_velocity;
 	m_acceleration += drag * m_dragCoefficient;
 
-	glm::vec3 gravity = World_Up * m_gravityStrength;
-	m_acceleration += gravity;
+	if (!m_entity->GetBoxCollider()->OnGroundCollision()) {
+		glm::vec3 gravity = World_Up * m_gravityStrength;
+		m_acceleration += gravity;
+	}
 
 	m_velocity += m_acceleration;
 
