@@ -1,24 +1,26 @@
 #include "Entity.h"
 
-Entity::Entity(Renderer* renderer)	 {
+Entity::Entity(Renderer* renderer) {
 	m_renderer = renderer;
 	m_collider = nullptr;
 
 	// Default Unit Vectors orientations
-	m_Foward		= World_Foward;
-	m_Up			= World_Up;
-	m_Right			= World_Right;
+	m_Foward = World_Foward;
+	m_Up = World_Up;
+	m_Right = World_Right;
 
 	// Init Transform Vectors
-	m_Position		= glm::vec3(0.0f);
-	m_Rotation		= glm::vec3(0.0f);
-	m_Scale			= glm::vec3(1.0f);
+	m_Position = glm::vec3(0.0f);
+	m_Rotation = glm::vec3(0.0f);
+	m_Scale	= glm::vec3(1.0f);
 
 	// Init Transform Matrices
-	m_ModelMat		= glm::mat4(1.0f);
-	m_TranslateMat	= glm::mat4(1.0f);
-	m_RotateMat		= glm::mat4(1.0f);
-	m_ScaleMat		= glm::mat4(1.0f);
+	m_ModelMat = glm::mat4(1.0f);
+	m_TranslateMat = glm::mat4(1.0f);
+	m_RotateMat	= glm::mat4(1.0f);
+	m_ScaleMat = glm::mat4(1.0f);
+
+	m_enabled = true;
 }
 
 Entity::~Entity() {
@@ -29,6 +31,14 @@ void Entity::Translate(float x, float y, float z) {
 		GetPos().x + x,
 		GetPos().y + y,
 		GetPos().z + z
+	);
+}
+
+void Entity::Translate(const glm::vec3& translate ) {
+	SetPos(
+		GetPos().x + translate.x,
+		GetPos().y + translate.y,
+		GetPos().z + translate.z
 	);
 }
 

@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "CharacterController.h"
+
 
 Player::Player(Window* window, Renderer* renderer, Material* material) : Entity(renderer) {
 	m_window = window;

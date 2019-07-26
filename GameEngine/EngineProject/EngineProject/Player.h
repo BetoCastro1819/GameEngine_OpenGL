@@ -3,7 +3,8 @@
 #include "Material.h"
 #include "Texture.h"
 #include "Entity.h"
-#include "CharacterController.h"
+
+class CharacterController;
 
 class Player : public Entity {
 private:

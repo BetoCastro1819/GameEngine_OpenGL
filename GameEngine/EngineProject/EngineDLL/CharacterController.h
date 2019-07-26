@@ -1,35 +1,32 @@
 #pragma once
 #include "Exports.h"
 #include "Window.h"
-#include "Entity.h"
+#include "MovementComponent.h"
+
+class Entity;
 
 class ENGINEDLL_API CharacterController {
 private:
 	Window* m_window;
 	Entity* m_entity;
-
-	float m_accelerationValue;
-	float m_maxSpeed;
-	float m_dragCoefficient;
-	float m_gravityStrength;
+	MovementComponent* m_movementComp;
 
 	bool m_canJump;
 	float m_holdJumpTime;
 	float m_jumpCountdown;
 	float m_jumpStrength;
 
-	int m_previousY;
+	void CheckForInput(float deltaTime);
+	void MovementInput();
+	void JumpInput(float deltaTime);
+	void ResetJumpWhenGrounded();
 
-
-	glm::vec3 m_velocity;
-	glm::vec3 m_acceleration;
-
-	void UpdateVelocity(float deltaTime);
+	void CloseGameInput();
 
 public:
 	CharacterController(Window* window, Entity* entity);
 
-	~CharacterController() { }
+	~CharacterController();
 
 	void Update(float deltaTime);
 };

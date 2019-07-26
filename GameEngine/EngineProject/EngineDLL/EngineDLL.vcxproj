@@ -131,6 +131,7 @@
     <ClInclude Include="GameBase.h" />
     <ClInclude Include="CharacterController.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shape.h" />
@@ -151,6 +152,7 @@
     <ClCompile Include="GameBase.cpp" />
     <ClCompile Include="CharacterController.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Sprite.cpp" />

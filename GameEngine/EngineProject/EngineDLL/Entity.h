@@ -4,7 +4,7 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-// World vectors
+// World unit vectors
 const glm::vec3 World_Right		= glm::vec3(1, 0, 0);
 const glm::vec3 World_Up		= glm::vec3(0, 1, 0);
 const glm::vec3 World_Foward	= glm::vec3(0, 0, 1);
@@ -13,7 +13,6 @@ class ENGINEDLL_API Entity {
 protected:
 	Renderer* m_renderer;
 	BoxCollider* m_collider;
-
 
 	// Transform vectors
 	glm::vec3 m_Position;
@@ -30,6 +29,8 @@ protected:
 	glm::mat4 m_TranslateMat;
 	glm::mat4 m_RotateMat;
 	glm::mat4 m_ScaleMat;
+
+	bool m_enabled;
 	
 public:
 	Entity(Renderer* renderer);
@@ -37,6 +38,7 @@ public:
 	virtual void Draw() = 0;
 
 	void Translate(float x, float y, float z);
+	void Translate(const glm::vec3& translate);
 	void SetPos(float x, float y, float z);
 	void SetScale(float x, float y, float z);
 
