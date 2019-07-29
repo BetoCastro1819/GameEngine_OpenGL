@@ -19,8 +19,10 @@ void Animation::AddAnimation(const char* animationName, std::vector<int> animate
 }
 
 void Animation::SetAnimation(const char* animationName) {
-	currentAnimation = animationName;
-	currentFrameIndex = 0;
+	if (animationName != currentAnimation) {
+		currentAnimation = animationName;
+		currentFrameIndex = 0;
+	}
 }
 
 const char* Animation::GetAnimationName() {

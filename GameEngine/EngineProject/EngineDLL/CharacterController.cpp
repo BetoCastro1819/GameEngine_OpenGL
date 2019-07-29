@@ -9,18 +9,18 @@ CharacterController::CharacterController(Window* window, Entity* entity) {
 	m_entity = entity;
 
 	m_movementComp = new MovementComponent();
-	m_movementComp->SetAcceleration(0.3f);
-	m_movementComp->SetDragValue(0.05f);
-	m_movementComp->SetMaxSpeed(5);
 
 	m_canJump = true;
-	m_holdJumpTime = 0.1f;
 	m_jumpCountdown = 0.0f;
-	m_jumpStrength = 3.0f;
 }
 
 CharacterController::~CharacterController() {
 	if (m_movementComp != nullptr) delete m_movementComp;
+}
+
+void CharacterController::SetJumpParamenters(float holdJumpButtonDuration, float jumpstrength) {
+	m_holdJumpTime = holdJumpButtonDuration;
+	m_jumpStrength = jumpstrength;
 }
 
 void CharacterController::Update(float deltaTime) {

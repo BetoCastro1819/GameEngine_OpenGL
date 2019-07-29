@@ -25,9 +25,10 @@ private:
 
 public:
 	CharacterController(Window* window, Entity* entity);
-
 	~CharacterController();
 
 	void Update(float deltaTime);
+	MovementComponent* GetMovementComponent() { return m_movementComp; }
+	void SetJumpParamenters(float holdButtonTime, float jumpStrength);
 };
 

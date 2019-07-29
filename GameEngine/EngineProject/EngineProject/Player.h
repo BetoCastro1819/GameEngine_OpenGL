@@ -13,6 +13,15 @@ private:
 	Window* m_window;
 	CharacterController* m_controller;
 
+	enum State {
+		IDLE,
+		RUN,
+		NOT_GROUNDED,
+		KILLED
+	} m_state;
+
+	void UpdateState(float deltaTime);
+
 public:
 	Player(Window* window, Renderer* renderer, Material* material);
 	~Player();
