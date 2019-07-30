@@ -44,8 +44,12 @@ void Enemy::UpdatePosition(float deltaTime) {
 	m_movementComp->Update();
 
 	if (GetBoxCollider()->GetCollisionFlag().top) {
-		printf("\nGoompa stomp\n");
-		m_enabled = false;
+		Entity* entity = GetBoxCollider()->GetCollidingEntity();
+		if (entity != nullptr && entity->GetTag() == "Player") {
+			printf("\nGoompa stomp\n");
+			m_enabled = false;
+			entity->GetBoxCollider()->SetCollidingEntity(nullptr);
+		}
 	}
 	if (GetBoxCollider()->GetCollisionFlag().bottom) {
 		m_isGrounded = true;

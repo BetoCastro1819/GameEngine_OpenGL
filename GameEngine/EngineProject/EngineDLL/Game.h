@@ -11,6 +11,8 @@
 
 using namespace std;
 
+const int ENEMY_SIZE = 3;
+
 class Game : public GameBase {
 private:
 	CollisionManager* m_collisionManager;
@@ -18,7 +20,7 @@ private:
 	Texture* m_tilemapTexture;
 	Tilemap* m_tilemap;
 	Player* m_player;
-	Enemy* m_enemy;
+	Enemy* m_enemy[ENEMY_SIZE];
 
 	vector<Entity*> m_entities;
 

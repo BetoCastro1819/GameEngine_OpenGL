@@ -91,7 +91,9 @@ void Player::UpdateState(float deltaTime) {
 	if (GetBoxCollider()->GetCollisionFlag().left || GetBoxCollider()->GetCollisionFlag().right) {
 		Entity* collidingEnity = GetBoxCollider()->GetCollidingEntity();
 		if (collidingEnity != nullptr && collidingEnity->GetTag() == "Enemy") {
+			printf("\nPlayer colliding with enemy\n");
 			m_enabled = false;
+			GetBoxCollider()->SetCollidingEntity(nullptr);
 		}
 	}
 	m_sprite->PlayAnimation(deltaTime);

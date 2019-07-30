@@ -4,13 +4,13 @@
 #include <GL\glew.h>
 #include <fstream>
 
-Tilemap::Tilemap(Renderer* renderer) : Shape(renderer) {
+Tilemap::Tilemap(Renderer* renderer, const char* jsonFilePath) : Shape(renderer) {
 	m_renderer = renderer;
+	SetupDataFromJSON(jsonFilePath);
 }
 
 void Tilemap::Setup(Window* window, Material* material, Texture* texture) {
 	SetPos(0.0f, window->GetHeight(), 0.0f);
-	SetupDataFromJSON("tilemap.json");
 	SetMaterial(material);
 	SetTexture(texture);
 	SetupVertexArray();
@@ -18,8 +18,8 @@ void Tilemap::Setup(Window* window, Material* material, Texture* texture) {
 	SetupTilesPositions();
 }
 
-void Tilemap::SetupDataFromJSON(const char* jsonFile) {
-	ifstream tilemapJSON("tilemap.json");
+void Tilemap::SetupDataFromJSON(const char* jsonFilePath) {
+	ifstream tilemapJSON(jsonFilePath);
 	nlohmann::json jsonParsedData = nlohmann::json::parse(tilemapJSON);
 
 	m_TilesData.tileHeight = jsonParsedData["tileheight"];

@@ -38,7 +38,7 @@ private:
 		vector<int> tilesIndexes;
 	} m_TilesData;
 
-	void SetupDataFromJSON(const char* jsonFile);
+	void SetupDataFromJSON(const char* jsonFilePath);
 	void SetMaterial(Material* material) override;
 	void SetTexture(Texture* texture);
 	void SetupVertexArray();
@@ -54,7 +54,7 @@ private:
 	bool OnCollisionWith(Entity* sprite, glm::vec3 tilePosition) const;
 
 public:
-	Tilemap(Renderer* renderer);
+	Tilemap(Renderer* renderer, const char* jsonFilePath);
 	~Tilemap() { }
 
 	void Setup(Window* window, Material* material, Texture* texture);

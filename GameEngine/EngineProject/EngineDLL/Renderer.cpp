@@ -11,7 +11,7 @@ Renderer::Renderer(Window* window) {
 	// Orthographic camera in world coordinates
 	m_projection = glm::ortho(
 		0.0f,								// LEFT
-		(float)m_window->GetWidth(),			// RIGHT
+		(float)m_window->GetWidth(),		// RIGHT
 		0.0f,								// BOTTOM
 		(float)m_window->GetHeight(),		// TOP
 		0.0f,								// zNear
@@ -20,7 +20,7 @@ Renderer::Renderer(Window* window) {
 
 	// Camera matrix
 	m_view = glm::lookAt(
-		glm::vec3(0, 0, 4), // Camera is at (0,0,-4), in World Space
+		glm::vec3(0, 0, 4), // Camera is at (0,0,4), in World Space
 		glm::vec3(0, 0, 0), // and looks at the origin
 		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 	);
@@ -47,6 +47,16 @@ bool Renderer::Start() {
 bool Renderer::Stop() {
 	cout << "Renderer::Stop()" << endl;
 	return true;
+}
+
+void Renderer::SetCameraPosition(float x, float y, float z) {
+	glm::vec3 position = glm::vec3(x, y, z);
+
+	glm::vec3 cameraPosition = position;
+	glm::vec3 cameraDir = cameraPosition + glm::vec3(0, 0, -1);
+	glm::vec3 cameraHead = glm::vec3(0, 1, 0);
+
+	m_view = glm::lookAt(cameraPosition, cameraDir, cameraHead);
 }
 
 void Renderer::SetClearColor(const float& r, const float& g, const float& b, const float& a) {
@@ -114,7 +124,6 @@ void Renderer::DrawArrays(int drawMode, unsigned int numberOfVertices) {
 void Renderer::DisableVertexArray(unsigned int attribID) {
 	glDisableVertexAttribArray(attribID);
 }
-
 
 void Renderer::BindMaterial(unsigned int programID) {
 	glUseProgram(programID);

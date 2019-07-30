@@ -26,6 +26,8 @@ public:
 
 	bool Start();
 	bool Stop();
+
+	void SetCameraPosition(float x, float y, float z);
 	
 	unsigned int GenBuffer(float* buffer, int size);
 	void EnableVertexAttribArray(unsigned int attribID);
@@ -33,7 +35,6 @@ public:
 	void VertexAttribPointer(unsigned int attribID, int arraySizePerVertex);
 	void DrawArrays(int drawMode, unsigned int numberOfVertices);
 	void DisableVertexArray(unsigned int attribID);
-	
 	
 	void SetClearColor(const float& r, const float& g, const float& b, const float& a);
 	void ClearBuffer();
@@ -62,7 +63,6 @@ public:
 	void DeleteVrtxArray();
 	void DeleteProgram(unsigned int programID);
 	void DeleteTextures(unsigned int texture);
-
 };
 
 

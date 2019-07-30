@@ -52,6 +52,10 @@ void CollisionManager::CheckForCollisions() {
 
 						Entity* obj1 = collisionGroups.at((CollisionLayer)currentLayer)[objectIndex];
 						Entity* obj2 = collisionGroups.at((CollisionLayer)currentOpposingLayer)[currentOpposingObjIndex];
+
+						//obj1->GetBoxCollider()->SetCollidingEntity(nullptr);
+						//obj2->GetBoxCollider()->SetCollidingEntity(nullptr);
+
 						if (obj1->GetIsEnabled() && obj2->GetIsEnabled())
 							Collision(obj1, obj2);
 					} // Next opposing object

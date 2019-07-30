@@ -53,7 +53,7 @@ void GameBase::Loop()
 
 		_time->UpdateTime();
 
-		m_renderer->SetClearColor(0.2f, 0.3f, 0.3f, 0.0f);
+		m_renderer->SetClearColor(0.24f, 0.6f, 0.68f, 0.0f);
 		m_renderer->RecalculateFragmentDepth();
 		m_renderer->ClearBuffer();
 		OnUpdate(_time->GetDeltaTime()); // Draws triangle... for now
