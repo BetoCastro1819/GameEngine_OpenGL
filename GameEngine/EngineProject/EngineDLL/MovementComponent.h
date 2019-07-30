@@ -1,10 +1,13 @@
 #pragma once
 #include "Exports.h"
+#include "Entity.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
 class ENGINEDLL_API MovementComponent {
 private:
+	Entity* m_entity;
+
 	glm::vec3 m_velocity;
 	glm::vec3 m_acceleration;
 
@@ -16,7 +19,7 @@ private:
 	void ClampVelocityAt(float maxSpeed);
 
 public:
-	MovementComponent();
+	MovementComponent(Entity* entity);
 	~MovementComponent() { }
 
 	void Update();
@@ -25,9 +28,9 @@ public:
 	void SetAcceleration(float acceleration) { m_accelerationValue = acceleration; }
 	void SetDragValue(float drag) { m_dragCoefficient = drag; }
 	void SetMaxSpeed(float maxSpeed) { m_maxSpeed = maxSpeed; }
+	void SetVelocity(const glm::vec3& velocity) { m_velocity = velocity; }
 
-	float GetGravityValue() const { return m_gravityStrength; }
-	glm::vec3  GetVelocity() const { return m_velocity; }
+	glm::vec3 GetVelocity() const { return m_velocity; }
 
 	void AccelerateTowards(const glm::vec3& dir) { m_acceleration += dir * m_accelerationValue; }
 };

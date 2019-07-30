@@ -5,6 +5,8 @@
 Player::Player(Window* window, Renderer* renderer, Material* material) : Entity(renderer) {
 	m_window = window;
 
+	m_tag = "Player";
+
 	m_texture = new Texture("characters.bmp");
 	m_texture->SetTextureDimensions(736, 128);
 	m_texture->SetFrameDimensions(32, 32);
@@ -26,10 +28,10 @@ Player::Player(Window* window, Renderer* renderer, Material* material) : Entity(
 	m_collider = new BoxCollider(m_texture->GetFrameWidth(), m_texture->GetFrameHeight());
 
 	m_controller = new CharacterController(m_window, this);
-	m_controller->GetMovementComponent()->SetAcceleration(0.3f);
-	m_controller->GetMovementComponent()->SetDragValue(0.05f);
-	m_controller->GetMovementComponent()->SetMaxSpeed(5);
-	m_controller->SetJumpParamenters(0.1f, 3.0f);
+	m_controller->GetMovementComponent()->SetAcceleration(20.0f);
+	m_controller->GetMovementComponent()->SetDragValue(0.1f);
+	m_controller->GetMovementComponent()->SetMaxSpeed(500);
+	m_controller->SetJumpParamenters(0.1f, 300.0f);
 
 	m_state = State::IDLE;
 }
@@ -43,24 +45,24 @@ Player::~Player() {
 }
 
 void Player::Update(float deltaTime) {
-	m_controller->Update(deltaTime);
-	
-	m_sprite->SetModelMatrix(m_ModelMat);
-	m_sprite->Update(deltaTime);
+	if (m_enabled) {
+		m_controller->Update(deltaTime);
 
-	UpdateState(deltaTime);
+		m_sprite->SetModelMatrix(m_ModelMat);
+		m_sprite->Update(deltaTime);
+
+		UpdateState(deltaTime);
+	}
 }
 
 void Player::UpdateState(float deltaTime) {
 	float velocity_x = m_controller->GetMovementComponent()->GetVelocity().x;
-	bool isGrounded = GetBoxCollider()->OnGroundCollision();
+	bool isGrounded = GetBoxCollider()->GetCollisionFlag().bottom;
 
-	if (velocity_x < 0) {
+	if (velocity_x < 0)
 		SetScale(-1.0f, GetScale().y, GetScale().z);
-	}
-	else {
+	else
 		SetScale(1.0f, GetScale().y, GetScale().z);
-	}
 
 	switch (m_state) {
 	case State::IDLE:
@@ -86,5 +88,11 @@ void Player::UpdateState(float deltaTime) {
 		break;
 	}
 
+	if (GetBoxCollider()->GetCollisionFlag().left || GetBoxCollider()->GetCollisionFlag().right) {
+		Entity* collidingEnity = GetBoxCollider()->GetCollidingEntity();
+		if (collidingEnity != nullptr && collidingEnity->GetTag() == "Enemy") {
+			m_enabled = false;
+		}
+	}
 	m_sprite->PlayAnimation(deltaTime);
 }

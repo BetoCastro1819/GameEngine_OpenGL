@@ -31,11 +31,14 @@ protected:
 	glm::mat4 m_ScaleMat;
 
 	bool m_enabled;
-	
+	const char* m_tag;
+
 public:
 	Entity(Renderer* renderer);
 	~Entity();		
 	virtual void Update(float deltaTime) = 0;
+
+	bool GetIsEnabled() { return m_enabled; }
 
 	void Translate(float x, float y, float z);
 	void Translate(const glm::vec3& translate);
@@ -57,5 +60,6 @@ public:
 	void UpdateModelMatrix();
 
 	BoxCollider* GetBoxCollider() { return m_collider; }
+	const char* GetTag() { return m_tag; }
 };
 

@@ -42,7 +42,7 @@ bool Game::InitEntities() {
 	m_entities.push_back(m_player);
 
 	m_enemy = new Enemy(m_renderer, m_material);
-	m_enemy->SetPos(m_window->GetWidth() / 3, m_window->GetHeight() / 2, 0);
+	m_enemy->SetPos(m_window->GetWidth() / 5, m_window->GetHeight() / 2, 0);
 	m_entities.push_back(m_enemy);
 
 	return true;
@@ -51,6 +51,7 @@ bool Game::InitEntities() {
 void Game::SetupCollisionManager() {
 	m_collisionManager = CollisionManager::GetInstance();
 	m_collisionManager->AddToGroup(CollisionLayer::PLAYER, m_player);
+	m_collisionManager->AddToGroup(CollisionLayer::DEFAULT, m_enemy);
 }
 
 bool Game::OnUpdate(float deltaTime) {
@@ -59,8 +60,8 @@ bool Game::OnUpdate(float deltaTime) {
 }
 
 void Game::Update(float deltaTime) {
-	m_collisionManager->CheckForCollisions();
 	m_tilemap->HandleCollisions(m_entities);
+	m_collisionManager->CheckForCollisions();
 
 	m_player->Update(deltaTime);
 	m_enemy->Update(deltaTime);

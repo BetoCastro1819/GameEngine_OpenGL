@@ -45,9 +45,10 @@ bool Window::Stop() {
 }
 
 bool Window::ShouldClose() {
+	if (glfwGetKey((GLFWwindow*)_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		return true;
 	if (_window)
 		return glfwWindowShouldClose((GLFWwindow*)_window);
-
 	return true;	
 }
 

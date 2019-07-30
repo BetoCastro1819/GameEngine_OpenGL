@@ -21,6 +21,7 @@ Entity::Entity(Renderer* renderer) {
 	m_ScaleMat = glm::mat4(1.0f);
 
 	m_enabled = true;
+	m_tag = "Default tag";
 }
 
 Entity::~Entity() {

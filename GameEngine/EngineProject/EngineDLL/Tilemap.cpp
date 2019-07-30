@@ -133,8 +133,11 @@ void Tilemap::Update(float deltaTime) {
 void Tilemap::HandleCollisions(vector<Entity*> entities) {
 
 	for (int entityIndex = 0; entityIndex < entities.size(); entityIndex++) {
-		entities[entityIndex]->GetBoxCollider()->SetOnGroundCollision(false);
-		
+		entities[entityIndex]->GetBoxCollider()->SetCollisionFlag_bottom(false);
+		entities[entityIndex]->GetBoxCollider()->SetCollisionFlag_top(false);
+		entities[entityIndex]->GetBoxCollider()->SetCollisionFlag_left(false);
+		entities[entityIndex]->GetBoxCollider()->SetCollisionFlag_right(false);
+
 		for (int i = 0; i < m_tilesPositions.size(); i++) {
 			if (m_TilesData.tilesIndexes[i] == 2) {
 				OnCollisionWith(entities[entityIndex], m_tilesPositions[i]);
@@ -159,20 +162,25 @@ bool Tilemap::OnCollisionWith(Entity* entity, glm::vec3 tilePosition) const {
 		float penY = entity->GetBoxCollider()->GetBoxHeight() / 2 + m_tileHeight / 2 - modY;
 
 		if (penX > penY) {
-			if (entity->GetPos().y < tilePosition.y)
+			if (entity->GetPos().y < tilePosition.y) {
 				entity->Translate(0, -penY, 0);
+				entity->GetBoxCollider()->SetCollisionFlag_top(true);
+			}
 			else {
 				entity->Translate(0, penY, 0);
-				entity->GetBoxCollider()->SetOnGroundCollision(true);
-				//printf("\nColliding with floor\n");
+				entity->GetBoxCollider()->SetCollisionFlag_bottom(true);
 			}
 			return true;
 		}
 		else {
-			if (entity->GetPos().x < tilePosition.x)
+			if (entity->GetPos().x < tilePosition.x) {
 				entity->Translate(-penX, 0, 0);
-			else
+				entity->GetBoxCollider()->SetCollisionFlag_right(true);
+			}
+			else {
 				entity->Translate(penX, 0, 0);
+				entity->GetBoxCollider()->SetCollisionFlag_left(true);
+			}
 			return true;
 		}
 	}

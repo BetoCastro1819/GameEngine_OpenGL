@@ -8,7 +8,7 @@ CharacterController::CharacterController(Window* window, Entity* entity) {
 	m_window = window;
 	m_entity = entity;
 
-	m_movementComp = new MovementComponent();
+	m_movementComp = new MovementComponent(m_entity);
 
 	m_canJump = true;
 	m_jumpCountdown = 0.0f;
@@ -25,18 +25,13 @@ void CharacterController::SetJumpParamenters(float holdJumpButtonDuration, float
 
 void CharacterController::Update(float deltaTime) {
 	CheckForInput(deltaTime);
-
-	if (!m_entity->GetBoxCollider()->OnGroundCollision()) {
-		m_movementComp->Applyforce(World_Up * m_movementComp->GetGravityValue());
-	}
 	m_movementComp->Update();
-	m_entity->Translate(m_movementComp->GetVelocity());
+	m_entity->Translate(m_movementComp->GetVelocity() * deltaTime);
 }
 
 void CharacterController::CheckForInput(float deltaTime) {
 	MovementInput();
 	JumpInput(deltaTime);
-	CloseGameInput();
 }
 
 void CharacterController::MovementInput() {
@@ -59,7 +54,7 @@ void CharacterController::JumpInput(float deltaTime) {
 		m_jumpCountdown += deltaTime;
 	}
 
-	bool isGrounded = m_entity->GetBoxCollider()->OnGroundCollision();
+	bool isGrounded = m_entity->GetBoxCollider()->GetCollisionFlag().bottom;
 	if (glfwGetKey(glfwWindow, GLFW_KEY_SPACE) == GLFW_RELEASE && !isGrounded) {
 		m_canJump = false;
 	}
@@ -67,13 +62,8 @@ void CharacterController::JumpInput(float deltaTime) {
 }
 
 void CharacterController::ResetJumpWhenGrounded() {
-	if (m_entity->GetBoxCollider()->OnGroundCollision()) {
+	if (m_entity->GetBoxCollider()->GetCollisionFlag().bottom) {
 		m_canJump = true;
 		m_jumpCountdown = 0.0f;
 	}
-}
-
-void CharacterController::CloseGameInput() {
-	if (glfwGetKey((GLFWwindow*)m_window->GetWindowPtr(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose((GLFWwindow*)m_window->GetWindowPtr(), true);
 }

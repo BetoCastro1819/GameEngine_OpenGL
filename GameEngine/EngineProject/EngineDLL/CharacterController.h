@@ -21,8 +21,6 @@ private:
 	void JumpInput(float deltaTime);
 	void ResetJumpWhenGrounded();
 
-	void CloseGameInput();
-
 public:
 	CharacterController(Window* window, Entity* entity);
 	~CharacterController();

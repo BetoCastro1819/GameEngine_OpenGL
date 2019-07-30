@@ -11,6 +11,12 @@ private:
 	Texture* m_texture;
 	MovementComponent* m_movementComp;
 
+	glm::vec3 m_direction;
+	bool m_isGoingLeft;
+	bool m_isGrounded;
+
+	void UpdatePosition(float deltaTime);
+
 public:
 	Enemy(Renderer* renderer, Material* material);
 	~Enemy();

@@ -1,10 +1,12 @@
 #include "MovementComponent.h"
 
-MovementComponent::MovementComponent() {
+MovementComponent::MovementComponent(Entity* entity) {
+	m_entity = entity;
+
 	m_accelerationValue = 0.3f;
 	m_maxSpeed = 5;
 	m_dragCoefficient = -0.05f;
-	m_gravityStrength = -0.2;
+	m_gravityStrength = -20.0f;
 
 	m_velocity = glm::vec3(0);
 	m_acceleration = glm::vec3(0);
@@ -12,6 +14,9 @@ MovementComponent::MovementComponent() {
 
 void MovementComponent::Update() {
 	m_acceleration += m_velocity * -m_dragCoefficient;
+	if (!m_entity->GetBoxCollider()->GetCollisionFlag().bottom) {
+		Applyforce(World_Up * m_gravityStrength);
+	}
 	m_velocity += m_acceleration;
 	ClampVelocityAt(m_maxSpeed);
 	m_acceleration = glm::vec3(0);

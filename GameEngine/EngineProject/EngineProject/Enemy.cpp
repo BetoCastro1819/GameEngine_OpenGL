@@ -1,6 +1,9 @@
 #include "Enemy.h"
 
 Enemy::Enemy(Renderer* renderer, Material* material) : Entity(renderer) {
+
+	m_tag = "Enemy";
+	
 	m_texture = new Texture("characters.bmp");
 	m_texture->SetTextureDimensions(736, 128);
 	m_texture->SetFrameDimensions(32, 32);
@@ -12,10 +15,14 @@ Enemy::Enemy(Renderer* renderer, Material* material) : Entity(renderer) {
 
 	m_collider = new BoxCollider(m_texture->GetFrameWidth(), m_texture->GetFrameHeight());
 
-	m_movementComp = new MovementComponent();
-	m_movementComp->SetAcceleration(5.0f);
+	m_movementComp = new MovementComponent(this);
+	m_movementComp->SetMaxSpeed(50);
 	m_movementComp->SetDragValue(0.05f);
-	m_movementComp->SetMaxSpeed(2);
+	m_movementComp->SetAcceleration(5.0f);
+
+	m_direction = -World_Right;
+	m_isGoingLeft = true;
+	m_isGrounded = false;
 }
 
 Enemy::~Enemy() {
@@ -26,7 +33,39 @@ Enemy::~Enemy() {
 }
 
 void Enemy::Update(float deltaTime) {
-	m_sprite->SetModelMatrix(m_ModelMat);
-	m_sprite->Update(deltaTime);
+	if (m_enabled) {
+		m_sprite->SetModelMatrix(m_ModelMat);
+		m_sprite->Update(deltaTime);
+		UpdatePosition(deltaTime);
+	}
+}
+
+void Enemy::UpdatePosition(float deltaTime) {
+	m_movementComp->Update();
+
+	if (GetBoxCollider()->GetCollisionFlag().top) {
+		printf("\nGoompa stomp\n");
+		m_enabled = false;
+	}
+	if (GetBoxCollider()->GetCollisionFlag().bottom) {
+		m_isGrounded = true;
+	}
+	if (m_isGrounded) {
+		if (GetBoxCollider()->GetCollisionFlag().left)
+			m_isGoingLeft = false;
+		else if (GetBoxCollider()->GetCollisionFlag().right)
+			m_isGoingLeft = true;
+
+		if (m_isGoingLeft) {
+			m_movementComp->SetVelocity(m_direction * 50.0f);
+			SetScale(-1.0f, GetScale().y, GetScale().z);
+		}
+		else {
+			m_movementComp->SetVelocity(m_direction * -50.0f);
+			SetScale(1.0f, GetScale().y, GetScale().z);
+		}
+	}
+
+	Translate(m_movementComp->GetVelocity() * deltaTime);
 }
 
