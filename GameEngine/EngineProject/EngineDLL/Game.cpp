@@ -9,6 +9,7 @@ Game::~Game() {
 	if (m_tilemapTexture != nullptr) delete m_tilemapTexture;
 	if (m_tilemap != nullptr) delete m_tilemap;
 	if (m_player != nullptr) delete m_player;
+	if (m_levelCompleteScreen != nullptr) delete m_levelCompleteScreen;
 
 	for (int i = 0; i < ENEMY_SIZE; i++) {
 		if (m_enemy[i] != nullptr) delete m_enemy[i];
@@ -21,6 +22,8 @@ bool Game::OnStart() {
 	SetupTilemapTexture();
 	InitEntities();
 	SetupCollisionManager();
+
+	m_isLevelComplete = false;
 
 	return true;
 }
@@ -50,6 +53,9 @@ bool Game::InitEntities() {
 		m_entities.push_back(m_enemy[i]);
 	}
 	SetupEnemiesPositions();
+
+	m_levelCompleteScreen = new LevelCompleteScreen(m_renderer, m_material);
+
 	return true;
 }
 
@@ -75,6 +81,11 @@ bool Game::OnUpdate(float deltaTime) {
 	else {
 		Reset();
 	}
+	if (m_isLevelComplete) {
+		//printf("\nLevel won\n");
+		m_levelCompleteScreen->SetPos(m_player->GetPos().x, m_window->GetHeight() / 2, 1);
+		m_levelCompleteScreen->Display();
+	}
 
 	return true;
 }
@@ -86,6 +97,10 @@ void Game::Update(float deltaTime) {
 	m_player->Update(deltaTime);
 	if (m_player->GetPos().y < -m_player->GetBoxCollider()->GetBoxHeight())
 		m_player->SetIsEnabled(false);
+
+	if (m_player->GetPos().x > 96 * 32) {
+		m_isLevelComplete = true;
+	}
 
 	for (int i = 0; i < ENEMY_SIZE; i++) {
 		m_enemy[i]->Update(deltaTime);

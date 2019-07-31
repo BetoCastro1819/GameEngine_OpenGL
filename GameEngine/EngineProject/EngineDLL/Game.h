@@ -8,6 +8,7 @@
 #include "CollisionManager.h"
 #include "..\EngineProject\Player.h"
 #include "..\EngineProject\Enemy.h"
+#include "..\EngineProject\LevelCompleteScreen.h"
 
 using namespace std;
 
@@ -23,6 +24,10 @@ private:
 	Enemy* m_enemy[ENEMY_SIZE];
 
 	vector<Entity*> m_entities;
+
+	LevelCompleteScreen* m_levelCompleteScreen;
+
+	bool m_isLevelComplete;
 
 	bool OnStart() override;
 	bool OnStop() override;
