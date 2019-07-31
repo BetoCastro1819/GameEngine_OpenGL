@@ -73,3 +73,10 @@ void Enemy::UpdatePosition(float deltaTime) {
 	Translate(m_movementComp->GetVelocity() * deltaTime);
 }
 
+void Enemy::Reset() {
+	m_direction = -World_Right;
+	m_isGoingLeft = true;
+	m_isGrounded = false;
+	m_enabled = true;
+}
+

@@ -34,6 +34,8 @@ Player::Player(Window* window, Renderer* renderer, Material* material) : Entity(
 	m_controller->SetJumpParamenters(0.1f, 300.0f);
 
 	m_state = State::IDLE;
+
+	SetRespawnPosition(glm::vec3(0));
 }
 
 
@@ -42,6 +44,10 @@ Player::~Player() {
 	if (m_sprite != nullptr) delete m_sprite;
 	if (m_collider != nullptr) delete m_collider;
 	if (m_controller != nullptr) delete m_controller;
+}
+
+void Player::SetRespawnPosition(const glm::vec3& respawnPos) {
+	m_respawnPosition = respawnPos;
 }
 
 void Player::Update(float deltaTime) {
@@ -66,25 +72,23 @@ void Player::UpdateState(float deltaTime) {
 
 	switch (m_state) {
 	case State::IDLE:
-		m_sprite->SetAnimation("idle");
+		m_sprite->PlayAnimation("idle", deltaTime);
 		if ((int)velocity_x != 0)
 			m_state = State::RUN;
 		if (!isGrounded)
 			m_state = State::NOT_GROUNDED;
 		break;
 	case State::RUN:
-		m_sprite->SetAnimation("run");
+		m_sprite->PlayAnimation("run", deltaTime);
 		if ((int)velocity_x == 0)
 			m_state = State::IDLE;
 		if (!isGrounded)
 			m_state = State::NOT_GROUNDED;
 		break;
 	case State::NOT_GROUNDED:
-		m_sprite->SetAnimation("notGrounded");
+		m_sprite->PlayAnimation("notGrounded", deltaTime);
 		if (isGrounded)
 			m_state = State::IDLE;
-		break;
-	case State::KILLED:
 		break;
 	}
 
@@ -96,5 +100,10 @@ void Player::UpdateState(float deltaTime) {
 			GetBoxCollider()->SetCollidingEntity(nullptr);
 		}
 	}
-	m_sprite->PlayAnimation(deltaTime);
+}
+
+void Player::Respawn() {
+	m_enabled = true;
+	m_state = State::IDLE;
+	SetPos(m_respawnPosition.x, m_respawnPosition.y, m_respawnPosition.z);
 }

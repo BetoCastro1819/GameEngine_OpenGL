@@ -13,11 +13,12 @@ private:
 	Window* m_window;
 	CharacterController* m_controller;
 
+	glm::vec3 m_respawnPosition;
+
 	enum State {
 		IDLE,
 		RUN,
-		NOT_GROUNDED,
-		KILLED
+		NOT_GROUNDED
 	} m_state;
 
 	void UpdateState(float deltaTime);
@@ -27,5 +28,7 @@ public:
 	~Player();
 
 	void Update(float deltaTime) override;
+	void SetRespawnPosition(const glm::vec3& respawnPos);
+	void Respawn();
 };
 

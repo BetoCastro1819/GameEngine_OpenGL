@@ -42,16 +42,14 @@ bool Game::InitEntities() {
 
 	m_player = new Player(m_window, m_renderer, m_material);
 	m_player->SetPos(m_window->GetWidth() / 2, m_window->GetHeight() / 2, 0);
+	m_player->SetRespawnPosition(m_player->GetPos());
 	m_entities.push_back(m_player);
 
 	for (int i = 0; i < ENEMY_SIZE; i++) {
 		m_enemy[i] = new Enemy(m_renderer, m_material);
 		m_entities.push_back(m_enemy[i]);
 	}
-	m_enemy[0]->SetPos(32 * 33, 32 * 4, 0);
-	m_enemy[1]->SetPos(32 * 55, 32 * 4, 0);
-	m_enemy[2]->SetPos(32 * 66, 32 * 4, 0);
-
+	SetupEnemiesPositions();
 	return true;
 }
 
@@ -63,9 +61,20 @@ void Game::SetupCollisionManager() {
 	}
 }
 
+void Game::SetupEnemiesPositions() {
+	m_enemy[0]->SetPos(32 * 33, 32 * 4, 0);
+	m_enemy[1]->SetPos(32 * 55, 32 * 4, 0);
+	m_enemy[2]->SetPos(32 * 66, 32 * 4, 0);
+}
+
 bool Game::OnUpdate(float deltaTime) {
-	Update(deltaTime);
-	m_renderer->SetCameraPosition(m_player->GetPos().x - m_window->GetWidth() / 2, 0, 4);
+	if (m_player->GetIsEnabled()) {
+		Update(deltaTime);
+		m_renderer->SetCameraPosition(m_player->GetPos().x - m_window->GetWidth() / 2, 0, 4);
+	}
+	else {
+		Reset();
+	}
 
 	return true;
 }
@@ -75,11 +84,22 @@ void Game::Update(float deltaTime) {
 	m_collisionManager->CheckForCollisions();
 
 	m_player->Update(deltaTime);
+	if (m_player->GetPos().y < -m_player->GetBoxCollider()->GetBoxHeight())
+		m_player->SetIsEnabled(false);
+
 	for (int i = 0; i < ENEMY_SIZE; i++) {
 		m_enemy[i]->Update(deltaTime);
 	}
 
 	m_tilemap->Update(deltaTime);
+}
+
+void Game::Reset() {
+	m_player->Respawn();
+	SetupEnemiesPositions();
+
+	for (int i = 0; i < ENEMY_SIZE; i++)
+		m_enemy[i]->Reset();
 }
 
 bool Game::OnStop() {

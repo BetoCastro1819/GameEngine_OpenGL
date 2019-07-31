@@ -31,6 +31,9 @@ private:
 	bool SetupTilemapTexture();
 	bool InitEntities();
 	void SetupCollisionManager();
+	void SetupEnemiesPositions();
+
+	void Reset();
 
 	void Update(float delaTime);
 

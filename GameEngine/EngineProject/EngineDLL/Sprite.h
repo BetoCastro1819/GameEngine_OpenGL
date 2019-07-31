@@ -42,7 +42,7 @@ public:
 	void SetUVBufferData(float* vrtxs, int vtxCount);
 
 	void AddAnimation(const char* animationName, std::vector<int> animationFrames);
-	void PlayAnimation(float deltaTime);
+	void PlayAnimation(const char* animationName, float deltaTime);
 	void SetAnimation(const char* animationName);
 	void SetAnimationSpeed(float speed);
 

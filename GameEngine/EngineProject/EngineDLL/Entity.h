@@ -38,7 +38,8 @@ public:
 	~Entity();		
 	virtual void Update(float deltaTime) = 0;
 
-	bool GetIsEnabled() { return m_enabled; }
+	bool GetIsEnabled() const { return m_enabled; }
+	void SetIsEnabled(bool isEnabled) { m_enabled = isEnabled; }
 
 	void Translate(float x, float y, float z);
 	void Translate(const glm::vec3& translate);

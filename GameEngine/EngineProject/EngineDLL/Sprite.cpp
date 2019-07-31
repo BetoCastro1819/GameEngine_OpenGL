@@ -139,15 +139,18 @@ void Sprite::AddAnimation(const char* animationName, std::vector<int> animationF
 	m_animation->AddAnimation(animationName, animationFrames);
 }
 
-void Sprite::PlayAnimation(float deltaTime) {
-	//std::cout << "Animation Frame " << _animation->GetAnimationFrame(deltaTime) << std::endl;
+void Sprite::PlayAnimation(const char* animationName, float deltaTime) {
+	if (m_animation != nullptr) {
+		m_animation->SetAnimation(animationName);
+	}
+
 	SetFrameID(m_animation->GetAnimationFrame(deltaTime));
 }
 
 void Sprite::SetAnimation(const char* animationName) {
-	if (m_animation != nullptr) {
-		m_animation->SetAnimation(animationName);
-	}
+	//if (m_animation != nullptr) {
+	//	m_animation->SetAnimation(animationName);
+	//}
 }
 
 void Sprite::SetAnimationSpeed(float animationSpeed) {
