@@ -1,0 +1,4 @@
+Algoritmos de visibilidad:
+1 - puertas q se cierran y abren en base a la distancia y velocidad maxima del jugador. Cada habitacion solo contiene cargados las habitaciones adjacentes al curato donde se encuentra el jugador.
+2 - level of detail
+3 - quad-tree y oct-tree (si es q hay movimiento en los 3 ejes). Solo dibujar las celdas adjacentes a la celda donde se encuentra la camara.
