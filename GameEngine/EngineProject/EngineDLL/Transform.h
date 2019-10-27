@@ -36,6 +36,7 @@ private:
 
 	void UpdateUnitVectors();
 	void UpdateBoundingBoxVertices();
+	void UpdateVectorWithMatrix(glm::vec3& vectorToUpdate, glm::mat4 matToUse);
 
 public:
 	glm::vec3 right;

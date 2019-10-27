@@ -36,6 +36,8 @@ Transform::Transform(Entity* entity) : Component(entity) {
 void Transform::Update(float deltaTime) {
 	UpdateUnitVectors();
 	UpdateModelMatrix();
+
+	//printf("\nX: %f Y: %f Z: %f", m_position.x, m_position.y, m_position.z);
 }
 
 void Transform::UpdateModelMatrix() {
@@ -58,92 +60,35 @@ void Transform::UpdateModelMatrix() {
 }
 
 void Transform::SetPosition(const glm::vec3& position) {
-	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_position);
-
-	if (m_entity->GetParent() != nullptr) {
-		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		m_position = parentTransform->GetWorldMatrix() * m_translateMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-	else {
-		m_position = m_translateMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
+	m_translateMatrix = glm::translate(glm::mat4(1.0f), position);
+	UpdateVectorWithMatrix(m_position, m_translateMatrix);
 }
 
 void Transform::SetPosition(float x, float y, float z) {
 	m_translateMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
-
-	if (m_entity->GetParent() != nullptr) {
-		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		m_position = parentTransform->GetWorldMatrix() * m_translateMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-	else {
-		m_position = m_translateMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-
-	float posX = m_position.x;
-	float posY = m_position.y;
-	float posZ = m_position.z;
-	printf("\nWorld position: X = %f Y = %f Z = %f \n", posX, posY, posZ);
+	UpdateVectorWithMatrix(m_position, m_translateMatrix);
 }
 
 void Transform::SetScale(const glm::vec3& scale) { 
-	m_scale = scale;
-	m_scaleMatrix = glm::scale(glm::mat4(1.0f), m_scale);
-
-	//m_scale = m_scaleMatrix * glm::vec4(m_scale, 1.0f);
-
-	if (m_entity->GetParent() != nullptr) {
-		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		m_scale = parentTransform->GetWorldMatrix() * m_scaleMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-	else {
-		m_scale = m_scaleMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
+	m_scaleMatrix = glm::scale(glm::mat4(1.0f), scale);
+	UpdateVectorWithMatrix(m_scale, m_scaleMatrix);
 }
 
 void Transform::SetScale(float x, float y, float z) {
-	m_scale = glm::vec3(x, y, z);
-	m_scaleMatrix = glm::scale(glm::mat4(1.0f), m_scale);
-
-	//m_scale = m_scaleMatrix * glm::vec4(m_scale, 1.0f);
-
-	if (m_entity->GetParent() != nullptr) {
-		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		m_scale = parentTransform->GetWorldMatrix() * m_scaleMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-	else {
-		m_scale = m_scaleMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
+	m_scaleMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(x, y, z));
+	UpdateVectorWithMatrix(m_scale, m_scaleMatrix);
 }
 
 void Transform::Walk(float speed) {
 	m_position += foward * speed;
 	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_position);
-
-	if (m_entity->GetParent() != nullptr) {
-		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		m_position = parentTransform->GetWorldMatrix() * m_translateMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-	else {
-		m_position = m_translateMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-
-	//m_position = m_translateMatrix * glm::vec4(m_position, 1.0f);
+	UpdateVectorWithMatrix(m_position, m_translateMatrix);
 }
 
 void Transform::Strafe(float speed) {
 	m_position += right * speed;
 	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_position);
-
-	if (m_entity->GetParent() != nullptr) {
-		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		m_position = parentTransform->GetWorldMatrix() * m_translateMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-	else {
-		m_position = m_translateMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	}
-
-	//m_position = m_translateMatrix * glm::vec4(m_position, 1.0f);
+	UpdateVectorWithMatrix(m_position, m_translateMatrix);
 }
 
 void Transform::Pitch(float angle) {
@@ -179,13 +124,17 @@ void Transform::UpdateUnitVectors() {
 
 	right = glm::normalize(glm::cross(foward, up));
 
-	m_rotation = m_rotateMatrix * glm::vec4(m_rotation, 1.0f);
+	UpdateVectorWithMatrix(m_rotation, m_rotateMatrix);
+}
+
+
+void Transform::UpdateVectorWithMatrix(glm::vec3& vectorToUpdate, glm::mat4 matToUse) {
 	if (m_entity->GetParent() != nullptr) {
 		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		m_rotation = parentTransform->GetWorldMatrix() * m_rotateMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+		vectorToUpdate = parentTransform->GetWorldMatrix() * matToUse * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	}
 	else {
-		m_rotation = m_rotateMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+		vectorToUpdate = matToUse * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	}
 }
 
