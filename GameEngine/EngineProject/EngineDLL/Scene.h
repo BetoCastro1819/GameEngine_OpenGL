@@ -9,10 +9,10 @@
 class ENGINEDLL_API Scene : public Entity {
 private:
 	Camera* m_camera;
-	Suzzane* m_suzzanne;
-	Suzzane* mesh;
+	Suzzane* m_suzanne;
+	Suzzane* m_suzanne_1;
 
-	float m_rotationSpeed;
+	float m_rotationAngle;
 
 public:
 	Scene(Renderer* renderer, Camera* camera);

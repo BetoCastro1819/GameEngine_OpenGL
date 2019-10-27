@@ -6,42 +6,39 @@ Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 }
 
 bool Scene::Start() {
-	m_suzzanne = new Suzzane(m_renderer);
-	m_suzzanne->GetTransform()->SetScale(0.5f, 0.5f, 0.5f);
-	m_suzzanne->SetName("suzanne right");
-	m_suzzanne->GetTransform()->SetPosition(2, 0, 0);
-	AddNode(m_suzzanne);
+	m_suzanne = new Suzzane(m_renderer);
+	//m_suzanne->GetTransform()->SetScale(0.5f, 0.5f, 0.5f);
+	m_suzanne->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+	m_suzanne->SetName("Suzanne");
+	AddNode(m_suzanne);
 
-	mesh = new Suzzane(m_renderer);
-	mesh->SetName("suzanne center");
-	mesh->GetTransform()->SetScale(0.5f, 0.5f, 0.5f);
-	mesh->GetTransform()->SetPosition(0, 0, 0);
-	AddNode(mesh);
-	//m_suzzanne->AddNode(mesh);
+	m_suzanne_1 = new Suzzane(m_renderer);
+	//m_suzanne_1->GetTransform()->SetPosition(3.0f, 0.0f, 0.0f);
+	m_suzanne_1->SetName("Suzanne");
+	AddNode(m_suzanne_1);
+	m_suzanne->AddNode(m_suzanne_1);
+
 
 	AddNode(m_camera);
 	m_camera->GetTransform()->SetPosition(0, 0, 5);
 
-	//SceneNode* rootNode = m_cubeTest->GetChildrenByIndex(0);
-	//SceneNode* arms = rootNode->GetChildrenByIndex(3);
-	//
-	//arms->GetTransform()->SetPosition(-5, 0, 0);
-
-	m_rotationSpeed = 10;
+	m_rotationAngle = 0.0f;
 
 	return true;
 }
 
 void Scene::Update(float deltaTime) {
-	float speed = m_rotationSpeed * deltaTime;
-	m_suzzanne->GetTransform()->Yaw(speed);
-
-	m_camera->TestForFrustrumCulling(m_suzzanne);
-	m_camera->TestForFrustrumCulling(mesh);
 	SceneNode::Update(deltaTime);
+
+
+
+	m_suzanne_1->GetTransform()->SetPosition(3.0f, 0.0f, 0.0f);
+	m_rotationAngle += 3.0f * deltaTime;
+	m_suzanne->GetTransform()->Yaw(1.0f);
+	
 }
 
 Scene::~Scene() {
-	if (m_suzzanne != nullptr) delete m_suzzanne;
-	//if (mesh != nullptr) delete mesh;
+	if (m_suzanne != nullptr) delete m_suzanne;
+	if (m_suzanne_1 != nullptr) delete m_suzanne_1;
 }

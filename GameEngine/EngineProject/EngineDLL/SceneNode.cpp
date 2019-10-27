@@ -1,6 +1,12 @@
 #include "SceneNode.h"
 #include "Transform.h"
 
+SceneNode::SceneNode() {
+	m_parent = nullptr;
+	m_transform = nullptr;
+	m_name = "name undefined";
+}
+
 void SceneNode::SetParent(SceneNode* parent) {
 	m_parent = parent;
 }

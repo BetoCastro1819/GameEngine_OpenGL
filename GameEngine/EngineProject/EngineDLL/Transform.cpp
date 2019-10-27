@@ -8,7 +8,8 @@ glm::vec3 World::foward = glm::vec3(0, 0, 1);
 Transform::Transform(Entity* entity) : Component(entity) {
 	SetType(ComponentType::TRANSFORM);
 
-	m_modelMatrix = glm::mat4(1.0f);
+	m_transform = glm::mat4(1.0f);
+	m_worldTransform = glm::mat4(1.0f);
 
 	m_translateMatrix = glm::mat4(1.0f);
 	m_rotateMatrix = glm::mat4(1.0f);
@@ -33,51 +34,116 @@ Transform::Transform(Entity* entity) : Component(entity) {
 }
 
 void Transform::Update(float deltaTime) {
-	UpdateModelMatrix();
 	UpdateUnitVectors();
+	UpdateModelMatrix();
 }
 
 void Transform::UpdateModelMatrix() {
-	m_modelMatrix = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
+	m_transform = m_translateMatrix * m_rotateMatrix * m_scaleMatrix;
 
 	if (m_entity->GetParent() != nullptr) {
 		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		m_modelMatrix = parentTransform->GetModelMatrix() * m_modelMatrix;
+		m_worldTransform = parentTransform->GetWorldMatrix() * m_transform;
+	} 
+	else {
+		m_worldTransform = m_transform;
 	}
 
-	for (int i = 0; i < m_boundingBox.vertices.size(); i++) {
-		glm::vec4 tempVec = glm::vec4(m_boundingBox.vertices[i], 1.0f);
-		tempVec = m_modelMatrix * tempVec;
-		m_boundingBox.vertices[i] = glm::vec3(tempVec.x, tempVec.y, tempVec.z);
-	}
+
+	//for (int i = 0; i < m_boundingBox.vertices.size(); i++) {
+	//	glm::vec4 tempVec = glm::vec4(m_boundingBox.vertices[i], 1.0f);
+	//	tempVec = m_modelMatrix * tempVec;
+	//	m_boundingBox.vertices[i] = glm::vec3(tempVec.x, tempVec.y, tempVec.z);
+	//}
 }
 
 void Transform::SetPosition(const glm::vec3& position) {
-	m_position = position;
 	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_position);
+
+	if (m_entity->GetParent() != nullptr) {
+		Transform* parentTransform = m_entity->GetParent()->GetTransform();
+		m_position = parentTransform->GetWorldMatrix() * m_translateMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+	else {
+		m_position = m_translateMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
 }
 
 void Transform::SetPosition(float x, float y, float z) {
-	m_position = glm::vec3(x, y, z);
-	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_position);
+	m_translateMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
+
+	if (m_entity->GetParent() != nullptr) {
+		Transform* parentTransform = m_entity->GetParent()->GetTransform();
+		m_position = parentTransform->GetWorldMatrix() * m_translateMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+	else {
+		m_position = m_translateMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+
+	float posX = m_position.x;
+	float posY = m_position.y;
+	float posZ = m_position.z;
+	printf("\nWorld position: X = %f Y = %f Z = %f \n", posX, posY, posZ);
 }
 
 void Transform::SetScale(const glm::vec3& scale) { 
 	m_scale = scale;
 	m_scaleMatrix = glm::scale(glm::mat4(1.0f), m_scale);
+
+	//m_scale = m_scaleMatrix * glm::vec4(m_scale, 1.0f);
+
+	if (m_entity->GetParent() != nullptr) {
+		Transform* parentTransform = m_entity->GetParent()->GetTransform();
+		m_scale = parentTransform->GetWorldMatrix() * m_scaleMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+	else {
+		m_scale = m_scaleMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
 }
 
 void Transform::SetScale(float x, float y, float z) {
 	m_scale = glm::vec3(x, y, z);
 	m_scaleMatrix = glm::scale(glm::mat4(1.0f), m_scale);
+
+	//m_scale = m_scaleMatrix * glm::vec4(m_scale, 1.0f);
+
+	if (m_entity->GetParent() != nullptr) {
+		Transform* parentTransform = m_entity->GetParent()->GetTransform();
+		m_scale = parentTransform->GetWorldMatrix() * m_scaleMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+	else {
+		m_scale = m_scaleMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
 }
 
 void Transform::Walk(float speed) {
 	m_position += foward * speed;
+	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_position);
+
+	if (m_entity->GetParent() != nullptr) {
+		Transform* parentTransform = m_entity->GetParent()->GetTransform();
+		m_position = parentTransform->GetWorldMatrix() * m_translateMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+	else {
+		m_position = m_translateMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+
+	//m_position = m_translateMatrix * glm::vec4(m_position, 1.0f);
 }
 
 void Transform::Strafe(float speed) {
 	m_position += right * speed;
+	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_position);
+
+	if (m_entity->GetParent() != nullptr) {
+		Transform* parentTransform = m_entity->GetParent()->GetTransform();
+		m_position = parentTransform->GetWorldMatrix() * m_translateMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+	else {
+		m_position = m_translateMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+
+	//m_position = m_translateMatrix * glm::vec4(m_position, 1.0f);
 }
 
 void Transform::Pitch(float angle) {
@@ -112,6 +178,15 @@ void Transform::UpdateUnitVectors() {
 	up.z = newUp.z;
 
 	right = glm::normalize(glm::cross(foward, up));
+
+	m_rotation = m_rotateMatrix * glm::vec4(m_rotation, 1.0f);
+	if (m_entity->GetParent() != nullptr) {
+		Transform* parentTransform = m_entity->GetParent()->GetTransform();
+		m_rotation = parentTransform->GetWorldMatrix() * m_rotateMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+	else {
+		m_rotation = m_rotateMatrix * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	}
 }
 
 void Transform::SetBoundingBoxDimensions(glm::vec3 origin, float width, float height, float length) {

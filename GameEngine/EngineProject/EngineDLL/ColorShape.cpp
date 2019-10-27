@@ -2,7 +2,7 @@
 #include "Transform.h"
 
 ColorShape::ColorShape(Renderer* renderer):Shape(renderer) {
-	m_renderer->UpdateModelMatrix(GetTransform()->GetModelMatrix());
+	m_renderer->UpdateModelMatrix(GetTransform()->GetWorldMatrix());
 
 	float vertices[] = {
 		// Cube using GL_TRIANGLE_STRIP

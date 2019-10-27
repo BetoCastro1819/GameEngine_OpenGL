@@ -9,10 +9,10 @@ enum ComponentType;
 
 class ENGINEDLL_API SceneNode {
 private:
-	void SetParent(SceneNode* parent);
 	std::string m_name;
 
 	void TraverseNodeTree(int& treeLevel);
+	void SetParent(SceneNode* parent);
 
 protected:
 	Transform* m_transform;
@@ -22,7 +22,7 @@ protected:
 	std::vector<Component*> m_componentList;
 
 public:
-	SceneNode() : m_parent(nullptr), m_transform(nullptr), m_name("name undefined") { }
+	SceneNode();
 
 	virtual ~SceneNode();
 	void Release();

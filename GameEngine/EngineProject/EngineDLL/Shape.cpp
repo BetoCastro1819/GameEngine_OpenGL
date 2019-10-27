@@ -18,7 +18,7 @@ void Shape::Update(float deltaTime) {
 		BindMaterial();
 	}
 
-	m_renderer->UpdateModelMatrix(GetTransform()->GetModelMatrix());
+	m_renderer->UpdateModelMatrix(GetTransform()->GetWorldMatrix());
 	m_renderer->UpdateMVP();
 	//_renderer->SendTransformationToShader(_matrixID);
 	// Bind Vertex Buffer (Attribute index = 0)

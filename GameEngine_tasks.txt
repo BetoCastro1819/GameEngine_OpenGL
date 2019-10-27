@@ -1,0 +1,9 @@
+Game Engine tasks:
+- transform.position should return world location, not position relative to parent
+- modifying transform amtrices should be based for world relation, not based on parent transform matrix
+- Create bounding boxes for each child of the object. The parent bounding box needs to resize based on the childs bounding box vertices positions.
+- write proper formula for generating camera frustrum planes.
+- Apply frustrum culling for each child recursively based on parent bounding box.
+- Find a way to visualize frustrum culling working, maybe using 2 cameras?
+- Make BSP algorithm.
+- Create and load scene for BSP demo.

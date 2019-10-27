@@ -27,7 +27,9 @@ private:
 	glm::vec3 m_scale;
 	glm::vec3 m_rotation;
 
-	glm::mat4 m_modelMatrix;
+	glm::mat4 m_worldTransform;
+	glm::mat4 m_transform;
+
 	glm::mat4 m_translateMatrix;
 	glm::mat4 m_rotateMatrix;
 	glm::mat4 m_scaleMatrix;
@@ -45,7 +47,7 @@ public:
 
 	void Update(float deltaTime) override;
 
-	glm::mat4 GetModelMatrix() const { return m_modelMatrix; }
+	glm::mat4 GetWorldMatrix() const { return m_worldTransform; }
 	void UpdateModelMatrix();
 
 	glm::vec3 GetPosition() const { return m_position; }
