@@ -35,6 +35,9 @@ public:
 	bool Start();
 	bool Stop();
 	
+	const glm::mat4 GetProjectionMatrix() const { return _projection; }
+
+
 	void SetPerpectiveCam(float fovAngle, float aspect, float near, float far);
 	void SetOrthographicCam(float left, float right, float bottom, float top, float zNear, float zFar);
 	glm::mat4 GetViewMat() { return _view; }
@@ -78,14 +81,14 @@ public:
 	void BindTexture(unsigned int texture);
 	void SetTextureSampler(unsigned int textureID);
 
+	void DrawCube(vector<glm::vec3> vertices);
+	void DrawSquare(glm::vec3 pt1, glm::vec3 pt2, glm::vec3 pt3, glm::vec3 pt4);
+
 	// Free memory space
 	void DeleteBuffers(unsigned int buffer);
 	void DeleteVrtxArray();
 	void DeleteProgram(unsigned int programID);
 	void DeleteTextures(unsigned int texture);
-
-	void DrawCube(vector<glm::vec3> vertices);
-	void DrawSquare(glm::vec3 pt1, glm::vec3 pt2, glm::vec3 pt3, glm::vec3 pt4);
 };
 
 

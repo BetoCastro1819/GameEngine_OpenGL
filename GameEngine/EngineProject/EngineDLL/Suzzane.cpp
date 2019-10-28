@@ -21,7 +21,7 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	printf("\nNode hierarchy from %s:\n", GetName());
 	PrintNodeHierarchy();
 
-	GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1, -1, -1), glm::vec3(2, 2, 2));
+	GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1, -1, -1), glm::vec3(1, 1, 1));
 }
 
 Suzzane::~Suzzane() {

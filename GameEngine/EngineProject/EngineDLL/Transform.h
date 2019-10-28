@@ -12,10 +12,11 @@ struct World {
 };
 
 struct BoundingBox {
-	glm::vec3 origin;
-	glm::vec3 width;
-	glm::vec3 height;
-	glm::vec3 length;
+	glm::vec3 minVertex;
+	glm::vec3 maxVertex;
+	//glm::vec3 width;
+	//glm::vec3 height;
+	//glm::vec3 length;
 	std::vector<glm::vec3> vertices;
 };
 

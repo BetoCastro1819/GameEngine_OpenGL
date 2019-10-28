@@ -29,11 +29,12 @@ bool Scene::Start() {
 void Scene::Update(float deltaTime) {
 	SceneNode::Update(deltaTime);
 
-	m_suzanne_1->GetTransform()->SetPosition(3.0f, 0.0f, 0.0f);
+	m_camera->TestForFrustrumCulling(m_suzanne);
 
-	m_rotationAngle += 3.0f * deltaTime;
-	m_suzanne->GetTransform()->Yaw(1.0f);
-	
+	//m_suzanne_1->GetTransform()->SetPosition(3.0f, 0.0f, 0.0f);
+	//
+	//m_rotationAngle += 3.0f * deltaTime;
+	//m_suzanne->GetTransform()->Yaw(1.0f);
 }
 
 Scene::~Scene() {

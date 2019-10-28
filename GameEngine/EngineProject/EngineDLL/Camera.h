@@ -11,34 +11,22 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-struct Plane {
-	glm::vec3 bottomLeft;
-	glm::vec3 bottomRight;
-	glm::vec3 topRight;
-	glm::vec3 topLeft;
-
-	glm::vec3 normal;
+enum ClippingPlane {
+	Left	= 0,
+	Right	= 1,
+	Top		= 2,
+	Bottom	= 3,
+	Near	= 4,
+	Far		= 5
 };
-
-//struct ClippingPlane {
-//	Plane far;
-//	Plane near;
-//	Plane left;
-//	Plane right;
-//	Plane top;
-//	Plane bottom;
-//};
 
 class ENGINEDLL_API Camera  : public Entity {
 private:
 	Window* m_Window;
 
-	Plane plane_near;
-	Plane plane_far;
-	Plane plane_top;
-	Plane plane_bottom;
-	Plane plane_left;
-	Plane plane_right;
+	struct Plane {
+		float a, b, c, d;
+	} m_planes[6];
 
 	float zNear;
 	float zFar;
@@ -54,9 +42,10 @@ private:
 	void UpdateViewMatrix();
 	void CheckForMovementInput(float deltaTime);
 	void CheckForRotationInput(float deltaTime);
+	void UpdateFrustrumPlanes();
 
-	void UpdateClippingPlanes();
-	bool isBehindPlane(Plane plane, Entity* entity) const;
+	bool isBehindPlane(Plane& plane, Entity* entity);
+	void NormalizePlane(Plane& plane);
 
 public:
 	Camera(Renderer* renderer, Window* window);
