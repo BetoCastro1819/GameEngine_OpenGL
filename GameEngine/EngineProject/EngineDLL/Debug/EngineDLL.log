@@ -55,5 +55,4 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(37): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(179): warning C4018: '<': signed/unsigned mismatch
   EngineDLL.vcxproj -> D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll

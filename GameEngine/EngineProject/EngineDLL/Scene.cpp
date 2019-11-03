@@ -7,7 +7,7 @@ Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 
 bool Scene::Start() {
 	m_suzanne = new Suzzane(m_renderer);
-	m_suzanne->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+	m_suzanne->GetTransform()->SetPosition(-3.0f, 0.0f, 0.0f);
 	m_suzanne->SetName("Suzanne");
 	AddNode(m_suzanne);
 

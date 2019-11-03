@@ -23,67 +23,6 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 
 }
 
-void Camera::UpdateFrustrumPlanes() {
-	glm::mat4 comboMatrix = m_renderer->GetViewMat();
-
-	// Left clipping plane
-	m_planes[ClippingPlane::Left].a = comboMatrix[3][0] + comboMatrix[0][0];
-	m_planes[ClippingPlane::Left].b = comboMatrix[3][1] + comboMatrix[0][1];
-	m_planes[ClippingPlane::Left].c = comboMatrix[3][2] + comboMatrix[0][2];
-	m_planes[ClippingPlane::Left].d = comboMatrix[3][3] + comboMatrix[0][3];
-
-	// Right clipping plane
-	m_planes[ClippingPlane::Right].a = comboMatrix[3][0] - comboMatrix[0][0];
-	m_planes[ClippingPlane::Right].b = comboMatrix[3][1] - comboMatrix[0][1];
-	m_planes[ClippingPlane::Right].c = comboMatrix[3][2] - comboMatrix[0][2];
-	m_planes[ClippingPlane::Right].d = comboMatrix[3][3] - comboMatrix[0][3];
-
-	// Top clipping plane
-	m_planes[ClippingPlane::Top].a = comboMatrix[3][0] - comboMatrix[1][0];
-	m_planes[ClippingPlane::Top].b = comboMatrix[3][1] - comboMatrix[1][1];
-	m_planes[ClippingPlane::Top].c = comboMatrix[3][2] - comboMatrix[1][2];
-	m_planes[ClippingPlane::Top].d = comboMatrix[3][3] - comboMatrix[1][3];
-
-	// Bottom clipping plane
-	m_planes[ClippingPlane::Bottom].a = comboMatrix[3][0] + comboMatrix[1][0];
-	m_planes[ClippingPlane::Bottom].b = comboMatrix[3][1] + comboMatrix[1][1];
-	m_planes[ClippingPlane::Bottom].c = comboMatrix[3][2] + comboMatrix[1][2];
-	m_planes[ClippingPlane::Bottom].b = comboMatrix[3][3] + comboMatrix[1][3];
-
-	// Near clipping plane
-	m_planes[ClippingPlane::Near].a = comboMatrix[3][0] + comboMatrix[2][0];
-	m_planes[ClippingPlane::Near].b = comboMatrix[3][1] + comboMatrix[2][1];
-	m_planes[ClippingPlane::Near].c = comboMatrix[3][2] + comboMatrix[2][2];
-	m_planes[ClippingPlane::Near].d = comboMatrix[3][3] + comboMatrix[2][3];
-
-	// Far clipping plane
-	m_planes[ClippingPlane::Far].a = comboMatrix[3][0] - comboMatrix[2][0];
-	m_planes[ClippingPlane::Far].b = comboMatrix[3][1] - comboMatrix[2][1];
-	m_planes[ClippingPlane::Far].c = comboMatrix[3][2] - comboMatrix[2][2];
-	m_planes[ClippingPlane::Far].d = comboMatrix[3][3] - comboMatrix[2][3];
-
-	//printf("\nFar plane values: a = %f, b = %f, c = %f, d = %f\n",
-	//	m_planes[ClippingPlane::Far].a,
-	//	m_planes[ClippingPlane::Far].b,
-	//	m_planes[ClippingPlane::Far].c,
-	//	m_planes[ClippingPlane::Far].d
-	//);
-	//
-	//printf("\nNear plane values: a = %f, b = %f, c = %f, d = %f\n",
-	//	m_planes[ClippingPlane::Near].a,
-	//	m_planes[ClippingPlane::Near].b,
-	//	m_planes[ClippingPlane::Near].c,
-	//	m_planes[ClippingPlane::Near].d
-	//);
-	//
-	//printf("\nRight plane values: a = %f, b = %f, c = %f, d = %f\n",
-	//	m_planes[ClippingPlane::Right].a,
-	//	m_planes[ClippingPlane::Right].b,
-	//	m_planes[ClippingPlane::Right].c,
-	//	m_planes[ClippingPlane::Right].d
-	//);
-}
-
 void Camera::Update(float deltaTime) {
 	UpdateViewMatrix();
 	CheckForMovementInput(deltaTime);
@@ -91,6 +30,15 @@ void Camera::Update(float deltaTime) {
 	UpdateFrustrumPlanes();
 
 	Entity::Update(deltaTime);
+}
+
+void Camera::UpdateViewMatrix() {
+	m_ViewMat = glm::lookAt(
+		m_transform->GetPosition(),
+		m_transform->GetPosition() + m_transform->foward,
+		m_transform->up
+	);
+	m_renderer->SetCamView(m_ViewMat);
 }
 
 void Camera::CheckForMovementInput(float deltaTime) {
@@ -126,13 +74,53 @@ void Camera::CheckForRotationInput(float deltaTime) {
 		m_transform->Roll(-m_RotationSpeed * deltaTime);
 }
 
-void Camera::UpdateViewMatrix() {
-	m_ViewMat = glm::lookAt(
-		m_transform->GetPosition(),
-		m_transform->GetPosition() + m_transform->foward,
-		m_transform->up
-	);
-	m_renderer->SetCamView(m_ViewMat);
+void Camera::UpdateFrustrumPlanes() {
+	glm::mat4x4 mvp = m_renderer->GetMVP();
+
+	m_planes[ClippingPlane::Far].a = mvp[0][3] - mvp[0][2];
+	m_planes[ClippingPlane::Far].b = mvp[1][3] - mvp[1][2];
+	m_planes[ClippingPlane::Far].c = mvp[2][3] - mvp[2][2];
+	m_planes[ClippingPlane::Far].d = mvp[3][3] - mvp[3][2];
+	NormalizePlane(m_planes[ClippingPlane::Far]);
+
+	m_planes[ClippingPlane::Near].a = mvp[0][3] + mvp[0][2];
+	m_planes[ClippingPlane::Near].b = mvp[1][3] + mvp[1][2];
+	m_planes[ClippingPlane::Near].c = mvp[2][3] + mvp[2][2];
+	m_planes[ClippingPlane::Near].d = mvp[3][3] + mvp[3][2];
+	NormalizePlane(m_planes[ClippingPlane::Near]);
+
+	m_planes[ClippingPlane::Left].a = mvp[0][3] + mvp[0][0];
+	m_planes[ClippingPlane::Left].b = mvp[1][3] + mvp[1][0];
+	m_planes[ClippingPlane::Left].c = mvp[2][3] + mvp[2][0];
+	m_planes[ClippingPlane::Left].d = mvp[3][3] + mvp[3][0];
+	NormalizePlane(m_planes[ClippingPlane::Left]);
+
+	m_planes[ClippingPlane::Right].a = mvp[0][3] - mvp[0][0];
+	m_planes[ClippingPlane::Right].b = mvp[1][3] - mvp[1][0];
+	m_planes[ClippingPlane::Right].c = mvp[2][3] - mvp[2][0];
+	m_planes[ClippingPlane::Right].d = mvp[3][3] - mvp[3][0];
+	NormalizePlane(m_planes[ClippingPlane::Right]);
+
+	m_planes[ClippingPlane::Top].a = mvp[0][3] - mvp[0][1];
+	m_planes[ClippingPlane::Top].b = mvp[1][3] - mvp[1][1];
+	m_planes[ClippingPlane::Top].c = mvp[2][3] - mvp[2][1];
+	m_planes[ClippingPlane::Top].d = mvp[3][3] - mvp[3][1];
+	NormalizePlane(m_planes[ClippingPlane::Top]);
+
+	m_planes[ClippingPlane::Bottom].a = mvp[0][3] + mvp[0][1];
+	m_planes[ClippingPlane::Bottom].b = mvp[1][3] + mvp[1][1];
+	m_planes[ClippingPlane::Bottom].c = mvp[2][3] + mvp[2][1];
+	m_planes[ClippingPlane::Bottom].d = mvp[3][3] + mvp[3][1];
+	NormalizePlane(m_planes[ClippingPlane::Bottom]);
+}
+
+Camera::Plane Camera::CreatePlaneFromPointAndNormal(const glm::vec3& point, const glm::vec3& normal) {
+	Plane plane;
+	plane.a = normal.x;
+	plane.b = normal.y;
+	plane.c = normal.z;
+	plane.d = -glm::dot(normal, point);
+	return plane;
 }
 
 void Camera::TestForFrustrumCulling(Entity* entity) {
@@ -149,51 +137,64 @@ void Camera::TestForFrustrumCulling(Entity* entity) {
 		printf("\nEntity %s is behind plane_near\n", entity->GetName());
 		return;
 	}
-	//if (isBehindPlane(plane_left, entity)) {
-	//	printf("\nEntity %s is behind plane_left\n", entity->GetName());
-	//	return;
-	//}
-	//if (isBehindPlane(plane_right, entity)) {
-	//	printf("\nEntity %s is behind plane_right\n", entity->GetName());
-	//	return;
-	//}
-	//if (isBehindPlane(plane_top, entity)) {
-	//	printf("\nEntity %s is behind plane_top\n", entity->GetName());
-	//	return;
-	//}
-	//if (isBehindPlane(plane_bottom, entity)) {
-	//	printf("\nEntity %s is behind plane_bottom\n", entity->GetName());
-	//	return;
-	//}
+	if (isBehindPlane(m_planes[ClippingPlane::Left], entity)) {
+		printf("\nEntity %s is behind plane_left\n", entity->GetName());
+		return;
+	}
+	if (isBehindPlane(m_planes[ClippingPlane::Right], entity)) {
+		printf("\nEntity %s is behind plane_right\n", entity->GetName());
+		return;
+	}
+	if (isBehindPlane(m_planes[ClippingPlane::Top], entity)) {
+		printf("\nEntity %s is behind plane_top\n", entity->GetName());
+		return;
+	}
+	if (isBehindPlane(m_planes[ClippingPlane::Bottom], entity)) {
+		printf("\nEntity %s is behind plane_bottom\n", entity->GetName());
+		return;
+	}
 	entity->SetIsInsideFrustrum(true);
 }
 
 bool Camera::isBehindPlane(Plane& plane, Entity* entity) {
+	glm::vec3 entityPos = entity->GetTransform()->GetPosition();
+	NormalizePlane(plane);
+	float dist = plane.a * entityPos.x + plane.b * entityPos.y + plane.c * entityPos.z + plane.d;
+	
+	//printf("\nEntity pos: X%f Y%f Z%f\n", entityPos.x, entityPos.y, entityPos.z);
+	//printf("\nDist result: %f\n", dist);
+	if (dist <= 0) return true;
+	
 	//BoundingBox entityBB = entity->GetTransform()->GetboundingBox();
 	//for (int i = 0; i < entityBB.vertices.size(); i++) {
-	//	if (glm::dot(entityBB.vertices[i] - plane.bottomLeft, plane.normal) > 0)
-	//		return false;
+	//
+	//	// TODO: figure out what the fuck is goinf on with the planes
+	//	//NormalizePlane(plane);
+	//	float dot = glm::dot(entityBB.vertices[i], plane.normal);
+	//	//float dot = glm::dot(entityBB.vertices[i], plane.normal);
+	//	//float dot = plane.a * entityBB.vertices[i].x + plane.b * entityBB.vertices[i].y + plane.c * entityBB.vertices[i].z;
+	//
+	//	printf("\nDot result: %f\n", dot);
+	//	if (dot > 0) return false;
 	//}
-
-	BoundingBox entityBB = entity->GetTransform()->GetboundingBox();
-	for (int i = 0; i < entityBB.vertices.size(); i++) {
-
-		// TODO: figure out what the fuck is goinf on with the planes
-		NormalizePlane(plane);
-		float dot = plane.a * entityBB.vertices[i].x + plane.b * entityBB.vertices[i].y + plane.c * entityBB.vertices[i].z;
-
-		printf("\nDot result: %f\n", dot);
-		if (dot > 0) return false;
-	}
-	return true;
+	return false;
 }
 
 void Camera::NormalizePlane(Plane& plane) {
 	float Distance = sqrtf(plane.a * plane.a + plane.b * plane.b + plane.c * plane.c);
-	plane.a = plane.a / Distance;
-	plane.b = plane.b / Distance;
-	plane.c = plane.c / Distance;
-	plane.d = plane.d / Distance;
+	plane.a /= Distance;
+	plane.b /= Distance;
+	plane.c /= Distance;
+	plane.d /= Distance;
+}
+
+float Camera::SignedDistanceToPlane(const Plane& plane, const glm::vec3& point) const {
+	return (plane.a * point.x + plane.b * point.y + plane.c * point.z + plane.d);
+}
+
+glm::vec3 Camera::ClosestPointOnPlaneFromPosition(const Plane& plane, const glm::vec3& position) const {
+	glm::vec3 planeNormal = glm::vec3(plane.a, plane.b, plane.c);
+	return (position - planeNormal * SignedDistanceToPlane(plane, position));
 }
 
 void Camera::DrawFrustrumPlanes() {
