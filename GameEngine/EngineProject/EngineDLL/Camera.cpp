@@ -160,23 +160,9 @@ bool Camera::isBehindPlane(Plane& plane, Entity* entity) {
 	glm::vec3 entityPos = entity->GetTransform()->GetPosition();
 	NormalizePlane(plane);
 	float dist = plane.a * entityPos.x + plane.b * entityPos.y + plane.c * entityPos.z + plane.d;
+
+	if (dist <= 0.0f) return true;
 	
-	//printf("\nEntity pos: X%f Y%f Z%f\n", entityPos.x, entityPos.y, entityPos.z);
-	//printf("\nDist result: %f\n", dist);
-	if (dist <= 0) return true;
-	
-	//BoundingBox entityBB = entity->GetTransform()->GetboundingBox();
-	//for (int i = 0; i < entityBB.vertices.size(); i++) {
-	//
-	//	// TODO: figure out what the fuck is goinf on with the planes
-	//	//NormalizePlane(plane);
-	//	float dot = glm::dot(entityBB.vertices[i], plane.normal);
-	//	//float dot = glm::dot(entityBB.vertices[i], plane.normal);
-	//	//float dot = plane.a * entityBB.vertices[i].x + plane.b * entityBB.vertices[i].y + plane.c * entityBB.vertices[i].z;
-	//
-	//	printf("\nDot result: %f\n", dot);
-	//	if (dot > 0) return false;
-	//}
 	return false;
 }
 

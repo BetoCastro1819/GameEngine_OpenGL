@@ -8,18 +8,18 @@ Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 bool Scene::Start() {
 	m_suzanne = new Suzzane(m_renderer);
 	m_suzanne->GetTransform()->SetPosition(-3.0f, 0.0f, 0.0f);
-	m_suzanne->SetName("Suzanne");
+	m_suzanne->SetName("Suzanne left");
 	AddNode(m_suzanne);
 
 	m_suzanne_1 = new Suzzane(m_renderer);
 	m_suzanne_1->GetTransform()->SetPosition(3.0f, 0.0f, 0.0f);
-	m_suzanne_1->SetName("Suzanne");
+	//m_suzanne_1->SetName("Suzanne right");
 	AddNode(m_suzanne_1);
 	m_suzanne->AddNode(m_suzanne_1);
 
 
-	AddNode(m_camera);
 	m_camera->GetTransform()->SetPosition(0, 0, 10);
+	AddNode(m_camera);
 
 	m_rotationAngle = 0.0f;
 
@@ -29,7 +29,7 @@ bool Scene::Start() {
 void Scene::Update(float deltaTime) {
 	SceneNode::Update(deltaTime);
 
-	m_camera->TestForFrustrumCulling(m_suzanne);
+	//m_camera->TestForFrustrumCulling(m_suzanne);
 
 	//m_suzanne_1->GetTransform()->SetPosition(3.0f, 0.0f, 0.0f);
 	//
