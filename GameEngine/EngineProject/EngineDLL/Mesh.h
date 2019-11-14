@@ -34,7 +34,7 @@ private:
 	vector<glm::vec2> m_indexedUVs;
 	vector<glm::vec3> m_indexedNormals;
 
-	void AttachMeshToEntity(Entity* entity, aiMesh* mesh);
+	void AttachMeshToEntity(aiMesh* mesh);
 	
 	bool LoadModelWithAssimp(const char* filePath);
 	void SetShader(unsigned int programId);

@@ -96,14 +96,10 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 	}
 	if (scene->mNumMeshes <= 0) return false;
 
-	//ProcessNode(scene->mRootNode->mChildren[meshIndex], scene, meshIndex);
-
-	for (int meshIndex = 0; meshIndex < scene->mNumMeshes; meshIndex++) {
-		if (meshIndex == 0) 
-			printf("\nROOT node: ");
-		
-		ProcessNode(scene->mRootNode->mChildren[meshIndex], scene, meshIndex);
-	}
+	
+	int meshIndex = 0;
+	aiNode* rootNode = scene->mRootNode->mChildren[0];
+	ProcessNode(rootNode, scene, meshIndex);
 
 	printf("\nNumber of meshes found in %s: %d \n", filePath, scene->mNumMeshes);
 
@@ -111,18 +107,26 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 }
 
 void Mesh::ProcessNode(aiNode* node, const aiScene* scene, int& meshIndex) {
-	if (meshIndex > scene->mNumMeshes) return; // 0;
+	if (meshIndex >= scene->mNumMeshes) return; // 0;
 
 	if (meshIndex == 0) {
-		AttachMeshToEntity(m_entity, scene->mMeshes[meshIndex]);
-		printf("%s\n", m_entity->GetName());
+		m_entity->SetName(node->mName.data);
+		printf("\nROOT node: %s\n", m_entity->GetName());
+		printf("Number of children: %d\n", node->mNumChildren);
+
+		AttachMeshToEntity(scene->mMeshes[meshIndex]);
+		
+		meshIndex++;
+		for (int nodeIndex = 0; nodeIndex < node->mNumChildren; nodeIndex++) {
+			ProcessNode(node->mChildren[nodeIndex], scene, meshIndex);
+		}
 	}
 	else {
+
 		Entity* newEntity = new Entity(m_renderer);
 		newEntity->SetName(scene->mMeshes[meshIndex]->mName.data);
-		
-		printf("\nNode Nro.%d: %s\n", meshIndex, newEntity->GetName());
 
+		printf("\nNode Nro.%d: %s\n", meshIndex, newEntity->GetName());
 		printf("Number of children: %d\n", node->mNumChildren);
 
 		Mesh* mesh = new Mesh(newEntity, m_renderer, m_material, m_textureID);
@@ -139,7 +143,7 @@ void Mesh::ProcessNode(aiNode* node, const aiScene* scene, int& meshIndex) {
 	}
 }
 
-void Mesh::AttachMeshToEntity(Entity* entity, aiMesh* mesh) {
+void Mesh::AttachMeshToEntity(aiMesh* mesh) {
 	//Mesh* mesh = new Mesh(entity, m_renderer, m_material, m_textureID);
 	ProcessMesh(mesh);
 	GenerateBuffers();

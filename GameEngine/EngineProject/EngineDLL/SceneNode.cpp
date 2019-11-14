@@ -34,12 +34,12 @@ void SceneNode::Update(float deltaTime) {
 
 void SceneNode::PrintNodeHierarchy() {
 	int treeLevel = 0;
-	printf("\nRoot node\n");
+	printf("\nRoot node: %s\n", GetName());
 	TraverseNodeTree(treeLevel);
 }
 
 void SceneNode::TraverseNodeTree(int& treeLevel) {
-	for (int i = m_children.size() - 1; i >= 0 ; i--) {
+	for (int i = 0; i < m_children.size() ; i++) {
 		for (int j = 0; j <= treeLevel; j++) {
 			printf(" |-");
 		}

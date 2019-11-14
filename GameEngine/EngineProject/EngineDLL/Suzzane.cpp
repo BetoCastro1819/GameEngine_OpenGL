@@ -13,7 +13,7 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	AddComponent(m_material);
 
 	m_mesh = new Mesh(this, renderer, m_material, "uvtemplate.bmp");
-	m_mesh->LoadModel("suzanne.obj");
+	m_mesh->LoadModel("crysis.fbx");
 	AddComponent(m_mesh);
 
 	m_physicsComponent = new PhysicsComponent(this);

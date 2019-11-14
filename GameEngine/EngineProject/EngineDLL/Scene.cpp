@@ -5,13 +5,13 @@ Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 	m_camera = camera;
 	SetName("Scene");
 	AddNode(m_camera);
-	m_camera->GetTransform()->SetPosition(0, 0, 10);
+	m_camera->GetTransform()->SetPosition(0, 0, 20);
 }
 
 bool Scene::Start() {
 
 	m_suzanne = new Suzzane(m_renderer);
-	m_suzanne->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+	m_suzanne->GetTransform()->SetPosition(0.0f, -5.0f, 0.0f);
 	m_suzanne->SetName("Suzanne");
 	AddNode(m_suzanne);
 
@@ -22,7 +22,7 @@ bool Scene::Start() {
 	//m_suzanne->AddNode(m_suzanne_1);
 
 
-	m_rotationAngle = 0.0f;
+	m_rotationSpeed = 10.0f;
 
 	return true;
 }
@@ -30,15 +30,10 @@ bool Scene::Start() {
 void Scene::Update(float deltaTime) {
 	Entity::Update(deltaTime);
 
-	m_camera->TestForFrustrumCulling(m_suzanne);
-
-
-	//m_camera->TestForFrustrumCulling(m_suzanne_1);
+	//m_camera->TestForFrustrumCulling(m_suzanne);
 
 	//m_suzanne_1->GetTransform()->SetPosition(3.0f, 0.0f, 0.0f);
-	//
-	//m_rotationAngle += 3.0f * deltaTime;
-	//m_suzanne->GetTransform()->Yaw(1.0f);
+	//m_suzanne->GetTransform()->Yaw(m_rotationSpeed * deltaTime);
 }
 
 Scene::~Scene() {

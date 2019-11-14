@@ -12,7 +12,7 @@ private:
 	Suzzane* m_suzanne;
 	Suzzane* m_suzanne_1;
 
-	float m_rotationAngle;
+	float m_rotationSpeed;
 
 public:
 	Scene(Renderer* renderer, Camera* camera);
