@@ -40,14 +40,15 @@ void Mesh::SetTexture(const char* filePath) {
 }
 
 void Mesh::Update(float deltaTime) {
-	Draw();
-	//printf("Drawing");
-}
-
-void Mesh::Draw() {
 	m_renderer->UpdateModelMatrix(m_entity->GetTransform()->GetWorldMatrix());
 	m_renderer->UpdateMVP();
 
+	if (m_entity->isInsideFrustrum()) {
+		Draw();
+	}
+}
+
+void Mesh::Draw() {
 	m_renderer->BindMaterial(m_programID);
 
 	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
@@ -95,11 +96,12 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 	}
 	if (scene->mNumMeshes <= 0) return false;
 
-	int meshIndex = 0;
-	ProcessNode(scene->mRootNode->mChildren[meshIndex], scene, meshIndex);
+	//ProcessNode(scene->mRootNode->mChildren[meshIndex], scene, meshIndex);
 
-	for (meshIndex; meshIndex < scene->mNumMeshes; meshIndex++) {
-		if (meshIndex == 0) printf("\nROOT node: ");
+	for (int meshIndex = 0; meshIndex < scene->mNumMeshes; meshIndex++) {
+		if (meshIndex == 0) 
+			printf("\nROOT node: ");
+		
 		ProcessNode(scene->mRootNode->mChildren[meshIndex], scene, meshIndex);
 	}
 
@@ -108,31 +110,39 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 	return true;
 }
 
-int Mesh::ProcessNode(aiNode* node, const aiScene* scene, int& meshIndex) {
-	if (meshIndex >= scene->mNumMeshes) return 0;
+void Mesh::ProcessNode(aiNode* node, const aiScene* scene, int& meshIndex) {
+	if (meshIndex > scene->mNumMeshes) return; // 0;
 
-	Entity* newEntity = new Entity(m_renderer);
-	newEntity->SetName(scene->mMeshes[meshIndex]->mName.data);
-	
-	if (meshIndex == 0)
-		printf("%s\n", newEntity->GetName());
-	else
-		printf("\nNode Nro.%d: %s\n", meshIndex, newEntity->GetName());
-	
-	printf("Number of children: %d\n", node->mNumChildren);
-
-	Mesh* mesh = new Mesh(newEntity, m_renderer, m_material, m_textureID);
-	mesh->ProcessMesh(scene->mMeshes[meshIndex]);
-	mesh->GenerateBuffers();
-	newEntity->AddComponent(mesh);
-
-	m_entity->AddNode(newEntity);
-
-	meshIndex++;
-	for (int nodeIndex = 0; nodeIndex < node->mNumChildren; nodeIndex++) {
-		mesh->ProcessNode(node->mChildren[nodeIndex], scene, meshIndex);
+	if (meshIndex == 0) {
+		AttachMeshToEntity(m_entity, scene->mMeshes[meshIndex]);
+		printf("%s\n", m_entity->GetName());
 	}
-	return 0;
+	else {
+		Entity* newEntity = new Entity(m_renderer);
+		newEntity->SetName(scene->mMeshes[meshIndex]->mName.data);
+		
+		printf("\nNode Nro.%d: %s\n", meshIndex, newEntity->GetName());
+
+		printf("Number of children: %d\n", node->mNumChildren);
+
+		Mesh* mesh = new Mesh(newEntity, m_renderer, m_material, m_textureID);
+		mesh->ProcessMesh(scene->mMeshes[meshIndex]);
+		mesh->GenerateBuffers();
+		newEntity->AddComponent(mesh);
+
+		m_entity->AddNode(newEntity);
+
+		meshIndex++;
+		for (int nodeIndex = 0; nodeIndex < node->mNumChildren; nodeIndex++) {
+			mesh->ProcessNode(node->mChildren[nodeIndex], scene, meshIndex);
+		}
+	}
+}
+
+void Mesh::AttachMeshToEntity(Entity* entity, aiMesh* mesh) {
+	//Mesh* mesh = new Mesh(entity, m_renderer, m_material, m_textureID);
+	ProcessMesh(mesh);
+	GenerateBuffers();
 }
 
 void Mesh::ProcessMesh(aiMesh* mesh) {

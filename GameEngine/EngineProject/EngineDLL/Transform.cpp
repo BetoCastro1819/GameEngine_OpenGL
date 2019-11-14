@@ -134,7 +134,7 @@ void Transform::UpdateUnitVectors() {
 void Transform::UpdateVectorWithMatrix(glm::vec3& vectorToUpdate, glm::mat4 matToUse) {
 	if (m_entity->GetParent() != nullptr) {
 		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		vectorToUpdate = parentTransform->GetWorldMatrix() * matToUse * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+		vectorToUpdate = matToUse * parentTransform->GetWorldMatrix() * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	}
 	else {
 		vectorToUpdate = matToUse * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);

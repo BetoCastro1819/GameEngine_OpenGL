@@ -5,14 +5,14 @@
 #include <GLFW\glfw3.h>
 
 Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
+	SetName("Camera");
+
 	m_Window = window;
 
 	m_CameraTarget = glm::vec3(0, 0, 0);
 	m_strafeSpeed = 5.0f;
 	m_RotationSpeed = 100.0f;
 	m_transform->Yaw(180);
-
-	UpdateViewMatrix();
 
 	zNear = 0.1f;
 	zFar = 20.0f;
@@ -21,15 +21,22 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 
 	m_renderer->SetPerpectiveCam(fov, aspectRatio, zNear, zFar);
 
+	UpdateViewMatrix();
 }
 
 void Camera::Update(float deltaTime) {
-	UpdateViewMatrix();
+	Entity::Update(deltaTime);
+
 	CheckForMovementInput(deltaTime);
 	CheckForRotationInput(deltaTime);
-	UpdateFrustrumPlanes();
 
-	Entity::Update(deltaTime);
+	UpdateViewMatrix();
+	m_renderer->SetPerpectiveCam(fov, aspectRatio, zNear, zFar);
+	m_renderer->UpdateModelMatrix(m_transform->GetWorldMatrix());
+	
+	m_renderer->UpdateMVP();
+
+	UpdateFrustrumPlanes();
 }
 
 void Camera::UpdateViewMatrix() {
@@ -158,10 +165,9 @@ void Camera::TestForFrustrumCulling(Entity* entity) {
 
 bool Camera::isBehindPlane(Plane& plane, Entity* entity) {
 	glm::vec3 entityPos = entity->GetTransform()->GetPosition();
-	NormalizePlane(plane);
 	float dist = plane.a * entityPos.x + plane.b * entityPos.y + plane.c * entityPos.z + plane.d;
 
-	if (dist <= 0.0f) return true;
+	if (dist <= 0) return true;
 	
 	return false;
 }

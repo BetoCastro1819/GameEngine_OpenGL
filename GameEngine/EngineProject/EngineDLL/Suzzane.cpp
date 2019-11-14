@@ -6,6 +6,8 @@
 
 
 Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
+	SetName("suzanne");
+
 	m_material = new Material(this);
 	m_material->LoadShaders("StandardVertexShader.txt", "StandardFragmentShader.txt");
 	AddComponent(m_material);
@@ -16,12 +18,11 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 
 	m_physicsComponent = new PhysicsComponent(this);
 
-	SetName("suzanne");
 
 	printf("\nNode hierarchy from %s:\n", GetName());
 	PrintNodeHierarchy();
 
-	GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1, -1, -1), glm::vec3(1, 1, 1));
+	//GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1, -1, -1), glm::vec3(1, 1, 1));
 }
 
 Suzzane::~Suzzane() {
@@ -30,6 +31,5 @@ Suzzane::~Suzzane() {
 }
 
 void Suzzane::Update(float deltaTime) {
-	if (m_isInsideFrustrum)
-		Entity::Update(deltaTime);
+	Entity::Update(deltaTime);
 }

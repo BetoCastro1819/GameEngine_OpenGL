@@ -15,6 +15,9 @@ void SceneNode::AddNode(SceneNode* node) {
 	if (node != nullptr) {
 		m_children.push_back(node);
 		node->SetParent(this);
+
+		printf("\n%s is child of %s\n", node->GetName(), this->GetName());
+		printf("\n%s has %d childs\n", this->GetName(), m_children.size());
 	}
 }
 
@@ -23,13 +26,11 @@ void SceneNode::Update(float deltaTime) {
 		iter != m_componentList.end(); iter++) {
 		(*iter)->Update(deltaTime);
 	}
-
 	for (std::vector<SceneNode*>::iterator iter = m_children.begin();
 		iter != m_children.end(); iter++) {
 		(*iter)->Update(deltaTime);
 	}
 }
-
 
 void SceneNode::PrintNodeHierarchy() {
 	int treeLevel = 0;

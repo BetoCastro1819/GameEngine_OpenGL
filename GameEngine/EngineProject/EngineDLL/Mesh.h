@@ -33,6 +33,8 @@ private:
 	vector<glm::vec3> m_indexedVertices;
 	vector<glm::vec2> m_indexedUVs;
 	vector<glm::vec3> m_indexedNormals;
+
+	void AttachMeshToEntity(Entity* entity, aiMesh* mesh);
 	
 	bool LoadModelWithAssimp(const char* filePath);
 	void SetShader(unsigned int programId);
@@ -50,7 +52,7 @@ public:
 
 	bool LoadModel(const char* filePath);
 	void ProcessMesh(aiMesh* mesh);
-	int ProcessNode(aiNode* node, const aiScene* scene, int& nodeIndex);
+	void ProcessNode(aiNode* node, const aiScene* scene, int& nodeIndex);
 	void GenerateBuffers();
 	void Draw();
 };

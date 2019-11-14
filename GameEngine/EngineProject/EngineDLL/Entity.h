@@ -13,4 +13,5 @@ public:
 
 	void Update(float deltaTime) override;
 	void SetIsInsideFrustrum(bool isInsideFrustrum) { m_isInsideFrustrum = isInsideFrustrum; }
+	bool isInsideFrustrum() const { return m_isInsideFrustrum; }
 };
