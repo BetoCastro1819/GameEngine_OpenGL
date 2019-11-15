@@ -1,4 +1,12 @@
-﻿  SceneNode.cpp
+﻿  Camera.cpp
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(26): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(27): warning C4251: 'Renderer::_projection': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(28): warning C4251: 'Renderer::_model': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(29): warning C4251: 'Renderer::_view': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(12): warning C4251: 'SceneNode::m_name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'SceneNode'
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(21): warning C4251: 'SceneNode::m_children': class 'std::vector<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'SceneNode'
@@ -43,6 +51,8 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\transform.h(45): warning C4251: 'Transform::foward': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Transform'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.cpp(42): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.cpp(88): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(36): warning C4251: 'Camera::m_CameraTarget': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(37): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
   EngineDLL.vcxproj -> D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll

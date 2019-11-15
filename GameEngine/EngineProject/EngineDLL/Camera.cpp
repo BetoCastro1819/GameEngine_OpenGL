@@ -15,7 +15,7 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 	m_transform->Yaw(180);
 
 	zNear = 0.1f;
-	zFar = 100.0f;
+	zFar = 20.0f;
 	fov = 45;
 	aspectRatio = (float)m_Window->GetWidth() / (float)m_Window->GetHeight();
 
@@ -27,16 +27,15 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 void Camera::Update(float deltaTime) {
 	Entity::Update(deltaTime);
 
-	CheckForMovementInput(deltaTime);
-	CheckForRotationInput(deltaTime);
-
 	UpdateViewMatrix();
-	m_renderer->SetPerpectiveCam(fov, aspectRatio, zNear, zFar);
-	m_renderer->UpdateModelMatrix(m_transform->GetWorldMatrix());
-	
 	m_renderer->UpdateMVP();
 
 	UpdateFrustrumPlanes();
+
+	CheckForMovementInput(deltaTime);
+	CheckForRotationInput(deltaTime);
+
+	m_renderer->LoadIdentityMatrix();
 }
 
 void Camera::UpdateViewMatrix() {
@@ -82,7 +81,7 @@ void Camera::CheckForRotationInput(float deltaTime) {
 }
 
 void Camera::UpdateFrustrumPlanes() {
-	glm::mat4x4 mvp = m_renderer->GetMVP();
+	glm::mat4 mvp = m_renderer->GetMVP();
 
 	m_planes[ClippingPlane::Far].a = mvp[0][3] - mvp[0][2];
 	m_planes[ClippingPlane::Far].b = mvp[1][3] - mvp[1][2];

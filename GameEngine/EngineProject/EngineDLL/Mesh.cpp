@@ -40,15 +40,16 @@ void Mesh::SetTexture(const char* filePath) {
 }
 
 void Mesh::Update(float deltaTime) {
-	m_renderer->UpdateModelMatrix(m_entity->GetTransform()->GetWorldMatrix());
-	m_renderer->UpdateMVP();
-
 	if (m_entity->isInsideFrustrum()) {
 		Draw();
 	}
 }
 
 void Mesh::Draw() {
+
+	m_renderer->UpdateModelMatrix(m_entity->GetTransform()->GetWorldMatrix());
+	m_renderer->UpdateMVP();
+
 	m_renderer->BindMaterial(m_programID);
 
 	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
@@ -77,6 +78,8 @@ void Mesh::Draw() {
 	m_renderer->DisableVertexArrays(0);
 	m_renderer->DisableVertexArrays(1);
 	m_renderer->DisableVertexArrays(2);
+	
+	m_renderer->LoadIdentityMatrix();
 }
 
 bool Mesh::LoadModel(const char* filePath) {
