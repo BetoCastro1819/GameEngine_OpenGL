@@ -71,6 +71,8 @@ void Transform::SetPosition(float x, float y, float z) {
 	m_translateMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
 	UpdateVectorWithMatrix(m_position, m_translateMatrix);
 
+	glm::vec3 worldPos = glm::vec4(m_position, 1.0f) * m_worldTransform;
+
 	printf("\n%s is at X: %f Y: %f Z: %f\n",
 		m_entity->GetName(),
 		m_position.x,
@@ -139,15 +141,17 @@ void Transform::UpdateUnitVectors() {
 
 
 void Transform::UpdateVectorWithMatrix(glm::vec3& vectorToUpdate, glm::mat4 matToUse) {
+	
 	if (m_entity->GetParent() != nullptr) {
 		Transform* parentTransform = m_entity->GetParent()->GetTransform();
-		vectorToUpdate = matToUse * parentTransform->GetWorldMatrix() * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+		vectorToUpdate = parentTransform->GetWorldMatrix() * matToUse *  glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 		//vectorToUpdate = matToUse * parentTransform->GetWorldMatrix() * glm::vec4(vectorToUpdate, 1.0f);
 	}
 	else {
-		vectorToUpdate = matToUse * m_worldTransform * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+		vectorToUpdate = m_worldTransform * matToUse * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 		//vectorToUpdate = matToUse * m_worldTransform * glm::vec4(vectorToUpdate, 1.0f);
 	}
+	UpdateModelMatrix();
 }
 
 void Transform::SetBoundingBoxDimensions(glm::vec3 origin, float width, float height, float length) {
