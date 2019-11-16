@@ -40,9 +40,12 @@ void Mesh::SetTexture(const char* filePath) {
 }
 
 void Mesh::Update(float deltaTime) {
+	m_renderer->LoadIdentityMatrix();
+	m_renderer->UpdateMVP();
+	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
+	m_entity->DrawBoundingBox();
+
 	Draw();
-	//if (m_entity->isInsideFrustrum()) {
-	//}
 }
 
 void Mesh::Draw() {
@@ -79,6 +82,7 @@ void Mesh::Draw() {
 	m_renderer->DisableVertexArrays(1);
 	m_renderer->DisableVertexArrays(2);
 	
+
 	m_renderer->LoadIdentityMatrix();
 }
 

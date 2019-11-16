@@ -167,25 +167,32 @@ void Transform::SetBoundingBoxDimensions(glm::vec3 origin, float width, float he
 void Transform::SetBoundingBoxDimensions(glm::vec3 minVertex, glm::vec3 maxVertex) {
 	m_boundingBox.minVertex = minVertex;
 	m_boundingBox.maxVertex = maxVertex;
-
-
-	//m_boundingBox.width = glm::vec3(m_position.x + maxVertex.x, m_boundingBox.origin.y, m_boundingBox.origin.z);
-	//m_boundingBox.height = glm::vec3(m_boundingBox.origin.x, m_position.y + maxVertex.y, m_boundingBox.origin.z);
-	//m_boundingBox.length = glm::vec3(m_boundingBox.origin.x, m_boundingBox.origin.y, m_position.z + maxVertex.z);
 	
 	UpdateBoundingBoxVertices();
 }
 
 void Transform::UpdateBoundingBoxVertices() {
-	// FRONT face vertices
-	m_boundingBox.vertices[0] = m_position - m_boundingBox.minVertex;
-	m_boundingBox.vertices[1] = m_position - glm::vec3(m_boundingBox.maxVertex.x, m_boundingBox.minVertex.y, m_boundingBox.minVertex.z);
-	m_boundingBox.vertices[2] = m_position - glm::vec3(m_boundingBox.maxVertex.x, m_boundingBox.maxVertex.y, m_boundingBox.minVertex.z); 
-	m_boundingBox.vertices[3] = m_position - glm::vec3(m_boundingBox.minVertex.x, m_boundingBox.maxVertex.y, m_boundingBox.minVertex.z); 
-													 																	   
-	// BACK face vertices							 																	   
-	m_boundingBox.vertices[4] = m_position - m_boundingBox.maxVertex;
-	m_boundingBox.vertices[5] = m_position - glm::vec3(m_boundingBox.minVertex.x, m_boundingBox.maxVertex.y, m_boundingBox.maxVertex.z);
-	m_boundingBox.vertices[6] = m_position - glm::vec3(m_boundingBox.minVertex.x, m_boundingBox.minVertex.y, m_boundingBox.maxVertex.z);
-	m_boundingBox.vertices[7] = m_position - glm::vec3(m_boundingBox.maxVertex.x, m_boundingBox.minVertex.y, m_boundingBox.maxVertex.z);
+	// BACK face vertices
+	m_boundingBox.vertices[0] = m_position + m_boundingBox.minVertex;
+	m_boundingBox.vertices[1] = m_position + glm::vec3(m_boundingBox.minVertex.x, m_boundingBox.maxVertex.y, m_boundingBox.minVertex.z);
+	m_boundingBox.vertices[2] = m_position + glm::vec3(m_boundingBox.maxVertex.x, m_boundingBox.maxVertex.y, m_boundingBox.minVertex.z); 
+	m_boundingBox.vertices[3] = m_position + glm::vec3(m_boundingBox.maxVertex.x, m_boundingBox.minVertex.y, m_boundingBox.minVertex.z); 
+
+	// FRONT face vertices		
+	m_boundingBox.vertices[4] = m_position + glm::vec3(m_boundingBox.minVertex.x, m_boundingBox.minVertex.y, m_boundingBox.maxVertex.z);
+	m_boundingBox.vertices[5] = m_position + glm::vec3(m_boundingBox.minVertex.x, m_boundingBox.maxVertex.y, m_boundingBox.maxVertex.z);
+	m_boundingBox.vertices[6] = m_position + m_boundingBox.maxVertex;
+	m_boundingBox.vertices[7] = m_position + glm::vec3(m_boundingBox.maxVertex.x, m_boundingBox.minVertex.y, m_boundingBox.maxVertex.z);
+
+	// TODO: multiply by each vertex by worldTransform
+	//m_boundingBox.vertices[0] = m_worldTransform * glm::vec4(m_boundingBox.vertices[0], 1.0f);
+	//m_boundingBox.vertices[1] = m_worldTransform * glm::vec4(m_boundingBox.vertices[1], 1.0f);
+	//m_boundingBox.vertices[2] = m_worldTransform * glm::vec4(m_boundingBox.vertices[2], 1.0f);
+	//m_boundingBox.vertices[3] = m_worldTransform * glm::vec4(m_boundingBox.vertices[3], 1.0f);
+	//
+	//// FRONT face vertices		
+	//m_boundingBox.vertices[4] = m_worldTransform * glm::vec4(m_boundingBox.vertices[4], 1.0f);
+	//m_boundingBox.vertices[5] = m_worldTransform * glm::vec4(m_boundingBox.vertices[5], 1.0f);
+	//m_boundingBox.vertices[6] = m_worldTransform * glm::vec4(m_boundingBox.vertices[6], 1.0f);
+	//m_boundingBox.vertices[7] = m_worldTransform * glm::vec4(m_boundingBox.vertices[7], 1.0f);
 }

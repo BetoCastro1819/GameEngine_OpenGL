@@ -130,9 +130,6 @@ Camera::Plane Camera::CreatePlaneFromPointAndNormal(const glm::vec3& point, cons
 }
 
 void Camera::TestForFrustrumCulling(Entity* entity) {
-	//for (int i = 0; i < entity->GetChildren().size(); i++) {
-	//	TestForFrustrumCulling((Entity*)entity->GetChildren()[i]);
-	//}
 
 	entity->SetIsInsideFrustrum(false);
 	if (isBehindPlane(m_planes[ClippingPlane::Far], entity)) {
@@ -160,6 +157,10 @@ void Camera::TestForFrustrumCulling(Entity* entity) {
 		return;
 	}
 	entity->SetIsInsideFrustrum(true);
+
+	for (int i = 0; i < entity->GetChildren().size(); i++) {
+		TestForFrustrumCulling((Entity*)entity->GetChildren()[i]);
+	}
 }
 
 bool Camera::isBehindPlane(Plane& plane, Entity* entity) {
