@@ -14,5 +14,6 @@ Entity::~Entity() {
 
 void Entity::Update(float deltaTime) {
 	//m_renderer->DrawCube(GetTransform()->GetboundingBox().vertices);
-	SceneNode::Update(deltaTime);
+	if (m_isInsideFrustrum)
+		SceneNode::Update(deltaTime);
 }

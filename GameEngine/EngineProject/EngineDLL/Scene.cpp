@@ -13,7 +13,7 @@ bool Scene::Start() {
 
 	m_suzanne = new Suzzane(m_renderer);
 	m_suzanne->SetName("Suzanne left");
-	m_suzanne->GetTransform()->SetPosition(-3.0f, 0.0f, 0.0f);
+	m_suzanne->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
 	AddNode(m_suzanne);
 
 	m_suzanne_1 = new Suzzane(m_renderer);
@@ -22,7 +22,7 @@ bool Scene::Start() {
 	m_suzanne_1->GetTransform()->SetPosition(3.0f, 0.0f, 0.0f);
 
 
-	m_rotationSpeed = 10.0f;
+	m_rotationSpeed = 50.0f;
 
 	return true;
 }

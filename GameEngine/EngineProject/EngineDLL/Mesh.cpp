@@ -40,9 +40,9 @@ void Mesh::SetTexture(const char* filePath) {
 }
 
 void Mesh::Update(float deltaTime) {
-	if (m_entity->isInsideFrustrum()) {
-		Draw();
-	}
+	Draw();
+	//if (m_entity->isInsideFrustrum()) {
+	//}
 }
 
 void Mesh::Draw() {

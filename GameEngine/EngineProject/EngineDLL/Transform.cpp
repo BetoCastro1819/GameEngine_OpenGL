@@ -75,9 +75,9 @@ void Transform::SetPosition(float x, float y, float z) {
 
 	printf("\n%s is at X: %f Y: %f Z: %f\n",
 		m_entity->GetName(),
-		m_position.x,
-		m_position.y,
-		m_position.z
+		worldPos.x,
+		worldPos.y,
+		worldPos.z
 	);
 }
 
