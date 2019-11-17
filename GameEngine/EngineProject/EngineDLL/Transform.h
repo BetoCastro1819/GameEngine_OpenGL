@@ -5,6 +5,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include <vector>
 
+class Window;
+
 struct World {
 	static glm::vec3 up;
 	static glm::vec3 right;
@@ -70,5 +72,7 @@ public:
 	void SetBoundingBoxDimensions(glm::vec3 origin, float width, float height, float length);
 	void SetBoundingBoxDimensions(glm::vec3 minVertex, glm::vec3 maxVertex);
 	BoundingBox GetBoundingBox() const { return m_boundingBox; }
+
+	void HandleMovementInput(float deltaTime, Window* window);
 };
 

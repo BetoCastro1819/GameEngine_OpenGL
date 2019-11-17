@@ -34,6 +34,8 @@ bool Scene::Start() {
 void Scene::Update(float deltaTime) {
 	Entity::Update(deltaTime);
 
+	m_entities[m_entities.size() - 1]->GetTransform()->HandleMovementInput(deltaTime, m_camera->GetWindow());
+
 	//m_camera->TestForVisibility(m_suzanne);
 
 	//m_suzanne->GetTransform()->Yaw(m_rotationSpeed * deltaTime);

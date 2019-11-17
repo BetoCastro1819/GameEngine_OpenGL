@@ -13,6 +13,6 @@ public:
 
 	void Update(float deltaTime) override;
 	void SetVisible(bool isVisible) { m_isVisible = isVisible; }
-	bool isInsideFrustrum() const { return m_isVisible; }
+	bool isVisible() const { return m_isVisible; }
 	void DrawBoundingBox();
 };

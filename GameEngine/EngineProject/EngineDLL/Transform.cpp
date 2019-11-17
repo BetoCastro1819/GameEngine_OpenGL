@@ -1,5 +1,9 @@
 #include "Transform.h"
 #include "Entity.h"
+#include "Window.h"
+
+#include <GL\glew.h>
+#include <GLFW\glfw3.h>
 
 glm::vec3 World::up = glm::vec3(0, 1, 0);
 glm::vec3 World::right = glm::vec3(1, 0, 0);
@@ -191,11 +195,17 @@ void Transform::UpdateBoundingBoxVertices() {
 }
 
 void Transform::UpdateBBoxBasedOnChildBounds() {
-	CompareCurrentBBoxAgainstChilds(m_boundingBox.minVertex, m_boundingBox.maxVertex);
+	if (m_entity->GetChildren().size() > 0) {
+		m_boundingBox.maxVertex = glm::vec3(-10000.0f, -10000.0f, -10000.0f);
+		m_boundingBox.minVertex = glm::vec3(10000.0f, 10000.0f, 10000.0f);
+
+		CompareCurrentBBoxAgainstChilds(m_boundingBox.minVertex, m_boundingBox.maxVertex);
+	}
 }
 
 void Transform::CompareCurrentBBoxAgainstChilds(glm::vec3& currentMinVertex, glm::vec3& currentMaxVertex) {
 	for (int childIndex = 0; childIndex < m_entity->GetChildren().size(); childIndex++) {
+
 
 		Entity* child = (Entity*)m_entity->GetChildren()[childIndex];
 		
@@ -203,6 +213,7 @@ void Transform::CompareCurrentBBoxAgainstChilds(glm::vec3& currentMinVertex, glm
 		for (int vertexId = 0; vertexId < childBBox.vertices.size(); vertexId++) {
 
 			glm::vec3 currentVertex = childBBox.vertices[vertexId];
+
 			if (currentVertex.x < currentMinVertex.x) {
 				currentMinVertex.x = currentVertex.x;
 			}
@@ -224,4 +235,19 @@ void Transform::CompareCurrentBBoxAgainstChilds(glm::vec3& currentMinVertex, glm
 		}
 		child->GetTransform()->CompareCurrentBBoxAgainstChilds(currentMinVertex, currentMaxVertex);
 	}
+}
+
+void Transform::HandleMovementInput(float deltaTime, Window* window) {
+	float movementSpeed = 10 * deltaTime;
+
+	GLFWwindow* glfwWindow = (GLFWwindow*)window->GetWindowPtr();
+
+	if (glfwGetKey(glfwWindow, GLFW_KEY_I) == GLFW_PRESS) // Move forward
+		Walk(-movementSpeed);
+	if (glfwGetKey(glfwWindow, GLFW_KEY_K) == GLFW_PRESS) // Move backward
+		Walk(movementSpeed);
+	if (glfwGetKey(glfwWindow, GLFW_KEY_J) == GLFW_PRESS) // Strafe right
+		Strafe(movementSpeed);
+	if (glfwGetKey(glfwWindow, GLFW_KEY_L) == GLFW_PRESS) // Strafe left
+		Strafe(-movementSpeed);
 }

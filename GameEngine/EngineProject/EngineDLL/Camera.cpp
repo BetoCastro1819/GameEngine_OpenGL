@@ -10,7 +10,7 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 	m_Window = window;
 
 	m_CameraTarget = glm::vec3(0, 0, 0);
-	m_strafeSpeed = 5.0f;
+	m_strafeSpeed = 10.0f;
 	m_RotationSpeed = 100.0f;
 	m_transform->Yaw(180);
 
@@ -142,32 +142,32 @@ void Camera::TestForVisibility(Entity* entity, int index) {
 	entity->SetVisible(false);
 
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Far], entity)) {
-		printf("\nEntity %s is behind plane_far\n", entity->GetName());
+		//printf("\nEntity %s is behind plane_far\n", entity->GetName());
 		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Near], entity)) {
-		printf("\nEntity %s is behind plane_near\n", entity->GetName());
+		//printf("\nEntity %s is behind plane_near\n", entity->GetName());
 		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Left], entity)) {
-		printf("\nEntity %s is behind plane_left\n", entity->GetName());
+		//printf("\nEntity %s is behind plane_left\n", entity->GetName());
 		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Right], entity)) {
-		printf("\nEntity %s is behind plane_right\n", entity->GetName());
+		//printf("\nEntity %s is behind plane_right\n", entity->GetName());
 		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Top], entity)) {
-		printf("\nEntity %s is behind plane_top\n", entity->GetName());
+		//printf("\nEntity %s is behind plane_top\n", entity->GetName());
 		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Bottom], entity)) {
-		printf("\nEntity %s is behind plane_bottom\n", entity->GetName());
+		//printf("\nEntity %s is behind plane_bottom\n", entity->GetName());
 		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}

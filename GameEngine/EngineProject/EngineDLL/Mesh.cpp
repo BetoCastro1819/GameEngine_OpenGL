@@ -40,12 +40,14 @@ void Mesh::SetTexture(const char* filePath) {
 }
 
 void Mesh::Update(float deltaTime) {
-	m_renderer->LoadIdentityMatrix();
-	m_renderer->UpdateMVP();
-	m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
-	m_entity->DrawBoundingBox();
+	if (m_entity->isVisible()) {
+		m_renderer->LoadIdentityMatrix();
+		m_renderer->UpdateMVP();
+		m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
+		m_entity->DrawBoundingBox();
 
-	Draw();
+		Draw();
+	}
 }
 
 void Mesh::Draw() {

@@ -13,9 +13,7 @@ Entity::~Entity() {
 }
 
 void Entity::Update(float deltaTime) {
-	if (m_isVisible) {
-		SceneNode::Update(deltaTime);
-	}
+	SceneNode::Update(deltaTime);
 }
 
 void Entity::DrawBoundingBox() {

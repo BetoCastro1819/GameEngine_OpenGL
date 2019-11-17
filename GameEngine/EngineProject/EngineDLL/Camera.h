@@ -66,5 +66,7 @@ public:
 		m_bspPlanes.push_back(plane); 
 		//printf("\nNumber of bsp planes: %d\n", m_bspPlanes.size());
 	}
+
+	Window* GetWindow() { return m_Window; }
 };
 
