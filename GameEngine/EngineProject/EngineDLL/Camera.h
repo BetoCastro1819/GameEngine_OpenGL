@@ -62,6 +62,9 @@ public:
 		m_entities.push_back(entity);
 		//printf("\nNumber of entities in camera %d\n", m_entities.size());
 	}
-	void AddPlane(Plane plane) { m_bspPlanes.push_back(plane); }
+	void AddPlane(Plane plane) { 
+		m_bspPlanes.push_back(plane); 
+		printf("\nNumber of bsp planes: %d\n", m_bspPlanes.size());
+	}
 };
 
