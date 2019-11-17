@@ -18,6 +18,7 @@ bool Scene::Start() {
 
 	//m_suzanne->GetChildrenByIndex(2)->GetTransform()->SetPosition(6.0f, 0.0f, 0.0f);
 
+	m_suzanne_1 = nullptr;
 	//m_suzanne_1 = new Suzzane(m_renderer);
 	//m_suzanne_1->SetName("Suzanne right");
 	//m_suzanne->AddNode(m_suzanne_1);
@@ -49,13 +50,13 @@ void Scene::FillVectorWithEntitiesInScene() {
 			const char* entityName = ((Entity*)m_entities[i])->GetName();
 			if (entityName[4] == 'r') {
 				m_camera->AddPlane(bsp_plane.CreatePlaneFromPointAndNormal(
-					((Entity*)m_entities[i])->GetTransform()->GetPosition(),
+					((Entity*)m_entities[i])->GetTransform()->GetBoundingBox().minVertex,
 					World::right
 				));
 			}
 			else if (entityName[4] == 'f') {
 				m_camera->AddPlane(bsp_plane.CreatePlaneFromPointAndNormal(
-					((Entity*)m_entities[i])->GetTransform()->GetPosition(),
+					((Entity*)m_entities[i])->GetTransform()->GetBoundingBox().minVertex,
 					World::foward
 				));
 			}
@@ -67,13 +68,10 @@ void Scene::FillVectorWithEntitiesInScene() {
 }
 
 bool Scene::is_bsp_plane(Entity* entity) const {
-	printf("\nEntity name: %s\n", entity->GetName());
-
 	bool isBspPlane = 
 		entity->GetName()[0] == 'b' &&
 		entity->GetName()[1] == 's' &&
 		entity->GetName()[2] == 'p';
-	printf("Entity is bsp plane: %d\n", isBspPlane);
 
 	return isBspPlane;
 }

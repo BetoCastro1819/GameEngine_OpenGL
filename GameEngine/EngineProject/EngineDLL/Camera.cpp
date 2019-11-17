@@ -22,9 +22,6 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 	m_renderer->SetPerpectiveCam(fov, aspectRatio, zNear, zFar);
 
 	UpdateViewMatrix();
-
-	//Plane bspPlane;
-	//m_bspPlanes.push_back(bspPlane.CreatePlaneFromPointAndNormal(glm::vec3(2, 0, 0), World::right));
 }
 
 void Camera::Update(float deltaTime) {
@@ -38,12 +35,24 @@ void Camera::Update(float deltaTime) {
 	CheckForMovementInput(deltaTime);
 	CheckForRotationInput(deltaTime);
 
-	m_renderer->LoadIdentityMatrix();
-
 	m_visibleEntities = m_entities;
 	for (int i = 0; i < m_visibleEntities.size(); i++) {
-		TestForVisibility(m_visibleEntities[i], i);
+		Entity* entity = m_visibleEntities[i];
+
+		entity->SetVisible(false);
+		bool isBehindBsp = false;
+		for (int j = 0; j < m_bspPlanes.size(); j++) {
+			if (isBehindBSPPlane(entity, m_bspPlanes[j])) {
+				//printf("\nEntity %s is behind BSP plane\n", entity->GetName());
+				//m_visibleEntities.erase(m_visibleEntities.begin() + i);
+				isBehindBsp = true;
+			}
+		}
+		if (!isBehindBsp)
+			TestForVisibility(entity, i);
 	}
+
+	m_renderer->LoadIdentityMatrix();
 }
 
 void Camera::UpdateViewMatrix() {
@@ -131,10 +140,6 @@ void Camera::UpdateFrustrumPlanes() {
 void Camera::TestForVisibility(Entity* entity, int index) {
 
 	entity->SetVisible(false);
-	//if (isBehindBSPPlane(entity, m_bspPlanes[0])) {
-	//	printf("\nEntity %s is behind BSP plane\n", entity->GetName());
-	//	return;
-	//}
 
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Far], entity)) {
 		printf("\nEntity %s is behind plane_far\n", entity->GetName());

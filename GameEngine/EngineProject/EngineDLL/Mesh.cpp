@@ -128,6 +128,7 @@ void Mesh::ProcessNode(aiNode* node, const aiScene* scene, int& meshIndex) {
 	mesh->GenerateBuffers();
 	newEntity->AddComponent(mesh);
 
+	
 	m_entity->AddNode(newEntity);
 
 	meshIndex++;

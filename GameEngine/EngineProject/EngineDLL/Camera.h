@@ -64,7 +64,7 @@ public:
 	}
 	void AddPlane(Plane plane) { 
 		m_bspPlanes.push_back(plane); 
-		printf("\nNumber of bsp planes: %d\n", m_bspPlanes.size());
+		//printf("\nNumber of bsp planes: %d\n", m_bspPlanes.size());
 	}
 };
 
