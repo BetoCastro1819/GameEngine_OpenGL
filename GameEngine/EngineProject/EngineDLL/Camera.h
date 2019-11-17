@@ -28,6 +28,7 @@ private:
 	Plane m_frustrumPlanes[6];
 
 	vector<Entity*> m_entities;
+	vector<Entity*> m_visibleEntities;
 	vector<Plane> m_bspPlanes;
 
 	float zNear;
@@ -55,9 +56,12 @@ public:
 	
 	void Update(float deltaTime) override;
 
-	void TestForVisibility(Entity* entity);
+	void TestForVisibility(Entity* entity, int index);
 
-	void AddEntity(Entity* entity) { m_entities.push_back(entity); }
+	void AddEntity(Entity* entity) { 
+		m_entities.push_back(entity);
+		//printf("\nNumber of entities in camera %d\n", m_entities.size());
+	}
 	void AddPlane(Plane plane) { m_bspPlanes.push_back(plane); }
 };
 

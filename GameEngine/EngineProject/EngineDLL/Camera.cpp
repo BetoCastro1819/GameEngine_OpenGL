@@ -39,6 +39,11 @@ void Camera::Update(float deltaTime) {
 	CheckForRotationInput(deltaTime);
 
 	m_renderer->LoadIdentityMatrix();
+
+	m_visibleEntities = m_entities;
+	for (int i = 0; i < m_visibleEntities.size(); i++) {
+		TestForVisibility(m_visibleEntities[i], i);
+	}
 }
 
 void Camera::UpdateViewMatrix() {
@@ -123,7 +128,7 @@ void Camera::UpdateFrustrumPlanes() {
 	m_frustrumPlanes[ClippingPlane::Bottom].NormalizePlane();
 }
 
-void Camera::TestForVisibility(Entity* entity) {
+void Camera::TestForVisibility(Entity* entity, int index) {
 
 	entity->SetVisible(false);
 	//if (isBehindBSPPlane(entity, m_bspPlanes[0])) {
@@ -133,33 +138,39 @@ void Camera::TestForVisibility(Entity* entity) {
 
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Far], entity)) {
 		printf("\nEntity %s is behind plane_far\n", entity->GetName());
+		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Near], entity)) {
 		printf("\nEntity %s is behind plane_near\n", entity->GetName());
+		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Left], entity)) {
 		printf("\nEntity %s is behind plane_left\n", entity->GetName());
+		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Right], entity)) {
 		printf("\nEntity %s is behind plane_right\n", entity->GetName());
+		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Top], entity)) {
 		printf("\nEntity %s is behind plane_top\n", entity->GetName());
+		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Bottom], entity)) {
 		printf("\nEntity %s is behind plane_bottom\n", entity->GetName());
+		m_visibleEntities.erase(m_visibleEntities.begin() + index);
 		return;
 	}
 	entity->SetVisible(true);
 
-	for (int i = 0; i < entity->GetChildren().size(); i++) {
-		TestForVisibility((Entity*)entity->GetChildren()[i]);
-	}
+	//for (int i = 0; i < entity->GetChildren().size(); i++) {
+	//	TestForVisibility((Entity*)entity->GetChildren()[i], index);
+	//}
 }
 
 bool Camera::isInsideFrustrum(Plane& plane, Entity* entity) {

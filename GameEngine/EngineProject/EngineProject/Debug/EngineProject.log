@@ -61,19 +61,29 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=Entity *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(31): warning C4251: 'Camera::m_bspPlanes': class 'std::vector<Plane,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(31): warning C4251: 'Camera::m_visibleEntities': class 'std::vector<Entity *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
+          with
+          [
+              _Ty=Entity *
+          ]
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(30): note: see declaration of 'std::vector<Entity *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=Entity *
+          ]
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(32): warning C4251: 'Camera::m_bspPlanes': class 'std::vector<Plane,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
           with
           [
               _Ty=Plane
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(31): note: see declaration of 'std::vector<Plane,std::allocator<_Ty>>'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(32): note: see declaration of 'std::vector<Plane,std::allocator<_Ty>>'
           with
           [
               _Ty=Plane
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(38): warning C4251: 'Camera::m_CameraTarget': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(39): warning C4251: 'Camera::m_CameraTarget': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(39): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(40): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(32): warning C4251: 'Mesh::m_indices': class 'std::vector<unsigned short,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
           with
@@ -114,6 +124,16 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           with
           [
               _Ty=glm::vec3
+          ]
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scene.h(15): warning C4251: 'Scene::m_entities': class 'std::vector<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Scene'
+          with
+          [
+              _Ty=SceneNode *
+          ]
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(21): note: see declaration of 'std::vector<SceneNode *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=SceneNode *
           ]
   main.cpp
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\renderer.h(26): warning C4251: 'Renderer::MVP': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Renderer'
@@ -178,19 +198,29 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           [
               _Ty=Entity *
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(31): warning C4251: 'Camera::m_bspPlanes': class 'std::vector<Plane,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(31): warning C4251: 'Camera::m_visibleEntities': class 'std::vector<Entity *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
+          with
+          [
+              _Ty=Entity *
+          ]
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(30): note: see declaration of 'std::vector<Entity *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=Entity *
+          ]
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(32): warning C4251: 'Camera::m_bspPlanes': class 'std::vector<Plane,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
           with
           [
               _Ty=Plane
           ]
-  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(31): note: see declaration of 'std::vector<Plane,std::allocator<_Ty>>'
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(32): note: see declaration of 'std::vector<Plane,std::allocator<_Ty>>'
           with
           [
               _Ty=Plane
           ]
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(38): warning C4251: 'Camera::m_CameraTarget': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(39): warning C4251: 'Camera::m_CameraTarget': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(39): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(40): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
   d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
 d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\mesh.h(32): warning C4251: 'Mesh::m_indices': class 'std::vector<unsigned short,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Mesh'
           with
@@ -231,6 +261,16 @@ d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\engi
           with
           [
               _Ty=glm::vec3
+          ]
+d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scene.h(15): warning C4251: 'Scene::m_entities': class 'std::vector<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Scene'
+          with
+          [
+              _Ty=SceneNode *
+          ]
+  d:\documents\imagecampus\2019\1c\gameengine_opengl\gameengine\engineproject\enginedll\scenenode.h(21): note: see declaration of 'std::vector<SceneNode *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=SceneNode *
           ]
   Generating Code...
   EngineProject.vcxproj -> D:\Documents\ImageCampus\2019\1C\GameEngine_OpenGL\GameEngine\EngineProject\Debug\TestEngine.exe

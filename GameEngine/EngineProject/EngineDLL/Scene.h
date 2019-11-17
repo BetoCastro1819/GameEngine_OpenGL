@@ -12,7 +12,12 @@ private:
 	Suzzane* m_suzanne;
 	Suzzane* m_suzanne_1;
 
+	std::vector<SceneNode*> m_entities;
+
 	float m_rotationSpeed;
+
+	void FillVectorWithEntitiesInScene();
+	bool is_bsp_plane(Entity* entity) const;
 
 public:
 	Scene(Renderer* renderer, Camera* camera);

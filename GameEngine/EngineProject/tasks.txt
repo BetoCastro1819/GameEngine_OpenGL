@@ -1,8 +1,9 @@
 $ Apply frustrum culling based on bounding box vertices
 $ Generate bounding box based on mesh max and min vertices
 $ re-scale parents bounding box based on child ones
+$ Implement BSP plane logic with single harcoded plane
+$ Create basic scene in blender with just 1 obj and 1 plane to understand how to read the bsp plane
+- Create bsp planes from planes in obj file scene
 - Display on console with objs are being drawn
-- Implement BSP plane logic with single harcoded plane
-- Create basic scene in blender with just 1 obj and 1 plane to understand how to read the bsp plane
 - Create scene in Blender and extract BSP planes
 - Instantiate movable obj

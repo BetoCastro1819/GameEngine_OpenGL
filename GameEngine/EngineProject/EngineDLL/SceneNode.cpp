@@ -90,3 +90,11 @@ SceneNode* SceneNode::GetChildrenByIndex(int index) {
 	printf("\nERROR from %s: SELECTED CHILDREN INDEX IS OUT OF RANGE!!!\n", GetName());
 	return this;
 }
+
+void SceneNode::GetAllChildren(std::vector<SceneNode*>& children) {
+	for (int i = 0; i < m_children.size(); i++) {
+		m_children[i]->GetAllChildren(children);
+		children.push_back(m_children[i]);
+	}
+}
+

@@ -6,7 +6,7 @@ Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 	SetName("Scene");
 
 	AddNode(m_camera);
-	m_camera->GetTransform()->SetPosition(0.0f, 0.0f, 10.0f);
+	m_camera->GetTransform()->SetPosition(0.0f, 0.0f, 20.0f);
 }
 
 bool Scene::Start() {
@@ -25,8 +25,7 @@ bool Scene::Start() {
 
 	m_rotationSpeed = 50.0f;
 
-
-
+	FillVectorWithEntitiesInScene();
 
 	return true;
 }
@@ -34,11 +33,32 @@ bool Scene::Start() {
 void Scene::Update(float deltaTime) {
 	Entity::Update(deltaTime);
 
-	m_camera->TestForVisibility(m_suzanne);
-
-
+	//m_camera->TestForVisibility(m_suzanne);
 
 	//m_suzanne->GetTransform()->Yaw(m_rotationSpeed * deltaTime);
+}
+
+void Scene::FillVectorWithEntitiesInScene() {
+	m_suzanne->GetAllChildren(m_entities);
+	printf("\nNumber of entities in scene %d\n", m_entities.size());
+
+	for (int i = 0; i < m_entities.size(); i++) {
+		if (is_bsp_plane((Entity*)m_entities[i])) {
+			// Create bsp plane
+		}
+		else {
+			m_camera->AddEntity((Entity*)m_entities[i]);
+		}
+	}
+}
+
+bool Scene::is_bsp_plane(Entity* entity) const {
+	bool isBspPlane = 
+		entity->GetName()[0] == 'b' &&
+		entity->GetName()[1] == 's' &&
+		entity->GetName()[2] == 'p';
+
+	return isBspPlane;
 }
 
 Scene::~Scene() {
