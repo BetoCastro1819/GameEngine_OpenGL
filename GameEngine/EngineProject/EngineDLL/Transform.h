@@ -69,6 +69,6 @@ public:
 
 	void SetBoundingBoxDimensions(glm::vec3 origin, float width, float height, float length);
 	void SetBoundingBoxDimensions(glm::vec3 minVertex, glm::vec3 maxVertex);
-	BoundingBox GetboundingBox() { return m_boundingBox; }
+	BoundingBox GetBoundingBox() { return m_boundingBox; }
 };
 

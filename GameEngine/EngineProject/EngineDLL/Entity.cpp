@@ -19,5 +19,5 @@ void Entity::Update(float deltaTime) {
 }
 
 void Entity::DrawBoundingBox() {
-	m_renderer->DrawCube(m_transform->GetboundingBox().vertices);
+	m_renderer->DrawCube(m_transform->GetBoundingBox().vertices);
 }

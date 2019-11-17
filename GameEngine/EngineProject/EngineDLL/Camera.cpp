@@ -132,27 +132,27 @@ Camera::Plane Camera::CreatePlaneFromPointAndNormal(const glm::vec3& point, cons
 void Camera::TestForFrustrumCulling(Entity* entity) {
 
 	entity->SetIsInsideFrustrum(false);
-	if (isBehindPlane(m_planes[ClippingPlane::Far], entity)) {
+	if (isInsideFrustrum(m_planes[ClippingPlane::Far], entity)) {
 		printf("\nEntity %s is behind plane_far\n", entity->GetName());
 		return;
 	}
-	if (isBehindPlane(m_planes[ClippingPlane::Near], entity)) {
+	if (isInsideFrustrum(m_planes[ClippingPlane::Near], entity)) {
 		printf("\nEntity %s is behind plane_near\n", entity->GetName());
 		return;
 	}
-	if (isBehindPlane(m_planes[ClippingPlane::Left], entity)) {
+	if (isInsideFrustrum(m_planes[ClippingPlane::Left], entity)) {
 		printf("\nEntity %s is behind plane_left\n", entity->GetName());
 		return;
 	}
-	if (isBehindPlane(m_planes[ClippingPlane::Right], entity)) {
+	if (isInsideFrustrum(m_planes[ClippingPlane::Right], entity)) {
 		printf("\nEntity %s is behind plane_right\n", entity->GetName());
 		return;
 	}
-	if (isBehindPlane(m_planes[ClippingPlane::Top], entity)) {
+	if (isInsideFrustrum(m_planes[ClippingPlane::Top], entity)) {
 		printf("\nEntity %s is behind plane_top\n", entity->GetName());
 		return;
 	}
-	if (isBehindPlane(m_planes[ClippingPlane::Bottom], entity)) {
+	if (isInsideFrustrum(m_planes[ClippingPlane::Bottom], entity)) {
 		printf("\nEntity %s is behind plane_bottom\n", entity->GetName());
 		return;
 	}
@@ -163,13 +163,15 @@ void Camera::TestForFrustrumCulling(Entity* entity) {
 	}
 }
 
-bool Camera::isBehindPlane(Plane& plane, Entity* entity) {
-	glm::vec3 entityPos = entity->GetTransform()->GetPosition();
-	float dist = plane.a * entityPos.x + plane.b * entityPos.y + plane.c * entityPos.z + plane.d;
-
-	if (dist <= 0) return true;
+bool Camera::isInsideFrustrum(Plane& plane, Entity* entity) {
+	BoundingBox entityBoundingBox = entity->GetTransform()->GetBoundingBox();
+	for (int vertexId = 0; vertexId < entityBoundingBox.vertices.size(); vertexId++) {
+		glm::vec3 boundingBoxVertex = entityBoundingBox.vertices[vertexId];
+		float dist = plane.a * boundingBoxVertex.x + plane.b * boundingBoxVertex.y + plane.c * boundingBoxVertex.z + plane.d;
 	
-	return false;
+		if (dist >= 0) return false;
+	}
+	return true;
 }
 
 void Camera::NormalizePlane(Plane& plane) {

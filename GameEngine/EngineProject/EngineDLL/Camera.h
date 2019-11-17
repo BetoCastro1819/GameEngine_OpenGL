@@ -44,7 +44,7 @@ private:
 	void CheckForRotationInput(float deltaTime);
 	void UpdateFrustrumPlanes();
 
-	bool isBehindPlane(Plane& plane, Entity* entity);
+	bool isInsideFrustrum(Plane& plane, Entity* entity);
 
 	// Plane stuff
 	void NormalizePlane(Plane& plane);
