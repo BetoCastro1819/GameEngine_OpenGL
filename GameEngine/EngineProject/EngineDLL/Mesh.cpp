@@ -105,7 +105,8 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 
 	
 	int meshIndex = 0;
-	aiNode* rootNode = scene->mRootNode->mChildren[0];
+	//aiNode* rootNode = scene->mRootNode->mChildren[0];
+	aiNode* rootNode = scene->mRootNode;
 	ProcessNode(rootNode, scene, meshIndex);
 
 	printf("\nNumber of meshes found in %s: %d \n", filePath, scene->mNumMeshes);
@@ -115,6 +116,25 @@ bool Mesh::LoadModelWithAssimp(const char* filePath) {
 
 void Mesh::ProcessNode(aiNode* node, const aiScene* scene, int& meshIndex) {
 	if (meshIndex >= scene->mNumMeshes) return; // 0;
+
+	Entity* newEntity = new Entity(m_renderer);
+	newEntity->SetName(scene->mMeshes[meshIndex]->mName.data);
+
+	printf("\nNode Nro.%d: %s\n", meshIndex, newEntity->GetName());
+	printf("Number of children: %d\n", node->mNumChildren);
+
+	Mesh* mesh = new Mesh(newEntity, m_renderer, m_material, m_textureID);
+	mesh->ProcessMesh(scene->mMeshes[meshIndex]);
+	mesh->GenerateBuffers();
+	newEntity->AddComponent(mesh);
+
+	m_entity->AddNode(newEntity);
+
+	meshIndex++;
+	for (int nodeIndex = 0; nodeIndex < node->mNumChildren; nodeIndex++) {
+		ProcessNode(node->mChildren[nodeIndex], scene, meshIndex);
+	}
+	return;
 
 	if (meshIndex == 0) {
 		m_entity->SetName(node->mName.data);

@@ -6,7 +6,7 @@
 
 
 Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
-	SetName("suzanne");
+	SetName("suzanne root");
 
 	//GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1, -1, -1), glm::vec3(1, 1, 1));
 
@@ -15,7 +15,7 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	AddComponent(m_material);
 
 	m_mesh = new Mesh(this, renderer, m_material, "uvtemplate.bmp");
-	m_mesh->LoadModel("cube.obj");
+	m_mesh->LoadModel("bsp_planes_scene.obj");
 	AddComponent(m_mesh);
 
 	m_physicsComponent = new PhysicsComponent(this);

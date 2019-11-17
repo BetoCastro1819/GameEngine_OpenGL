@@ -23,8 +23,8 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 
 	UpdateViewMatrix();
 
-	Plane bspPlane;
-	m_bspPlanes.push_back(bspPlane.CreatePlaneFromPointAndNormal(glm::vec3(2, 0, 0), World::right));
+	//Plane bspPlane;
+	//m_bspPlanes.push_back(bspPlane.CreatePlaneFromPointAndNormal(glm::vec3(2, 0, 0), World::right));
 }
 
 void Camera::Update(float deltaTime) {
@@ -126,10 +126,10 @@ void Camera::UpdateFrustrumPlanes() {
 void Camera::TestForVisibility(Entity* entity) {
 
 	entity->SetVisible(false);
-	if (isBehindBSPPlane(entity, m_bspPlanes[0])) {
-		printf("\nEntity %s is behind BSP plane\n", entity->GetName());
-		return;
-	}
+	//if (isBehindBSPPlane(entity, m_bspPlanes[0])) {
+	//	printf("\nEntity %s is behind BSP plane\n", entity->GetName());
+	//	return;
+	//}
 
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Far], entity)) {
 		printf("\nEntity %s is behind plane_far\n", entity->GetName());
