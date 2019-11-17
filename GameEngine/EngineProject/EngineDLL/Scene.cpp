@@ -44,7 +44,21 @@ void Scene::FillVectorWithEntitiesInScene() {
 
 	for (int i = 0; i < m_entities.size(); i++) {
 		if (is_bsp_plane((Entity*)m_entities[i])) {
-			// Create bsp plane
+			Plane bsp_plane;
+
+			const char* entityName = ((Entity*)m_entities[i])->GetName();
+			if (entityName[4] == 'r') {
+				m_camera->AddPlane(bsp_plane.CreatePlaneFromPointAndNormal(
+					((Entity*)m_entities[i])->GetTransform()->GetPosition(),
+					World::right
+				));
+			}
+			else if (entityName[4] == 'f') {
+				m_camera->AddPlane(bsp_plane.CreatePlaneFromPointAndNormal(
+					((Entity*)m_entities[i])->GetTransform()->GetPosition(),
+					World::foward
+				));
+			}
 		}
 		else {
 			m_camera->AddEntity((Entity*)m_entities[i]);
@@ -53,10 +67,13 @@ void Scene::FillVectorWithEntitiesInScene() {
 }
 
 bool Scene::is_bsp_plane(Entity* entity) const {
+	printf("\nEntity name: %s\n", entity->GetName());
+
 	bool isBspPlane = 
 		entity->GetName()[0] == 'b' &&
 		entity->GetName()[1] == 's' &&
 		entity->GetName()[2] == 'p';
+	printf("Entity is bsp plane: %d\n", isBspPlane);
 
 	return isBspPlane;
 }
