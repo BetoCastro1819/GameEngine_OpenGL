@@ -8,12 +8,14 @@
 Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	SetName("suzanne");
 
+	//GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1, -1, -1), glm::vec3(1, 1, 1));
+
 	m_material = new Material(this);
 	m_material->LoadShaders("StandardVertexShader.txt", "StandardFragmentShader.txt");
 	AddComponent(m_material);
 
 	m_mesh = new Mesh(this, renderer, m_material, "uvtemplate.bmp");
-	m_mesh->LoadModel("suzanne.obj");
+	m_mesh->LoadModel("crysis.fbx");
 	AddComponent(m_mesh);
 
 	m_physicsComponent = new PhysicsComponent(this);
@@ -21,7 +23,6 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	printf("\nNode hierarchy from %s:\n", GetName());
 	PrintNodeHierarchy();
 
-	GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1, -1, -1), glm::vec3(1, 1, 1));
 }
 
 Suzzane::~Suzzane() {

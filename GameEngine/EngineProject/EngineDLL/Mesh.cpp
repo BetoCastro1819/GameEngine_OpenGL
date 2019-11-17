@@ -166,13 +166,13 @@ void Mesh::FillVBOinfo(aiMesh* mesh) {
 	m_indexedUVs.reserve(mesh->mNumVertices);
 	m_indexedNormals.reserve(mesh->mNumVertices);
 	
-	//glm::vec3 maxVertex = glm::vec3(-10000.0f, -10000.0f, -10000.0f);
-	//glm::vec3 minVertex= glm::vec3(10000.0f, 10000.0f, 10000.0f);
+	glm::vec3 maxVertex = glm::vec3(-10000.0f, -10000.0f, -10000.0f);
+	glm::vec3 minVertex= glm::vec3(10000.0f, 10000.0f, 10000.0f);
 	for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
 
 		aiVector3D pos = mesh->mVertices[i];
 		glm::vec3 vertexToProcess = glm::vec3(pos.x, pos.y, pos.z);
-		//GenerateBoundingBoxDimensions(maxVertex, minVertex, vertexToProcess);
+		GenerateBoundingBoxDimensions(maxVertex, minVertex, vertexToProcess);
 
 		m_indexedVertices.push_back(glm::vec3(pos.x, pos.y, pos.z));
 
@@ -182,7 +182,7 @@ void Mesh::FillVBOinfo(aiMesh* mesh) {
 		aiVector3D n = mesh->mNormals[i];
 		m_indexedNormals.push_back(glm::vec3(n.x, n.y, n.z));
 	}
-	//m_entity->GetTransform()->SetBoundingBoxDimensions(minVertex, maxVertex);
+	m_entity->GetTransform()->SetBoundingBoxDimensions(minVertex, maxVertex);
 }
 
 void Mesh::FillFaceIndices(aiMesh* mesh) {

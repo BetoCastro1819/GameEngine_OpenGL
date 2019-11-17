@@ -15,7 +15,7 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 	m_transform->Yaw(180);
 
 	zNear = 0.1f;
-	zFar = 20.0f;
+	zFar = 100.0f;
 	fov = 45;
 	aspectRatio = (float)m_Window->GetWidth() / (float)m_Window->GetHeight();
 
