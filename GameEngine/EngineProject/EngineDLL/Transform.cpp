@@ -53,13 +53,6 @@ void Transform::UpdateModelMatrix() {
 	else {
 		m_worldTransform = m_transform;
 	}
-
-
-	//for (int i = 0; i < m_boundingBox.vertices.size(); i++) {
-	//	glm::vec4 tempVec = glm::vec4(m_boundingBox.vertices[i], 1.0f);
-	//	tempVec = m_modelMatrix * tempVec;
-	//	m_boundingBox.vertices[i] = glm::vec3(tempVec.x, tempVec.y, tempVec.z);
-	//}
 }
 
 void Transform::SetPosition(const glm::vec3& position) {
@@ -145,11 +138,9 @@ void Transform::UpdateVectorWithMatrix(glm::vec3& vectorToUpdate, glm::mat4 matT
 	if (m_entity->GetParent() != nullptr) {
 		Transform* parentTransform = m_entity->GetParent()->GetTransform();
 		vectorToUpdate = parentTransform->GetWorldMatrix() * matToUse *  glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-		//vectorToUpdate = matToUse * parentTransform->GetWorldMatrix() * glm::vec4(vectorToUpdate, 1.0f);
 	}
 	else {
 		vectorToUpdate = m_worldTransform * matToUse * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-		//vectorToUpdate = matToUse * m_worldTransform * glm::vec4(vectorToUpdate, 1.0f);
 	}
 	UpdateModelMatrix();
 }
@@ -172,6 +163,8 @@ void Transform::SetBoundingBoxDimensions(glm::vec3 minVertex, glm::vec3 maxVerte
 }
 
 void Transform::UpdateBoundingBoxVertices() {
+	UpdateBBoxBasedOnChildBounds();
+
 	// BACK face vertices
 	m_boundingBox.vertices[0] = m_position + m_boundingBox.minVertex;
 	m_boundingBox.vertices[1] = m_position + glm::vec3(m_boundingBox.minVertex.x, m_boundingBox.maxVertex.y, m_boundingBox.minVertex.z);
@@ -195,4 +188,40 @@ void Transform::UpdateBoundingBoxVertices() {
 	//m_boundingBox.vertices[5] = m_worldTransform * glm::vec4(m_boundingBox.vertices[5], 1.0f);
 	//m_boundingBox.vertices[6] = m_worldTransform * glm::vec4(m_boundingBox.vertices[6], 1.0f);
 	//m_boundingBox.vertices[7] = m_worldTransform * glm::vec4(m_boundingBox.vertices[7], 1.0f);
+}
+
+void Transform::UpdateBBoxBasedOnChildBounds() {
+	CompareCurrentBBoxAgainstChilds(m_boundingBox.minVertex, m_boundingBox.maxVertex);
+}
+
+void Transform::CompareCurrentBBoxAgainstChilds(glm::vec3& currentMinVertex, glm::vec3& currentMaxVertex) {
+	for (int childIndex = 0; childIndex < m_entity->GetChildren().size(); childIndex++) {
+
+		Entity* child = (Entity*)m_entity->GetChildren()[childIndex];
+		
+		BoundingBox childBBox = child->GetTransform()->GetBoundingBox();
+		for (int vertexId = 0; vertexId < childBBox.vertices.size(); vertexId++) {
+
+			glm::vec3 currentVertex = childBBox.vertices[vertexId];
+			if (currentVertex.x < currentMinVertex.x) {
+				currentMinVertex.x = currentVertex.x;
+			}
+			if (currentVertex.y < currentMinVertex.y) {
+				currentMinVertex.y = currentVertex.y;
+			}
+			if (currentVertex.z < currentMinVertex.z) {
+				currentMinVertex.z = currentVertex.z;
+			}
+			if (currentVertex.x > currentMaxVertex.x) {
+				currentMaxVertex.x = currentVertex.x;
+			}
+			if (currentVertex.y > currentMaxVertex.y) {
+				currentMaxVertex.y = currentVertex.y;
+			}
+			if (currentVertex.z > currentMaxVertex.z) {
+				currentMaxVertex.z = currentVertex.z;
+			}
+		}
+		child->GetTransform()->CompareCurrentBBoxAgainstChilds(currentMinVertex, currentMaxVertex);
+	}
 }

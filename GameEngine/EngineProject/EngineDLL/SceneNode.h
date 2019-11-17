@@ -36,7 +36,7 @@ public:
 	Component* GetComponent(ComponentType componentType);
 
 	SceneNode* GetParent();
-	Transform* GetTransform();
+	Transform* GetTransform() const;
 	SceneNode* GetChildrenByIndex(int index); 
 
 	void SetName(std::string name) { m_name = name; }

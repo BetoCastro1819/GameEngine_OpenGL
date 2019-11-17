@@ -5,14 +5,14 @@
 class ENGINEDLL_API Entity : public SceneNode {
 protected:
 	Renderer* m_renderer;
-	bool m_isInsideFrustrum;
+	bool m_isVisible;
 
 public:
 	Entity(Renderer* renderer);
 	~Entity();
 
 	void Update(float deltaTime) override;
-	void SetIsInsideFrustrum(bool isInsideFrustrum) { m_isInsideFrustrum = isInsideFrustrum; }
-	bool isInsideFrustrum() const { return m_isInsideFrustrum; }
+	void SetVisible(bool isVisible) { m_isVisible = isVisible; }
+	bool isInsideFrustrum() const { return m_isVisible; }
 	void DrawBoundingBox();
 };

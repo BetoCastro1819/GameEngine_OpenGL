@@ -6,6 +6,7 @@
 #include "Renderer.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "Plane.h"
 
 // GLM -> math library
 #include "glm/glm.hpp"
@@ -24,9 +25,10 @@ class ENGINEDLL_API Camera  : public Entity {
 private:
 	Window* m_Window;
 
-	struct Plane {
-		float a, b, c, d;
-	} m_planes[6];
+	Plane m_frustrumPlanes[6];
+
+	vector<Entity*> m_entities;
+	vector<Plane> m_bspPlanes;
 
 	float zNear;
 	float zFar;
@@ -45,20 +47,17 @@ private:
 	void UpdateFrustrumPlanes();
 
 	bool isInsideFrustrum(Plane& plane, Entity* entity);
-
-	// Plane stuff
-	void NormalizePlane(Plane& plane);
-	float SignedDistanceToPlane(const Plane& plane, const glm::vec3& point) const;
-	glm::vec3 ClosestPointOnPlaneFromPosition(const Plane& plane, const glm::vec3& position) const;
-	Plane CreatePlaneFromPointAndNormal(const glm::vec3& point, const glm::vec3& normal);
+	bool isBehindBSPPlane(const Entity* entity, const Plane& bspPlane) const;
 
 public:
 	Camera(Renderer* renderer, Window* window);
 	~Camera() { }
 	
 	void Update(float deltaTime) override;
-	void DrawFrustrumPlanes();
 
-	void TestForFrustrumCulling(Entity* entity);
+	void TestForVisibility(Entity* entity);
+
+	void AddEntity(Entity* entity) { m_entities.push_back(entity); }
+	void AddPlane(Plane plane) { m_bspPlanes.push_back(plane); }
 };
 

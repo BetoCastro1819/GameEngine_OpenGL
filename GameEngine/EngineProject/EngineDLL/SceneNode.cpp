@@ -80,7 +80,7 @@ SceneNode* SceneNode::GetParent() {
 	return m_parent;
 }
 
-Transform* SceneNode::GetTransform() {
+Transform* SceneNode::GetTransform() const {
 	return m_transform;
 }
 

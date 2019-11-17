@@ -5,7 +5,7 @@ Entity::Entity(Renderer* renderer)	 {
 	m_renderer = renderer;
 	m_transform = new Transform(this);
 	AddComponent(m_transform);
-	m_isInsideFrustrum = true;
+	m_isVisible = true;
 }
 
 Entity::~Entity() {
@@ -13,7 +13,7 @@ Entity::~Entity() {
 }
 
 void Entity::Update(float deltaTime) {
-	if (m_isInsideFrustrum) {
+	if (m_isVisible) {
 		SceneNode::Update(deltaTime);
 	}
 }

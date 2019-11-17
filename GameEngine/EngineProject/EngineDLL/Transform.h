@@ -14,13 +14,10 @@ struct World {
 struct BoundingBox {
 	glm::vec3 minVertex;
 	glm::vec3 maxVertex;
-	//glm::vec3 width;
-	//glm::vec3 height;
-	//glm::vec3 length;
 	std::vector<glm::vec3> vertices;
 };
 
-class ENGINEDLL_API Transform  : public Component {
+class ENGINEDLL_API Transform : public Component {
 private:
 	BoundingBox m_boundingBox;
 
@@ -36,8 +33,11 @@ private:
 	glm::mat4 m_scaleMatrix;
 
 	void UpdateUnitVectors();
-	void UpdateBoundingBoxVertices();
 	void UpdateVectorWithMatrix(glm::vec3& vectorToUpdate, glm::mat4 matToUse);
+
+	void UpdateBoundingBoxVertices();
+	void UpdateBBoxBasedOnChildBounds();
+	void CompareCurrentBBoxAgainstChilds(glm::vec3& currentMinVertex, glm::vec3& currentMaxVertex);
 
 public:
 	glm::vec3 right;
@@ -69,6 +69,6 @@ public:
 
 	void SetBoundingBoxDimensions(glm::vec3 origin, float width, float height, float length);
 	void SetBoundingBoxDimensions(glm::vec3 minVertex, glm::vec3 maxVertex);
-	BoundingBox GetBoundingBox() { return m_boundingBox; }
+	BoundingBox GetBoundingBox() const { return m_boundingBox; }
 };
 

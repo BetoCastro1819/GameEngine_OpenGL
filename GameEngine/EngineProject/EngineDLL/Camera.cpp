@@ -22,6 +22,9 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 	m_renderer->SetPerpectiveCam(fov, aspectRatio, zNear, zFar);
 
 	UpdateViewMatrix();
+
+	Plane bspPlane;
+	m_bspPlanes.push_back(bspPlane.CreatePlaneFromPointAndNormal(glm::vec3(2, 0, 0), World::right));
 }
 
 void Camera::Update(float deltaTime) {
@@ -83,83 +86,79 @@ void Camera::CheckForRotationInput(float deltaTime) {
 void Camera::UpdateFrustrumPlanes() {
 	glm::mat4 mvp = m_renderer->GetMVP();
 
-	m_planes[ClippingPlane::Far].a = mvp[0][3] - mvp[0][2];
-	m_planes[ClippingPlane::Far].b = mvp[1][3] - mvp[1][2];
-	m_planes[ClippingPlane::Far].c = mvp[2][3] - mvp[2][2];
-	m_planes[ClippingPlane::Far].d = mvp[3][3] - mvp[3][2];
-	NormalizePlane(m_planes[ClippingPlane::Far]);
+	m_frustrumPlanes[ClippingPlane::Far].a = mvp[0][3] - mvp[0][2];
+	m_frustrumPlanes[ClippingPlane::Far].b = mvp[1][3] - mvp[1][2];
+	m_frustrumPlanes[ClippingPlane::Far].c = mvp[2][3] - mvp[2][2];
+	m_frustrumPlanes[ClippingPlane::Far].d = mvp[3][3] - mvp[3][2];
+	m_frustrumPlanes[ClippingPlane::Far].NormalizePlane();
 
-	m_planes[ClippingPlane::Near].a = mvp[0][3] + mvp[0][2];
-	m_planes[ClippingPlane::Near].b = mvp[1][3] + mvp[1][2];
-	m_planes[ClippingPlane::Near].c = mvp[2][3] + mvp[2][2];
-	m_planes[ClippingPlane::Near].d = mvp[3][3] + mvp[3][2];
-	NormalizePlane(m_planes[ClippingPlane::Near]);
+	m_frustrumPlanes[ClippingPlane::Near].a = mvp[0][3] + mvp[0][2];
+	m_frustrumPlanes[ClippingPlane::Near].b = mvp[1][3] + mvp[1][2];
+	m_frustrumPlanes[ClippingPlane::Near].c = mvp[2][3] + mvp[2][2];
+	m_frustrumPlanes[ClippingPlane::Near].d = mvp[3][3] + mvp[3][2];
+	m_frustrumPlanes[ClippingPlane::Near].NormalizePlane();
 
-	m_planes[ClippingPlane::Left].a = mvp[0][3] + mvp[0][0];
-	m_planes[ClippingPlane::Left].b = mvp[1][3] + mvp[1][0];
-	m_planes[ClippingPlane::Left].c = mvp[2][3] + mvp[2][0];
-	m_planes[ClippingPlane::Left].d = mvp[3][3] + mvp[3][0];
-	NormalizePlane(m_planes[ClippingPlane::Left]);
+	m_frustrumPlanes[ClippingPlane::Left].a = mvp[0][3] + mvp[0][0];
+	m_frustrumPlanes[ClippingPlane::Left].b = mvp[1][3] + mvp[1][0];
+	m_frustrumPlanes[ClippingPlane::Left].c = mvp[2][3] + mvp[2][0];
+	m_frustrumPlanes[ClippingPlane::Left].d = mvp[3][3] + mvp[3][0];
+	m_frustrumPlanes[ClippingPlane::Left].NormalizePlane();
 
-	m_planes[ClippingPlane::Right].a = mvp[0][3] - mvp[0][0];
-	m_planes[ClippingPlane::Right].b = mvp[1][3] - mvp[1][0];
-	m_planes[ClippingPlane::Right].c = mvp[2][3] - mvp[2][0];
-	m_planes[ClippingPlane::Right].d = mvp[3][3] - mvp[3][0];
-	NormalizePlane(m_planes[ClippingPlane::Right]);
+	m_frustrumPlanes[ClippingPlane::Right].a = mvp[0][3] - mvp[0][0];
+	m_frustrumPlanes[ClippingPlane::Right].b = mvp[1][3] - mvp[1][0];
+	m_frustrumPlanes[ClippingPlane::Right].c = mvp[2][3] - mvp[2][0];
+	m_frustrumPlanes[ClippingPlane::Right].d = mvp[3][3] - mvp[3][0];
+	m_frustrumPlanes[ClippingPlane::Right].NormalizePlane();
 
-	m_planes[ClippingPlane::Top].a = mvp[0][3] - mvp[0][1];
-	m_planes[ClippingPlane::Top].b = mvp[1][3] - mvp[1][1];
-	m_planes[ClippingPlane::Top].c = mvp[2][3] - mvp[2][1];
-	m_planes[ClippingPlane::Top].d = mvp[3][3] - mvp[3][1];
-	NormalizePlane(m_planes[ClippingPlane::Top]);
+	m_frustrumPlanes[ClippingPlane::Top].a = mvp[0][3] - mvp[0][1];
+	m_frustrumPlanes[ClippingPlane::Top].b = mvp[1][3] - mvp[1][1];
+	m_frustrumPlanes[ClippingPlane::Top].c = mvp[2][3] - mvp[2][1];
+	m_frustrumPlanes[ClippingPlane::Top].d = mvp[3][3] - mvp[3][1];
+	m_frustrumPlanes[ClippingPlane::Top].NormalizePlane();
 
-	m_planes[ClippingPlane::Bottom].a = mvp[0][3] + mvp[0][1];
-	m_planes[ClippingPlane::Bottom].b = mvp[1][3] + mvp[1][1];
-	m_planes[ClippingPlane::Bottom].c = mvp[2][3] + mvp[2][1];
-	m_planes[ClippingPlane::Bottom].d = mvp[3][3] + mvp[3][1];
-	NormalizePlane(m_planes[ClippingPlane::Bottom]);
+	m_frustrumPlanes[ClippingPlane::Bottom].a = mvp[0][3] + mvp[0][1];
+	m_frustrumPlanes[ClippingPlane::Bottom].b = mvp[1][3] + mvp[1][1];
+	m_frustrumPlanes[ClippingPlane::Bottom].c = mvp[2][3] + mvp[2][1];
+	m_frustrumPlanes[ClippingPlane::Bottom].d = mvp[3][3] + mvp[3][1];
+	m_frustrumPlanes[ClippingPlane::Bottom].NormalizePlane();
 }
 
-Camera::Plane Camera::CreatePlaneFromPointAndNormal(const glm::vec3& point, const glm::vec3& normal) {
-	Plane plane;
-	plane.a = normal.x;
-	plane.b = normal.y;
-	plane.c = normal.z;
-	plane.d = -glm::dot(normal, point);
-	return plane;
-}
+void Camera::TestForVisibility(Entity* entity) {
 
-void Camera::TestForFrustrumCulling(Entity* entity) {
+	entity->SetVisible(false);
+	if (isBehindBSPPlane(entity, m_bspPlanes[0])) {
+		printf("\nEntity %s is behind BSP plane\n", entity->GetName());
+		return;
+	}
 
-	entity->SetIsInsideFrustrum(false);
-	if (isInsideFrustrum(m_planes[ClippingPlane::Far], entity)) {
+	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Far], entity)) {
 		printf("\nEntity %s is behind plane_far\n", entity->GetName());
 		return;
 	}
-	if (isInsideFrustrum(m_planes[ClippingPlane::Near], entity)) {
+	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Near], entity)) {
 		printf("\nEntity %s is behind plane_near\n", entity->GetName());
 		return;
 	}
-	if (isInsideFrustrum(m_planes[ClippingPlane::Left], entity)) {
+	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Left], entity)) {
 		printf("\nEntity %s is behind plane_left\n", entity->GetName());
 		return;
 	}
-	if (isInsideFrustrum(m_planes[ClippingPlane::Right], entity)) {
+	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Right], entity)) {
 		printf("\nEntity %s is behind plane_right\n", entity->GetName());
 		return;
 	}
-	if (isInsideFrustrum(m_planes[ClippingPlane::Top], entity)) {
+	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Top], entity)) {
 		printf("\nEntity %s is behind plane_top\n", entity->GetName());
 		return;
 	}
-	if (isInsideFrustrum(m_planes[ClippingPlane::Bottom], entity)) {
+	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Bottom], entity)) {
 		printf("\nEntity %s is behind plane_bottom\n", entity->GetName());
 		return;
 	}
-	entity->SetIsInsideFrustrum(true);
+	entity->SetVisible(true);
 
 	for (int i = 0; i < entity->GetChildren().size(); i++) {
-		TestForFrustrumCulling((Entity*)entity->GetChildren()[i]);
+		TestForVisibility((Entity*)entity->GetChildren()[i]);
 	}
 }
 
@@ -174,28 +173,15 @@ bool Camera::isInsideFrustrum(Plane& plane, Entity* entity) {
 	return true;
 }
 
-void Camera::NormalizePlane(Plane& plane) {
-	float Distance = sqrtf(plane.a * plane.a + plane.b * plane.b + plane.c * plane.c);
-	plane.a /= Distance;
-	plane.b /= Distance;
-	plane.c /= Distance;
-	plane.d /= Distance;
-}
+bool Camera::isBehindBSPPlane(const Entity* entity, const Plane& bspPlane) const {
+	float cameraDistanceSign = glm::sign(bspPlane.SignedDistanceToPlane(bspPlane, m_transform->GetPosition()));
 
-float Camera::SignedDistanceToPlane(const Plane& plane, const glm::vec3& point) const {
-	return (plane.a * point.x + plane.b * point.y + plane.c * point.z + plane.d);
-}
+	BoundingBox entityBoundingBox = entity->GetTransform()->GetBoundingBox();
+	for (int vertexId = 0; vertexId < entityBoundingBox.vertices.size(); vertexId++) {
+		glm::vec3 vertexPosition = entityBoundingBox.vertices[vertexId];
+		float vertexDistanceSign = glm::sign(bspPlane.SignedDistanceToPlane(bspPlane, vertexPosition));
 
-glm::vec3 Camera::ClosestPointOnPlaneFromPosition(const Plane& plane, const glm::vec3& position) const {
-	glm::vec3 planeNormal = glm::vec3(plane.a, plane.b, plane.c);
-	return (position - planeNormal * SignedDistanceToPlane(plane, position));
-}
-
-void Camera::DrawFrustrumPlanes() {
-	//m_renderer->DrawSquare(
-	//	m_clippingPlanes.near.bottomLeft,
-	//	m_clippingPlanes.near.bottomRight,
-	//	m_clippingPlanes.near.topRight,
-	//	m_clippingPlanes.near.topLeft
-	//);
+		if (vertexDistanceSign == cameraDistanceSign) return false;
+	}
+	return true;
 }
