@@ -10,11 +10,11 @@ class ENGINEDLL_API Scene : public Entity {
 private:
 	Camera* m_camera;
 	Suzzane* m_suzanne;
-	Suzzane* m_suzanne_1;
 
 	std::vector<SceneNode*> m_entities;
+	std::vector<SceneNode*> m_currentlyVisibleEntities;
+	std::vector<SceneNode*> m_previouslyVisibleEntities;
 
-	float m_rotationSpeed;
 
 	void FillVectorWithEntitiesInScene();
 	bool is_bsp_plane(Entity* entity) const;

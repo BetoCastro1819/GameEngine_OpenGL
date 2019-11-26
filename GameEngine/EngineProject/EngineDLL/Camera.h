@@ -28,7 +28,9 @@ private:
 	Plane m_frustrumPlanes[6];
 
 	vector<Entity*> m_entities;
-	vector<Entity*> m_visibleEntities;
+	vector<Entity*> m_currentlyVisibleEntities;
+	vector<Entity*> m_previouslyVisibleEntities;
+
 	vector<Plane> m_bspPlanes;
 
 	float zNear;

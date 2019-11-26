@@ -61,7 +61,7 @@ d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\ga
           [
               _Ty=Entity *
           ]
-d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(31): warning C4251: 'Camera::m_visibleEntities': class 'std::vector<Entity *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(31): warning C4251: 'Camera::m_currentlyVisibleEntities': class 'std::vector<Entity *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
           with
           [
               _Ty=Entity *
@@ -71,22 +71,34 @@ d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\ga
           [
               _Ty=Entity *
           ]
-d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(32): warning C4251: 'Camera::m_bspPlanes': class 'std::vector<Plane,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(32): warning C4251: 'Camera::m_previouslyVisibleEntities': class 'std::vector<Entity *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
+          with
+          [
+              _Ty=Entity *
+          ]
+  d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(30): note: see declaration of 'std::vector<Entity *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=Entity *
+          ]
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(34): warning C4251: 'Camera::m_bspPlanes': class 'std::vector<Plane,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Camera'
           with
           [
               _Ty=Plane
           ]
-  d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(32): note: see declaration of 'std::vector<Plane,std::allocator<_Ty>>'
+  d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(34): note: see declaration of 'std::vector<Plane,std::allocator<_Ty>>'
           with
           [
               _Ty=Plane
           ]
-d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(39): warning C4251: 'Camera::m_CameraTarget': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(41): warning C4251: 'Camera::m_CameraTarget': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
   d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_vec.hpp(229): note: see declaration of 'glm::vec<3,float,0>'
-d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(40): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.h(42): warning C4251: 'Camera::m_ViewMat': struct 'glm::mat<4,4,float,0>' needs to have dll-interface to be used by clients of class 'Camera'
   d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\glm\detail\type_mat.hpp(303): note: see declaration of 'glm::mat<4,4,float,0>'
-d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(39): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(44): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(183): warning C4018: '<': signed/unsigned mismatch
-d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(196): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(41): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(46): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(56): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(67): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(200): warning C4018: '<': signed/unsigned mismatch
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\camera.cpp(213): warning C4018: '<': signed/unsigned mismatch
   EngineDLL.vcxproj -> D:\Documents\ImageCampus\2019\2C\Programacion_de_graficos_3\GameEngine_OpenGL\GameEngine\EngineProject\Debug\EngineDLL.dll

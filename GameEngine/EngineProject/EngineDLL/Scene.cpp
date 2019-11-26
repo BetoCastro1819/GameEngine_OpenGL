@@ -16,17 +16,10 @@ bool Scene::Start() {
 	m_suzanne->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
 	AddNode(m_suzanne);
 
-	//m_suzanne->GetChildrenByIndex(2)->GetTransform()->SetPosition(6.0f, 0.0f, 0.0f);
-
-	m_suzanne_1 = nullptr;
-	//m_suzanne_1 = new Suzzane(m_renderer);
-	//m_suzanne_1->SetName("Suzanne right");
-	//m_suzanne->AddNode(m_suzanne_1);
-	//m_suzanne_1->GetTransform()->SetPosition(6.0f, 0.0f, 0.0f);
-
-	m_rotationSpeed = 50.0f;
-
 	FillVectorWithEntitiesInScene();
+
+	m_currentlyVisibleEntities = m_entities;
+	m_previouslyVisibleEntities = m_currentlyVisibleEntities;
 
 	return true;
 }
@@ -36,9 +29,14 @@ void Scene::Update(float deltaTime) {
 
 	m_entities[m_entities.size() - 1]->GetTransform()->HandleMovementInput(deltaTime, m_camera->GetWindow());
 
-	//m_camera->TestForVisibility(m_suzanne);
+	//m_currentlyVisibleEntities.clear();
+	//for (int i = 0; i < m_entities.size(); i++) {
+	//	Entity* currentEntity = (Entity*)m_entities[i];
+	//	if (currentEntity->isVisible())
+	//		m_currentlyVisibleEntities.push_back(currentEntity);
+	//}
 
-	//m_suzanne->GetTransform()->Yaw(m_rotationSpeed * deltaTime);
+
 }
 
 void Scene::FillVectorWithEntitiesInScene() {
@@ -80,5 +78,4 @@ bool Scene::is_bsp_plane(Entity* entity) const {
 
 Scene::~Scene() {
 	if (m_suzanne != nullptr) delete m_suzanne;
-	if (m_suzanne_1 != nullptr) delete m_suzanne_1;
 }

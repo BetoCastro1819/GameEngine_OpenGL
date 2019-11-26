@@ -15,9 +15,6 @@ void SceneNode::AddNode(SceneNode* node) {
 	if (node != nullptr) {
 		m_children.push_back(node);
 		node->SetParent(this);
-
-		//printf("\n%s is child of %s\n", node->GetName(), this->GetName());
-		//printf("\n%s has %d childs\n", this->GetName(), m_children.size());
 	}
 }
 

@@ -22,6 +22,8 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 	m_renderer->SetPerpectiveCam(fov, aspectRatio, zNear, zFar);
 
 	UpdateViewMatrix();
+
+	m_previouslyVisibleEntities = m_currentlyVisibleEntities;
 }
 
 void Camera::Update(float deltaTime) {
@@ -35,21 +37,36 @@ void Camera::Update(float deltaTime) {
 	CheckForMovementInput(deltaTime);
 	CheckForRotationInput(deltaTime);
 
-	m_visibleEntities = m_entities;
-	for (int i = 0; i < m_visibleEntities.size(); i++) {
-		Entity* entity = m_visibleEntities[i];
+	m_currentlyVisibleEntities = m_entities;
+	for (int i = 0; i < m_currentlyVisibleEntities.size(); i++) {
+		Entity* entity = m_currentlyVisibleEntities[i];
 
 		entity->SetVisible(false);
 		bool isBehindBsp = false;
 		for (int j = 0; j < m_bspPlanes.size(); j++) {
 			if (isBehindBSPPlane(entity, m_bspPlanes[j])) {
-				//printf("\nEntity %s is behind BSP plane\n", entity->GetName());
-				//m_visibleEntities.erase(m_visibleEntities.begin() + i);
 				isBehindBsp = true;
 			}
 		}
 		if (!isBehindBsp)
 			TestForVisibility(entity, i);
+	}
+
+	m_currentlyVisibleEntities.clear();
+	for (int i = 0; i < m_entities.size(); i++) {
+		Entity* currentEntity = (Entity*)m_entities[i];
+		if (currentEntity->isVisible())
+			m_currentlyVisibleEntities.push_back(currentEntity);
+	}
+
+	if (m_currentlyVisibleEntities != m_previouslyVisibleEntities) {
+		m_previouslyVisibleEntities = m_currentlyVisibleEntities;
+
+		printf("\nVisible entities:\n");
+
+		for (int i = 0; i < m_currentlyVisibleEntities.size(); i++) {
+			printf("- %s\n", m_currentlyVisibleEntities[i]->GetName());
+		}
 	}
 
 	m_renderer->LoadIdentityMatrix();
@@ -143,32 +160,32 @@ void Camera::TestForVisibility(Entity* entity, int index) {
 
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Far], entity)) {
 		//printf("\nEntity %s is behind plane_far\n", entity->GetName());
-		m_visibleEntities.erase(m_visibleEntities.begin() + index);
+		m_currentlyVisibleEntities.erase(m_currentlyVisibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Near], entity)) {
 		//printf("\nEntity %s is behind plane_near\n", entity->GetName());
-		m_visibleEntities.erase(m_visibleEntities.begin() + index);
+		m_currentlyVisibleEntities.erase(m_currentlyVisibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Left], entity)) {
 		//printf("\nEntity %s is behind plane_left\n", entity->GetName());
-		m_visibleEntities.erase(m_visibleEntities.begin() + index);
+		m_currentlyVisibleEntities.erase(m_currentlyVisibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Right], entity)) {
 		//printf("\nEntity %s is behind plane_right\n", entity->GetName());
-		m_visibleEntities.erase(m_visibleEntities.begin() + index);
+		m_currentlyVisibleEntities.erase(m_currentlyVisibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Top], entity)) {
 		//printf("\nEntity %s is behind plane_top\n", entity->GetName());
-		m_visibleEntities.erase(m_visibleEntities.begin() + index);
+		m_currentlyVisibleEntities.erase(m_currentlyVisibleEntities.begin() + index);
 		return;
 	}
 	if (isInsideFrustrum(m_frustrumPlanes[ClippingPlane::Bottom], entity)) {
 		//printf("\nEntity %s is behind plane_bottom\n", entity->GetName());
-		m_visibleEntities.erase(m_visibleEntities.begin() + index);
+		m_currentlyVisibleEntities.erase(m_currentlyVisibleEntities.begin() + index);
 		return;
 	}
 	entity->SetVisible(true);
