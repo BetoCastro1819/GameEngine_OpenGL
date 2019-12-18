@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "OBJ_Loader.h"
 #include <assimp\Importer.hpp> 
 #include <assimp\scene.h>           
