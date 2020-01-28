@@ -99,41 +99,56 @@ bool PhysicsManager::start(glm::vec3 gravity, unsigned int numberOfThreads) {
 	return false;
 }
 void PhysicsManager::stop() {
-
+	if (m_pxScene) m_pxScene->release();
+	if (m_pxCooking) m_pxCooking->release();
+	if (m_pxPhysics) m_pxPhysics->release();
+	if (m_pxFoundation) m_pxFoundation->release();
 }
 
 void PhysicsManager::simulate(float deltaTime) {
-
+	m_pxScene->simulate(deltaTime);
 }
 
 void PhysicsManager::fetchSimulationResults() {
-
+	m_pxScene->fetchResults(true);
 }
 
 void PhysicsManager::addActor(physx::PxActor* actor) {
-
+	m_pxScene->addActor(*actor);
 }
 
 void PhysicsManager::removeActor(physx::PxActor* actor) {
-
+	m_pxScene->removeActor(*actor);
 }
 
 void PhysicsManager::setCurrentSceneGravity(glm::vec3 gravity) {
-
+	m_pxScene->setGravity(physx::PxVec3(gravity.x, gravity.y, gravity.z));
 }
 
 void PhysicsManager::setSimulationEventCallback(physx::PxSimulationEventCallback* simulationCallback) {
-
+	m_pxScene->setSimulationEventCallback(simulationCallback);
 }
 
 physx::PxMaterial* PhysicsManager::createPhysicsMaterial(float staticFriction, float dynamicFriction, float restitution) {
-	return NULL;
+	return m_pxPhysics->createMaterial(staticFriction, dynamicFriction, restitution);
 }
 
 physx::PxActor* PhysicsManager::createRigidActor(physx::PxTransform pxTransform, bool isStatic) {
-	return NULL;
+	physx::PxRigidActor* rigidActor = NULL;
+
+	if (isStatic) {
+		rigidActor = (physx::PxRigidActor*)m_pxPhysics->createRigidStatic(pxTransform);
+	}
+	else {
+		rigidActor = (physx::PxRigidActor*)m_pxPhysics->createRigidDynamic(pxTransform);
+	}
+
+	return rigidActor;
 }
 
 physx::PxHeightField* PhysicsManager::createHeighField(physx::PxHeightFieldDesc hfDesc) {
-	return NULL;
+	physx::PxHeightField* heightField = NULL;
+	heightField = m_pxCooking->createHeightField(hfDesc, m_pxPhysics->getPhysicsInsertionCallback());
+
+	return heightField;
 }

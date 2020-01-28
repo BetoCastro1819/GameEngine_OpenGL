@@ -59,15 +59,21 @@ bool GameBase::Stop()
 
 void GameBase::Loop()
 {
+	m_renderer->SetClearColor(0.8f, 0.8f, 0.8f, 0.0f);
+	
 	while (!m_window->ShouldClose()) {
 
 		m_time->UpdateTime();
+		float deltaTime = m_time->GetDeltaTime();
 
-		m_renderer->SetClearColor(0.8f, 0.8f, 0.8f, 0.0f);
 		m_renderer->RecalculateFragmentDepth();
 		m_renderer->ClearBuffer();
-		OnUpdate(m_time->GetDeltaTime());
-		m_renderer->SwapBuffers();
 		m_window->PollEvents();
+
+		OnUpdate(deltaTime);
+		m_renderer->SwapBuffers();
+
+		m_physicsManager->simulate(deltaTime);
+		m_physicsManager->fetchSimulationResults();
 	}
 }
