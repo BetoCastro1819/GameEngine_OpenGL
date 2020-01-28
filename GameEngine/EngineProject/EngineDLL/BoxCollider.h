@@ -4,6 +4,13 @@
 #include "Animation.h"
 #include "Window.h"
 
+enum CollisionDir {
+	LEFT, 
+	RIGHT,
+	UP,
+	DOWN
+};
+
 class ENGINEDLL_API BoxCollider {
 private:
 	double _boxWidth;

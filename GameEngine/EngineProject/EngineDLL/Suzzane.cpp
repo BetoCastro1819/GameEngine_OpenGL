@@ -15,7 +15,7 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	AddComponent(m_material);
 
 	m_mesh = new Mesh(this, renderer, m_material, "uvtemplate.bmp");
-	m_mesh->LoadModel("bsp_planes_scene.obj");
+	m_mesh->LoadModel("suzanne.obj");
 	AddComponent(m_mesh);
 
 	m_physicsComponent = new PhysicsComponent(this);

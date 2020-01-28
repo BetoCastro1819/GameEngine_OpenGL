@@ -5,8 +5,7 @@
 
 class Entity;
 
-namespace physx
-{
+namespace physx {
 	class PxScene;
 }
 

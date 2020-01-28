@@ -6,41 +6,24 @@ Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 	SetName("Scene");
 
 	AddNode(m_camera);
-	m_camera->GetTransform()->SetPosition(0.0f, 0.0f, 20.0f);
+	m_camera->GetTransform()->SetPosition(0.0f, 0.0f, 10.0f);
 }
 
 bool Scene::Start() {
-
 	m_suzanne = new Suzzane(m_renderer);
 	m_suzanne->SetName("Suzanne");
 	m_suzanne->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
 	AddNode(m_suzanne);
-
-	FillVectorWithEntitiesInScene();
-
-	m_currentlyVisibleEntities = m_entities;
-	m_previouslyVisibleEntities = m_currentlyVisibleEntities;
 
 	return true;
 }
 
 void Scene::Update(float deltaTime) {
 	Entity::Update(deltaTime);
-
-	m_entities[m_entities.size() - 1]->GetTransform()->HandleMovementInput(deltaTime, m_camera->GetWindow());
-
-	//m_currentlyVisibleEntities.clear();
-	//for (int i = 0; i < m_entities.size(); i++) {
-	//	Entity* currentEntity = (Entity*)m_entities[i];
-	//	if (currentEntity->isVisible())
-	//		m_currentlyVisibleEntities.push_back(currentEntity);
-	//}
-
-
 }
 
 void Scene::FillVectorWithEntitiesInScene() {
-	m_suzanne->GetAllChildren(m_entities);
+	m_suzanne->FillArrayWithChildren(m_entities);
 	printf("\nNumber of entities in scene %d\n", m_entities.size());
 
 	for (int i = 0; i < m_entities.size(); i++) {

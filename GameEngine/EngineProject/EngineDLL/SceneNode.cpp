@@ -88,10 +88,10 @@ SceneNode* SceneNode::GetChildrenByIndex(int index) {
 	return this;
 }
 
-void SceneNode::GetAllChildren(std::vector<SceneNode*>& children) {
+void SceneNode::FillArrayWithChildren(std::vector<SceneNode*>& arrayToFill) {
 	for (int i = 0; i < m_children.size(); i++) {
-		m_children[i]->GetAllChildren(children);
-		children.push_back(m_children[i]);
+		m_children[i]->FillArrayWithChildren(arrayToFill);
+		arrayToFill.push_back(m_children[i]);
 	}
 }
 

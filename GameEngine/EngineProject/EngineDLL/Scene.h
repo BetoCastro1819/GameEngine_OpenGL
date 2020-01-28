@@ -12,9 +12,6 @@ private:
 	Suzzane* m_suzanne;
 
 	std::vector<SceneNode*> m_entities;
-	std::vector<SceneNode*> m_currentlyVisibleEntities;
-	std::vector<SceneNode*> m_previouslyVisibleEntities;
-
 
 	void FillVectorWithEntitiesInScene();
 	bool is_bsp_plane(Entity* entity) const;

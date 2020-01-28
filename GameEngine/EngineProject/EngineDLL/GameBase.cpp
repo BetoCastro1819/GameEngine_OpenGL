@@ -29,6 +29,9 @@ bool GameBase::Start()
 	m_camera = new Camera(m_renderer, m_window);
 	m_time = new Time();
 
+	m_physicsManager = PhysicsManager::getInstance();
+	m_physicsManager->start(glm::vec3(0.0f, GRAVITY, 0.0f), 8u);
+
 	return OnStart();
 }
 
@@ -45,6 +48,12 @@ bool GameBase::Stop()
 		m_window->Stop();
 		delete m_window;
 	}
+
+	if (m_physicsManager != NULL) {
+		m_physicsManager->stop();
+		m_physicsManager->deleteInstance();
+	}
+
 	return true;
 }
 

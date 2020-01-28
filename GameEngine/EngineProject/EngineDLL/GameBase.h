@@ -6,6 +6,7 @@
 #include "Window.h"
 #include "Camera.h"
 #include "Time.h"
+#include "PhysicsManager.h"
 #include "glm/glm.hpp"
 
 class ENGINEDLL_API GameBase {
@@ -14,6 +15,7 @@ protected:
 	Renderer* m_renderer;
 	Camera* m_camera;
 	Time* m_time;
+	PhysicsManager* m_physicsManager;
 
 	const char* _windowName;
 	int _screenHeight;

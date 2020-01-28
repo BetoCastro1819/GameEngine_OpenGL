@@ -43,6 +43,6 @@ public:
 	const char* GetName() { return m_name.c_str(); }
 
 	std::vector<SceneNode*> GetChildren() const { return m_children; }
-	void GetAllChildren(std::vector<SceneNode*>& children);
+	void FillArrayWithChildren(std::vector<SceneNode*>& children);
 };
 
