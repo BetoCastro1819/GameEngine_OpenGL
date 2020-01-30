@@ -4,13 +4,13 @@
 
 class Material;
 class Mesh;
-class PhysicsComponent;
+class RigidBody;
 
 class ENGINEDLL_API Suzzane : public Entity {
 private:
 	Material* m_material;
 	Mesh* m_mesh;
-	PhysicsComponent* m_physicsComponent;
+	RigidBody* m_rigidBody;
 
 public:
 	Suzzane(Renderer* renderer);

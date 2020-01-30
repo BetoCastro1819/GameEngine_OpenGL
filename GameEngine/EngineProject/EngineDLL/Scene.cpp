@@ -33,13 +33,13 @@ void Scene::FillVectorWithEntitiesInScene() {
 			const char* entityName = ((Entity*)m_entities[i])->GetName();
 			if (entityName[4] == 'r') {
 				m_camera->AddPlane(bsp_plane.CreatePlaneFromPointAndNormal(
-					((Entity*)m_entities[i])->GetTransform()->GetBoundingBox().minVertex,
+					((Entity*)m_entities[i])->GetTransform()->GetBoundingBox()->minVertex,
 					World::right
 				));
 			}
 			else if (entityName[4] == 'f') {
 				m_camera->AddPlane(bsp_plane.CreatePlaneFromPointAndNormal(
-					((Entity*)m_entities[i])->GetTransform()->GetBoundingBox().minVertex,
+					((Entity*)m_entities[i])->GetTransform()->GetBoundingBox()->minVertex,
 					World::foward
 				));
 			}

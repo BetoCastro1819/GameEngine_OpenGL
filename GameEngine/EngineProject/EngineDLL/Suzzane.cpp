@@ -2,13 +2,10 @@
 #include "Material.h"
 #include "Mesh.h"
 #include "Transform.h"
-#include "PhysicsComponent.h"
-
+#include "RigidBody.h"
 
 Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	SetName("suzanne root");
-
-	//GetTransform()->SetBoundingBoxDimensions(glm::vec3(-1, -1, -1), glm::vec3(1, 1, 1));
 
 	m_material = new Material(this);
 	m_material->LoadShaders("StandardVertexShader.txt", "StandardFragmentShader.txt");
@@ -18,7 +15,16 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	m_mesh->LoadModel("suzanne.obj");
 	AddComponent(m_mesh);
 
-	m_physicsComponent = new PhysicsComponent(this);
+	// TODO: make this entity have childs bounding box dimension (this entity is root, not actuak mesh)
+
+	m_transform->SetBoundingBoxDimensions(glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+
+	m_rigidBody = new RigidBody(this);
+	m_rigidBody->CreateRigidBody(false, 100.f, 0.25f, 0.25f, 0.25f);
+	AddComponent(m_rigidBody);
+
+	m_transform->GetBoundingBox()->maxVertex;
+	m_transform->GetBoundingBox()->minVertex;
 
 	printf("\nNode hierarchy from %s:\n", GetName());
 	PrintNodeHierarchy();
@@ -28,6 +34,7 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 Suzzane::~Suzzane() {
 	if (m_material != nullptr) delete m_material;
 	if (m_mesh != nullptr) delete m_mesh;
+	if (m_rigidBody != nullptr) delete m_rigidBody;
 }
 
 void Suzzane::Update(float deltaTime) {

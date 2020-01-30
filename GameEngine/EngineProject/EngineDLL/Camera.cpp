@@ -196,9 +196,9 @@ void Camera::TestForVisibility(Entity* entity, int index) {
 }
 
 bool Camera::isInsideFrustrum(Plane& plane, Entity* entity) {
-	BoundingBox entityBoundingBox = entity->GetTransform()->GetBoundingBox();
-	for (int vertexId = 0; vertexId < entityBoundingBox.vertices.size(); vertexId++) {
-		glm::vec3 boundingBoxVertex = entityBoundingBox.vertices[vertexId];
+	BoundingBox* entityBoundingBox = entity->GetTransform()->GetBoundingBox();
+	for (int vertexId = 0; vertexId < entityBoundingBox->vertices.size(); vertexId++) {
+		glm::vec3 boundingBoxVertex = entityBoundingBox->vertices[vertexId];
 		float dist = plane.a * boundingBoxVertex.x + plane.b * boundingBoxVertex.y + plane.c * boundingBoxVertex.z + plane.d;
 	
 		if (dist >= 0) return false;
@@ -209,9 +209,9 @@ bool Camera::isInsideFrustrum(Plane& plane, Entity* entity) {
 bool Camera::isBehindBSPPlane(const Entity* entity, const Plane& bspPlane) const {
 	float cameraDistanceSign = glm::sign(bspPlane.SignedDistanceToPlane(bspPlane, m_transform->GetPosition()));
 
-	BoundingBox entityBoundingBox = entity->GetTransform()->GetBoundingBox();
-	for (int vertexId = 0; vertexId < entityBoundingBox.vertices.size(); vertexId++) {
-		glm::vec3 vertexPosition = entityBoundingBox.vertices[vertexId];
+	BoundingBox* entityBoundingBox = entity->GetTransform()->GetBoundingBox();
+	for (int vertexId = 0; vertexId < entityBoundingBox->vertices.size(); vertexId++) {
+		glm::vec3 vertexPosition = entityBoundingBox->vertices[vertexId];
 		float vertexDistanceSign = glm::sign(bspPlane.SignedDistanceToPlane(bspPlane, vertexPosition));
 
 		if (vertexDistanceSign == cameraDistanceSign) return false;

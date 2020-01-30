@@ -27,15 +27,16 @@ Transform::Transform(Entity* entity) : Component(entity) {
 	foward = World::foward;
 	up = World::up;
 
-	m_boundingBox.minVertex = glm::vec3(0.0f);
-	m_boundingBox.maxVertex = glm::vec3(0.0f);
+	m_boundingBox = new BoundingBox();
+	m_boundingBox->minVertex = glm::vec3(0.0f);
+	m_boundingBox->maxVertex = glm::vec3(0.0f);
 	
 	//m_boundingBox.width = glm::vec3(0, 0, 0);
 	//m_boundingBox.height = glm::vec3(0, 0, 0);
 	//m_boundingBox.length = glm::vec3(0, 0, 0);
 
 	for (int i = 0; i < 8; i++) {
-		m_boundingBox.vertices.push_back(glm::vec3(0));
+		m_boundingBox->vertices.push_back(glm::vec3(0));
 	}
 }
 
@@ -58,6 +59,55 @@ void Transform::UpdateModelMatrix() {
 		m_worldTransform = m_transform;
 	}
 }
+
+void Transform::ChangeRotationMatrix(glm::vec4 quaternion) {
+	float pitch, yaw, roll;
+
+	quaternion = glm::normalize(quaternion);
+
+	ToEulerFromQuaternion(quaternion, pitch, yaw, roll);
+
+	m_rotation = glm::vec3(pitch, yaw, roll);
+	
+	glm::mat4 mat_1 = glm::mat4
+	{
+		 quaternion.w,  quaternion.z, -quaternion.y, quaternion.x,
+		-quaternion.z,  quaternion.w,  quaternion.x, quaternion.y,
+		 quaternion.y, -quaternion.x,  quaternion.w, quaternion.z,
+		-quaternion.x, -quaternion.y, -quaternion.z, quaternion.w,
+	};
+
+	glm::mat4 mat_2 = glm::mat4
+	{
+		 quaternion.w,  quaternion.z, -quaternion.y, -quaternion.x,
+		-quaternion.z,  quaternion.w,  quaternion.x, -quaternion.y,
+		 quaternion.y, -quaternion.x,  quaternion.w, -quaternion.z,
+		 quaternion.x,  quaternion.y,  quaternion.z,  quaternion.w,
+	};
+
+	m_rotateMatrix = mat_1 * mat_2;
+
+	UpdateUnitVectors();
+}
+
+void Transform::ToEulerFromQuaternion(const glm::vec4& quaternion, float& pitch, float& yaw, float& roll) {
+	float sinPitchCosYaw = 2.0f * (quaternion.w * quaternion.x + quaternion.y * quaternion.z);
+	float cosPitchCosYaw = 1.0f - 2.0f * (quaternion.x * quaternion.x + quaternion.y * quaternion.y);
+	pitch = glm::atan(sinPitchCosYaw, cosPitchCosYaw);
+
+	float sinYaw = 2.0f * (quaternion.w * quaternion.y - quaternion.z * quaternion.x);
+	yaw = (glm::abs(sinYaw) >= 1.0f) ? glm::sign(sinYaw) * glm::half_pi<float>() : glm::asin(sinYaw);
+
+	float sinRollCosYaw = 2.0 * (quaternion.w * quaternion.y - quaternion.z * quaternion.x);
+	float cosRollCosYaw = 1.0f - 2.0f * (quaternion.y * quaternion.y + quaternion.z * quaternion.z);
+	roll = glm::atan(sinRollCosYaw, cosRollCosYaw);
+
+	pitch = glm::degrees(pitch);
+	yaw = glm::degrees(yaw);
+	roll = glm::degrees(roll);
+}
+
+
 
 void Transform::SetPosition(const glm::vec3& position) {
 	m_translateMatrix = glm::translate(glm::mat4(1.0f), position);
@@ -160,8 +210,8 @@ void Transform::SetBoundingBoxDimensions(glm::vec3 origin, float width, float he
 
 
 void Transform::SetBoundingBoxDimensions(glm::vec3 minVertex, glm::vec3 maxVertex) {
-	m_boundingBox.minVertex = minVertex;
-	m_boundingBox.maxVertex = maxVertex;
+	m_boundingBox->minVertex = minVertex;
+	m_boundingBox->maxVertex = maxVertex;
 	
 	UpdateBoundingBoxVertices();
 }
@@ -170,16 +220,16 @@ void Transform::UpdateBoundingBoxVertices() {
 	UpdateBBoxBasedOnChildBounds();
 
 	// BACK face vertices
-	m_boundingBox.vertices[0] = m_position + m_boundingBox.minVertex;
-	m_boundingBox.vertices[1] = m_position + glm::vec3(m_boundingBox.minVertex.x, m_boundingBox.maxVertex.y, m_boundingBox.minVertex.z);
-	m_boundingBox.vertices[2] = m_position + glm::vec3(m_boundingBox.maxVertex.x, m_boundingBox.maxVertex.y, m_boundingBox.minVertex.z); 
-	m_boundingBox.vertices[3] = m_position + glm::vec3(m_boundingBox.maxVertex.x, m_boundingBox.minVertex.y, m_boundingBox.minVertex.z); 
+	m_boundingBox->vertices[0] = m_position + m_boundingBox->minVertex;
+	m_boundingBox->vertices[1] = m_position + glm::vec3(m_boundingBox->minVertex.x, m_boundingBox->maxVertex.y, m_boundingBox->minVertex.z);
+	m_boundingBox->vertices[2] = m_position + glm::vec3(m_boundingBox->maxVertex.x, m_boundingBox->maxVertex.y, m_boundingBox->minVertex.z); 
+	m_boundingBox->vertices[3] = m_position + glm::vec3(m_boundingBox->maxVertex.x, m_boundingBox->minVertex.y, m_boundingBox->minVertex.z); 
 
 	// FRONT face vertices		
-	m_boundingBox.vertices[4] = m_position + glm::vec3(m_boundingBox.minVertex.x, m_boundingBox.minVertex.y, m_boundingBox.maxVertex.z);
-	m_boundingBox.vertices[5] = m_position + glm::vec3(m_boundingBox.minVertex.x, m_boundingBox.maxVertex.y, m_boundingBox.maxVertex.z);
-	m_boundingBox.vertices[6] = m_position + m_boundingBox.maxVertex;
-	m_boundingBox.vertices[7] = m_position + glm::vec3(m_boundingBox.maxVertex.x, m_boundingBox.minVertex.y, m_boundingBox.maxVertex.z);
+	m_boundingBox->vertices[4] = m_position + glm::vec3(m_boundingBox->minVertex.x, m_boundingBox->minVertex.y, m_boundingBox->maxVertex.z);
+	m_boundingBox->vertices[5] = m_position + glm::vec3(m_boundingBox->minVertex.x, m_boundingBox->maxVertex.y, m_boundingBox->maxVertex.z);
+	m_boundingBox->vertices[6] = m_position + m_boundingBox->maxVertex;
+	m_boundingBox->vertices[7] = m_position + glm::vec3(m_boundingBox->maxVertex.x, m_boundingBox->minVertex.y, m_boundingBox->maxVertex.z);
 
 	// TODO: multiply by each vertex by worldTransform
 	//m_boundingBox.vertices[0] = m_worldTransform * glm::vec4(m_boundingBox.vertices[0], 1.0f);
@@ -196,10 +246,10 @@ void Transform::UpdateBoundingBoxVertices() {
 
 void Transform::UpdateBBoxBasedOnChildBounds() {
 	if (m_entity->GetChildren().size() > 0) {
-		m_boundingBox.maxVertex = glm::vec3(-10000.0f, -10000.0f, -10000.0f);
-		m_boundingBox.minVertex = glm::vec3(10000.0f, 10000.0f, 10000.0f);
+		m_boundingBox->maxVertex = glm::vec3(-10000.0f, -10000.0f, -10000.0f);
+		m_boundingBox->minVertex = glm::vec3(10000.0f, 10000.0f, 10000.0f);
 
-		CompareCurrentBBoxAgainstChilds(m_boundingBox.minVertex, m_boundingBox.maxVertex);
+		CompareCurrentBBoxAgainstChilds(m_boundingBox->minVertex, m_boundingBox->maxVertex);
 	}
 }
 
@@ -209,10 +259,10 @@ void Transform::CompareCurrentBBoxAgainstChilds(glm::vec3& currentMinVertex, glm
 
 		Entity* child = (Entity*)m_entity->GetChildren()[childIndex];
 		
-		BoundingBox childBBox = child->GetTransform()->GetBoundingBox();
-		for (int vertexId = 0; vertexId < childBBox.vertices.size(); vertexId++) {
+		BoundingBox* childBBox = child->GetTransform()->GetBoundingBox();
+		for (int vertexId = 0; vertexId < childBBox->vertices.size(); vertexId++) {
 
-			glm::vec3 currentVertex = childBBox.vertices[vertexId];
+			glm::vec3 currentVertex = childBBox->vertices[vertexId];
 
 			if (currentVertex.x < currentMinVertex.x) {
 				currentMinVertex.x = currentVertex.x;
@@ -250,4 +300,22 @@ void Transform::HandleMovementInput(float deltaTime, Window* window) {
 		Strafe(movementSpeed);
 	if (glfwGetKey(glfwWindow, GLFW_KEY_L) == GLFW_PRESS) // Strafe left
 		Strafe(-movementSpeed);
+}
+
+glm::vec4 Transform::ConvertToQuaternion(float pitch, float yaw, float roll) {
+	glm::vec4 quaternion;
+
+	float cosPitch = (float)cos(glm::radians(pitch) * 0.5);
+	float sinPitch = (float)sin(glm::radians(pitch) * 0.5);
+	float cosYaw = (float)cos(glm::radians(yaw) * 0.5);
+	float sinYaw = (float)sin(glm::radians(yaw) * 0.5);
+	float cosRoll = (float)cos(glm::radians(roll) * 0.5);
+	float sinRoll = (float)sin(glm::radians(roll) * 0.5);
+
+	quaternion.w = cosRoll * cosYaw * cosPitch + sinRoll * sinYaw * sinPitch;
+	quaternion.x = cosRoll * cosYaw * sinPitch - sinRoll * sinYaw * cosPitch;
+	quaternion.y = sinRoll * cosYaw * sinPitch + cosRoll * sinYaw * cosPitch;
+	quaternion.z = sinRoll * cosYaw * cosPitch - cosRoll * sinYaw * sinPitch;
+
+	return quaternion;
 }

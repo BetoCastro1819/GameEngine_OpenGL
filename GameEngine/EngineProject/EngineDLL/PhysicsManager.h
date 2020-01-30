@@ -50,7 +50,7 @@ public:
 	void setSimulationEventCallback(physx::PxSimulationEventCallback* simulationCallback);
 
 	physx::PxMaterial* createPhysicsMaterial(float staticFriction, float dynamicFriction, float restitution);
-	physx::PxActor* createRigidActor(physx::PxTransform pxTransform, bool isStatic);
+	physx::PxRigidActor* createRigidActor(physx::PxTransform pxTransform, bool isStatic);
 	physx::PxHeightField* createHeighField(physx::PxHeightFieldDesc hfDesc);
 };
 

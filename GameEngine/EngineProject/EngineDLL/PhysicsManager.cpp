@@ -133,7 +133,7 @@ physx::PxMaterial* PhysicsManager::createPhysicsMaterial(float staticFriction, f
 	return m_pxPhysics->createMaterial(staticFriction, dynamicFriction, restitution);
 }
 
-physx::PxActor* PhysicsManager::createRigidActor(physx::PxTransform pxTransform, bool isStatic) {
+physx::PxRigidActor* PhysicsManager::createRigidActor(physx::PxTransform pxTransform, bool isStatic) {
 	physx::PxRigidActor* rigidActor = NULL;
 
 	if (isStatic) {
