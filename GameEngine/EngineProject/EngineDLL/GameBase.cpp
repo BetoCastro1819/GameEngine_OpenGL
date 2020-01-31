@@ -27,7 +27,11 @@ bool GameBase::Start()
 		return false;
 	}
 	m_camera = new Camera(m_renderer, m_window);
+	
 	m_time = new Time();
+
+	m_inputHandler = InputHandler::getInstance();
+	m_inputHandler->setWindow(m_window);
 
 	m_physicsManager = PhysicsManager::getInstance();
 	m_physicsManager->start(glm::vec3(0.0f, GRAVITY, 0.0f), 8u);

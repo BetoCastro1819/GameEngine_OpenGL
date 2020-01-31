@@ -15,6 +15,14 @@ namespace physx
 class BoxCollider;
 class Transform;
 
+enum ForceType {
+	FORCE,
+	IMPULSE,
+	VELOCITY_CHANGE,
+	ACCELERATION
+};
+
+
 class ENGINEDLL_API RigidBody : public Component {
 private:
 	Transform* m_transform;
@@ -35,5 +43,8 @@ public:
 	void CreateRigidBody(bool isStatic, float mass, float staticFriction, 
 						 float dynamicFriction, float restitution, 
 						 glm::vec3 colliderOffset = glm::vec3(0.0f));
+
+	void AddForce(glm::vec3 force, ForceType forceType);
+	void AddTorque(glm::vec3 torque, ForceType forceType);
 };
 

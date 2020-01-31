@@ -8,6 +8,7 @@
 #include "Time.h"
 #include "PhysicsManager.h"
 #include "glm/glm.hpp"
+#include "InputHandler.h"
 
 class ENGINEDLL_API GameBase {
 protected:
@@ -15,6 +16,7 @@ protected:
 	Renderer* m_renderer;
 	Camera* m_camera;
 	Time* m_time;
+	InputHandler* m_inputHandler;
 	PhysicsManager* m_physicsManager;
 
 	const char* _windowName;

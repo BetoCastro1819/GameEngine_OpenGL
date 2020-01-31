@@ -3,6 +3,7 @@
 #include "Mesh.h"
 #include "Transform.h"
 #include "RigidBody.h"
+#include "InputHandler.h"
 
 Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	SetName("suzanne root");
@@ -18,13 +19,19 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	// TODO: make this entity have childs bounding box dimension (this entity is root, not actuak mesh)
 
 	m_transform->SetBoundingBoxDimensions(glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-
-	m_rigidBody = new RigidBody(this);
-	m_rigidBody->CreateRigidBody(false, 100.f, 0.25f, 0.25f, 0.25f);
-	AddComponent(m_rigidBody);
-
 	m_transform->GetBoundingBox()->maxVertex;
 	m_transform->GetBoundingBox()->minVertex;
+
+	m_rigidBody = new RigidBody(this);
+	m_rigidBody->CreateRigidBody(
+		false,	// is static?
+		1.0f,	// mass
+		0.25f,	// static friction
+		0.25f,	// dynamic friction
+		0.25f	// restitution
+	);
+	AddComponent(m_rigidBody);
+
 
 	printf("\nNode hierarchy from %s:\n", GetName());
 	PrintNodeHierarchy();
@@ -39,4 +46,21 @@ Suzzane::~Suzzane() {
 
 void Suzzane::Update(float deltaTime) {
 	Entity::Update(deltaTime);
+
+	HandleInput(deltaTime);
+}
+
+void Suzzane::HandleInput(float deltaTime) {
+	InputHandler* inputHandler = InputHandler::getInstance();
+
+	if (inputHandler->getKeyDown(KeyCode::SPACE)) {
+		ActivateThrust(deltaTime);
+	}
+}
+
+void Suzzane::ActivateThrust(float deltaTime) {
+	glm::vec3 thrustersForce = m_transform->up * 20.0f;
+	m_rigidBody->AddForce(thrustersForce, ForceType::FORCE);
+
+	// TODO: fuel need to be consumed
 }

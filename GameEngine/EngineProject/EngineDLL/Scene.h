@@ -16,6 +16,7 @@ private:
 	void FillVectorWithEntitiesInScene();
 	bool is_bsp_plane(Entity* entity) const;
 
+
 public:
 	Scene(Renderer* renderer, Camera* camera);
 	~Scene();

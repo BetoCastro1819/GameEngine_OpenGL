@@ -12,6 +12,9 @@ private:
 	Mesh* m_mesh;
 	RigidBody* m_rigidBody;
 
+	void HandleInput(float deltaTime);
+	void ActivateThrust(float deltaTime);
+
 public:
 	Suzzane(Renderer* renderer);
 	~Suzzane();

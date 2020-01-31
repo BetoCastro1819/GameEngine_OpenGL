@@ -89,4 +89,15 @@ void RigidBody::CreateRigidBody(bool isStatic, float mass, float staticFriction,
 	physicsManager->addActor(m_pxRigidActor);
 }
 
+void RigidBody::AddForce(glm::vec3 force, ForceType forceType) {
+	if (!m_isStatic) {
+		physx::PxRigidDynamic* rigidDynamic = (physx::PxRigidDynamic*)m_pxRigidActor;
+		physx::PxVec3 pxForce(force.x, force.y, force.z);
 
+		rigidDynamic->addForce(pxForce, (physx::PxForceMode::Enum)forceType);
+	}
+}
+
+void RigidBody::AddTorque(glm::vec3 torque, ForceType forceType) {
+
+}
