@@ -40,8 +40,8 @@ public:
 
 	void Update(float deltaTime) override;
 
-	void CreateRigidBody(bool isStatic, float mass, float staticFriction, 
-						 float dynamicFriction, float restitution, 
+	void CreateRigidBody(bool isStatic, float mass, float angularDamping, 
+						 float staticFriction, float dynamicFriction, float restitution, 
 						 glm::vec3 colliderOffset = glm::vec3(0.0f));
 
 	void AddForce(glm::vec3 force, ForceType forceType);

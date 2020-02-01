@@ -26,6 +26,7 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	m_rigidBody->CreateRigidBody(
 		false,	// is static?
 		1.0f,	// mass
+		3.0f,	// angular damping
 		0.25f,	// static friction
 		0.25f,	// dynamic friction
 		0.25f	// restitution
@@ -52,41 +53,35 @@ void Suzzane::Update(float deltaTime) {
 
 void Suzzane::HandleInput(float deltaTime) {
 	InputHandler* inputHandler = InputHandler::getInstance();
-	float torqueForce = 1.0f;
+	float torqueForce = 2.0f;
 
 	if (inputHandler->getKeyDown(KeyCode::SPACE)) {
 		ActivateThrust(deltaTime);
 	}
 
-
+	
 	// PITCH
 	if (inputHandler->getKeyDown(KeyCode::W)) {
 		Rotate(m_transform->right * -torqueForce);
-		return;
 	}
 	if (inputHandler->getKeyDown(KeyCode::S)) {
 		Rotate(m_transform->right * torqueForce);
-		return;
 	}
 
 	// YAW
 	if (inputHandler->getKeyDown(KeyCode::Q)) {
 		Rotate(m_transform->up * torqueForce);
-		return;
 	}
 	if (inputHandler->getKeyDown(KeyCode::E)) {
 		Rotate(m_transform->up * -torqueForce);
-		return;
 	}
 
 	// ROLL
 	if (inputHandler->getKeyDown(KeyCode::D)) {
 		Rotate(m_transform->foward * torqueForce);
-		return;
 	}
 	if (inputHandler->getKeyDown(KeyCode::A)) {
 		Rotate(m_transform->foward * -torqueForce);
-		return;
 	}
 }
 

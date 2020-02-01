@@ -36,8 +36,8 @@ void RigidBody::Update(float deltaTime) {
 	m_transform->ChangeRotationMatrix(rotation);
 }
 
-void RigidBody::CreateRigidBody(bool isStatic, float mass, float staticFriction, 
-								float dynamicFriction, float restitution,
+void RigidBody::CreateRigidBody(bool isStatic, float mass, float angularDamping,
+								float staticFriction, float dynamicFriction, float restitution,
 								glm::vec3 colliderOffset) 
 {
 	m_transform = m_entity->GetTransform();
@@ -84,6 +84,7 @@ void RigidBody::CreateRigidBody(bool isStatic, float mass, float staticFriction,
 		physx::PxRigidDynamic* rigidDynamic = (physx::PxRigidDynamic*)m_pxRigidActor;
 		rigidDynamic->setMassSpaceInertiaTensor(physx::PxVec3(1.0f, 1.0f, 1.0f));
 		physx::PxRigidBodyExt::setMassAndUpdateInertia(*rigidDynamic, (physx::PxReal)mass);
+		rigidDynamic->setAngularDamping(physx::PxReal(angularDamping));
 	}
 
 	physicsManager->addActor(m_pxRigidActor);
