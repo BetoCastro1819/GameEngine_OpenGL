@@ -46,5 +46,9 @@ public:
 
 	void AddForce(glm::vec3 force, ForceType forceType);
 	void AddTorque(glm::vec3 torque, ForceType forceType);
+
+	physx::PxRigidActor* GetRigidActor() { return m_pxRigidActor; }
+
+	void SetActorPosition(glm::vec3 position);
 };
 

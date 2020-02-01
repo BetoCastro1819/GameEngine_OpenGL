@@ -107,3 +107,18 @@ void RigidBody::AddTorque(glm::vec3 torque, ForceType forceType) {
 		rigidDynamic->addTorque(pxTorque, (physx::PxForceMode::Enum)forceType);
 	}
 }
+
+void RigidBody::SetActorPosition(glm::vec3 position) {
+	glm::vec3 rotation = m_transform->GetRotation();
+
+	glm::vec4 rotQuat = Transform::ConvertToQuaternion(rotation.x, rotation.y, rotation.z);
+
+	physx::PxVec3 pxPosition(position.x, position.y, position.z);
+	physx::PxQuat pxRotation(rotQuat.x, rotQuat.y, rotQuat.z, rotQuat.w);
+
+	physx::PxVec3 localOffset(physx::PxVec3(0));
+	physx::PxQuat localRot(physx::PxHalfPi, physx::PxVec3(0.0f, 0.0f, 1.0f));
+	physx::PxTransform pxTransform(pxPosition, pxRotation);
+	physx::PxTransform relativePose(localOffset, localRot);
+	m_pxRigidActor->setGlobalPose(relativePose);
+}

@@ -4,8 +4,10 @@
 #include "Transform.h"
 #include "RigidBody.h"
 #include "InputHandler.h"
+#include "SimulationEventCallback.h"
+#include "PhysicsManager.h"
 
-Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
+Suzzane::Suzzane(Renderer* renderer, bool isStatic, glm::vec3 startPosition) : Entity(renderer) {
 	SetName("suzanne root");
 
 	m_material = new Material(this);
@@ -22,9 +24,11 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	m_transform->GetBoundingBox()->maxVertex;
 	m_transform->GetBoundingBox()->minVertex;
 
+	m_transform->SetPosition(startPosition);
+
 	m_rigidBody = new RigidBody(this);
 	m_rigidBody->CreateRigidBody(
-		false,	// is static?
+		isStatic,	// is static?
 		1.0f,	// mass
 		3.0f,	// angular damping
 		0.25f,	// static friction
@@ -33,6 +37,8 @@ Suzzane::Suzzane(Renderer* renderer) : Entity(renderer) {
 	);
 	AddComponent(m_rigidBody);
 
+	m_simulationCallback = new SimulationEventCallback(m_rigidBody->GetRigidActor());
+	PhysicsManager::getInstance()->setSimulationEventCallback(m_simulationCallback);
 
 	printf("\nNode hierarchy from %s:\n", GetName());
 	PrintNodeHierarchy();
@@ -95,3 +101,8 @@ void Suzzane::ActivateThrust(float deltaTime) {
 void Suzzane::Rotate(const glm::vec3& torque) {
 	m_rigidBody->AddTorque(torque, ForceType::FORCE);
 }
+
+void Suzzane::SetRigidBodyPosition(float x, float y, float z) {
+	m_rigidBody->SetActorPosition(glm::vec3(x, y, z));
+}
+

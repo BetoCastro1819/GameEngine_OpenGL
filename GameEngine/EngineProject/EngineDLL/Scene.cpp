@@ -10,10 +10,13 @@ Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 }
 
 bool Scene::Start() {
-	m_suzanne = new Suzzane(m_renderer);
+	m_suzanne = new Suzzane(m_renderer, false, glm::vec3(2, 3, 0));
 	m_suzanne->SetName("Suzanne");
-	m_suzanne->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
 	AddNode(m_suzanne);
+
+	m_suzanne_static = new Suzzane(m_renderer, true, glm::vec3(0, -1, 0));
+	m_suzanne_static->SetName("Suzanne");
+	AddNode(m_suzanne_static);
 
 	return true;
 }
@@ -61,4 +64,5 @@ bool Scene::is_bsp_plane(Entity* entity) const {
 
 Scene::~Scene() {
 	if (m_suzanne != nullptr) delete m_suzanne;
+	if (m_suzanne_static != nullptr) delete m_suzanne_static;
 }
