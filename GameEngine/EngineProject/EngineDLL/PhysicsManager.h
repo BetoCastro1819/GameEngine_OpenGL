@@ -4,7 +4,7 @@
 #include "Exports.h"
 #include "glm/glm.hpp"
 
-const float GRAVITY = -3.0f;
+const float GRAVITY = -0.5f;
 
 namespace physx
 {

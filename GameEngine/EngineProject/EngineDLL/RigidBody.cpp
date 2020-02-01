@@ -99,5 +99,10 @@ void RigidBody::AddForce(glm::vec3 force, ForceType forceType) {
 }
 
 void RigidBody::AddTorque(glm::vec3 torque, ForceType forceType) {
+	if (!m_isStatic) {
+		physx::PxRigidDynamic* rigidDynamic = (physx::PxRigidDynamic*)m_pxRigidActor;
+		physx::PxVec3 pxTorque(torque.x, torque.y, torque.z);
 
+		rigidDynamic->addTorque(pxTorque, (physx::PxForceMode::Enum)forceType);
+	}
 }

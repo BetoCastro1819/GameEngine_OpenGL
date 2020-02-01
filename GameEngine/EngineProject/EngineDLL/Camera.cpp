@@ -34,8 +34,8 @@ void Camera::Update(float deltaTime) {
 
 	UpdateFrustrumPlanes();
 
-	CheckForMovementInput(deltaTime);
-	CheckForRotationInput(deltaTime);
+	//CheckForMovementInput(deltaTime);
+	//CheckForRotationInput(deltaTime);
 
 	m_currentlyVisibleEntities = m_entities;
 	for (int i = 0; i < m_currentlyVisibleEntities.size(); i++) {

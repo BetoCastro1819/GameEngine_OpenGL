@@ -5,7 +5,13 @@
 class Window;
 
 enum KeyCode {
-	SPACE = 32,
+	W		= 87,
+	A		= 65,
+	S		= 83,
+	D		= 68,
+	Q		= 81,
+	E		= 69,
+	SPACE	= 32,
 };
 
 class ENGINEDLL_API InputHandler {

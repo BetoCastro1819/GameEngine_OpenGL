@@ -44,7 +44,7 @@ void Mesh::Update(float deltaTime) {
 		m_renderer->LoadIdentityMatrix();
 		m_renderer->UpdateMVP();
 		m_material->SetMatrixProperty("MVP", m_renderer->GetMVP());
-		m_entity->DrawBoundingBox();
+		//m_entity->DrawBoundingBox();
 
 		Draw();
 	}

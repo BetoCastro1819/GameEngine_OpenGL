@@ -14,6 +14,7 @@ private:
 
 	void HandleInput(float deltaTime);
 	void ActivateThrust(float deltaTime);
+	void Rotate(const glm::vec3& torque);
 
 public:
 	Suzzane(Renderer* renderer);
