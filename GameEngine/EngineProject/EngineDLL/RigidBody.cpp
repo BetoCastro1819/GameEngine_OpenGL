@@ -71,8 +71,7 @@ void RigidBody::CreateRigidBody(bool isStatic, float mass, float angularDamping,
 	float scaleZ = m_transform->GetScale().z;
 
 	physx::PxGeometry* pxGeometry = new physx::PxBoxGeometry(halfHeight * scaleY, halfWidth * scaleX, halfDepth * scaleZ);
-
-
+	
 	PhysicsManager* physicsManager = PhysicsManager::getInstance();
 	
 	m_pxRigidActor = physicsManager->createRigidActor(pxTransform, m_isStatic);

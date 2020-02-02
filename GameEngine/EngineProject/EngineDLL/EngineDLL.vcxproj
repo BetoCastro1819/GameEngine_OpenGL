@@ -142,6 +142,7 @@
     <ClInclude Include="Exports.h" />
     <ClInclude Include="GameBase.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="LandingPad.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="OBJ_Loader.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameBase.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="LandingPad.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="OBJ_Loader.cpp" />

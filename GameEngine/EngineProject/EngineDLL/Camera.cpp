@@ -12,7 +12,7 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 	m_CameraTarget = glm::vec3(0, 0, 0);
 	m_strafeSpeed = 10.0f;
 	m_RotationSpeed = 100.0f;
-	m_transform->Yaw(180);
+	//m_transform->Yaw(180);
 
 	zNear = 0.1f;
 	zFar = 100.0f;

@@ -21,9 +21,6 @@ Suzzane::Suzzane(Renderer* renderer, bool isStatic, glm::vec3 startPosition) : E
 	// TODO: make this entity have childs bounding box dimension (this entity is root, not actuak mesh)
 
 	m_transform->SetBoundingBoxDimensions(glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-	m_transform->GetBoundingBox()->maxVertex;
-	m_transform->GetBoundingBox()->minVertex;
-
 	m_transform->SetPosition(startPosition);
 
 	m_rigidBody = new RigidBody(this);
