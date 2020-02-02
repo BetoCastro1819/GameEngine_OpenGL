@@ -6,7 +6,10 @@ Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 	SetName("Scene");
 
 	AddNode(m_camera);
-	m_camera->GetTransform()->SetPosition(0.0f, 0.0f, 10.0f);
+	Transform* cameraTransform = m_camera->GetTransform();
+	cameraTransform->SetPosition(5.0f, 1.0f, 15.0f);
+	cameraTransform->Yaw(20);
+	cameraTransform->Pitch(10);
 }
 
 bool Scene::Start() {
@@ -14,9 +17,9 @@ bool Scene::Start() {
 	m_suzanne->SetName("Suzanne");
 	AddNode(m_suzanne);
 
-	m_suzanne_static = new Suzzane(m_renderer, true, glm::vec3(0, -1, 0));
-	m_suzanne_static->SetName("Suzanne");
-	AddNode(m_suzanne_static);
+	m_terrain = new Terrain(m_renderer, glm::vec3(0, -5, 0));
+	m_terrain->SetName("Terrain");
+	AddNode(m_terrain);
 
 	return true;
 }
@@ -64,5 +67,5 @@ bool Scene::is_bsp_plane(Entity* entity) const {
 
 Scene::~Scene() {
 	if (m_suzanne != nullptr) delete m_suzanne;
-	if (m_suzanne_static != nullptr) delete m_suzanne_static;
+	if (m_terrain != nullptr) delete m_terrain;
 }

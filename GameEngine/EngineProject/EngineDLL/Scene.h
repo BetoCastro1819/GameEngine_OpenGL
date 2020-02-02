@@ -5,12 +5,13 @@
 #include "Renderer.h"
 #include "Camera.h"
 #include "Suzzane.h"
+#include "Terrain.h"
 
 class ENGINEDLL_API Scene : public Entity {
 private:
 	Camera* m_camera;
 	Suzzane* m_suzanne;
-	Suzzane* m_suzanne_static;
+	Terrain* m_terrain;
 
 	std::vector<SceneNode*> m_entities;
 

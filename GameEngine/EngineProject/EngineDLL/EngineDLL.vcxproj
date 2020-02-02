@@ -155,6 +155,7 @@
     <ClInclude Include="SimulationEventCallback.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Suzzane.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="TextureShape.h" />
     <ClInclude Include="Tilemap.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="SimulationEventCallback.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Suzzane.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TextureShape.cpp" />
     <ClCompile Include="Tilemap.cpp" />

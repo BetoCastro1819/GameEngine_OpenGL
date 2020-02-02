@@ -101,8 +101,3 @@ void Suzzane::ActivateThrust(float deltaTime) {
 void Suzzane::Rotate(const glm::vec3& torque) {
 	m_rigidBody->AddTorque(torque, ForceType::FORCE);
 }
-
-void Suzzane::SetRigidBodyPosition(float x, float y, float z) {
-	m_rigidBody->SetActorPosition(glm::vec3(x, y, z));
-}
-

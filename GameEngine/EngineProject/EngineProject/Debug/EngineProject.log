@@ -135,7 +135,7 @@ d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\ga
           [
               _Ty=glm::vec3
           ]
-d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\scene.h(15): warning C4251: 'Scene::m_entities': class 'std::vector<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Scene'
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\scene.h(16): warning C4251: 'Scene::m_entities': class 'std::vector<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Scene'
           with
           [
               _Ty=SceneNode *
@@ -282,7 +282,7 @@ d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\ga
           [
               _Ty=glm::vec3
           ]
-d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\scene.h(15): warning C4251: 'Scene::m_entities': class 'std::vector<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Scene'
+d:\documents\imagecampus\2019\2c\programacion_de_graficos_3\gameengine_opengl\gameengine\engineproject\enginedll\scene.h(16): warning C4251: 'Scene::m_entities': class 'std::vector<SceneNode *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Scene'
           with
           [
               _Ty=SceneNode *

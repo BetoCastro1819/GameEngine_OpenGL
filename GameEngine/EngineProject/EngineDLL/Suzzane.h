@@ -24,7 +24,5 @@ public:
 	~Suzzane();
 
 	void Update(float deltaTime) override;
-
-	void SetRigidBodyPosition(float x, float y, float z);
 };
 
