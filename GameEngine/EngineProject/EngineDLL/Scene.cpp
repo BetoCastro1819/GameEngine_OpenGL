@@ -7,13 +7,13 @@ Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 
 	AddNode(m_camera);
 	Transform* cameraTransform = m_camera->GetTransform();
-	cameraTransform->SetPosition(-10.0f, 15.0f, -20.0f);
+	cameraTransform->SetPosition(-10.0f, 10.0f, -15.0f);
 	cameraTransform->Yaw(20);
 	cameraTransform->Pitch(30);
 }
 
 bool Scene::Start() {
-	m_suzanne = new Suzzane(m_renderer, false, glm::vec3(5, 10, 0));
+	m_suzanne = new Suzzane(m_renderer, false, glm::vec3(-10, 8, 0));
 	m_suzanne->SetName("Suzanne");
 	AddNode(m_suzanne);
 

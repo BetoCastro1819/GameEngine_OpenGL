@@ -14,8 +14,8 @@ Suzzane::Suzzane(Renderer* renderer, bool isStatic, glm::vec3 startPosition) : E
 	m_material->LoadShaders("StandardVertexShader.txt", "StandardFragmentShader.txt");
 	AddComponent(m_material);
 
-	m_mesh = new Mesh(this, renderer, m_material, "uvtemplate.bmp");
-	m_mesh->LoadModel("suzanne.obj");
+	m_mesh = new Mesh(this, renderer, m_material, "spaceship_texture.bmp");
+	m_mesh->LoadModel("spaceship.obj");
 	AddComponent(m_mesh);
 
 	// TODO: make this entity have childs bounding box dimension (this entity is root, not actuak mesh)
