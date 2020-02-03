@@ -37,6 +37,9 @@ Suzzane::Suzzane(Renderer* renderer, bool isStatic, glm::vec3 startPosition) : E
 	m_simulationCallback = new SimulationEventCallback(m_rigidBody->GetRigidActor());
 	PhysicsManager::getInstance()->setSimulationEventCallback(m_simulationCallback);
 
+	m_fuel = 100.0f;
+	m_fuelConsumptionRate = 10.0f;
+
 	printf("\nNode hierarchy from %s:\n", GetName());
 	PrintNodeHierarchy();
 
@@ -89,10 +92,13 @@ void Suzzane::HandleInput(float deltaTime) {
 }
 
 void Suzzane::ActivateThrust(float deltaTime) {
-	glm::vec3 thrustersForce = m_transform->up * 2.0f;
-	m_rigidBody->AddForce(thrustersForce, ForceType::FORCE);
+	if (m_fuel >= 0) {
+		glm::vec3 thrustersForce = m_transform->up * 2.0f;
+		m_rigidBody->AddForce(thrustersForce, ForceType::FORCE);
 
-	// TODO: fuel need to be consumed
+		m_fuel -= m_fuelConsumptionRate * deltaTime;
+		printf("Fuel: %f\n", m_fuel);
+	}
 }
 
 void Suzzane::Rotate(const glm::vec3& torque) {

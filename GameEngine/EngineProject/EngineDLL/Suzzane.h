@@ -15,6 +15,9 @@ private:
 
 	SimulationEventCallback* m_simulationCallback;
 
+	float m_fuel;
+	float m_fuelConsumptionRate;
+
 	void HandleInput(float deltaTime);
 	void ActivateThrust(float deltaTime);
 	void Rotate(const glm::vec3& torque);
