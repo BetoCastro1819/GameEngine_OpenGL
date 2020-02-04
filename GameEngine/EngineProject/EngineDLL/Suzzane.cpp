@@ -34,8 +34,11 @@ Suzzane::Suzzane(Renderer* renderer, bool isStatic, glm::vec3 startPosition) : E
 	);
 	AddComponent(m_rigidBody);
 
-	m_simulationCallback = new SimulationEventCallback(m_rigidBody->GetRigidActor());
+	m_simulationCallback = new SimulationEventCallback(this, m_rigidBody->GetRigidActor());
 	PhysicsManager::getInstance()->setSimulationEventCallback(m_simulationCallback);
+
+	m_hasLanded = false;
+	m_maxVelocityToLand = 1.0f;
 
 	m_fuel = 100.0f;
 	m_fuelConsumptionRate = 10.0f;
@@ -54,7 +57,8 @@ Suzzane::~Suzzane() {
 void Suzzane::Update(float deltaTime) {
 	Entity::Update(deltaTime);
 
-	HandleInput(deltaTime);
+	if (!m_hasLanded)
+		HandleInput(deltaTime);
 }
 
 void Suzzane::HandleInput(float deltaTime) {
@@ -106,4 +110,16 @@ void Suzzane::ActivateThrust(float deltaTime) {
 
 void Suzzane::Rotate(const glm::vec3& torque) {
 	m_rigidBody->AddTorque(torque, ForceType::FORCE);
+}
+
+// Called by the SimulationEventCallback::onContact()
+void Suzzane::OnContact(float velocityOfImpact) {
+	printf("Velocity of impact: %f\n", velocityOfImpact);
+
+	if (velocityOfImpact <= m_maxVelocityToLand)
+		printf("SUCCESFUL LANDING\n");
+	else
+		printf("LANDING HAS FAILED\n");
+
+	m_hasLanded = true;
 }

@@ -11,6 +11,8 @@ public:
 	Entity(Renderer* renderer);
 	~Entity();
 
+	virtual void OnContact(float velocityOfImpact) { }
+
 	void Update(float deltaTime) override;
 	void SetVisible(bool isVisible) { m_isVisible = isVisible; }
 	bool isVisible() const { return m_isVisible; }

@@ -1,9 +1,9 @@
 #include "SimulationEventCallback.h"
+#include "Entity.h"
 
-
-
-SimulationEventCallback::SimulationEventCallback(physx::PxRigidActor* pxRigidActor) : physx::PxSimulationEventCallback() {
+SimulationEventCallback::SimulationEventCallback(Entity* entity, physx::PxRigidActor* pxRigidActor) : physx::PxSimulationEventCallback() {
 	m_pxRigidActor = pxRigidActor;
+	m_entity = entity;
 }
 
 SimulationEventCallback::~SimulationEventCallback() {
@@ -16,7 +16,7 @@ void SimulationEventCallback::onContact(const physx::PxContactPairHeader& pairHe
 		if (contactPair.events & physx::PxPairFlag::eNOTIFY_TOUCH_FOUND) {
 			if (pairHeader.actors[0] == m_pxRigidActor || pairHeader.actors[1] == m_pxRigidActor) {
 				physx::PxRigidDynamic* rigidDynamic = (physx::PxRigidDynamic*)m_pxRigidActor;
-				printf("Collision detected with velocity of %f.\n", rigidDynamic->getLinearVelocity().magnitude());
+				m_entity->OnContact(rigidDynamic->getLinearVelocity().magnitude());
 			}
 		}
 	}

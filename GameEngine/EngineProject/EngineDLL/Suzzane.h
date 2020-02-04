@@ -15,6 +15,9 @@ private:
 
 	SimulationEventCallback* m_simulationCallback;
 
+	bool m_hasLanded;
+	float m_maxVelocityToLand;
+
 	float m_fuel;
 	float m_fuelConsumptionRate;
 
@@ -27,5 +30,6 @@ public:
 	~Suzzane();
 
 	void Update(float deltaTime) override;
+	void OnContact(float velocityOfImpact) override;
 };
 
