@@ -97,7 +97,10 @@ void Suzzane::ActivateThrust(float deltaTime) {
 		m_rigidBody->AddForce(thrustersForce, ForceType::FORCE);
 
 		m_fuel -= m_fuelConsumptionRate * deltaTime;
-		printf("Fuel: %f\n", m_fuel);
+		if (m_fuel >= 0)
+			printf("Fuel: %f\n", m_fuel);
+		else
+			printf("OUT OF FUEL!\n");
 	}
 }
 

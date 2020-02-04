@@ -15,7 +15,8 @@ void SimulationEventCallback::onContact(const physx::PxContactPairHeader& pairHe
 
 		if (contactPair.events & physx::PxPairFlag::eNOTIFY_TOUCH_FOUND) {
 			if (pairHeader.actors[0] == m_pxRigidActor || pairHeader.actors[1] == m_pxRigidActor) {
-				//printf("Collision detected.\n");
+				physx::PxRigidDynamic* rigidDynamic = (physx::PxRigidDynamic*)m_pxRigidActor;
+				printf("Collision detected with velocity of %f.\n", rigidDynamic->getLinearVelocity().magnitude());
 			}
 		}
 	}
