@@ -72,6 +72,7 @@ public:
 
 	void Walk(float speed);
 	void Strafe(float speed);
+	void Elevate(float speed);
 	void Pitch(float angle);
 	void Yaw(float angle);
 	void Roll(float angle);

@@ -37,6 +37,8 @@ private:
 	float zFar;
 	float fov;
 	float aspectRatio;
+	float angleAccumulator;
+	float radiusFromTarget;
 
 	glm::vec3 m_CameraTarget;
 	glm::mat4 m_ViewMat;

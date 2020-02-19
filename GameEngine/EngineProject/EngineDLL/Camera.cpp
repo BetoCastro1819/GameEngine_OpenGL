@@ -18,6 +18,8 @@ Camera::Camera(Renderer* renderer, Window* window) : Entity(renderer) {
 	zFar = 100.0f;
 	fov = 45;
 	aspectRatio = (float)m_Window->GetWidth() / (float)m_Window->GetHeight();
+	angleAccumulator = -89.5;
+	radiusFromTarget = 15.0f;
 
 	m_renderer->SetPerpectiveCam(fov, aspectRatio, zNear, zFar);
 
@@ -34,7 +36,7 @@ void Camera::Update(float deltaTime) {
 
 	UpdateFrustrumPlanes();
 
-	//CheckForMovementInput(deltaTime);
+	CheckForMovementInput(deltaTime);
 	//CheckForRotationInput(deltaTime);
 
 	m_currentlyVisibleEntities = m_entities;
@@ -75,24 +77,42 @@ void Camera::Update(float deltaTime) {
 void Camera::UpdateViewMatrix() {
 	m_ViewMat = glm::lookAt(
 		m_transform->GetPosition(),
-		m_transform->GetPosition() + m_transform->foward,
-		m_transform->up
+		glm::vec3(0),// m_transform->GetPosition() + m_transform->foward,
+		World::up // m_transform->up
 	);
 	m_renderer->SetCamView(m_ViewMat);
 }
 
 void Camera::CheckForMovementInput(float deltaTime) {
+	//glm::mat4 view;
+	//view = glm::lookAt(glm::vec3(camX, 0.0, camZ), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0f));
+
 	float movementSpeed = m_strafeSpeed * deltaTime;
 	GLFWwindow* window = (GLFWwindow*)m_Window->GetWindowPtr();
 
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) // Move forward
-		m_transform->Walk(movementSpeed);
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) // Move backward
-		m_transform->Walk(-movementSpeed);
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) // Strafe right
-		m_transform->Strafe(movementSpeed);
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) // Strafe left
-		m_transform->Strafe(-movementSpeed);
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+		if (radiusFromTarget >= 2.0f)
+			radiusFromTarget -= 0.1f;
+
+		//m_transform->Elevate(movementSpeed);
+	}
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+			radiusFromTarget += 0.1f;
+
+		//m_transform->Elevate(-movementSpeed);
+	}
+	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+		angleAccumulator -= 0.01f;
+		//m_transform->Strafe(-movementSpeed);
+	}
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+		angleAccumulator += 0.01f;
+		//m_transform->Strafe(movementSpeed);
+	}
+	
+	float camX = sin(angleAccumulator) * radiusFromTarget;
+	float camZ = cos(angleAccumulator) * radiusFromTarget;
+	m_transform->SetPosition(glm::vec3(camX, 8.0f, camZ));
 }
 
 void Camera::CheckForRotationInput(float deltaTime) {

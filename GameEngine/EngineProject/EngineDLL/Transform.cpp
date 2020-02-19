@@ -150,6 +150,12 @@ void Transform::Strafe(float speed) {
 	UpdateVectorWithMatrix(m_position, m_translateMatrix);
 }
 
+void Transform::Elevate(float speed) {
+	m_position += up * speed;
+	m_translateMatrix = glm::translate(glm::mat4(1.0f), m_position);
+	UpdateVectorWithMatrix(m_position, m_translateMatrix);
+}
+
 void Transform::Pitch(float angle) {
 	m_rotation.x = angle;
 	m_rotateMatrix *= glm::rotate(glm::mat4(1.0f), glm::radians(m_rotation.x), World::right);
