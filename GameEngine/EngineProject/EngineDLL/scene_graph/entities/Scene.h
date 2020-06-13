@@ -1,12 +1,11 @@
 #pragma once
-#include "Exports.h"
+#include "../../misc/Exports.h"
 #include "Entity.h"
-#include "Mesh.h"
-#include "Renderer.h"
-#include "Camera.h"
-#include "Suzzane.h"
-#include "Terrain.h"
-#include "LandingPad.h" 
+
+class Camera;
+class Suzzane;
+class Terrain;
+class LandingPad;
 
 class ENGINEDLL_API Scene : public Entity {
 private:
@@ -20,7 +19,6 @@ private:
 	void FillVectorWithEntitiesInScene();
 	bool is_bsp_plane(Entity* entity) const;
 
-
 public:
 	Scene(Renderer* renderer, Camera* camera);
 	~Scene();
@@ -28,4 +26,3 @@ public:
 	void Update(float deltaTime) override;
 	bool Start();
 };
-

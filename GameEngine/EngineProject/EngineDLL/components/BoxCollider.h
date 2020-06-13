@@ -1,8 +1,8 @@
 #pragma once
-#include "Exports.h"
-#include "Shape.h"
-#include "Animation.h"
-#include "Window.h"
+#include "../misc/Exports.h"
+//#include "Shape.h"
+//#include "Animation.h"
+//#include "Window.h"
 
 enum CollisionDir {
 	LEFT, 
@@ -13,18 +13,18 @@ enum CollisionDir {
 
 class ENGINEDLL_API BoxCollider {
 private:
-	double _boxWidth;
-	double _boxHeight;
+	double m_boxWidth;
+	double m_boxHeight;
 
 public:
 	BoxCollider(double boxWidth, double boxHeight);
 	~BoxCollider();
 
-	double GetBoxWidth() { return _boxWidth; }
-	void SetBoxWidth(double width) { _boxWidth = width; }
+	double GetBoxWidth() { return m_boxWidth; }
+	void SetBoxWidth(double width) { m_boxWidth = width; }
 
-	double GetBoxHeight() { return _boxHeight; }
-	void SetBoxHeight(double height) { _boxHeight = height; }
+	double GetBoxHeight() { return m_boxHeight; }
+	void SetBoxHeight(double height) { m_boxHeight = height; }
 };
 
 

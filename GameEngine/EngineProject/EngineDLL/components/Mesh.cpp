@@ -1,16 +1,17 @@
-#include "Mesh.h"
-#include "TextureLoader.h"
-#include "Transform.h"
-#include "Material.h"
-#include "Renderer.h"
-#include "Entity.h"
+#include <assimp/Importer.hpp> 
+#include <assimp/scene.h>           
+#include <assimp/postprocess.h>
 
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
-#include <assimp/Importer.hpp> 
-#include <assimp/scene.h>           
-#include <assimp/postprocess.h>
+#include "Mesh.h"
+#include "Transform.h"
+#include "Material.h"
+
+#include "../scene_graph/entities/Entity.h"
+#include "../rendering/TextureLoader.h"
+#include "../rendering/Renderer.h"
 
 
 Mesh::Mesh(Entity* entity, Renderer* renderer, Material* material, const char* texturePath) : Component(entity) {

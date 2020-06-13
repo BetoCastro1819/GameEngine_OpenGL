@@ -1,8 +1,8 @@
 #pragma once
-#include "Exports.h"
 #include <iostream>
 #include <map>
 #include <vector>
+#include "../misc/Exports.h"
 
 class ENGINEDLL_API Animation {
 private:

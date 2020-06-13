@@ -1,7 +1,7 @@
 #pragma once
-#include "Exports.h"
-#include "glm/glm.hpp"
 #include <vector>
+#include "../misc/Exports.h"
+#include "glm/glm.hpp"
 
 class ENGINEDLL_API OBJ_Loader {
 public:

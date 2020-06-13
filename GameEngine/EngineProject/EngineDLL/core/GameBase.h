@@ -1,14 +1,22 @@
 #pragma once
 #include <iostream>
-#include <string>
-#include "Exports.h"
-#include "Renderer.h"
-#include "Window.h"
-#include "Camera.h"
-#include "Time.h"
-#include "PhysicsManager.h"
+#include "../misc/Exports.h"
 #include "glm/glm.hpp"
-#include "InputHandler.h"
+
+// #include <string>
+//#include "../misc/Time.h"
+//#include "../scene_graph/entities/Camera.h"
+//#include "../physics/PhysicsManager.h"
+//#include "../rendering/Renderer.h"
+//#include "Window.h"
+//#include "InputHandler.h"
+
+class Window;
+class Renderer;
+class Camera;
+class Time;
+class InputHandler;
+class PhysicsManager;
 
 class ENGINEDLL_API GameBase {
 protected:

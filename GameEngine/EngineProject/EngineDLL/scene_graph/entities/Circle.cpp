@@ -10,15 +10,15 @@ Circle::Circle(Renderer* renderer, double radius, int sides) : Shape(renderer) {
 		double path = a * 3.1415926535897932384626433832795 / 180;
 
 
-		vertices.push_back(cos(path) * radius);		// Vector position in X
-		vertices.push_back(sin(path) * radius);		// Vector position in Y
-		vertices.push_back(0);						// Vector position in Z
+		vertices.push_back(cos(path) * radius);	// Vector position in X
+		vertices.push_back(sin(path) * radius);	// Vector position in Y
+		vertices.push_back(0);					// Vector position in Z
 
-		colorData.push_back(1.0f);					// R
-		colorData.push_back(0.0f);					// G
-		colorData.push_back(0.0f);					// B
+		colorData.push_back(1.0f);	// R
+		colorData.push_back(0.0f);	// G
+		colorData.push_back(0.0f);	// B
 
-		vrtxCount++;								// Number of vertices needed to generate circle
+		vrtxCount++; // Number of vertices needed to generate circle
 	}
 
 	SetVertices(&vertices[0], vrtxCount);
@@ -27,5 +27,4 @@ Circle::Circle(Renderer* renderer, double radius, int sides) : Shape(renderer) {
 	_dispose = false;
 }
 
-Circle::~Circle() {
-}
+Circle::~Circle() { }

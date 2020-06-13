@@ -1,5 +1,8 @@
 #include "Shape.h"
-#include "Transform.h"
+#include "../../components/Transform.h"
+#include "../../components/Material.h"
+#include "../../rendering/Renderer.h"
+
 
 Shape::Shape(Renderer* renderer) : Entity(renderer) {
 	_dispose = false;

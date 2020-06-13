@@ -1,6 +1,6 @@
 #include "Transform.h"
-#include "Entity.h"
-#include "Window.h"
+#include "../scene_graph/entities/Entity.h"
+#include "../core/Window.h"
 
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "Exports.h"
+#include "../misc/Exports.h"
 #include "glm/glm.hpp"
 
 const float GRAVITY = -0.5f;

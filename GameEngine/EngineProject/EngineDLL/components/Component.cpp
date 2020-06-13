@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Component.h"
 
 Component::Component(Entity* entity) {
@@ -5,5 +6,4 @@ Component::Component(Entity* entity) {
 	m_entity = entity;
 }
 
-Component::~Component() {
-}
+Component::~Component() { }

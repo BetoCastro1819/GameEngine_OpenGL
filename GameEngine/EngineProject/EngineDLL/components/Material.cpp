@@ -1,13 +1,13 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include "Material.h"
-#include "Entity.h"
-
 #include <GL\glew.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
+
+#include "Material.h"
+#include "../scene_graph/entities/Entity.h"
 
 Material::Material(Entity* entity) : Component(entity) {
 	SetType(ComponentType::MATERIAL);

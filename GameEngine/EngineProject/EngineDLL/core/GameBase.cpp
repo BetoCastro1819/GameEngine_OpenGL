@@ -1,5 +1,16 @@
 #include "GameBase.h"
-#include "TypeDefs.h"
+
+#include "../misc/Exports.h"
+#include "../misc/Time.h"
+#include "../misc/TypeDefs.h"
+
+#include "../scene_graph/entities/Camera.h"
+#include "../physics/PhysicsManager.h"
+#include "../rendering/Renderer.h"
+
+#include "Window.h"
+#include "InputHandler.h"
+
 
 GameBase::GameBase(const int& width, const int& height, const char* name) {
 	_screenWidth = width;

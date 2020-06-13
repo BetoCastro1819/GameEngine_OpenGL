@@ -1,11 +1,11 @@
 #include "Suzzane.h"
-#include "Material.h"
-#include "Mesh.h"
-#include "Transform.h"
-#include "RigidBody.h"
-#include "InputHandler.h"
-#include "SimulationEventCallback.h"
-#include "PhysicsManager.h"
+#include "../../components/Material.h"
+#include "../../components/Mesh.h"
+#include "../../components/Transform.h"
+#include "../../components/RigidBody.h"
+#include "../../core/InputHandler.h"
+#include "../../physics/SimulationEventCallback.h"
+#include "../../physics/PhysicsManager.h"
 
 Suzzane::Suzzane(Renderer* renderer, bool isStatic, glm::vec3 startPosition) : Entity(renderer) {
 	SetName("suzanne root");

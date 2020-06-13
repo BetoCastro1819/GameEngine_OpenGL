@@ -1,6 +1,5 @@
 #include "Animation.h"
 
-
 Animation::Animation() {
 	currentAnimation = NULL;
 	currentFrameIndex = 0;
@@ -10,8 +9,7 @@ Animation::Animation() {
 	animationSpeed = 12;
 }
 
-Animation::~Animation() {
-}
+Animation::~Animation() { }
 
 void Animation::AddAnimation(const char* animationName, std::vector<int> animatedFrames) {
 

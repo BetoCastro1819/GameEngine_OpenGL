@@ -1,8 +1,11 @@
+#include <PxPhysicsAPI.h>
+
 #include "RigidBody.h"
-#include "PhysicsManager.h"
 #include "Transform.h"
 #include "BoxCollider.h"
-#include <PxPhysicsAPI.h>
+
+#include "../scene_graph/entities/Entity.h"
+#include "../physics/PhysicsManager.h"
 
 RigidBody::RigidBody(Entity* entity) : Component(entity) {
 	m_entity = entity;

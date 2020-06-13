@@ -1,8 +1,9 @@
 #pragma once
-#include "Exports.h"
-#include "Component.h"
 #include <vector>
 #include <String>
+
+#include "../misc/Exports.h"
+#include "../components/Component.h"
 
 class Transform;
 enum ComponentType;

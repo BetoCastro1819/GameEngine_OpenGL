@@ -1,9 +1,11 @@
 #pragma once
-#include "Exports.h"
+#include "../../misc/Exports.h"
 #include "Shape.h"
-#include "Animation.h"
-#include "Window.h"
-#include "BoxCollider.h"
+
+class Shape;
+class Animation;
+class Window;
+class BoxCollider;
 
 struct ENGINEDLL_API  FramePos {
 	float x;
@@ -12,38 +14,36 @@ struct ENGINEDLL_API  FramePos {
 
 class ENGINEDLL_API  Sprite : public Shape {
 protected:
+	float* _uvVrtxs;
+	int	_uvVrtxCount;
+	int	_uvBufferData;
+	unsigned int _textureID;
+	unsigned int _texture;
 
-	float*			_uvVrtxs;						// Pointer to the 1st value of the array of vertices
-	int				_uvVrtxCount;					// Number of vertices to draw
-	int				_uvBufferData;					// UV Buffer Data generated from the renderer
-	unsigned int	_textureID;						// Texture ID that will be passed to the "Texture Sampler" of the renderer
-	unsigned int	_texture;						// Actual texture file in BMP format
+	BoxCollider* _boxCollider;
 
-	BoxCollider*	_boxCollider;					// Box collider that will be used to test collision
-
-	/* ANIMATED SPRITE */
-	Animation*		_animation;						// Stores and plays sprite's animations
-	FramePos		_frame;							// Struct that will store X and Y position of the frame based on it's ID 
-	unsigned int	_frameID;						// ID of the frame that will be selected from the sprite sheet to be drawn
-	unsigned int	_textureWidth;					// Width of the texture in pixels
-	unsigned int	_textureHeight;					// Height of the texture in pixels
-	unsigned int	_frameWidth;					// Width of each frame cell from the sprite sheet
-	unsigned int	_frameHeight;					// Height of each frame cell from the sprite sheet
-	unsigned int	_numColums;						// Max number of frames per columns
-	unsigned int	_numRows;						// Max number of frames per rows
+	Animation* _animation;
+	FramePos _frame;
+	unsigned int _frameID;						
+	unsigned int _textureWidth;					
+	unsigned int _textureHeight;				
+	unsigned int _frameWidth;					
+	unsigned int _frameHeight;					
+	unsigned int _numColums;					
+	unsigned int _numRows;						
 
 public:
 	Sprite (
-		Renderer*		renderer,					// Pointer to renderer that will draw sprite on screen
-		unsigned int	frameID,					// ID of the frame that will be selected from the sprite sheet to be drawn
-		unsigned int	textureWidth,				// Width of the texture in pixels
-		unsigned int	textureHeight,				// Height of the texture in pixels
-		unsigned int	frameWidth,					// Width of each frame cell from the sprite sheet
-		unsigned int	frameHeight,				// Height of each frame cell from the sprite sheet
-		unsigned int	numColums,					// Number of horizontal frames
-		unsigned int	numRows,					// Number of vertical frames
-		bool			isAnimated,					// Boolean that enables animation on the sprite
-		const char*		spritesheetPath				// Local file path where the spritesheet is stored
+		Renderer*		renderer,					
+		unsigned int	frameID,					
+		unsigned int	textureWidth,				
+		unsigned int	textureHeight,				
+		unsigned int	frameWidth,					
+		unsigned int	frameHeight,				
+		unsigned int	numColums,					
+		unsigned int	numRows,					
+		bool			isAnimated,					
+		const char*		spritesheetPath				
 	);
 
 	~Sprite();
@@ -54,7 +54,6 @@ public:
 	void InitVertices();
 	void InitVerticesUV();
 
-	/* Animated Sprite */
 	void AddAnimation(const char* animationName, std::vector<int> animationFrames);
 	void PlayAnimation(float deltaTime);
 	void SetAnimation(const char* animationName);

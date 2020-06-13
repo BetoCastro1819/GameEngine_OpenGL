@@ -1,9 +1,11 @@
 #pragma once
-#include "Exports.h"
+#include <vector>
+
+#include "../misc/Exports.h"
 #include "Component.h"
+
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
-#include <vector>
 
 class Window;
 

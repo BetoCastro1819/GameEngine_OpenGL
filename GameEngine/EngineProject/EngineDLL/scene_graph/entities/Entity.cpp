@@ -1,5 +1,6 @@
 #include "Entity.h"
-#include "Transform.h"
+#include "../../components/Transform.h"
+#include "../../rendering/Renderer.h"
 
 Entity::Entity(Renderer* renderer)	 {
 	m_renderer = renderer;

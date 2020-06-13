@@ -1,6 +1,8 @@
 #pragma once
-#include "Exports.h"
+#include "../../misc/Exports.h"
 #include "Entity.h"
+
+#include "glm/glm.hpp"
 
 class Material;
 class Mesh;

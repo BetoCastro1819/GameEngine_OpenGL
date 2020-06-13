@@ -1,5 +1,5 @@
 #include "SimulationEventCallback.h"
-#include "Entity.h"
+#include "../scene_graph/entities/Entity.h"
 
 SimulationEventCallback::SimulationEventCallback(Entity* entity, physx::PxRigidActor* pxRigidActor) : physx::PxSimulationEventCallback() {
 	m_pxRigidActor = pxRigidActor;

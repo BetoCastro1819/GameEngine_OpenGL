@@ -1,9 +1,10 @@
 #include "LandingPad.h"
-#include "Material.h"
-#include "Mesh.h"
-#include "Transform.h"
-#include "RigidBody.h"
-#include "PhysicsManager.h"
+#include "../../components/Material.h"
+#include "../../components/Mesh.h"
+#include "../../components/Transform.h"
+#include "../../components/RigidBody.h"
+#include "../../physics/PhysicsManager.h"
+
 
 LandingPad::LandingPad(Renderer* renderer, glm::vec3 startPosition) :Entity(renderer) {
 	SetName("LandingPad root");

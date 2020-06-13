@@ -3,16 +3,19 @@
 
 
 Time::Time() {
-	lastTime = glfwGetTime();
-	deltaTime = 0;
+	m_lastTime = glfwGetTime();
+	m_deltaTime = 0;
 }
 
-Time::~Time() {
+Time::~Time() { }
+
+float Time::GetDeltaTime() { 
+	return m_deltaTime; 
 }
 
 void Time::UpdateTime() {
-	deltaTime = glfwGetTime() - lastTime;
-	lastTime = glfwGetTime();
+	m_deltaTime = glfwGetTime() - m_lastTime;
+	m_lastTime = glfwGetTime();
 
 	//std::cout << "Delta Time: " << deltaTime << endl;
 }

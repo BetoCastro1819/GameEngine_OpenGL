@@ -1,4 +1,7 @@
 #include "TextureShape.h"
+#include "../../components/Material.h"
+#include "../../rendering/Renderer.h"
+
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 

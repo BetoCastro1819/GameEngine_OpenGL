@@ -2,6 +2,7 @@
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
+
 Renderer::Renderer(Window* window) {	
 	_window = window;
 	

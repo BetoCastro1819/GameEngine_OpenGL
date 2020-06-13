@@ -1,5 +1,5 @@
 #pragma once
-#include "Exports.h"
+#include "../../misc/Exports.h"
 #include "Shape.h"
 
 
@@ -16,4 +16,3 @@ public:
 	TextureShape(Renderer* renderer);
 	~TextureShape();
 };
-

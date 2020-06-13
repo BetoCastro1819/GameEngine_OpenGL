@@ -1,5 +1,5 @@
 #include "SceneNode.h"
-#include "Transform.h"
+#include "../components/Transform.h"
 
 SceneNode::SceneNode() {
 	m_parent = nullptr;

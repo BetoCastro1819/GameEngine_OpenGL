@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
-#include "Material.h"
+
+class Material;
 
 class ENGINEDLL_API Shape : public Entity {
 protected:

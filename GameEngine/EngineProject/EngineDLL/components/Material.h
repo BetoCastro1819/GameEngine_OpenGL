@@ -1,7 +1,9 @@
 #pragma once
-#include "Exports.h"
+#include "../misc/Exports.h"
 #include "Component.h"
 #include "glm/glm.hpp"
+
+class Entity;
 
 class ENGINEDLL_API Material : public Component {
 private:

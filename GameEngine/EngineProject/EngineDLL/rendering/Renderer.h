@@ -1,18 +1,15 @@
 #pragma once
 #include <iostream>
-
-#include "Exports.h"
-#include "Window.h"
 #include <vector>
 
-// GLM -> math library
+#include "../misc/Exports.h"
+#include "../core/Window.h"
+
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-using namespace std;
 
-enum CameraType
-{
+enum CameraType {
 	PERSPECTIVE,
 	ORTHOGRAPHIC
 };
@@ -58,7 +55,6 @@ public:
 	void DrawElements(int numberOfElements);
 	void DisableVertexArrays(int arrayID);
 
-
 	void BindBuffer(unsigned int bufferID, int vtxCount, int attribID, int size, int drawMode);
 	void SetClearColor(const float& r, const float& g, const float& b, const float& a);
 	void ClearBuffer();
@@ -90,6 +86,3 @@ public:
 	void DeleteProgram(unsigned int programID);
 	void DeleteTextures(unsigned int texture);
 };
-
-
-

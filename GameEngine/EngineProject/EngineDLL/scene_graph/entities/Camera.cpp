@@ -1,5 +1,8 @@
 #include "Camera.h"
-#include "Transform.h"
+#include "../../components/Transform.h"
+#include "../../core/Window.h"
+#include "../../components/Transform.h"
+#include "../../rendering/Renderer.h"
 
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>

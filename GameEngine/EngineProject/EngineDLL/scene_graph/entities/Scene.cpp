@@ -1,5 +1,12 @@
 #include "Scene.h"
-#include "Transform.h"
+#include "../../components/Transform.h"
+#include "../../components/Mesh.h"
+#include "../../rendering/Renderer.h"
+#include "Camera.h"
+#include "Suzzane.h"
+#include "Terrain.h"
+#include "LandingPad.h" 
+
 
 Scene::Scene(Renderer* renderer, Camera* camera) : Entity(renderer) {
 	m_camera = camera;

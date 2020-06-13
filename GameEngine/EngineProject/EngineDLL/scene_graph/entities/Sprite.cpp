@@ -1,23 +1,30 @@
 #include "Sprite.h"
-#include "Entity.h"
-#include "Transform.h"
+//#include "Entity.h"
+
+#include "../../components/Transform.h"
+
+#include "../../components/Animation.h"
+#include "../../core/Window.h"
+#include "../../components/BoxCollider.h"
+
+#include "../../components/Material.h"
+#include "../../rendering/Renderer.h"
+
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 
-Sprite::Sprite(
-	Renderer* renderer,
-	unsigned int frameID,
-	unsigned int textureWidth,
-	unsigned int textureHeight,
-	unsigned int frameWidth,
-	unsigned int frameHeight,
-	unsigned int numColums,
-	unsigned int numRows,
-	bool isAnimated,
-	const char* spritesheetPath
-	) : Shape(renderer) {				// Initialize base constructor
-
-	// Initialize variables
+Sprite::Sprite(Renderer* renderer,
+			   unsigned int frameID,
+			   unsigned int textureWidth,
+			   unsigned int textureHeight,
+			   unsigned int frameWidth,
+			   unsigned int frameHeight,
+			   unsigned int numColums,
+			   unsigned int numRows,
+			   bool isAnimated,
+			   const char* spritesheetPath) 
+	: Shape(renderer) {
+	
 	_frameID		= frameID;
 	_frame.x		= 0;
 	_frame.y		= 0;
@@ -32,13 +39,10 @@ Sprite::Sprite(
 	_textureID = m_renderer->SetTextureID(_programID);
 
 	
-	// If the sprite is animated
-	// Set new UV coordinates
 	if (isAnimated) {
 		SetFrame(frameID);
 	}
 	_animation = NULL;
-
 
 	_boxCollider = new BoxCollider(_frameWidth, _frameHeight);
 

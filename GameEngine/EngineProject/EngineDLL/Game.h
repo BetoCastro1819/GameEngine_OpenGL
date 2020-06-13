@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include "GameBase.h"
-#include "Scene.h"
+#include "core/GameBase.h"
+#include "scene_graph/entities/Scene.h"
 
 using namespace std;
 

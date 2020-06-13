@@ -1,6 +1,9 @@
 #pragma once
-#include "Renderer.h"
-#include "SceneNode.h"
+//#include "Renderer.h"
+#include "../../misc/Exports.h"
+#include "../SceneNode.h"
+
+class Renderer;
 
 class ENGINEDLL_API Entity : public SceneNode {
 protected:

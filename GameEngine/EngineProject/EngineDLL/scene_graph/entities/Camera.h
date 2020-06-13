@@ -1,16 +1,21 @@
 #pragma once
 #include <iostream>
+#include <vector>
 
-#include "Exports.h"
-#include "Window.h"
-#include "Renderer.h"
+#include "../../misc/Exports.h"
+#include "../../misc/Plane.h"
 #include "Entity.h"
-#include "Transform.h"
-#include "Plane.h"
 
-// GLM -> math library
+//#include "../../core/Window.h"
+//#include "../../components/Transform.h"
+//#include "../../rendering/Renderer.h"
+
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+
+class Renderer;
+class Plane;
+class Window;
 
 enum ClippingPlane {
 	Left	= 0,
@@ -27,11 +32,11 @@ private:
 
 	Plane m_frustrumPlanes[6];
 
-	vector<Entity*> m_entities;
-	vector<Entity*> m_currentlyVisibleEntities;
-	vector<Entity*> m_previouslyVisibleEntities;
+	std::vector<Entity*> m_entities;
+	std::vector<Entity*> m_currentlyVisibleEntities;
+	std::vector<Entity*> m_previouslyVisibleEntities;
 
-	vector<Plane> m_bspPlanes;
+	std::vector<Plane> m_bspPlanes;
 
 	float zNear;
 	float zFar;

@@ -1,19 +1,15 @@
 #pragma once
 #include <iostream>
-#include "Exports.h"
+#include "../misc/Exports.h"
 #include "Component.h"
 #include "glm/glm.hpp"
 
-namespace physx 
-{
+namespace physx {
 	struct PxForceMode;
 	class PxRigidActor;
 	class PxShape;
 	class PxMaterial;
 }
-
-class BoxCollider;
-class Transform;
 
 enum ForceType {
 	FORCE,
@@ -22,6 +18,8 @@ enum ForceType {
 	ACCELERATION
 };
 
+class BoxCollider;
+class Transform;
 
 class ENGINEDLL_API RigidBody : public Component {
 private:

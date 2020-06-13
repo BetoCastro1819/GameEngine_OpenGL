@@ -1,13 +1,11 @@
 #include "Window.h"
-
-// GLFW
 #include <GLFW\glfw3.h>
 
 Window::Window(const int& height, const int& width, const char* name) {	
-
-	_height = height;
-	_name = name;
-	_width = width;
+	m_height = height;
+	m_name = name;
+	m_width = width;
+	m_window = NULL;
 }
 
 Window::~Window() {
@@ -25,36 +23,36 @@ bool Window::Start() {
 	}
 
 	// Create window
-	_window = glfwCreateWindow(_width, _height, _name, NULL, NULL);
-	if (!_window) {
+	m_window = glfwCreateWindow(m_width, m_height, m_name, NULL, NULL);
+	if (!m_window) {
 		printf("ERROR\n");
 		fprintf(stderr, "Failed to initialize window\n");
 		getchar();
 		glfwTerminate();
 		return false;
 	}
-	glfwSetWindowShouldClose((GLFWwindow*)_window, false);
+	glfwSetWindowShouldClose((GLFWwindow*)m_window, false);
 	printf("SUCCESS\n");
 	return true;
 }
 
 bool Window::Stop() {
 	cout << "Closing Window\n";
-	if (_window != NULL)	
-		glfwDestroyWindow((GLFWwindow*)_window);
+	if (m_window != NULL)	
+		glfwDestroyWindow((GLFWwindow*)m_window);
 
-	_window = NULL;
+	m_window = NULL;
 	glfwTerminate();	
 	return true;
 }
 
 bool Window::ShouldClose() {
 
-	if (_window) {
-		if (glfwGetKey((GLFWwindow*)_window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-			glfwSetWindowShouldClose((GLFWwindow*)_window, true);
+	if (m_window) {
+		if (glfwGetKey((GLFWwindow*)m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+			glfwSetWindowShouldClose((GLFWwindow*)m_window, true);
 		}
-		return glfwWindowShouldClose((GLFWwindow*)_window);
+		return glfwWindowShouldClose((GLFWwindow*)m_window);
 	}
 	return true;
 }

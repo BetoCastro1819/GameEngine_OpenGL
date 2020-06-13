@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Exports.h"
+#include "../misc/Exports.h"
 
 class Window;
 

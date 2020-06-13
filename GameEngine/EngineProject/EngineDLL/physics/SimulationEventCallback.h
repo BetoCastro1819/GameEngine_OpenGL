@@ -2,9 +2,11 @@
 #include <iostream>
 #include <PxPhysicsAPI.h>
 
+#include "../misc/Exports.h"
+
 class Entity;
 
-class SimulationEventCallback : public physx::PxSimulationEventCallback {
+class ENGINEDLL_API SimulationEventCallback : public physx::PxSimulationEventCallback {
 private:
 	physx::PxRigidActor* m_pxRigidActor;
 	Entity* m_entity;
@@ -22,4 +24,3 @@ public:
 	void onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 count) override {}
 	void onAdvance(const physx::PxRigidBody *const *bodyBuffer, const physx::PxTransform *poseBuffer, const physx::PxU32 count) override {}
 };
-

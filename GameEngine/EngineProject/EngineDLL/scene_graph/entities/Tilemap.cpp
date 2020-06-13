@@ -1,31 +1,30 @@
-#include "Tilemap.h"
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 #include <vector>
 
-Tilemap::Tilemap(
-	Renderer*		renderer,
-	unsigned int	tileSheetWidth,
-	unsigned int	tileSheetHeight,
-	unsigned int	tileWidth,
-	unsigned int	tileHeight,
-	unsigned int	numCols,
-	unsigned int	numRows,
-	const char*		tilePalletePath
-	)
-	: Sprite(
-		renderer,
-		0,
-		tileSheetWidth,
-		tileSheetHeight,
-		tileWidth,
-		tileHeight,
-		2,
-		2,
-		false,
-		tilePalletePath
-	)
-{
+#include "Tilemap.h"
+
+#include "../../rendering/Renderer.h"
+
+
+Tilemap::Tilemap(Renderer* renderer,
+				 unsigned int tileSheetWidth,
+				 unsigned int tileSheetHeight,
+				 unsigned int tileWidth,
+				 unsigned int tileHeight,
+				 unsigned int numCols,
+				 unsigned int numRows,
+				 const char* tilePalletePath)
+	: Sprite(renderer,
+			 0,
+			 tileSheetWidth,
+			 tileSheetHeight,
+			 tileWidth,
+			 tileHeight,
+			 2,
+			 2,
+			 false,
+			 tilePalletePath) {
 	// Actual code after horrible constructor
 	// Initialize private variables
 	_tileWidth = tileWidth;
@@ -46,26 +45,26 @@ Tilemap::Tilemap(
 
 			// BOTTOM - LEFT
 			tilemapVtxBuffer.push_back(0.0f + row * tileWidth);			// X
-			tilemapVtxBuffer.push_back(0.0f + col * tileHeight);			// Y
-			tilemapVtxBuffer.push_back(-1.0f);								// Z
+			tilemapVtxBuffer.push_back(0.0f + col * tileHeight);		// Y
+			tilemapVtxBuffer.push_back(-1.0f);							// Z
 			_tileVtxCount++;
 
 			// TOP - LEFT
 			tilemapVtxBuffer.push_back(0.0f + row * tileWidth);			// X
 			tilemapVtxBuffer.push_back(_tileHeight + col * tileHeight);	// Y
-			tilemapVtxBuffer.push_back(-1.0f);								// Z
+			tilemapVtxBuffer.push_back(-1.0f);							// Z
 			_tileVtxCount++;
 
 			// TOP - RIGHT
-			tilemapVtxBuffer.push_back(_tileWidth + row * tileWidth);		// X
+			tilemapVtxBuffer.push_back(_tileWidth + row * tileWidth);	// X
 			tilemapVtxBuffer.push_back(_tileHeight + col * tileHeight);	// Y
-			tilemapVtxBuffer.push_back(-1.0f);								// Z
+			tilemapVtxBuffer.push_back(-1.0f);							// Z
 			_tileVtxCount++;
 
 			// BOTTOM - RIGHT
-			tilemapVtxBuffer.push_back(_tileWidth + row * tileWidth);		// X
-			tilemapVtxBuffer.push_back(0.0f + col * tileHeight);			// Y
-			tilemapVtxBuffer.push_back(-1.0f);								// Z
+			tilemapVtxBuffer.push_back(_tileWidth + row * tileWidth);	// X
+			tilemapVtxBuffer.push_back(0.0f + col * tileHeight);		// Y
+			tilemapVtxBuffer.push_back(-1.0f);							// Z
 			_tileVtxCount++;
 		}
 	}

@@ -1,16 +1,16 @@
 #pragma once
 #include <iostream>
-#include "Exports.h"
+#include "../misc/Exports.h"
 
 using namespace std;
 
 class ENGINEDLL_API Window {
 private:
-	void* _window;
+	void* m_window;
 protected:
-	int _height;
-	int _width;
-	const char* _name;
+	int m_height;
+	int m_width;
+	const char* m_name;
 public:
 	Window(const int& height, const int& witdh, const char* name);
 	~Window();
@@ -18,8 +18,8 @@ public:
 	bool Stop();
 	bool ShouldClose();
 	void PollEvents();
-	const void* GetWindowPtr() { return _window; };
-	int GetHeight() { return _height; }
-	int GetWidth() { return _width; }
+	const void* GetWindowPtr() { return m_window; };
+	int GetHeight() { return m_height; }
+	int GetWidth() { return m_width; }
 };
 
