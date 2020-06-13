@@ -1,1 +1,5 @@
-﻿  EngineProject.vcxproj -> D:\Documents\GameEngine_OpenGL\GameEngine\EngineProject\Debug\TestEngine.exe
+﻿  Game.cpp
+D:\Documents\GameEngine_OpenGL\GameEngine\EngineProject\EngineDLL\Game.h(3,10): fatal error C1083: Cannot open include file: 'GameBase.h': No such file or directory
+  main.cpp
+D:\Documents\GameEngine_OpenGL\GameEngine\EngineProject\EngineDLL\Game.h(3,10): fatal error C1083: Cannot open include file: 'GameBase.h': No such file or directory
+  Generating Code...
